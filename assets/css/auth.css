@@ -1,0 +1,29 @@
+body{
+    background-color:rgb(255, 255, 255)
+}
+#auth{
+    height:100vh;
+    overflow-x:hidden
+}
+#auth #auth-right{
+    height:100%;
+    background:linear-gradient(90deg,#ffffff,#9c9c9c)
+}
+#auth #auth-left{
+    padding:2rem 8rem
+}
+#auth #auth-left .auth-title{
+    font-size:2rem;
+    margin-bottom:1rem
+}
+#auth #auth-left .auth-subtitle{
+    font-size:1.7rem;
+    line-height:2.5rem;
+    color:#566da0
+}
+#auth #auth-left .auth-logo img{
+    height:20rem
+}
+    @media screen and (max-width:767px){
+    #auth #auth-left{
+        padding:5rem}}
