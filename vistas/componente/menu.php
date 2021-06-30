@@ -3,11 +3,11 @@
         <div class="sidebar-header">
             <div class="text-center">
 
-                <img src="assets/images/vih.png" alt="">
+                <img src="../assets/images/vih.png" alt="">
                     <h3>POA & POM</h3>
-
             </div>
         </div>
+        <h5 class="text-center text-warning"><?php $hoy = date("d/m/Y");  echo $hoy; ?></h5>
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item  ">
-                    <a href="pom.php" class='sidebar-link'>
+                    <a href="promotor.php" class='sidebar-link'>
                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                         <span>Promotores</span>
                     </a>

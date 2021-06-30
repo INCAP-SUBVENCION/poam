@@ -2,7 +2,7 @@
     $servidor   = "localhost";
     $usuario    = "root";
     $pass       = "";
-    $bd         = "pom";
+    $bd         = "poam";
     $enlace = mysqli_connect($servidor, $usuario, $pass, $bd);
 
     if (!$enlace) {
