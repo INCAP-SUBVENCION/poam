@@ -1,6 +1,8 @@
 <?php
 include_once('../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
+session_start();
+$ID =$_SESSION['idUsuario'];
 ?>
 <!DOCTYPE html>
 <html lang="es">

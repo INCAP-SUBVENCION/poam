@@ -1,6 +1,8 @@
 <?php
 include_once('../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
+session_start();
+$ID =$_SESSION['idUsuario'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,6 +17,8 @@ header("Content-Type: text/html;charset=utf-8");
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="../assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/vendors/alertifyjs/css/alertify.rtl.css">
+    <link rel="stylesheet" href="../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../assets/css/app.css">
     <style>
         body {
@@ -36,7 +40,8 @@ header("Content-Type: text/html;charset=utf-8");
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>SUBRECEPTORES</h3>
+                        
+                            <h3><i class="bi bi-diagram-2-fill"></i> SUBRECEPTORES</h3>
                             <p class="text-subtitle text-muted">Registro de subreceptores</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
@@ -117,7 +122,9 @@ header("Content-Type: text/html;charset=utf-8");
     <script src="../assets/js/main.js"></script>
     <script src="../assets/vendors/chartjs/Chart.min.js"></script>
     <script src="../assets/js/pages/ui-chartjs.js"></script>
-
+    <script src="../assets/vendors/jquery/jquery.min.js"></script>
+    <script src="../assets/vendors/alertifyjs/alertify.js"></script>
+    <script src="../controlador/subreceptor.js"></script>
     <!---- ARCHIVOS EXTERNOS--->
     <?php
     include 'componente/menu.php';

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info">
-                <h5 class="modal-title" id="nuevoSubLabel">SUBRECEPTOR - <?php echo $anio = date("Y") ?></h5>
+                <h5 class="modal-title" id="nuevoSubLabel">[ Nuevo subreceptor ]</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="font-size: 11px;">
