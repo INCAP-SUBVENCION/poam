@@ -5,7 +5,7 @@
 
                 <img src="../assets/images/vih.png" alt="">
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
+                    <button class="btn btn-sm btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 10px;">
                         <?php
                         $sql1 = "SELECT p.nombre, p.apellido FROM usuario u LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario = $ID";
                         $resultado1 = mysqli_query($enlace, $sql1);
