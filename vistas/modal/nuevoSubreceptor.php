@@ -18,19 +18,19 @@
                         </div>
                         <div class="form-group input-group-sm col-sm-2">
                             <label class="form-label">Condon natural:</label>
-                            <input type="number" name="cnatural" id="cnatural" class="form-control form-control-sm" required>
+                            <input type="number" min="0" name="cnatural" id="cnatural" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group input-group-sm col-sm-2">
                             <label class="form-label">Condon sabor:</label>
-                            <input type="number" name="csabor" id="csabor" class="form-control form-control-sm" required>
+                            <input type="number" min="0" name="csabor" id="csabor" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group input-group-sm col-sm-2">
                             <label class="form-label">Condon femenino:</label>
-                            <input type="number" name="cfemenino" id="cfemenino" class="form-control form-control-sm" required>
+                            <input type="number" min="0" name="cfemenino" id="cfemenino" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group input-group-sm col-sm-2">
                             <label class="form-label">Lubricante:</label>
-                            <input type="number" name="lubricante" id="lubricante" class="form-control form-control-sm" required>
+                            <input type="number" min="0" name="lubricante" id="lubricante" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group input-group-sm col-sm-2">
                             <label class="form-label">% Prueba VIH:</label>

@@ -18,7 +18,7 @@
         if(mysqli_num_rows($resultado) > 0) {
             while($us = mysqli_fetch_assoc($resultado)){
                 $_SESSION['idUsuario']  = $us['idUsuario'];
-                $_SESSION['Persona_id'] = $us['Persona_id'];
+                $_SESSION['persona_id'] = $us['persona_id'];
                 $_SESSION['rol']        = $us['rol'];
                 $_SESSION['usuario']    = $us['usuario'];
                 $_SESSION['subreceptor_id']= $us['subreceptor_id'];

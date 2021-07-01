@@ -80,16 +80,7 @@ $ID = $_SESSION['idUsuario'];
                                                         <td>' . $fila['elubricante'] . '</td>
                                                         <td>' . $fila['ppvih'] . '</td>
                                                         <td>' . $fila['pautoprueba'] . '</td>';
-                                        echo ' <td> 
-                                                    <div class="dropdown">
-                                                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="bi bi-gear"></i> Opciones </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-fill"></i> Editar</a></li>
-                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-x-square-fill"></i> Desactivar</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </td>';
+                                        echo ' <td> <a href="#" class="btn-sm btn-outline-warning"><i class="bi bi-pencil-square"></i> Editar</a> </td>';
                                         echo '</tr>';
                                     }
                                     ?>
@@ -106,8 +97,6 @@ $ID = $_SESSION['idUsuario'];
     <script src="../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="../assets/js/pages/ui-chartjs.js"></script>
     <script src="../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../assets/vendors/alertifyjs/alertify.js"></script>
     <script src="../controlador/subreceptor.js"></script>
