@@ -48,47 +48,53 @@ $ID = $_SESSION['idUsuario'];
                     </div>
                 </div>
                 <section class="section">
-                            <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#nuevoSub">Nuevo</button>
-                            <table class="table table-striped table-light">
-                                <thead class="text-center">
-                                    <th>#</th>
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th># Condon natural</th>
-                                    <th># Condon sabor</th>
-                                    <th># Condon femenino</th>
-                                    <th># Lubricante</th>
-                                    <th>% Prueba VIH</th>
-                                    <th>% Auto-prueba VIH</th>
-                                    <th>Opciones</th>
-                                </thead>
-                                <tbody class="text-center">
-                                    <?php
-                                    $contador = 0;
-                                    $sql = "SELECT * FROM subreceptor;";
-                                    $resultado = mysqli_query($enlace, $sql);
-                                    while ($fila = mysqli_fetch_assoc($resultado)) {
-                                        $contador++;
-                                        echo '
-                                                        <tr>
-                                                        <td>' . $contador . '</td>
-                                                        <td>' . $fila['codigo'] . '</td>
-                                                        <td>' . $fila['nombre'] . '</td>
-                                                        <td>' . $fila['enatural'] . '</td>
-                                                        <td>' . $fila['esabor'] . '</td>
-                                                        <td>' . $fila['efemenino'] . '</td>
-                                                        <td>' . $fila['elubricante'] . '</td>
-                                                        <td>' . $fila['ppvih'] . '</td>
-                                                        <td>' . $fila['pautoprueba'] . '</td>';
-                                        echo ' <td> <a href="#" class="btn-sm btn-outline-warning"><i class="bi bi-pencil-square"></i> Editar</a> </td>';
-                                        echo '</tr>';
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                    <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#nuevoSub"><i class="bi bi-plus-circle"></i> Nuevo</button>
+                    <table class="table table-striped table-light table-bordered">
+                        <thead class="table-dark text-center">
+                            <th>#</th>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th># Condon natural</th>
+                            <th># Condon sabor</th>
+                            <th># Condon femenino</th>
+                            <th># Lubricante</th>
+                            <th>% Prueba VIH</th>
+                            <th>% Auto-prueba VIH</th>
+                            <th>Opciones</th>
+                        </thead>
+                        <tbody class="text-center">
+                            <?php
+                            $contador = 1;
+                            $sql = "SELECT * FROM subreceptor";
+                            $consulta = mysqli_query($enlace, $sql);
+                            while ($data = mysqli_fetch_assoc($consulta)) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $contador++; ?></td>
+                                    <td><?php echo $data['codigo']; ?></td>
+                                    <td><?php echo $data['nombre']; ?></td>
+                                    <td><?php echo $data['enatural']; ?></td>
+                                    <td><?php echo $data['esabor']; ?></td>
+                                    <td><?php echo $data['efemenino']; ?></td>
+                                    <td><?php echo $data['elubricante']; ?></td>
+                                    <td><?php echo $data['ppvih']; ?></td>
+                                    <td><?php echo $data['pautoprueba']; ?></td>
+                                    <td>
+                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $data['idSubreceptor']; ?>"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                    </td>
+                                </tr>
+                                <?php
+                                include 'modal/editarSubreceptor.php';
+                                ?>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
 
+                    </table>
 
                 </section>
+
             </div>
         </div>
     </div>
