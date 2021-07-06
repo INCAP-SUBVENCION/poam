@@ -1,8 +1,8 @@
-<div class="modal fade" id="nuevoPoa" tabindex="-1" aria-labelledby="nuevoPoaLabel" aria-hidden="true">
+<div class="modal fade" id="nuevoPoas2" tabindex="-1" aria-labelledby="nuevoPoaLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header bg-info">
-                <h5 class="modal-title text-white" id="nuevoPoaLabel">POA <?php echo date("Y")?> semestre # 1 </h5>
+            <div class="modal-header bg-danger">
+            <h5 class="modal-title text-white" id="nuevoPoaLabel">POA <?php echo date("Y")?> semestre # 2 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -52,11 +52,11 @@
                                     </div>
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Nuevos</label>
-                                        <input type="number" min="0.00" step="0.0001" name="nuevo" id="nuevo" oninput="sumaPoa()" class="form-control form-control-sm" required>
+                                        <input type="number" min="0.00" step="0.0001" name="nuevo" id="nuevo" oninput="sumaPoa();" class="form-control form-control-sm" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Recurrentes</label>
-                                        <input type="number" min="0" step="0.0001" name="recurrente" id="recurrente" oninput="sumaPoa()" class="form-control form-control-sm" required>
+                                        <input type="number" min="0" step="0.0001" name="recurrente" id="recurrente" oninput="sumaPoa();" class="form-control form-control-sm" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Total</label>

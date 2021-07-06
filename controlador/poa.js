@@ -24,7 +24,7 @@
 
     $.ajax({
         type: "GET",
-        url: "../servicio/poa.php",
+        url: "../../servicio/poa.php",
         data: {
             accion: accion,
             usuario: usuario,
@@ -59,7 +59,7 @@
 
 }
 /**
- * Funcion paara calcular la proyeccion de insumos para el POA
+ * Funcion para calcular la proyeccion de insumos para el POA semestre 1
  */
 function calcularProyeccionPOA() {
 
@@ -70,7 +70,7 @@ function calcularProyeccionPOA() {
 
     $.ajax({
         type: "POST",
-        url: "../servicio/poa.php",
+        url: "../../servicio/poa.php",
         data: {
             accion: accion,
             subreceptor: subreceptor,
@@ -93,5 +93,40 @@ function calcularProyeccionPOA() {
             document.getElementById('sifilis').value    = total;
         }
     });
+}
+/**
+ * Funcion para calcular la proyeccion de insumos para el POA semestre 2
+ */
+ function calcularProyeccionPOA1() {
 
+    var subreceptor = document.getElementById('subreceptor1').value;
+    var total = parseFloat(document.getElementById('total1').value);
+
+    var accion = "calcularProyeccionPOA";
+
+    $.ajax({
+        type: "POST",
+        url: "../../servicio/poa.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            total: total
+        },
+        success: function (datos) {
+            var resultado   = datos.split(',');
+            var cnatural    = parseFloat(resultado[0]);
+            var csabor      = parseFloat(resultado[1]);
+            var cfemenino   = parseFloat(resultado[2]);
+            var lubricante  = parseFloat(resultado[3]);
+            var pruebaVIH   = parseFloat(resultado[4]);
+            var autoPrueba  = parseFloat(resultado[5]);
+            document.getElementById('cnatural1').value   = cnatural.toFixed(4);
+            document.getElementById('csabor1').value     = csabor.toFixed(4);
+            document.getElementById('cfemenino1').value  = cfemenino.toFixed(4);
+            document.getElementById('lubricante1').value = lubricante.toFixed(4);
+            document.getElementById('pruebaVIH1').value  = pruebaVIH.toFixed(4);
+            document.getElementById('autoPrueba1').value = autoPrueba.toFixed(4);
+            document.getElementById('sifilis1').value    = total;
+        }
+    });
 }

@@ -11,14 +11,11 @@ if (isset($_GET['accion'])) { $accion = $_GET['accion'];}
 if ($accion == "llenarMunicipio") {
     $departamento = $_POST['departamento'];
 
-    $sql = "SELECT * FROM catalogo WHERE categoria = 'municipio' AND descripcion = '" . $departamento . "' ORDER BY codigo";
+    $sql = "SELECT * FROM catalogo WHERE categoria = 'municipio' AND descripcion = '$departamento' ORDER BY codigo";
     $resultado = mysqli_query($enlace, $sql);
-    $filas = mysqli_affected_rows($enlace);
-    if ($filas) {
         echo "<option value=''>Seleccionar...</option>";
         while ($fila = mysqli_fetch_assoc($resultado)) {
             echo '<option value="' . $fila['idCatalogo'] . '">' . $fila['nombre'] . '</option>';
-        }
     }
 }
 

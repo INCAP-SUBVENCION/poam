@@ -46,6 +46,7 @@
                         <i class="bi bi-diagram-2"></i><span>Subreceptor</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item  ">
                     <a href="usuario.php" class='sidebar-link'>
                     <i class="bi bi-person-plus-fill"></i><span>Usuarios</span>
@@ -58,6 +59,7 @@
                 </li>
 
             </ul>
+            
             <footer>
                 <div class="footer clearfix text-muted">
                     <div class="float-start">

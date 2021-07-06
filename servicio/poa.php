@@ -6,7 +6,7 @@ if (isset($_POST['accion'])) { $accion = $_POST['accion']; }
 if (isset($_GET['accion'])) { $accion = $_GET['accion']; }
 
 /**
- * Metodo que permite calcular la proyeccion de insumos del POA
+ * Metodo que permite calcular la proyeccion de insumos del POA del semestre 1
  */
 if ($accion == "calcularProyeccionPOA") {
 
@@ -24,7 +24,6 @@ if ($accion == "calcularProyeccionPOA") {
                 $fila['pautoprueba'] * $total;
     }
 }
-
 /**
  * Metodo que permite agregar un nuevo POA
  */

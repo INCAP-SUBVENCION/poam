@@ -7,7 +7,9 @@
     if (isset($_POST['accion'])) { $accion = $_POST['accion']; }
     if (isset($_GET['accion'])) { $accion = $_GET['accion'];}
 
-
+    /** 
+     * Metodo que permite agregar un nuevo subreceptor 
+     * */
     if ($accion == "agregarSubreceptor") {
     
         $codigo     = $_GET['codigo'];

@@ -1,3 +1,6 @@
+/**
+ * Funcion para agregar nuevo subreceptor
+ */
 function agregarSubreceptor() {
     var codigo = document.getElementById('codigo').value;
     var nombre = document.getElementById('nombre').value;

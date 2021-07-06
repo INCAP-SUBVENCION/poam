@@ -48,30 +48,28 @@ $ID =$_SESSION['idUsuario'];
                 </div>
                 <div class="row">
                 <?php
-                $sql = "SELECT codigo, nombre FROM subreceptor ORDER BY idSubreceptor";
+                $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor ORDER BY idSubreceptor";
                 $resultado = mysqli_query($enlace, $sql);
-                $filas = mysqli_affected_rows($enlace);
                     while ($fila = mysqli_fetch_assoc($resultado)) {
-                        echo '
+                        ?>
                         
                         <div class="col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="stats-icon blue" style="color:azure">'.$fila['codigo'].'</div>
+                                            <div class="stats-icon blue" style="color:azure"><?php echo $fila['codigo']?></div>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted font-semibold">'.$fila['nombre'].'</p>
+                                            <p class="text-muted font-semibold"><?php echo $fila['nombre']?></p>
                                             <h6 class="font-extrabold mb-0">Plan Operativo Anual</h6>
-                                            <a href="detallepoa.php">Ver detalles</a>
+                                            <a href="poa/detallepoa.php?id=<?php echo $fila['idSubreceptor']?>">Ver detalles</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                  
-                        ';
+                <?php
                     }
                 ?>
   </div>

@@ -1,3 +1,6 @@
+/**
+ * Funcion para iniciar sesion
+ */
 function login() {
     var usuario = document.getElementById('usuario').value;
     var pass = document.getElementById('pass').value;

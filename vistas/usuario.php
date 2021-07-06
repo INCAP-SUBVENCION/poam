@@ -47,7 +47,7 @@ $ID = $_SESSION['idUsuario'];
                     <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#nuevoUsuario">Nuevo</button>
 
                     <table class="table table-striped table-light">
-                        <thead class="text-center">
+                        <thead class="table-dark text-center">
                             <th>#</th>
                             <th>Nombre completo</th>
                             <th>Usuario</th>

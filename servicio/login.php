@@ -7,7 +7,9 @@
     if (isset($_POST['accion'])) { $accion = $_POST['accion']; }
     if (isset($_GET['accion'])) { $accion = $_GET['accion'];}
 
-
+/**
+ * Metodo que permite validar usurio para iniciar sesion
+ */
     if( $accion == "login") {
         $usuario = $_POST['usuario'];
         $pass    = $_POST['pass'];
