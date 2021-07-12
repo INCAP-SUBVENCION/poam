@@ -14,8 +14,8 @@ function agregarSubreceptor() {
     var accion = "agregarSubreceptor";
 
     $.ajax({
-        type: "GET",
-        url: "../servicio/subreceptor.php",
+        type: "POST",
+        url: "../servicio/servicioSubreceptor.php",
         data: {
             accion: accion,
             codigo: codigo,
@@ -32,6 +32,39 @@ function agregarSubreceptor() {
                 alertify.success('¡GUARDADO!...');
                 $('#agregarSub').trigger("reset");
                 $('#nuevoSub').modal('hide')
+                window.location.reload('vistas/subreceptor.php');
+            } else {
+                alertify.error('ERROR!... No se pudo guardar');
+            }
+
+        }
+    });
+}
+/**
+ * Funcion para agregar el reactivo esperado para calcular el POA
+ */
+ function agregarCobertura() {
+    var subreceptor     = parseInt(document.getElementById('sub').value);
+    var departamento    = parseInt(document.getElementById('departamento').value);
+    var municipio       = parseInt(document.getElementById('municipio').value);
+    var reactivo        = parseFloat(document.getElementById('reactivo').value);
+
+    var accion = "agregarCobertura";
+
+    $.ajax({
+        type: "POST",
+        url: "../servicio/servicioSubreceptor.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            departamento: departamento,
+            municipio: municipio,
+            reactivo: reactivo
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡GUARDADO!...');
+                $('#agregarCobertura').trigger("reset");
                 window.location.reload('vistas/subreceptor.php');
             } else {
                 alertify.error('ERROR!... No se pudo guardar');

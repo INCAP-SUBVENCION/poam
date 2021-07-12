@@ -394,4 +394,4 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M10',  
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M11',  'Noviembre', ' ', 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M12',  'Diciembre', ' ', 'mes');
 
-#CALL agregarUsuario(1,'112212345','Faustino','Lopez Ramos','11-22 zona 0, Guatemala','11223344','usuario@servidor.com', 1,'123',6);
+#CALL agregarUsuario(1,'112212345','Faustino','Lopez Ramos','11-22 zona 0, Guatemala','11223344','usuario@servidor.com', 372,'123',1);

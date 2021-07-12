@@ -59,8 +59,8 @@ session_start();
         <script src="../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../assets/vendors/alertifyjs/alertify.js"></script>
-        <script src="../controlador/poa.js"></script>
-        <script src="../controlador/utilidad.js"></script>
+        <script src="../controlador/controladorPOA.js"></script>
+        <script src="../controlador/controladorUtilidad.js"></script>
         <!-- Archivos externos --->
         <?php
         include 'modal/nuevoPoa.php';

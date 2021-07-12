@@ -14,7 +14,7 @@
 
 
 -- Volcando estructura de base de datos para poam
-CREATE DATABASE IF NOT EXISTS `poam` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `poam` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `poam`;
 
 -- Volcando estructura para procedimiento poam.agregarCatalogo
@@ -25,7 +25,29 @@ CREATE PROCEDURE `agregarCatalogo`(
     IN descripcion	TEXT,
     IN categoria 	VARCHAR(32) )
 BEGIN
-	INSERT INTO catalogo VALUES(codigo,nombre,descripcion,categoria);
+	DECLARE id INT DEFAULT 0;
+    DECLARE idCat INT DEFAULT (SELECT COUNT(idCatalgo) FROM catalogo);
+    IF (idCat <= 0) THEN SET id := 1;
+    ELSE SET id := idCat + 1;
+    END IF;
+	INSERT INTO catalogo VALUES(id, codigo, nombre, descripcion, categoria);
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.agregarCobertura
+DELIMITER //
+CREATE PROCEDURE `agregarCobertura`(
+	IN subreceptor		INT,
+    IN departamento		INT,
+    IN municipio 		INT,
+    IN porcentaje		FLOAT )
+BEGIN
+	DECLARE id INT DEFAULT 0;
+    DECLARE idCob INT DEFAULT (SELECT COUNT(idCobertura) FROM cobertura);
+    IF (idCob <= 0) THEN SET id := 1;
+    ELSE SET id := idCob + 1;
+    END IF;
+	INSERT INTO cobertura VALUES(id, subreceptor, departamento, municipio, porcentaje);
 END//
 DELIMITER ;
 
@@ -40,6 +62,7 @@ CREATE PROCEDURE `agregarPoa`(
 	IN recurrente	FLOAT,
 	IN subreceptor	INT,
     IN observacion	TEXT,
+    IN semestre		INT,
 	IN cnatural 	FLOAT,
 	IN csabor		FLOAT,
     IN cfemenino	FLOAT,
@@ -56,7 +79,7 @@ BEGIN
 	IF(idP <= 0) THEN SET IdPoa := 1;
 	ELSE SET IdPoa := idP + 1;
     END IF;
-	INSERT INTO poa VALUES(IdPoa,usuario,year(now()),mes,departamento,municipio,nuevo,recurrente,subreceptor,observacion);
+	INSERT INTO poa VALUES(IdPoa,usuario,year(now()),mes,departamento,municipio,nuevo,recurrente,subreceptor,observacion,semestre,1);
 	IF(idI <=0) THEN SET IdInsumo := 1;
 	ELSE SET IdInsumo := idI + 1;
     END IF;
@@ -157,7 +180,6 @@ CREATE PROCEDURE `agregarUsuario`(
 	IN telefono		VARCHAR(12),
 	IN email		VARCHAR(100),
     IN rol			INT,
-	IN pass			VARCHAR(16),
 	IN subreceptor	INT
     )
 BEGIN
@@ -172,19 +194,19 @@ BEGIN
 	IF(idU <=0) THEN SET IdUsuario := 1;
 	ELSE SET IdUsuario := idU + 1;
     END IF;
-	INSERT INTO usuario VALUES(IdUsuario,IdPersona,rol,lower(concat(left(nombre,1),left(apellido,1),year(now()),IdPersona)),SHA(pass),subreceptor,1);
+	INSERT INTO usuario VALUES(IdUsuario,IdPersona,rol,lower(concat(left(nombre,1),left(apellido,1),year(now()),IdPersona)),SHA('Usuario01'),subreceptor,1);
 END//
 DELIMITER ;
 
 -- Volcando estructura para tabla poam.catalogo
 CREATE TABLE IF NOT EXISTS `catalogo` (
   `idCatalogo` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` varchar(24) DEFAULT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `descripcion` text,
-  `categoria` varchar(32) DEFAULT NULL,
+  `codigo` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nombre` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf8_unicode_ci,
+  `categoria` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idCatalogo`)
-) ENGINE=InnoDB AUTO_INCREMENT=389 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=389 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla poam.catalogo: ~388 rows (aproximadamente)
 /*!40000 ALTER TABLE `catalogo` DISABLE KEYS */;
@@ -579,6 +601,23 @@ INSERT INTO `catalogo` (`idCatalogo`, `codigo`, `nombre`, `descripcion`, `catego
 	(388, 'M12', 'Diciembre', ' ', 'mes');
 /*!40000 ALTER TABLE `catalogo` ENABLE KEYS */;
 
+-- Volcando estructura para tabla poam.cobertura
+CREATE TABLE IF NOT EXISTS `cobertura` (
+  `idCobertura` int(11) NOT NULL,
+  `subreceptor_id` int(11) NOT NULL,
+  `departamento` int(11) NOT NULL,
+  `municipio` int(11) NOT NULL,
+  `porcentaje` float DEFAULT NULL,
+  PRIMARY KEY (`idCobertura`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla poam.cobertura: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `cobertura` DISABLE KEYS */;
+INSERT INTO `cobertura` (`idCobertura`, `subreceptor_id`, `departamento`, `municipio`, `porcentaje`) VALUES
+	(1, 1, 1, 29, 0.5),
+	(2, 2, 9, 148, 0.03);
+/*!40000 ALTER TABLE `cobertura` ENABLE KEYS */;
+
 -- Volcando estructura para tabla poam.insumo
 CREATE TABLE IF NOT EXISTS `insumo` (
   `idInsumo` int(11) NOT NULL,
@@ -592,18 +631,43 @@ CREATE TABLE IF NOT EXISTS `insumo` (
   `reactivoE` float DEFAULT NULL,
   `sifilis` float DEFAULT NULL,
   PRIMARY KEY (`idInsumo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.insumo: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla poam.insumo: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `insumo` DISABLE KEYS */;
 INSERT INTO `insumo` (`idInsumo`, `poa_id`, `cnatural`, `csabor`, `cfemenino`, `lubricante`, `pruebaVIH`, `autoPrueba`, `reactivoE`, `sifilis`) VALUES
-	(1, 1, 1670, 3340, 5010, 6680, 16.7, 33.4, 89.56, 167),
-	(2, 2, 145892, 291784, 437677, 583569, 1458.92, 2917.84, 45.68, 14589.2),
-	(3, 3, 1120, 2240, 3360, 4480, 11.2, 22.4, 68.55, 112),
-	(4, 4, 18887.8, 37775.6, 56663.3, 75551.1, 188.878, 377.755, 89.36, 1888.78),
-	(5, 5, 1874.45, 3748.9, 5623.34, 7497.79, 93.7224, 112.467, 98.36, 187.445),
-	(6, 6, 4188990, 5212970, 6236940, 7074740, 69816.5, 23272.2, 0.75, 93088.7);
+	(1, 1, 68770, 0, 68770, 68770, 1031.55, 343.85, 687.7, 1375.4),
+	(2, 2, 84100, 0, 84100, 84100, 1261.5, 420.5, 841, 1682),
+	(3, 3, 22200, 0, 22200, 22200, 333, 111, 222, 444),
+	(4, 4, 1628710, 1628710, 1628710, 1628710, 32574.1, 48861.2, 1954.45, 65148.2);
 /*!40000 ALTER TABLE `insumo` ENABLE KEYS */;
+
+-- Volcando estructura para procedimiento poam.listarDepartamento
+DELIMITER //
+CREATE PROCEDURE `listarDepartamento`(
+	IN sub		VARCHAR(32))
+BEGIN
+SELECT t2.idCatalogo as id, t2.nombre as departamento FROM cobertura t1
+    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
+    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
+    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id 
+    WHERE t1.subreceptor_id = sub GROUP BY t1.departamento;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.listarMunicipio
+DELIMITER //
+CREATE PROCEDURE `listarMunicipio`(
+	IN sub		VARCHAR(32),
+    IN dep		VARCHAR(32))
+BEGIN
+SELECT t3.idCatalogo as id, t3.nombre as municipio FROM cobertura t1
+    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
+    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
+    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id 
+	WHERE t2.idCatalogo = dep AND t1.subreceptor_id = sub;
+END//
+DELIMITER ;
 
 -- Volcando estructura para procedimiento poam.login
 DELIMITER //
@@ -619,14 +683,16 @@ DELIMITER ;
 CREATE TABLE IF NOT EXISTS `permiso` (
   `idPermiso` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `poa` tinyint(4) DEFAULT NULL,
-  `pom` tinyint(4) DEFAULT NULL,
-  `usuario` tinyint(4) DEFAULT NULL,
-  `subreceptor` tinyint(4) DEFAULT NULL,
-  `promotor` tinyint(4) DEFAULT NULL,
-  `catalogo` tinyint(4) DEFAULT NULL,
+  `editar` tinyint(4) DEFAULT '0',
+  `agregar` tinyint(4) DEFAULT '0',
+  `usuario` tinyint(4) DEFAULT '0',
+  `poa` tinyint(4) DEFAULT '0',
+  `pom` tinyint(4) DEFAULT '0',
+  `subreceptor` tinyint(4) DEFAULT '0',
+  `promotor` tinyint(4) DEFAULT '0',
+  `catalogo` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`idPermiso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla poam.permiso: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `permiso` DISABLE KEYS */;
@@ -636,19 +702,19 @@ CREATE TABLE IF NOT EXISTS `permiso` (
 CREATE TABLE IF NOT EXISTS `persona` (
   `idPersona` int(11) NOT NULL,
   `documento` tinyint(4) DEFAULT NULL,
-  `numero` varchar(16) DEFAULT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  `apellido` varchar(50) DEFAULT NULL,
-  `direccion` varchar(100) DEFAULT NULL,
-  `telefono` varchar(16) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `numero` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nombre` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `apellido` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `direccion` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `telefono` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.persona: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla poam.persona: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`idPersona`, `documento`, `numero`, `nombre`, `apellido`, `direccion`, `telefono`, `email`) VALUES
-	(1, 1, '1234123451234', 'Faustino', 'Lopez Ramos', '37 Calle B 19-16 zona 12, Ciudad de Guatemala', '12345678', 'faustinolopezramos@gmail.com');
+	(1, 1, '112212345', 'Faustino', 'Lopez Ramos', '11-22 zona 0, Guatemala', '11223344', 'usuario@servidor.com');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.poa
@@ -662,19 +728,19 @@ CREATE TABLE IF NOT EXISTS `poa` (
   `nuevo` float DEFAULT NULL,
   `recurrente` float DEFAULT NULL,
   `subreceptor_id` int(11) NOT NULL,
-  `observacion` text,
+  `observacion` text COLLATE utf8_unicode_ci,
+  `semestre` int(11) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idPoa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.poa: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla poam.poa: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `poa` DISABLE KEYS */;
-INSERT INTO `poa` (`idPoa`, `Usuario_id`, `anio`, `mes`, `departamento`, `municipio`, `nuevo`, `recurrente`, `subreceptor_id`, `observacion`) VALUES
-	(1, 1, 2021, 383, 2, 48, 78, 89, 1, ''),
-	(2, 1, 2021, 378, 4, 79, 8956.33, 5632.9, 1, ''),
-	(3, 1, 2021, 383, 7, 117, 45, 67, 1, ''),
-	(4, 1, 2021, 381, 3, 56, 1000, 888.778, 1, ''),
-	(5, 1, 2021, 378, 2, 47, 89.1234, 98.3214, 2, ''),
-	(6, 1, 2021, 378, 6, 108, 3456.23, 89632.5, 5, '');
+INSERT INTO `poa` (`idPoa`, `Usuario_id`, `anio`, `mes`, `departamento`, `municipio`, `nuevo`, `recurrente`, `subreceptor_id`, `observacion`, `semestre`, `estado`) VALUES
+	(1, 1, 2021, 384, 1, 29, 989.5, 385.9, 1, '', 1, 1),
+	(2, 1, 2021, 384, 1, 29, 789, 893, 1, '', 1, 1),
+	(3, 1, 2021, 387, 1, 29, 123, 321, 1, '', 2, 1),
+	(4, 1, 2021, 377, 9, 148, 34506.1, 30642.1, 2, 'OTRA PRUEBA', 1, 1);
 /*!40000 ALTER TABLE `poa` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.pom
@@ -684,10 +750,10 @@ CREATE TABLE IF NOT EXISTS `pom` (
   `fecha` date DEFAULT NULL,
   `horaInicio` time DEFAULT NULL,
   `horaFin` time DEFAULT NULL,
-  `lugar` varchar(64) DEFAULT NULL,
+  `lugar` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `promotor_id` int(11) NOT NULL,
   `supervisado` tinyint(4) DEFAULT NULL,
-  `supervisor` varchar(64) DEFAULT NULL,
+  `supervisor` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pNuevo` float DEFAULT NULL,
   `pRecurrente` float DEFAULT NULL,
   `cnatural` float DEFAULT NULL,
@@ -699,7 +765,7 @@ CREATE TABLE IF NOT EXISTS `pom` (
   `reactivo` float DEFAULT NULL,
   `sifilis` float DEFAULT NULL,
   PRIMARY KEY (`idPom`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla poam.pom: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `pom` DISABLE KEYS */;
@@ -708,35 +774,38 @@ CREATE TABLE IF NOT EXISTS `pom` (
 -- Volcando estructura para tabla poam.promotor
 CREATE TABLE IF NOT EXISTS `promotor` (
   `idPromotor` int(11) NOT NULL,
-  `codigo` varchar(24) DEFAULT NULL,
+  `codigo` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
   `persona_id` int(11) NOT NULL,
   `subreceptor_id` int(11) NOT NULL,
   `estado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idPromotor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla poam.promotor: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `promotor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `promotor` ENABLE KEYS */;
 
--- Volcando estructura para tabla poam.reactivo
-CREATE TABLE IF NOT EXISTS `reactivo` (
-  `idReactivo` int(11) NOT NULL,
-  `reactivo` float DEFAULT NULL,
-  `subreceptor_id` int(11) NOT NULL,
-  `departamento` int(11) NOT NULL,
-  PRIMARY KEY (`idReactivo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla poam.reactivo: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `reactivo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reactivo` ENABLE KEYS */;
+-- Volcando estructura para procedimiento poam.semestre
+DELIMITER //
+CREATE PROCEDURE `semestre`(
+	IN subreceptor	INT,
+    IN semestre		INT)
+BEGIN
+	SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total, 
+    t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis FROM poa t1 
+	LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
+	LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.departamento
+	LEFT JOIN catalogo t4 ON t4.idCatalogo = t1.municipio 
+	LEFT JOIN catalogo t5 ON t5.idCatalogo = t1.mes
+	WHERE t1.subreceptor_id = subreceptor AND t1.anio = YEAR(NOW()) AND t1.semestre = semestre AND estado = 1;
+END//
+DELIMITER ;
 
 -- Volcando estructura para tabla poam.subreceptor
 CREATE TABLE IF NOT EXISTS `subreceptor` (
   `idSubreceptor` int(11) NOT NULL,
-  `codigo` varchar(24) DEFAULT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
+  `codigo` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nombre` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `enatural` int(11) DEFAULT NULL,
   `esabor` int(11) DEFAULT NULL,
   `efemenino` int(11) DEFAULT NULL,
@@ -744,16 +813,13 @@ CREATE TABLE IF NOT EXISTS `subreceptor` (
   `ppvih` float DEFAULT NULL,
   `pautoprueba` float DEFAULT NULL,
   PRIMARY KEY (`idSubreceptor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.subreceptor: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla poam.subreceptor: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `subreceptor` DISABLE KEYS */;
 INSERT INTO `subreceptor` (`idSubreceptor`, `codigo`, `nombre`, `enatural`, `esabor`, `efemenino`, `elubricante`, `ppvih`, `pautoprueba`) VALUES
-	(1, 'CODIGO', 'Nombre de subreceptor de prueba', 10, 20, 30, 40, 0.1, 0.2),
-	(2, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 10, 20, 30, 40, 0.5, 0.6),
-	(3, 'C001', 'Nombre del subreceptor prueba 2', 40, 30, 20, 10, 0.5, 0.6),
-	(4, 'C002', 'Nombre del subreceptor prueba 3', 78, 89, 98, 65, 0.36, 0.56),
-	(5, '123', 'OTRO SUBRECEPTOR', 45, 56, 67, 76, 0.75, 0.25);
+	(1, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 50, 0, 50, 50, 0.75, 0.25),
+	(2, 'CODIGO', 'NOMBRE DEL SUBRECEPTOR', 25, 25, 25, 25, 0.5, 0.75);
 /*!40000 ALTER TABLE `subreceptor` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.usuario
@@ -761,17 +827,17 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` int(11) NOT NULL,
   `persona_id` int(11) NOT NULL,
   `rol` int(11) NOT NULL,
-  `usuario` varchar(32) DEFAULT NULL,
-  `pass` longtext,
+  `usuario` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pass` longtext COLLATE utf8_unicode_ci,
   `subreceptor_id` int(11) NOT NULL,
   `estado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.usuario: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla poam.usuario: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`idUsuario`, `persona_id`, `rol`, `usuario`, `pass`, `subreceptor_id`, `estado`) VALUES
-	(1, 1, 372, 'fl20211', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 1);
+	(1, 1, 372, 'fl20211', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

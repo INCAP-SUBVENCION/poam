@@ -16,17 +16,13 @@ header("Content-Type: text/html;charset=utf-8");
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="assets/vendors/alertifyjs/css/themes/default.css">
-    <!--- JS --->
-    <script src="assets/vendors/alertifyjs/alertify.js"></script>
-    <script src="assets/vendors/jquery/jquery.min.js"></script>
-    <script src="controlador/login.js"></script>
-
-    <title>Inicio de sesion</title>
     
+    <title>Inicio de sesion</title>
+
     <style>
-        body{
+        body {
             font-family: 'Nunito', sans-serif;
-        font-size: smaller;
+            font-size: smaller;
         }
     </style>
 </head>
@@ -66,6 +62,10 @@ header("Content-Type: text/html;charset=utf-8");
             </div>
         </div>
     </div>
+    <!--- JS --->
+    <script src="assets/vendors/alertifyjs/alertify.js"></script>
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="controlador/controladorLogin.js"></script>
 
 </body>
 

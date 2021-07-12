@@ -63,7 +63,7 @@ $ID =$_SESSION['idUsuario'];
                                         <div class="col-sm-9">
                                             <p class="text-muted font-semibold"><?php echo $fila['nombre']?></p>
                                             <h6 class="font-extrabold mb-0">Plan Operativo Anual</h6>
-                                            <a href="poa/detallepoa.php?id=<?php echo $fila['idSubreceptor']?>">Ver detalles</a>
+                                            <a href="poa/detallepoa.php?id=<?php echo $fila['idSubreceptor']?>" enctype="multipart/form-data">Ver detalles</a>
                                         </div>
                                     </div>
                                 </div>

@@ -72,31 +72,31 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="invitado" name="invitado">
+                                        <input class="form-check-input" type="checkbox" value="1" id="invitado" name="invitado">
                                         <label class="form-check-label" for="invitado">Solo invitado</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="usuario" name="usuario">
+                                        <input class="form-check-input" type="checkbox" value="1" id="usuario" name="usuario">
                                         <label class="form-check-label" for="usuario">Gestionar usuarios</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="subreceptor" name="subreceptor">
+                                        <input class="form-check-input" type="checkbox" value="1" id="subreceptor" name="subreceptor">
                                         <label class="form-check-label" for="subreceptor">Gestionar subreceptores</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="promotor" name="promotor">
+                                        <input class="form-check-input" type="checkbox" value="1" id="promotor" name="promotor">
                                         <label class="form-check-label" for="promotor">Gestionar de promotores</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="poa" name="poa">
+                                        <input class="form-check-input" type="checkbox" value="1" id="poa" name="poa">
                                         <label class="form-check-label" for="poa">Gestionar POA</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="pom" name="pom">
+                                        <input class="form-check-input" type="checkbox" value="1" id="pom" name="pom">
                                         <label class="form-check-label" for="pom">Gestionar POM</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="catalogo" name="catalogo">
+                                        <input class="form-check-input" type="checkbox" value="1" id="catalogo" name="catalogo">
                                         <label class="form-check-label" for="catalogo">Gestionar Catalogo</label>
                                     </div>
                                 </div>

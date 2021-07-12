@@ -9,7 +9,7 @@ function login() {
 
     $.ajax({
         type: "POST",
-        url: "servicio/login.php",
+        url: "servicio/servicioLogin.php",
         data: {
             accion: accion,
             usuario: usuario,

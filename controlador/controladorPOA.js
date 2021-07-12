@@ -1,7 +1,7 @@
 /**
- * Funcion que permite agregar nuevo POA
+ * Funcion que permite agregar nuevo POA para el semestre 1
  */
- function agregarPoa() {
+ function  agregarPoa() {
 
     var usuario     = parseInt(document.getElementById('usuario').value);
     var mes         = parseInt(document.getElementById('mes').value);
@@ -11,6 +11,8 @@
     var recurrente  = parseFloat(document.getElementById('recurrente').value);
     var subreceptor = parseInt(document.getElementById('subreceptor').value);
     var observacion = document.getElementById('observacion').value;
+    var semestre    = parseInt(document.getElementById('semestre').value);
+
     var cnatural    = parseFloat(document.getElementById('cnatural').value);
     var csabor      = parseFloat(document.getElementById('csabor').value);
     var cfemenino   = parseFloat(document.getElementById('cfemenino').value);
@@ -23,8 +25,8 @@
     var accion = "agregarPoa";
 
     $.ajax({
-        type: "GET",
-        url: "../../servicio/poa.php",
+        type: "POST",
+        url: "../../servicio/servicioPOA.php",
         data: {
             accion: accion,
             usuario: usuario,
@@ -35,6 +37,7 @@
             recurrente: recurrente,
             subreceptor: subreceptor,
             observacion: observacion,
+            semestre: semestre,
             cnatural: cnatural,
             csabor: csabor,
             cfemenino: cfemenino,
@@ -56,7 +59,6 @@
 
         }
     });
-
 }
 /**
  * Funcion para calcular la proyeccion de insumos para el POA semestre 1
@@ -64,13 +66,14 @@
 function calcularProyeccionPOA() {
 
     var subreceptor = document.getElementById('subreceptor').value;
-    var total = parseFloat(document.getElementById('total').value);
+    var total       = parseFloat(document.getElementById('total').value);
+    var procentaje  = parseFloat(document.getElementById('reactivo').value);
 
     var accion = "calcularProyeccionPOA";
 
     $.ajax({
         type: "POST",
-        url: "../../servicio/poa.php",
+        url: "../../servicio/servicioPOA.php",
         data: {
             accion: accion,
             subreceptor: subreceptor,
@@ -84,49 +87,15 @@ function calcularProyeccionPOA() {
             var lubricante  = parseFloat(resultado[3]);
             var pruebaVIH   = parseFloat(resultado[4]);
             var autoPrueba  = parseFloat(resultado[5]);
+            var reactivo = total * procentaje;
             document.getElementById('cnatural').value   = cnatural.toFixed(4);
             document.getElementById('csabor').value     = csabor.toFixed(4);
             document.getElementById('cfemenino').value  = cfemenino.toFixed(4);
             document.getElementById('lubricante').value = lubricante.toFixed(4);
             document.getElementById('pruebaVIH').value  = pruebaVIH.toFixed(4);
             document.getElementById('autoPrueba').value = autoPrueba.toFixed(4);
+            document.getElementById('reactivoEs').value = reactivo;
             document.getElementById('sifilis').value    = total;
-        }
-    });
-}
-/**
- * Funcion para calcular la proyeccion de insumos para el POA semestre 2
- */
- function calcularProyeccionPOA1() {
-
-    var subreceptor = document.getElementById('subreceptor1').value;
-    var total = parseFloat(document.getElementById('total1').value);
-
-    var accion = "calcularProyeccionPOA";
-
-    $.ajax({
-        type: "POST",
-        url: "../../servicio/poa.php",
-        data: {
-            accion: accion,
-            subreceptor: subreceptor,
-            total: total
-        },
-        success: function (datos) {
-            var resultado   = datos.split(',');
-            var cnatural    = parseFloat(resultado[0]);
-            var csabor      = parseFloat(resultado[1]);
-            var cfemenino   = parseFloat(resultado[2]);
-            var lubricante  = parseFloat(resultado[3]);
-            var pruebaVIH   = parseFloat(resultado[4]);
-            var autoPrueba  = parseFloat(resultado[5]);
-            document.getElementById('cnatural1').value   = cnatural.toFixed(4);
-            document.getElementById('csabor1').value     = csabor.toFixed(4);
-            document.getElementById('cfemenino1').value  = cfemenino.toFixed(4);
-            document.getElementById('lubricante1').value = lubricante.toFixed(4);
-            document.getElementById('pruebaVIH1').value  = pruebaVIH.toFixed(4);
-            document.getElementById('autoPrueba1').value = autoPrueba.toFixed(4);
-            document.getElementById('sifilis1').value    = total;
         }
     });
 }
