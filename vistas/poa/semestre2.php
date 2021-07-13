@@ -1,10 +1,10 @@
 <table class="table table-bordered border-primary">
-<thead class="text-center border bg-warning">
+<thead class="text-center border bg-dark">
     <tr>
         <td colspan="6" class="text-white">DATOS PRINCIPALES </td>
         <td colspan="10" class="text-white">INSUMOS PROYECTADOS POR MES</td>
     </tr>
-    <tr style="font-size: 11px; color:azure;">
+    <tr style="font-size: 11px; color:azure">
         <th>#</th>
         <th>Mes</th>
         <th>Municipio</th>
@@ -23,7 +23,7 @@
         <th>ACTION</th>
     </tr>
 </thead>
-<tbody class="text-center" style="font-size: 12px; background-color:lightcyan;">
+<tbody class="text-center" style="font-size: 12px; background-color:aliceblue;">
     <?php
     $cont = 1;
     $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total, 

@@ -94,7 +94,7 @@ function calcularProyeccionPOA() {
             document.getElementById('lubricante').value = lubricante.toFixed(4);
             document.getElementById('pruebaVIH').value  = pruebaVIH.toFixed(4);
             document.getElementById('autoPrueba').value = autoPrueba.toFixed(4);
-            document.getElementById('reactivoEs').value = reactivo;
+            document.getElementById('reactivoEs').value = reactivo.toFixed(4);
             document.getElementById('sifilis').value    = total;
         }
     });

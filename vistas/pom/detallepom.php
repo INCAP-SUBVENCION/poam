@@ -45,13 +45,13 @@ $SUBRECEPTOR = $_GET['id'];
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
-                <a class="navbar-brand" href="../poa.php"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                <a class="navbar-brand" href="../poa.php">Inicio</a>
                 <div class="dropdown">
-                    <a class="btn-outline-secundary" type="button" data-bs-toggle="dropdown"style="font-size: 11px;">
-                        <i class="bi bi-person-fill text-white"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                    <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 11px;">
+                        <i class="bi bi-person-fill"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
-                    </a>
-                    <ul class="dropdown-menu" style="font-size: 13px;">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-size: 13px;">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-check2-square"></i> Permisos</a></li>
                         <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
@@ -88,7 +88,7 @@ $SUBRECEPTOR = $_GET['id'];
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Mes:</label>
-                                        <select name="semestre" id="semestre" class="form-select" style="font-size: 12px;" onchange="semestre_mes();" required>
+                                        <select name="semestre" id="semestre" class="form-select" style="font-size: 12px;" required>
                                             <option value="1">SEMESTRE 1</option>
                                             <option value="2">SEMESTRE 2</option>
                                         </select>
@@ -96,6 +96,14 @@ $SUBRECEPTOR = $_GET['id'];
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Mes:</label>
                                         <select name="mes" id="mes" class="form-select" style="font-size: 12px;" required>
+                                            <option value="">Seleccionar...</option>
+                                            <?php
+                                            $cm = "SELECT idCatalogo, nombre FROM catalogo WHERE categoria = 'mes' ORDER BY codigo AND categoria";
+                                            $rm = mysqli_query($enlace, $cm);
+                                            while ($mes = $rm->fetch_assoc()) { ?>
+                                                <option value="<?php echo $mes['idCatalogo'] ?>"><?php echo $mes['nombre'] ?></option>
+                                            <?php }
+                                            $rm->close(); ?>
                                         </select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-3">
@@ -116,7 +124,7 @@ $SUBRECEPTOR = $_GET['id'];
                                         </select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-4">
-                                        <label class="form-label">Municipio:</label>
+                                        <label class="form-label">Muinicipio:</label>
                                         <select id="municipio" name="municipio" class="form-select" onchange="obtenerReactivo();" style="font-size: 12px;" required></select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
@@ -213,10 +221,10 @@ $SUBRECEPTOR = $_GET['id'];
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
-                    <?php include 'semestre1.php'; ?>
+
                 </div>
                 <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
-                    <?php include 'semestre2.php'; ?>
+
                 </div>
             </div>
 

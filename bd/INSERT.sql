@@ -381,17 +381,17 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R003', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004',  'Promotor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Invitado', ' ', 'rol');
 #MES
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M01',  'Enero', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M02',  'Febrero', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M03',  'Marzo', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M04',  'Abril', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M05',  'Mayo', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M06',  'Junio', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M07',  'Julio', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M08',  'Agosto', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M09',  'Septiembre', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M10',  'Octubre', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M11',  'Noviembre', ' ', 'mes');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M12',  'Diciembre', ' ', 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M01',  'Enero', 1, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M02',  'Febrero', 1, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M03',  'Marzo', 1, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M04',  'Abril', 1, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M05',  'Mayo', 1, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M06',  'Junio', 1, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M07',  'Julio', 2, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M08',  'Agosto', 2, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M09',  'Septiembre', 2, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M10',  'Octubre', 2, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M11',  'Noviembre', 2, 'mes');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('M12',  'Diciembre', 2, 'mes');
 
 #CALL agregarUsuario(1,'112212345','Faustino','Lopez Ramos','11-22 zona 0, Guatemala','11223344','usuario@servidor.com', 372,'123',1);

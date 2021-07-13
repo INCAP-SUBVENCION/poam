@@ -587,18 +587,18 @@ INSERT INTO `catalogo` (`idCatalogo`, `codigo`, `nombre`, `descripcion`, `catego
 	(374, 'R003', 'Supervisor', ' ', 'rol'),
 	(375, 'R004', 'Promotor', ' ', 'rol'),
 	(376, 'R005', 'Invitado', ' ', 'rol'),
-	(377, 'M01', 'Enero', ' ', 'mes'),
-	(378, 'M02', 'Febrero', ' ', 'mes'),
-	(379, 'M03', 'Marzo', ' ', 'mes'),
-	(380, 'M04', 'Abril', ' ', 'mes'),
-	(381, 'M05', 'Mayo', ' ', 'mes'),
-	(382, 'M06', 'Junio', ' ', 'mes'),
-	(383, 'M07', 'Julio', ' ', 'mes'),
-	(384, 'M08', 'Agosto', ' ', 'mes'),
-	(385, 'M09', 'Septiembre', ' ', 'mes'),
-	(386, 'M10', 'Octubre', ' ', 'mes'),
-	(387, 'M11', 'Noviembre', ' ', 'mes'),
-	(388, 'M12', 'Diciembre', ' ', 'mes');
+	(377, 'M01', 'Enero', '1', 'mes'),
+	(378, 'M02', 'Febrero', '1', 'mes'),
+	(379, 'M03', 'Marzo', '1', 'mes'),
+	(380, 'M04', 'Abril', '1', 'mes'),
+	(381, 'M05', 'Mayo', '1', 'mes'),
+	(382, 'M06', 'Junio', '1', 'mes'),
+	(383, 'M07', 'Julio', '2', 'mes'),
+	(384, 'M08', 'Agosto', '2', 'mes'),
+	(385, 'M09', 'Septiembre', '2', 'mes'),
+	(386, 'M10', 'Octubre', '2', 'mes'),
+	(387, 'M11', 'Noviembre', '2', 'mes'),
+	(388, 'M12', 'Diciembre', '2', 'mes');
 /*!40000 ALTER TABLE `catalogo` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.cobertura
@@ -611,11 +611,16 @@ CREATE TABLE IF NOT EXISTS `cobertura` (
   PRIMARY KEY (`idCobertura`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.cobertura: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla poam.cobertura: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `cobertura` DISABLE KEYS */;
 INSERT INTO `cobertura` (`idCobertura`, `subreceptor_id`, `departamento`, `municipio`, `porcentaje`) VALUES
-	(1, 1, 1, 29, 0.5),
-	(2, 2, 9, 148, 0.03);
+	(1, 1, 3, 54, 0.03),
+	(2, 1, 12, 210, 0.03),
+	(3, 1, 10, 176, 0.02),
+	(4, 2, 9, 140, 0.03),
+	(5, 2, 11, 192, 0.03),
+	(6, 2, 5, 86, 0.02),
+	(7, 3, 5, 86, 0);
 /*!40000 ALTER TABLE `cobertura` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.insumo
@@ -633,13 +638,17 @@ CREATE TABLE IF NOT EXISTS `insumo` (
   PRIMARY KEY (`idInsumo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.insumo: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla poam.insumo: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `insumo` DISABLE KEYS */;
 INSERT INTO `insumo` (`idInsumo`, `poa_id`, `cnatural`, `csabor`, `cfemenino`, `lubricante`, `pruebaVIH`, `autoPrueba`, `reactivoE`, `sifilis`) VALUES
-	(1, 1, 68770, 0, 68770, 68770, 1031.55, 343.85, 687.7, 1375.4),
-	(2, 2, 84100, 0, 84100, 84100, 1261.5, 420.5, 841, 1682),
-	(3, 3, 22200, 0, 22200, 22200, 333, 111, 222, 444),
-	(4, 4, 1628710, 1628710, 1628710, 1628710, 32574.1, 48861.2, 1954.45, 65148.2);
+	(1, 1, 3315.2, 0, 0, 3315.2, 51.8, 17.2666, 2.072, 69.0666),
+	(2, 2, 266646, 0, 0, 266646, 4166.34, 1388.78, 166.654, 5555.12),
+	(3, 3, 266661, 0, 0, 266661, 4166.58, 1388.86, 166.663, 5555.44),
+	(4, 4, 8016, 0, 0, 8016, 125.25, 41.75, 5.01, 167),
+	(5, 5, 59819800, 0, 0, 59819800, 934684, 311561, 24924.9, 1246240),
+	(6, 6, 6000, 0, 0, 6000, 93.75, 31.25, 3.75, 125),
+	(7, 7, 66507.2, 0, 0, 66507.2, 1039.18, 346.392, 27.7113, 1385.57),
+	(8, 8, 1890, 315, 157.5, 31.5, 0, 23.625, 0, 31.5);
 /*!40000 ALTER TABLE `insumo` ENABLE KEYS */;
 
 -- Volcando estructura para procedimiento poam.listarDepartamento
@@ -711,10 +720,10 @@ CREATE TABLE IF NOT EXISTS `persona` (
   PRIMARY KEY (`idPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.persona: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla poam.persona: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`idPersona`, `documento`, `numero`, `nombre`, `apellido`, `direccion`, `telefono`, `email`) VALUES
-	(1, 1, '112212345', 'Faustino', 'Lopez Ramos', '11-22 zona 0, Guatemala', '11223344', 'usuario@servidor.com');
+	(1, 1, '1234123451234', 'Faustino', 'Lopez Ramos', '37 Calle B 19-16 zona 12, Ciudad de Guatemala', '12345678', 'faustinolopezramos@gmail.com');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.poa
@@ -734,13 +743,17 @@ CREATE TABLE IF NOT EXISTS `poa` (
   PRIMARY KEY (`idPoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.poa: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla poam.poa: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `poa` DISABLE KEYS */;
 INSERT INTO `poa` (`idPoa`, `Usuario_id`, `anio`, `mes`, `departamento`, `municipio`, `nuevo`, `recurrente`, `subreceptor_id`, `observacion`, `semestre`, `estado`) VALUES
-	(1, 1, 2021, 384, 1, 29, 989.5, 385.9, 1, '', 1, 1),
-	(2, 1, 2021, 384, 1, 29, 789, 893, 1, '', 1, 1),
-	(3, 1, 2021, 387, 1, 29, 123, 321, 1, '', 2, 1),
-	(4, 1, 2021, 377, 9, 148, 34506.1, 30642.1, 2, 'OTRA PRUEBA', 1, 1);
+	(1, 1, 2021, 383, 3, 54, 49.3333, 19.7333, 1, 'Sin observaciones', 2, 1),
+	(2, 1, 2021, 377, 3, 54, 1234.12, 4321, 1, 'Sin observaciones', 1, 1),
+	(3, 1, 2021, 377, 12, 210, 1234.32, 4321.12, 1, '', 1, 1),
+	(4, 1, 2021, 385, 3, 54, 78, 89, 1, '', 2, 1),
+	(5, 1, 2021, 377, 10, 176, 789456, 456789, 1, '', 1, 1),
+	(6, 1, 2021, 384, 9, 140, 100, 25, 2, '', 2, 1),
+	(7, 1, 2021, 383, 5, 86, 989.667, 395.9, 2, '', 2, 1),
+	(8, 1, 2021, 383, 5, 86, 22.5, 9, 3, '', 2, 1);
 /*!40000 ALTER TABLE `poa` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.pom
@@ -815,11 +828,12 @@ CREATE TABLE IF NOT EXISTS `subreceptor` (
   PRIMARY KEY (`idSubreceptor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.subreceptor: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla poam.subreceptor: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `subreceptor` DISABLE KEYS */;
 INSERT INTO `subreceptor` (`idSubreceptor`, `codigo`, `nombre`, `enatural`, `esabor`, `efemenino`, `elubricante`, `ppvih`, `pautoprueba`) VALUES
-	(1, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 50, 0, 50, 50, 0.75, 0.25),
-	(2, 'CODIGO', 'NOMBRE DEL SUBRECEPTOR', 25, 25, 25, 25, 0.5, 0.75);
+	(1, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 48, 0, 0, 48, 0.75, 0.25),
+	(2, 'HSH2', 'APEVIHS IDEI', 48, 0, 0, 48, 0.75, 0.25),
+	(3, 'MTS05', 'OMES', 60, 10, 5, 1, 0, 0.75);
 /*!40000 ALTER TABLE `subreceptor` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.usuario
@@ -834,7 +848,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.usuario: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla poam.usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`idUsuario`, `persona_id`, `rol`, `usuario`, `pass`, `subreceptor_id`, `estado`) VALUES
 	(1, 1, 372, 'fl20211', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1);

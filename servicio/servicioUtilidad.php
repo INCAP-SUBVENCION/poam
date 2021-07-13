@@ -57,3 +57,20 @@ if ($accion == "llenarReactivo") {
     }
     $resultador->close();
 }
+
+
+/**
+ * Metodo que permite llenar mes en el combo segun sea el semestre
+ */
+if ($accion == "semestre_mes") {
+
+    $semestre = $_POST['semestre'];
+
+    $sql1 = "SELECT *FROM catalogo WHERE categoria = 'mes' AND descripcion = $semestre";
+    $resultadom = $enlace->query($sql1);
+    echo "<option value=''>Seleccionar...</option>";
+    while ($municipio = mysqli_fetch_assoc($resultadom)) {
+        echo '<option value="' . $municipio['idCatalogo'] . '">' . $municipio['nombre'] . '</option>';
+    }
+    $resultadom->close();
+}

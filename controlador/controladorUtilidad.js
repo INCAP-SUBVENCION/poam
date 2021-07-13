@@ -82,3 +82,21 @@
     });
 }
 
+function semestre_mes(){
+
+    var semestre = document.getElementById('semestre').value;
+
+    var accion = "semestre_mes";
+
+    $.ajax({
+        type: "POST",
+        url: "../../servicio/servicioUtilidad.php",
+        data: {
+            accion: accion,
+            semestre:semestre
+        },
+        success: function (datos) {
+            $("#mes").html(datos);
+        }
+    });
+}
