@@ -20,7 +20,7 @@ if ($accion == "llenarMunicipio") {
     $resultadom = $enlace->query($sql1);
     echo "<option value=''>Seleccionar...</option>";
     while ($municipio = mysqli_fetch_assoc($resultadom)) {
-        echo '<option value="' . $municipio['idCatalogo'] . '">' . $municipio['nombre'] . '</option>';
+        echo '<option value="' . $municipio['codigo'] . '">' . $municipio['nombre'] . '</option>';
     }
     $resultadom->close();
 }
@@ -62,15 +62,50 @@ if ($accion == "llenarReactivo") {
 /**
  * Metodo que permite llenar mes en el combo segun sea el semestre
  */
-if ($accion == "semestre_mes") {
+if ($accion == "periodo_mes") {
 
-    $semestre = $_POST['semestre'];
+    $periodo = $_POST['periodo'];
 
-    $sql1 = "SELECT *FROM catalogo WHERE categoria = 'mes' AND descripcion = $semestre";
+    $sql1 = "SELECT *FROM catalogo WHERE categoria = 'mes' AND descripcion = $periodo";
     $resultadom = $enlace->query($sql1);
     echo "<option value=''>Seleccionar...</option>";
     while ($municipio = mysqli_fetch_assoc($resultadom)) {
-        echo '<option value="' . $municipio['idCatalogo'] . '">' . $municipio['nombre'] . '</option>';
+        echo '<option value="' . $municipio['codigo'] . '">' . $municipio['nombre'] . '</option>';
     }
     $resultadom->close();
+}
+
+
+/**
+ * Metodo que permite llenar los nuevos segun sea el municipio
+ */
+if ($accion == "obtenerResumen") {
+
+    $periodo   = $_POST['periodo'];
+    $municipio  = $_POST['municipio'];
+    $subreceptor= $_POST['subreceptor'];
+
+    $sqlResumen = "SELECT t1.nuevo, t1.recurrente FROM resumen t1 
+    LEFT JOIN cobertura t2 ON t2.idCobertura = t1.cobertura_id 
+    WHERE t2.subreceptor_id = $subreceptor AND t2.municipio = $municipio AND t1.periodo = $periodo";
+    $resultadoResumen = $enlace->query($sqlResumen);
+    while ($resumen = mysqli_fetch_assoc($resultadoResumen)) {
+        echo $resumen['nuevo'] .",".$resumen['recurrente'];
+    }
+    $resultadoResumen->close();
+}
+/**
+ * Metodo que permite mostrar los nuevos y recurrentes segun sea el municipio y subreceptor
+ */
+if ($accion == "obtenerMeta") {
+
+    $municipio  = $_POST['municipio'];
+    $subreceptor= $_POST['subreceptor'];
+
+    $sqlRecurrente = "SELECT idCobertura, nuevo, recurrente FROM cobertura WHERE subreceptor_id = $subreceptor AND municipio = $municipio";
+    $resultadoRecurrente = $enlace->query($sqlRecurrente);
+    while ($recurrente = mysqli_fetch_assoc($resultadoRecurrente)) {
+        echo $recurrente['nuevo'] .",".$recurrente['recurrente'].",".$recurrente['idCobertura'];
+    }
+    $resultadoRecurrente->close();
 }

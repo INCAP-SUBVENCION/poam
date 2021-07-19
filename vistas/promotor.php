@@ -2,7 +2,7 @@
 include_once('../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
-$ID =$_SESSION['idUsuario'];
+$ID = $_SESSION['idUsuario'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,6 +17,8 @@ $ID =$_SESSION['idUsuario'];
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="../assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/vendors/alertifyjs/css/alertify.rtl.css">
+    <link rel="stylesheet" href="../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../assets/css/app.css">
     <style>
         body {
@@ -28,13 +30,160 @@ $ID =$_SESSION['idUsuario'];
 
 <body>
 
+    <div id="app">
+        <div id="main">
+            <header class="mb-1">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
 
+                            <h3><i class="bi bi-people-fill"></i> Promotores</h3>
+                        </div>
+
+                    </div>
+                </div>
+                <section class="section">
+
+                    <div class="card border-primary mb-3" style="max-width: 90rem;">
+                        <div class="card-headertext-white text-center" style="background-color:darkblue; color:snow">REGISTRO DE PROMOTORES</div>
+                        <div class="card-body text-primary bg-light-warning" style="font-size: 11px;">
+                            <form name="agregarPromotor" id="agregarPromotor" action="javascript: agregarPromotor();" method="POST">
+                                <div class="row">
+                                    <div class="form-group input-group-sm col-sm-1">
+                                        <label class="form-label">Codigo:</label>
+                                        <input type="text" name="codigo" id="codigo" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-3">
+                                        <label class="form-label">Subreceptor:</label>
+                                        <select name="subreceptor" id="subreceptor" class="form-control" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                            <option value="">Seleccionar...</option>
+                                            <?php
+                                            $csub = "SELECT *FROM subreceptor";
+                                            $rsub = $enlace->query($csub);
+                                            while ($sub = $rsub->fetch_assoc()) {
+                                            ?>
+                                                <option value="<?php echo $sub['idSubreceptor'] ?>"><?php echo $sub['nombre'] ?></option>
+                                            <?php
+                                            }
+                                            $rsub->close();
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Tipo documento</label>
+                                        <select name="documento" id="documento" class="form-control" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                            <option value="">Seleccionar</option>
+                                            <option value="1">DPI</option>
+                                            <option value="0">Pasaporte</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Numero:</label>
+                                        <input type="text" name="numero" id="numero" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Nombre</label>
+                                        <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Apellido: </label>
+                                        <input type="text" name="apellido" id="apellido" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-4">
+                                        <label class="form-label">Direccion: </label>
+                                        <input type="text" name="direccion" id="direccion" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Telefono</label>
+                                        <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-3">
+                                        <label class="form-label">Correo</label>
+                                        <input type="text" name="correo" id="correo" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                    </div>
+
+                                    <div class="form-group input-group-sm col-sm-3">
+
+                                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
+                                        <button type="reset" class="btn btn-outline-danger"><i class="bi bi-x-octagon-fill"></i> Cancelar</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-light table-bordered">
+                        <thead class="table-dark text-center" style="font-size: 12px;">
+                            <th>#</th>
+                            <th>Codigo</th>
+                            <th>Subreceptor</th>
+                            <th>Nombre completo</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>Estado</th>
+                            <th>Opciones</th>
+                        </thead>
+                        <tbody class="text-center" style="font-size: 12px;">
+                            <?php
+                            $contador = 1;
+                            $sql = "SELECT t1.codigo, t3.nombre as subreceptor, t2.nombre, t2.apellido, t2.direccion, t2.telefono, t2.email, t1.estado FROM promotor t1 
+                            LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id
+                            LEFT JOIN subreceptor t3 ON t3.idSubreceptor = t1.subreceptor_id";
+                            $consulta = $enlace->query($sql);
+                            while ($data = $consulta->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $contador++; ?></td>
+                                    <td><?php echo $data['codigo']; ?></td>
+                                    <td><?php echo $data['subreceptor']; ?></td>
+                                    <td><?php echo $data['nombre'] . ' ' . $data['apellido']; ?></td>
+                                    <td><?php echo $data['direccion']; ?></td>
+                                    <td><?php echo $data['telefono']; ?></td>
+                                    <td><?php echo $data['email']; ?></td>
+                                    <td>
+                                        <?php
+                                        if ($data['estado'] == 1) {
+                                            echo '<i class="bi bi-check-circle-fill text-success"></i>';
+                                        } else {
+                                            echo '<i class="bi bi-x-circle-fill text-danger"></i>';
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $data['idSubreceptor']; ?>"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                    </td>
+                                </tr>
+                                <?php
+                                include 'modal/editarSubreceptor.php';
+                                ?>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+
+                    </table>
+
+            </div>
+            </section>
+
+        </div>
+    </div>
+    </div>
     <!------ JS ------>
     <script src="../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendors/alertifyjs/alertify.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="../assets/js/pages/ui-chartjs.js"></script>
+    <script src="../assets/vendors/jquery/jquery.min.js"></script>
+    <script src="../controlador/controladorPromotor.js"></script>
+
     <?php
     include 'componente/menu.php';
     ?>

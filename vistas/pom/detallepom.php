@@ -28,6 +28,7 @@ $SUBRECEPTOR = $_GET['id'];
 
         }
     </style>
+
 </head>
 
 <body>
@@ -40,7 +41,7 @@ $SUBRECEPTOR = $_GET['id'];
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
-                LEFT JOIN catalogo r ON u.rol=r.idCatalogo
+                LEFT JOIN catalogo r ON u.rol=r.codigo
                 LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
@@ -64,164 +65,207 @@ $SUBRECEPTOR = $_GET['id'];
 
         <!-- Striped rows start -->
         <section class="section">
-            <form name="agregarPoas_1" id="agregarPoas_1" action="javascript: agregarPoa();" method="POST">
-
-                <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
-                <input type="hidden" name="usuario" id="usuario" value="<?php echo $ID; ?>">
-
-                <div class="row">
-                    <?php
-                    $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
-                    $resultado = mysqli_query($enlace, $sql);
-                    while ($subr = mysqli_fetch_assoc($resultado)) {
-                    ?>
-                        <div class="text-center">
-                            <h4><?php echo $subr['nombre']; ?></h4>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" method="post">
+                        <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
+                        <input type="hidden" name="usuario" id="usuario" value="<?php echo $ID; ?>">
+                        
                         <div class="card text-dark">
-                            <div class="card-header bg-info text-center">DATOS PRINCIPALES</div>
+                            <div class="bg-info text-center">DATOS PRINCIPALES</div>
                             <div class="card-body" style="font-size: 12px;">
                                 <div class="row">
-                                    <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Mes:</label>
-                                        <select name="semestre" id="semestre" class="form-select" style="font-size: 12px;" required>
-                                            <option value="1">SEMESTRE 1</option>
-                                            <option value="2">SEMESTRE 2</option>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Periodo:</label>
+                                        <select name="periodo" id="periodo" class="form-select" style="font-size: 12px;" onchange="periodo_mes();" required>
+                                            <option value="">Seleccionar ...</option>
+                                            <option value="1">Periodo I</option>
+                                            <option value="2">Periodo II</option>
+                                            <option value="3">Periodo III</option>
+                                            <option value="4">Periodo IV</option>
+                                            <option value="5">Periodo V</option>
+                                            <option value="6">Periodo VI</option>
                                         </select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Mes:</label>
-                                        <select name="mes" id="mes" class="form-select" style="font-size: 12px;" required>
-                                            <option value="">Seleccionar...</option>
-                                            <?php
-                                            $cm = "SELECT idCatalogo, nombre FROM catalogo WHERE categoria = 'mes' ORDER BY codigo AND categoria";
-                                            $rm = mysqli_query($enlace, $cm);
-                                            while ($mes = $rm->fetch_assoc()) { ?>
-                                                <option value="<?php echo $mes['idCatalogo'] ?>"><?php echo $mes['nombre'] ?></option>
-                                            <?php }
-                                            $rm->close(); ?>
+                                        <select name="mes" id="mes"  class="form-control" style="font-size: 12px;" required>
                                         </select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Departamento:</label>
-                                        <select name="departamento" id="departamento" onchange="llenarMunicipioCobertura();" class="form-select" style="font-size: 12px;" required>
+                                        <label class="form-label">Municipio:</label>
+                                        <select name="municipio" id="municipio"  class="form-control" style="font-size: 11px;" required>
                                             <option value="">Seleccionar...</option>
                                             <?php
-                                            $cd = "SELECT t2.idCatalogo as id, t2.nombre as departamento FROM cobertura t1
-                                                    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
-                                                    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
-                                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id
-                                                    WHERE t1.subreceptor_id = $SUBRECEPTOR GROUP BY t1.departamento";
+                                            $cd = "SELECT t1.municipio  as id, t2.nombre as municipio FROM cobertura t1
+                                            LEFT JOIN catalogo t2 ON t2.codigo = t1.municipio
+                                        WHERE t1.subreceptor_id =  $SUBRECEPTOR";
                                             $rd = $enlace->query($cd);
-                                            while ($departamento = $rd->fetch_assoc()) { ?>
-                                                <option value="<?php echo $departamento['id'] ?>"><?php echo $departamento['departamento'] ?></option>
+                                            while ($municipio = $rd->fetch_assoc()) { ?>
+                                                <option value="<?php echo $municipio['id'] ?>"><?php echo $municipio['municipio'] ?></option>
                                             <?php }
                                             $rd->close(); ?>
                                         </select>
                                     </div>
+                                    <div class="form-group input-group-sm col-sm-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Fecha:</label>
+                                        <input type="date" name="lugar" id="lugar" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Inicio:</label>
+                                        <input type="time" name="lugar" id="lugar" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Fin:</label>
+                                        <input type="time" name="lugar" id="lugar" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-6">
+                                        <label for="exampleFormControlTextarea1" class="form-label" style="font-size: 12px;">Lugar:</label>
+                                        <input type="text" name="lugar" id="lugar" class="form-control form-control-sm">
+                                    </div>
                                     <div class="form-group input-group-sm col-sm-4">
-                                        <label class="form-label">Muinicipio:</label>
-                                        <select id="municipio" name="municipio" class="form-select" onchange="obtenerReactivo();" style="font-size: 12px;" required></select>
+                                        <label for="exampleFormControlTextarea1" class="form-label" style="font-size: 12px;">Promotor responsable:</label>
+                                        <select name="promotor" id="promotor" class="form-control" style="font-size: 12px;">
+                                            <option value="">Seleccionar ...</option>
+                                            <?php
+                                            $consultaS = "SELECT DISTINCT t1.idPromotor, concat(t2.nombre, ' ', t2.apellido) as nombre FROM promotor t1 
+                                            LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id WHERE t1.subreceptor_id = $SUBRECEPTOR";
+                                            $resultadoS = $enlace->query($consultaS);
+                                            while ($subreceptor = $resultadoS->fetch_assoc()) {
+                                               ?> 
+                                               <option value="<?php echo $subreceptor['idPromotor']?>"><?php echo $subreceptor['nombre']?></option>
+                                               <?php
+                                            } $resultadoS->close();
+                                            ?>
+                                        </select>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Nuevos</label>
-                                        <input type="number" min="0.00" step="0.0001" name="nuevo" id="nuevo" oninput="sumaPoa();" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Recurrentes</label>
-                                        <input type="number" min="0" step="0.0001" name="recurrente" id="recurrente" oninput="sumaPoa();" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Total</label>
-                                        <input type="text" name="total" id="total" class="form-control form-control-sm" disabled style="color:orangered;">
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-4">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Observaciones / otros</label>
-                                        <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Proyeccion</label>
-                                        <button type="button" class="btn btn-outline-info" onclick="calcularProyeccionPOA();"><i class="bi bi-calculator-fill"></i> Calcular</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card text-dark">
-                            <div class="card-header bg-info text-center">PROYECCIÓN DE INSUMOS</div>
-                            <div class="card-body" style="font-size: 12px;">
-                                <div class="row">
-                                    <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Condon natural</label>
-                                        <input type="text" name="cnatural" id="cnatural" class="form-control form-control-sm" style="color:blue" disabled>
+                </div>
+                <div class="col-md-6">
+                    <div class="card text-dark">
+                        <div class="bg-info text-center">PROYECCIÓN DE INSUMOS</div>
+                        <div class="card-body" style="font-size: 11px;">
+                            <div class="row">
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Nuevos</label>
+                                    <input type="number" min="0.00" step="0.0001" name="nuevo" id="nuevo" oninput="sumaPoa();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Recurrentes</label>
+                                    <input type="number" min="0" step="0.0001" name="recurrente" id="recurrente" oninput="sumaPoa();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Total</label>
+                                    <input type="text" name="total" id="total" class="form-control form-control-sm" disabled style="color:orangered;">
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Proyeccion</label>
+                                    <button type="button" class="btn btn-outline-info" onclick="calcularProyeccionPOA();"><i class="bi bi-calculator-fill"></i> Calcular</button>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Condon natural</label>
+                                    <input type="text" name="cnatural" id="cnatural" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Condon sabor</label>
+                                    <input type="text" name="csabor" id="csabor" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Condon femenino</label>
+                                    <input type="text" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Lubricante</label>
+                                    <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Prueba VIH</label>
+                                    <input type="text" step="0.0000" name="pruebaVIH" id="pruebaVIH" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Autoprueba VIH</label>
+                                    <input type="text" step="0.0000" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Reactividad</label>
+                                    <input type="hidden" name="reactivo" id="reactivo">
+                                    <div class="position-relative">
+                                        <input type="text" step="0.0000" step="0.01" name="reactivoEs" id="reactivoEs" class="form-control form-control-sm" disabled>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" id="porcentaje">
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Condon sabor</label>
-                                        <input type="text" name="csabor" id="csabor" class="form-control form-control-sm" style="color:blue" disabled>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Condon femenino</label>
-                                        <input type="text" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Lubricante</label>
-                                        <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Prueba VIH</label>
-                                        <input type="text" step="0.0000" name="pruebaVIH" id="pruebaVIH" class="form-control form-control-sm" style="color:blue" disabled>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Autoprueba VIH</label>
-                                        <input type="text" step="0.0000" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Reactivo esperado
-                                        </label>
-                                        <input type="hidden" name="reactivo" id="reactivo">
-                                        <div class="position-relative">
-                                            <input type="text" step="0.0000" step="0.01" name="reactivoEs" id="reactivoEs" class="form-control form-control-sm" disabled>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" id="porcentaje">
-                                        </div>
-                                        </span>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Prueba sifilis</label>
-                                        <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2 text-center">
-                                        <label for="form-label">..::..</label>
-                                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-save-fill"></i> Guardar</button>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2 text-center">
-                                        <label for="form-label">..::..</label>
-                                        <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button>
-                                    </div>
+                                    </span>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Prueba sifilis</label>
+                                    <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+
+                <div class="row">
+                    <div class="form-group input-group-sm col-sm-3">
+                        <input type="checkbox" name="super" id="super"> Supervisado
+                        <input type="text" name="supervisor" id="supervisor" class="form-control" placeholder="Nombre del supervisor" style="font-size:12px;">
+                    </div>
+                    <input type="hidden" name="supervisado" id="supervisado">
+                    <div class="form-group col-md-4">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+                    </div>
+                    </div>
+
+
+                </div>
+
+                </form>
+            </div>
+
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" 
-                    type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">Semestre 1</button>
+                    <button class="btn btn-sm btn-primary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">Semestre 1</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" 
-                    type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">Semestre 2</button>
+                    <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">Semestre 2</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
-
+                    <table class="table table-bordered border-primary">
+                        <thead class="text-center border-light" style="background-color:dimgray;">
+                            <tr style="font-size: 10px; color:azure;">
+                                <th>#</th>
+                                <th>Municipio</th>
+                                <th>Fecha</th>
+                                <th>Inicia</th>
+                                <th>Finaliza</th>
+                                <th>Lugar</th>
+                                <th>Promotor</th>
+                                <th>Nuevo</th>
+                                <th>Recurrente</th>
+                                <th>Total</th>
+                                <th>Condon Natural</th>
+                                <th>Condon Sabor</th>
+                                <th>Condon Femenino</th>
+                                <th>Lubricante</th>
+                                <th>Prueba VIH</th>
+                                <th>Auto-prueba</th>
+                                <th>Sifilis</th>
+                                <th>Supervisado</th>
+                                <th>Estado</th>
+                                <th>Opcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
 
@@ -245,8 +289,12 @@ $SUBRECEPTOR = $_GET['id'];
         <script src="../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
-        <script src="../../controlador/controladorPOA.js"></script>
+        <script src="../../controlador/controladorPOM.js"></script>
         <script src="../../controlador/controladorUtilidad.js"></script>
+
+        <script type="text/javascript">
+
+        </script>
     </body>
 
 </html>

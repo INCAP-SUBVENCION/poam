@@ -40,7 +40,7 @@ $SUBRECEPTOR = $_GET['id'];
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
-                LEFT JOIN catalogo r ON u.rol=r.idCatalogo
+                LEFT JOIN catalogo r ON u.rol=r.codigo
                 LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
@@ -87,10 +87,15 @@ $SUBRECEPTOR = $_GET['id'];
                             <div class="card-body" style="font-size: 12px;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Mes:</label>
-                                        <select name="semestre" id="semestre" class="form-select" style="font-size: 12px;" onchange="semestre_mes();" required>
-                                            <option value="1">SEMESTRE 1</option>
-                                            <option value="2">SEMESTRE 2</option>
+                                        <label class="form-label">Periodo:</label>
+                                        <select name="periodo" id="periodo" class="form-select" style="font-size: 12px;" onchange="periodo_mes();" required>
+                                            <option value="">Seleccionar ...</option>
+                                            <option value="1">Periodo I</option>
+                                            <option value="2">Periodo II</option>
+                                            <option value="3">Periodo III</option>
+                                            <option value="4">Periodo IV</option>
+                                            <option value="5">Periodo V</option>
+                                            <option value="6">Periodo VI</option>
                                         </select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
@@ -103,9 +108,9 @@ $SUBRECEPTOR = $_GET['id'];
                                         <select name="departamento" id="departamento" onchange="llenarMunicipioCobertura();" class="form-select" style="font-size: 12px;" required>
                                             <option value="">Seleccionar...</option>
                                             <?php
-                                            $cd = "SELECT t2.idCatalogo as id, t2.nombre as departamento FROM cobertura t1
-                                                    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
-                                                    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
+                                            $cd = "SELECT t2.codigo as id, t2.nombre as departamento FROM cobertura t1
+                                                    LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
+                                                    LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
                                                     LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id
                                                     WHERE t1.subreceptor_id = $SUBRECEPTOR GROUP BY t1.departamento";
                                             $rd = $enlace->query($cd);
@@ -117,15 +122,19 @@ $SUBRECEPTOR = $_GET['id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-4">
                                         <label class="form-label">Municipio:</label>
-                                        <select id="municipio" name="municipio" class="form-select" onchange="obtenerReactivo();" style="font-size: 12px;" required></select>
+                                        <select id="municipio" name="municipio" class="form-select" onchange="calculos();" style="font-size: 12px;" required></select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Nuevos</label>
-                                        <input type="number" min="0.00" step="0.0001" name="nuevo" id="nuevo" oninput="sumaPoa();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                        <input type="text"  name="nuevo" id="nuevo" class="form-control form-control-sm" style="font-size: 12px;" disabled>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Recurrentes</label>
-                                        <input type="number" min="0" step="0.0001" name="recurrente" id="recurrente" oninput="sumaPoa();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                        <input type="text" name="recurrente" id="recurrente" class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Proyeccion</label>
+                                        <button type="button" class="btn btn-outline-info" onclick="calcularProyeccionPOA();"><i class="bi bi-calculator-fill"></i> Calcular</button>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Total</label>
@@ -134,10 +143,6 @@ $SUBRECEPTOR = $_GET['id'];
                                     <div class="form-group input-group-sm col-sm-4">
                                         <label for="exampleFormControlTextarea1" class="form-label">Observaciones / otros</label>
                                         <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Proyeccion</label>
-                                        <button type="button" class="btn btn-outline-info" onclick="calcularProyeccionPOA();"><i class="bi bi-calculator-fill"></i> Calcular</button>
                                     </div>
                                 </div>
                             </div>
@@ -203,20 +208,20 @@ $SUBRECEPTOR = $_GET['id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" 
+                    <button class="btn btn-sm btn-primary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1"
                     type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">Semestre 1</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" 
+                    <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2"
                     type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">Semestre 2</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
-                    <?php include 'semestre1.php'; ?>
+                    <?php include 'semestre1.php';?>
                 </div>
                 <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
-                    <?php include 'semestre2.php'; ?>
+                    <?php include 'semestre2.php';?>
                 </div>
             </div>
 

@@ -62,10 +62,9 @@ $ID = $_SESSION['idUsuario'];
 
                         <div class="tab-pane fade show active" id="registroSubreceptor" role="tabpanel" aria-labelledby="sementre-1">
 
-
                             <div class="card border-primary mb-3" style="max-width: 60rem;">
                                 <div class="card-headertext-white text-center" style="background-color:darkblue; color:snow">REGISTRO DE SUBRECEPTOR</div>
-                                <div class="card-body text-primary bg-light-warning" style="font-size: 11px;">
+                                <div class="card-body text-primary bg-light-warning" style="font-size: 12px;">
                                     <form name="agregarSub" id="agregarSub" action="javascript: agregarSubreceptor();" method="GET">
                                         <div class="row">
                                             <div class="form-group input-group-sm col-sm-2">
@@ -100,17 +99,16 @@ $ID = $_SESSION['idUsuario'];
                                                 <label class="form-label">% Auto-prueba VIH:</label>
                                                 <input type="number" min="0" max="1" step="0.01" name="autoprueba" id="autoprueba" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
                                             </div>
-                                            <div class="form-group input-group-sm col-sm-3">
-                                                <label class="form-label">...........................................................</label>
-                                                <button type="submit" class="btn btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
-                                                <button type="reset" class="btn btn-outline-danger"><i class="bi bi-x-octagon-fill"></i> Cancelar</button>
+                                            <div class="form-group input-group-sm col-sm-4">
+                                                <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
+                                                <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-octagon-fill"></i> Cancelar</button>
                                             </div>
                                         </div>
-
-                                    </form>
                                 </div>
+
                             </div>
 
+                            </form>
                             <table class="table table-striped table-light table-bordered">
                                 <thead class="table-dark text-center">
                                     <th>#</th>
@@ -158,10 +156,11 @@ $ID = $_SESSION['idUsuario'];
                         </div>
 
                         <div class="tab-pane fade" id="registroReactivo" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <div class="card border-primary mb-3" style="max-width: 85rem;">
-                                <div class="card-headertext-white text-center" style="background-color:darkblue; color:snow">REGISTRO DE COBERTURA</div>
-                                <div class="card-body text-primary bg-light-warning" style="font-size: 12px;">
-                                    <form name="agregarCobertura" id="agregarCobertura" action="javascript: agregarCobertura();" method="GET">
+
+                            <form name="agregarCobertura" id="agregarCobertura" action="javascript: agregarCobertura();" method="GET">
+                                <div class="card border-primary mb-3" style="max-width: 85rem;">
+                                    <div class="card-headertext-white text-center" style="background-color:darkblue; color:snow">REGISTRO DE COBERTURA</div>
+                                    <div class="card-body text-primary bg-light-warning" style="font-size: 12px;">
                                         <div class="row">
                                             <div class="form-group input-group-sm col-sm-3">
                                                 <label class="form-label">Subreceptor:</label>
@@ -186,47 +185,73 @@ $ID = $_SESSION['idUsuario'];
                                                     $filas = mysqli_affected_rows($enlace);
                                                     if ($filas) {
                                                         while ($fila = mysqli_fetch_assoc($resultado)) {
-                                                            echo '<option value="' . $fila['idCatalogo'] . '">' . $fila['nombre'] . '</option>';
+                                                            echo '<option value="' . $fila['codigo'] . '">' . $fila['nombre'] . '</option>';
                                                         }
                                                     }
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="form-group input-group-sm col-sm-3">
+                                            <div class="form-group input-group-sm col-sm-2">
                                                 <label class="form-label">Muinicipio:</label>
-                                                <select id="municipio" name="municipio" class="form-select" style="font-size: 12px;" required></select>
+                                                <select id="municipio" name="municipio" class="form-control" style="font-size: 12px;" required></select>
                                             </div>
                                             <div class="form-group input-group-sm col-sm-2">
-                                                <label class="form-label">% Reactividad:</label>
-                                                <input type="number" min="0.0" step="0.01" name="reactivo" id="reactivo" class="form-control form-control-sm" required>
+                                                <label class="form-label">Region:</label>
+                                                <select id="region" name="region" class="form-control" style="font-size: 12px;" required>
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="1">Region 1</option>
+                                                    <option value="2">Region 2</option>
+                                                    <option value="3">Region 3</option>
+                                                    <option value="4">Region 4</option>
+                                                    <option value="5">Region 5</option>
+                                                    <option value="1">Region 6</option>
+                                                    <option value="2">Region 7</option>
+                                                    <option value="3">Region 8</option>
+                                                </select>
                                             </div>
-                                            <div class="form-group input-group-sm col-sm-2">
-                                                <button type="submit" class="btn btn-success"><i class="bi bi-check"></i> Guardar</button>
-                                                <button type="reset" class="btn btn-danger"><i class="bi bi-x"></i> Cancelar</button>
+                                            <div class="form-group input-group-sm col-sm-1">
+                                                <label class="form-label">Nuevos:</label>
+                                                <input type="number" min="0.0" step="0.01" name="nuevo" id="nuevo" class="form-control form-control-sm" style="font-size: 12px;" required>
                                             </div>
+                                            <div class="form-group input-group-sm col-sm-1">
+                                                <label class="form-label">Recurrentes:</label>
+                                                <input type="number" min="0.0" step="0.01" name="recurrente" id="recurrente" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                            </div>
+                                            <div class="form-group input-group-sm col-sm-1">
+                                                <label class="form-label">Reactividad:</label>
+                                                <input type="number" min="0.0" step="0.01" name="reactivo" id="reactivo" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                            </div>
+
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
+                                    </div>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button type="submit" class="btn btn-sm btn-success"><i class="bi bi-check"></i> Guardar</button>
+                                        <button type="reset" class="btn btn-sm btn-danger"><i class="bi bi-x"></i> Cancelar</button>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2 md-end">
 
-
+                                    </div>
+                            </form>
                             <table class="table table-striped table-light table-bordered">
                                 <thead class="table-dark text-center">
                                     <th>#</th>
                                     <th>Subreceptor</th>
                                     <th>Departamento</th>
                                     <th>Municipio</th>
+                                    <th>Region</th>
+                                    <th># Nuevos</th>
+                                    <th># Recurrentes</th>
                                     <th>% Reactividad</th>
                                     <th>Opciones</th>
                                 </thead>
                                 <tbody class="text-center">
                                     <?php
                                     $contador = 1;
-                                    $sql = "SELECT t4.nombre as subreceptor, t2.nombre as departamento, t3.nombre as municipio, t1.porcentaje 
+                                    $sql = "SELECT t4.nombre as subreceptor, t2.nombre as departamento, t3.nombre as municipio, t1.region, t1.nuevo, t1.recurrente, t1.porcentaje 
                                     FROM cobertura t1
-                                    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
-                                    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
-                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id ORDER BY t4.nombre;";
+                                    LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
+                                    LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
+                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id ORDER BY t4.nombre";
                                     $consulta = mysqli_query($enlace, $sql);
                                     while ($data = mysqli_fetch_assoc($consulta)) {
                                     ?>
@@ -235,6 +260,9 @@ $ID = $_SESSION['idUsuario'];
                                             <td><?php echo $data['subreceptor']; ?></td>
                                             <td><?php echo $data['departamento']; ?></td>
                                             <td><?php echo $data['municipio']; ?></td>
+                                            <td><?php echo 'Region' . ' ' . $data['region']; ?></td>
+                                            <td><?php echo $data['nuevo']; ?></td>
+                                            <td><?php echo $data['recurrente']; ?></td>
                                             <td><?php echo $data['porcentaje']; ?></td>
                                             <td>
                                                 <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $data['idSubreceptor']; ?>"><i class="bi bi-pencil-fill"></i> Editar</a>

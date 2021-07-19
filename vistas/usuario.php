@@ -49,27 +49,33 @@ $ID = $_SESSION['idUsuario'];
                     <table class="table table-striped table-light">
                         <thead class="table-dark text-center">
                             <th>#</th>
-                            <th>Nombre completo</th>
                             <th>Usuario</th>
+                            <th>Nombre completo</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
                             <th>Rol</th>
                             <th>Subreceptor</th>
                             <th>Estado</th>
                             <th>Opciones</th>
                         </thead>
-                        <tbody class="text-center">
+                        <tbody class="text-center" style="font-size: 12px;">
                             <?php
                             $cont = 0;
-                            $sql1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor,u.estado FROM usuario u 
+                            $sql1 = "SELECT p.nombre, p.apellido, p.direccion, p.telefono, p.email, u.usuario, r.nombre as rol, s.nombre as subreceptor, u.estado FROM usuario u 
                             LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
-                            LEFT JOIN catalogo r ON u.rol=r.idCatalogo
-                            LEFT JOIN persona p ON p.idPersona=u.Persona_id;";
+                            LEFT JOIN catalogo r ON u.rol=r.codigo
+                            LEFT JOIN persona p ON p.idPersona=u.Persona_id";
                             $resultado1 = mysqli_query($enlace, $sql1);
                             while ($fila = mysqli_fetch_assoc($resultado1)) {
                                 $cont++;
                                 echo '<tr>
                                                     <td>' . $cont . '</td>
-                                                    <td>' . $fila['nombre'] . ' ' . $fila['apellido'] . '</td>
                                                     <td>' . $fila['usuario'] . '</td>
+                                                    <td>' . $fila['nombre'] . ' ' . $fila['apellido'] . '</td>
+                                                    <td>' . $fila['direccion'] . '</td>
+                                                    <td>' . $fila['telefono'] . '</td>
+                                                    <td>' . $fila['email'] . '</td>
                                                     <td>' . $fila['rol'] . '</td>
                                                     <td>' . $fila['subreceptor'] . '</td>';
                                 if ($fila['estado'] == 1) {

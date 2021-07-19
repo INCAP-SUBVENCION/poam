@@ -38,7 +38,7 @@ if ($accion == "agregarPoa") {
     $recurrente     = $_POST['recurrente'];
     $subreceptor    = $_POST['subreceptor'];
     $observacion    = $_POST['observacion'];
-    $semestre       = $_POST['semestre'];
+    $periodo        = $_POST['periodo'];
 
     $cnatural       = $_POST['cnatural'];
     $csabor         = $_POST['csabor'];
@@ -49,9 +49,9 @@ if ($accion == "agregarPoa") {
     $reactivoEs     = $_POST['reactivoEs'];
     $sifilis        = $_POST['sifilis'];
 
-    $consulta = "CALL agregarPoa($usuario, $mes, $departamento, $municipio, $nuevo, $recurrente, $subreceptor, '$observacion', $semestre,
+    $consultap = "CALL agregarPoa($usuario, '$mes', '$departamento', '$municipio', $nuevo, $recurrente, $subreceptor, '$observacion', $periodo,
     $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis)";
-    $resultadop2 = mysqli_query($enlace, $consulta);
+    $resultadop2 = mysqli_query($enlace, $consultap);
     $poa = mysqli_affected_rows($enlace);
     if ($poa > 0) {
         echo "Exito";
@@ -60,4 +60,24 @@ if ($accion == "agregarPoa") {
     }
 }
 
+/**
+ * Metodo que permite agregar nueva meta para calcular el POA
+ */
+if ($accion == "agregarResumen") {
+
+    $cobertura      = $_POST['cobertura'];
+    $periodo        = $_POST['periodo'];
+    $meses          = $_POST['meses'];
+    $metaNuevos     = $_POST['metaNuevos'];
+    $metaRecurrentes = $_POST['metaRecurrentes'];
+
+    $sqlRes = "CALL agregarResumen($cobertura, $periodo, $meses, $metaNuevos, $metaRecurrentes)";
+    $resultadoRes = mysqli_query($enlace, $sqlRes);
+    $resumen = mysqli_affected_rows($enlace);
+    if($resumen > 0){
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
 ?>

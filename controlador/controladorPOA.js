@@ -4,14 +4,14 @@
  function  agregarPoa() {
 
     var usuario     = parseInt(document.getElementById('usuario').value);
-    var mes         = parseInt(document.getElementById('mes').value);
-    var departamento = parseInt(document.getElementById('departamento').value);
-    var municipio   = parseInt(document.getElementById('municipio').value);
+    var mes         = document.getElementById('mes').value;
+    var departamento = document.getElementById('departamento').value;
+    var municipio   = document.getElementById('municipio').value;
     var nuevo       = parseFloat(document.getElementById('nuevo').value);
     var recurrente  = parseFloat(document.getElementById('recurrente').value);
     var subreceptor = parseInt(document.getElementById('subreceptor').value);
     var observacion = document.getElementById('observacion').value;
-    var semestre    = parseInt(document.getElementById('semestre').value);
+    var periodo     = document.getElementById('periodo').value;
 
     var cnatural    = parseFloat(document.getElementById('cnatural').value);
     var csabor      = parseFloat(document.getElementById('csabor').value);
@@ -37,7 +37,7 @@
             recurrente: recurrente,
             subreceptor: subreceptor,
             observacion: observacion,
-            semestre: semestre,
+            periodo: periodo,
             cnatural: cnatural,
             csabor: csabor,
             cfemenino: cfemenino,
@@ -51,7 +51,6 @@
             if (datos == 'Exito') {
                 alertify.success('¡GUARDADO!...');
                 $('#agregarPoa').trigger("reset");
-                $('#nuevoPoa').modal('hide')
                 window.location.reload('poa.php');
             } else {
                 alertify.error("¡ERROR!... No se pudo guardar");
@@ -64,9 +63,11 @@
  * Funcion para calcular la proyeccion de insumos para el POA semestre 1
  */
 function calcularProyeccionPOA() {
-
+    var total = 0.0;
+    var nuevo = parseFloat(document.getElementById('nuevo').value);
+    var recurrente = parseFloat(document.getElementById('recurrente').value);
+    total = nuevo + recurrente;
     var subreceptor = document.getElementById('subreceptor').value;
-    var total       = parseFloat(document.getElementById('total').value);
     var procentaje  = parseFloat(document.getElementById('reactivo').value);
 
     var accion = "calcularProyeccionPOA";
@@ -96,6 +97,42 @@ function calcularProyeccionPOA() {
             document.getElementById('autoPrueba').value = autoPrueba.toFixed(4);
             document.getElementById('reactivoEs').value = reactivo.toFixed(4);
             document.getElementById('sifilis').value    = total;
+            document.getElementById('total').value      = total;
+        }
+    });
+}
+/**
+ * Funcion que permite agregar una meta para calcular el POA
+ */
+function agregarResumen() {
+    var cobertura   = document.getElementById('cobertura').value;
+    var periodo     = document.getElementById('periodo').value;
+    var meses       = document.getElementById('meses').value;
+    var metaNuevos  = document.getElementById('metaNuevos').value;
+    var metaRecurrentes = document.getElementById('metaRecurrentes').value;
+
+    var accion = "agregarResumen";
+
+    $.ajax({
+        type: "POST",
+          url: "../../servicio/servicioPOA.php",
+        data:{
+            accion: accion,
+            cobertura: cobertura,
+            periodo: periodo,
+            meses: meses,
+            metaNuevos: metaNuevos,
+            metaRecurrentes: metaRecurrentes
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡GUARDADO!...');
+                $('#agregarMeta').trigger("reset");
+                window.location.reload('poa.php');
+            } else {
+                alertify.error("¡ERROR!... No se pudo guardar");
+            }
+
         }
     });
 }

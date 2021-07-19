@@ -44,10 +44,14 @@ function agregarSubreceptor() {
  * Funcion para agregar el reactivo esperado para calcular el POA
  */
  function agregarCobertura() {
-    var subreceptor     = parseInt(document.getElementById('sub').value);
-    var departamento    = parseInt(document.getElementById('departamento').value);
-    var municipio       = parseInt(document.getElementById('municipio').value);
-    var reactivo        = parseFloat(document.getElementById('reactivo').value);
+    var subreceptor   = parseInt(document.getElementById('sub').value);
+    var departamento  = parseInt(document.getElementById('departamento').value);
+    var municipio     = parseInt(document.getElementById('municipio').value);
+    var region        = document.getElementById('region').value;
+    var nuevo         = parseFloat(document.getElementById('nuevo').value);
+    var recurrente    = parseFloat(document.getElementById('recurrente').value);
+    var reactivo      = parseFloat(document.getElementById('reactivo').value);
+
 
     var accion = "agregarCobertura";
 
@@ -59,6 +63,9 @@ function agregarSubreceptor() {
             subreceptor: subreceptor,
             departamento: departamento,
             municipio: municipio,
+            region: region,
+            nuevo: nuevo,
+            recurrente: recurrente,
             reactivo: reactivo
         },
         success: function (datos) {
