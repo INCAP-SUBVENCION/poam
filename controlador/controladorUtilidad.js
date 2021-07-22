@@ -12,6 +12,7 @@ $(document).ready(function () {
     });
 
 });
+
 /**
  * Funcion que perminte llenar combo con los municipios segun el departamento semestre 1
  */
@@ -33,6 +34,7 @@ function llenarMunicipio() {
         }
     });
 }
+
 /**
  * Funcion que perminte llenar combo con los municipios segun el departamento semestre 1
  */
@@ -78,6 +80,9 @@ function periodo_mes() {
     });
 }
 
+/**
+ * Funcio que permite obtener los datos de las metas nueva y recurrentes
+ */
 function obtenerMeta() {
 
     var municipio   = document.getElementById('municipio').value;
@@ -163,7 +168,11 @@ function obtenerResumen(){
     });
 }
 
+/**
+ * Funcion que permite calcular la meta segun seal el subreceptor
+ */
 function calcularMeta(){
+
   var metaNuevo       = 0.0;
   var metaRecurrente  = 0.0;
   var nuevo       = document.getElementById('nuevo').value;
@@ -174,8 +183,61 @@ function calcularMeta(){
   document.getElementById('metaNuevos').value     = metaNuevo.toFixed(4);
   document.getElementById('metaRecurrentes').value= metaRecurrente.toFixed(4);
 }
-
+/**
+ * funcion que permite llamar varias fuciones para crear el POA
+ */
 function calculos() {
     obtenerReactivo();
     obtenerResumen();
+}
+
+function sumarPom(){
+
+    var nuevo = parseFloat(document.getElementById('nuevo').value);
+    var recurrente = parseFloat(document.getElementById('recurrente').value);
+    parseFloat(document.getElementById('total').value = nuevo + recurrente);
+
+}
+
+function obtenerCobertura(){
+
+    var subreceptor = document.getElementById('subreceptor').value;
+
+    var accion = "obtenerCobertura";
+
+    $.ajax({
+        type: "POST",
+        url: "../servicio/servicioUtilidad.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor
+        },
+        success: function (datos) {
+            $("#cobertura").html(datos);
+        }
+    });
+}
+
+function obtenerMesPom(){
+
+    var subreceptor = document.getElementById('subreceptor').value;
+    var periodo     = document.getElementById('cperiodo').value;
+    var municipio = document.getElementById('cmunicipio').value;
+    
+
+    var accion = "obtenerMesPom";
+
+    $.ajax({
+        type: "POST",
+        url: "../../servicio/servicioUtilidad.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            periodo: periodo,
+            municipio: municipio
+        },
+        success: function (datos) {
+            $("#cmes").html(datos);
+        }
+    });
 }

@@ -1,5 +1,5 @@
 <table class="table table-bordered border-primary">
-    <thead class="text-center border-light bg-primary">
+    <thead class="text-center border-light" style="background-color:dimgray;">
         <tr>
             <td colspan="6" class="text-white">DATOS PRINCIPALES </td>
             <td colspan="10" class="text-white">INSUMOS PROYECTADOS POR MES</td>

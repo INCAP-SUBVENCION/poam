@@ -48,11 +48,11 @@ $ID = $_SESSION['idUsuario'];
                     </div>
                 </div>
                 <section class="section">
+                <form name="agregarPromotor" id="agregarPromotor" action="javascript: agregarPromotor();" method="POST">
+                    <div class="card border-primary" style="max-width: 90rem;">
+                        <div class="card-headertext-white text-center bg-info" style="color:black">REGISTRO DE PROMOTORES</div>
+                            <div class="card-body text-primary bg-light-primary">
 
-                    <div class="card border-primary mb-3" style="max-width: 90rem;">
-                        <div class="card-headertext-white text-center" style="background-color:darkblue; color:snow">REGISTRO DE PROMOTORES</div>
-                        <div class="card-body text-primary bg-light-warning" style="font-size: 11px;">
-                            <form name="agregarPromotor" id="agregarPromotor" action="javascript: agregarPromotor();" method="POST">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-1">
                                         <label class="form-label">Codigo:</label>
@@ -60,7 +60,7 @@ $ID = $_SESSION['idUsuario'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Subreceptor:</label>
-                                        <select name="subreceptor" id="subreceptor" class="form-control" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                        <select name="subreceptor" id="subreceptor" class="form-control" onchange="obtenerCobertura();" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
                                             <option value="">Seleccionar...</option>
                                             <?php
                                             $csub = "SELECT *FROM subreceptor";
@@ -75,6 +75,11 @@ $ID = $_SESSION['idUsuario'];
                                         </select>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
+                                        <label class="form-label">Municipio:</label>
+                                        <select name="cobertura" id="cobertura" class="form-control" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                        </select>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Tipo documento</label>
                                         <select name="documento" id="documento" class="form-control" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
                                             <option value="">Seleccionar</option>
@@ -84,7 +89,7 @@ $ID = $_SESSION['idUsuario'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Numero:</label>
-                                        <input type="text" name="numero" id="numero" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
+                                        <input type="text" maxlength="13" name="numero" id="numero" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Nombre</label>
@@ -102,40 +107,39 @@ $ID = $_SESSION['idUsuario'];
                                         <label class="form-label">Telefono</label>
                                         <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-3">
+                                    <div class="form-group input-group-sm col-sm-4">
                                         <label class="form-label">Correo</label>
                                         <input type="text" name="correo" id="correo" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
                                     </div>
-
-                                    <div class="form-group input-group-sm col-sm-3">
-
-                                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
-                                        <button type="reset" class="btn btn-outline-danger"><i class="bi bi-x-octagon-fill"></i> Cancelar</button>
-                                    </div>
                                 </div>
-
-                            </form>
-                        </div>
+                            </div>
                     </div>
-
-                    <table class="table table-striped table-light table-bordered">
-                        <thead class="table-dark text-center" style="font-size: 12px;">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
+                                <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-octagon-fill"></i> Cancelar</button>
+                            </div>
+                    </form>
+                    <table class="table table-hover table-bordered">
+                    <thead>
                             <th>#</th>
                             <th>Codigo</th>
                             <th>Subreceptor</th>
+                            <th>Municipio</th>
                             <th>Nombre completo</th>
                             <th>Direccion</th>
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Estado</th>
-                            <th>Opciones</th>
+                            <th>Opcion</th>
                         </thead>
                         <tbody class="text-center" style="font-size: 12px;">
                             <?php
                             $contador = 1;
-                            $sql = "SELECT t1.codigo, t3.nombre as subreceptor, t2.nombre, t2.apellido, t2.direccion, t2.telefono, t2.email, t1.estado FROM promotor t1 
+                            $sql = "SELECT t1.codigo, t4.nombre as subreceptor, t6.nombre as municipio, t2.nombre, t2.apellido, t2.direccion, t2.telefono, t2.email, t1.estado FROM promotor t1
                             LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id
-                            LEFT JOIN subreceptor t3 ON t3.idSubreceptor = t1.subreceptor_id";
+                            LEFT JOIN cobertura t3 ON t3.idCobertura = t1.cobertura_id
+                            LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t3.subreceptor_id
+                            LEFT JOIN catalogo t6 ON t6.codigo = t3.municipio;";
                             $consulta = $enlace->query($sql);
                             while ($data = $consulta->fetch_assoc()) {
                             ?>
@@ -143,6 +147,7 @@ $ID = $_SESSION['idUsuario'];
                                     <td><?php echo $contador++; ?></td>
                                     <td><?php echo $data['codigo']; ?></td>
                                     <td><?php echo $data['subreceptor']; ?></td>
+                                    <td><?php echo $data['municipio']; ?></td>
                                     <td><?php echo $data['nombre'] . ' ' . $data['apellido']; ?></td>
                                     <td><?php echo $data['direccion']; ?></td>
                                     <td><?php echo $data['telefono']; ?></td>
@@ -157,7 +162,8 @@ $ID = $_SESSION['idUsuario'];
                                         ?>
                                     </td>
                                     <td>
-                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $data['idSubreceptor']; ?>"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $data['idSubreceptor']; ?>" style="font-size: 12px;">
+                                        <i class="bi bi-pencil-fill"></i></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -183,6 +189,7 @@ $ID = $_SESSION['idUsuario'];
     <script src="../assets/js/main.js"></script>
     <script src="../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../controlador/controladorPromotor.js"></script>
+    <script src="../controlador/controladorUtilidad.js" charset="utf-8"></script>
 
     <?php
     include 'componente/menu.php';

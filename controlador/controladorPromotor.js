@@ -1,13 +1,15 @@
 function agregarPromotor(){
-    var documento = document.getElementById('documento').value;
+    var codigo      = document.getElementById('codigo').value;
+    var cobertura   = document.getElementById('cobertura').value;
+    var documento   = document.getElementById('documento').value;
     var numero = document.getElementById('numero').value;
     var nombre = document.getElementById('nombre').value;
     var apellido = document.getElementById('apellido').value;
     var direccion = document.getElementById('direccion').value;
     var telefono = document.getElementById('telefono').value;
     var correo = document.getElementById('correo').value;
-    var codigo = document.getElementById('codigo').value;
-    var subreceptor = document.getElementById('subreceptor').value;
+
+
 
     var accion = "agregarPromotor";
 
@@ -16,15 +18,15 @@ function agregarPromotor(){
         url: "../servicio/servicioPromotor.php",
         data: {
             accion: accion,
+            codigo: codigo,
+            cobertura: cobertura,
             documento: documento,
             numero: numero,
             nombre: nombre,
             apellido: apellido,
             direccion: direccion,
             telefono: telefono,
-            correo: correo,
-            codigo: codigo,
-            subreceptor: subreceptor
+            correo: correo
         },
         success: function (datos) {
             if (datos == 'Exito') {

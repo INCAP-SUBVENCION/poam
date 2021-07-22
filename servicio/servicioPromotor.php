@@ -10,17 +10,17 @@
 
      if($accion == "agregarPromotor") {
 
-         $documento = $_POST['documento'];
-         $numero    = $_POST['documento'];
-         $nombre    = $_POST['nombre'];
-         $apellido  = $_POST['apellido'];
-         $direccion = $_POST['direccion'];
-         $telefono  = $_POST['telefono'];
-         $correo    = $_POST['correo'];
-         $codigo    = $_POST['codigo'];
-         $subreceptor = $_POST['subreceptor'];
+        $codigo     = $_POST['codigo'];
+        $cobertura  = $_POST['cobertura'];
+        $documento  = $_POST['documento'];
+        $numero     = $_POST['documento'];
+        $nombre     = $_POST['nombre'];
+        $apellido   = $_POST['apellido'];
+        $direccion  = $_POST['direccion'];
+        $telefono   = $_POST['telefono'];
+        $correo     = $_POST['correo'];
 
-         $promotor = "CALL agregarPromotor($documento, '$numero',' $nombre', '$apellido', '$direccion', '$telefono', '$correo', '$codigo', $subreceptor)";
+         $promotor = "CALL agregarPromotor($documento, '$numero',' $nombre', '$apellido', '$direccion', '$telefono', '$correo', '$codigo', $cobertura)";
          $resultado = mysqli_query($enlace, $promotor);
          $prom = mysqli_affected_rows($enlace);
          if($prom > 0) {
@@ -30,4 +30,3 @@
          }
 
      }
-?>

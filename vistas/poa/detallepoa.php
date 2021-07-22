@@ -76,14 +76,14 @@ $SUBRECEPTOR = $_GET['id'];
                     while ($subr = mysqli_fetch_assoc($resultado)) {
                     ?>
                         <div class="text-center">
-                            <h4><?php echo $subr['nombre']; ?></h4>
+                            <h5><?php echo $subr['nombre']; ?></h4>
                         </div>
                     <?php
                     }
                     ?>
                     <div class="col-md-6">
                         <div class="card text-dark">
-                            <div class="card-header bg-info text-center">DATOS PRINCIPALES</div>
+                            <div class="card-headertext-white text-center" style="background-color:darkblue; color:snow">DATOS PRINCIPALES</div>
                             <div class="card-body" style="font-size: 12px;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -150,7 +150,7 @@ $SUBRECEPTOR = $_GET['id'];
                     </div>
                     <div class="col-md-6">
                         <div class="card text-dark">
-                            <div class="card-header bg-info text-center">PROYECCIÓN DE INSUMOS</div>
+                            <div class="card-headertext-white text-center" style="background-color:darkblue; color:snow">PROYECCION DE INSUMOS</div>
                             <div class="card-body" style="font-size: 12px;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -208,20 +208,48 @@ $SUBRECEPTOR = $_GET['id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1"
-                    type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">Semestre 1</button>
+                    <button class="btn btn-sm btn-secundary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1"
+                    type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true"><i class="bi bi-calendar-range-fill"></i> Semestre 1</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2"
-                    type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">Semestre 2</button>
+                    type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false"><i class="bi bi-calendar-range-fill"></i> Semestre 2</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-warning" id="pills-semestre_3-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_3"
+                    type="button" role="tab" aria-controls="pills-semestre_3" aria-selected="true"><i class="bi bi-calendar-range-fill"></i> Semestre 3</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-success" id="pills-semestre_4-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_4"
+                    type="button" role="tab" aria-controls="pills-semestre_4" aria-selected="false"><i class="bi bi-calendar-range-fill"></i> Semestre 4</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-primary" id="pills-semestre_5-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_5"
+                    type="button" role="tab" aria-controls="pills-semestre_5" aria-selected="true"><i class="bi bi-calendar-range-fill"></i> Semestre 5</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-danger" id="pills-semestre_6-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_6"
+                    type="button" role="tab" aria-controls="pills-semestre_6" aria-selected="false"><i class="bi bi-calendar-range-fill"></i> Semestre 6</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
+                <div class="tab-pane fade" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
                     <?php include 'semestre1.php';?>
                 </div>
-                <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
+                <div class="tab-pane fade show active" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
                     <?php include 'semestre2.php';?>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
+                    <p>Aun no habilitado</p>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
+                <p>Aun no habilitado</p>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_5" role="tabpanel" aria-labelledby="pills-semestre_5-tab">
+                <p>Aun no habilitado</p>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_6" role="tabpanel" aria-labelledby="pills-semestre_6-tab">
+                <p>Aun no habilitado</p>
                 </div>
             </div>
 

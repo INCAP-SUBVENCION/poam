@@ -1,5 +1,5 @@
-<table class="table table-bordered border-primary">
-<thead class="text-center border bg-dark">
+<table class="table table-bordered border-info">
+<thead class="text-center border bg-info">
     <tr>
         <td colspan="6" class="text-white">DATOS PRINCIPALES </td>
         <td colspan="10" class="text-white">INSUMOS PROYECTADOS POR MES</td>
@@ -23,14 +23,14 @@
         <th>ACTION</th>
     </tr>
 </thead>
-<tbody class="text-center" style="font-size: 12px; background-color:aliceblue;">
+<tbody class="text-center" style="font-size: 12px; background-color:ivory;">
     <?php
     $cont = 1;
-    $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total, 
-    t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis FROM poa t1 
+    $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total,
+    t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis FROM poa t1
 	LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
 	LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
-	LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio 
+	LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
 	WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 2 AND estado = 1";
     if ($res = $enlace->query($consult)) {
@@ -52,7 +52,17 @@
                 <td><?php echo $semestre['reactivoE']; ?></td>
                 <td><?php echo $semestre['sifilis']; ?></td>
                 <td><?php echo $semestre['observacion']; ?></td>
-                <td>boton</td>
+                <td>
+                    <div class="dropdown">
+                        <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 12px;">
+                            <i class="bi bi-grid"></i> Opcion
+                        </a>
+                        <ul class="dropdown-menu" style="font-size: 13px;">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-ui-checks-grid"></i> Crear POM</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Editar</a></li>
+                        </ul>
+                    </div>
+                </td>
             </tr>
     <?php }
         $res->close();

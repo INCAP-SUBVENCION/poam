@@ -5,7 +5,7 @@
 
                 <img src="../assets/images/vihinvertido.png" alt="">
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color:cornsilk; font-size: 13px;;">
+                    <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color:white; font-size: 13px;;">
                         <?php
                         $consultaUsuario = "SELECT p.nombre, p.apellido,r.nombre as roles FROM usuario u 
                         LEFT JOIN persona p ON p.idPersona = u.Persona_id 
@@ -16,7 +16,7 @@
                             echo $usuario['nombre'].' '.$usuario['apellido'];
                             ?>
                     </button>
-                        <p><?php echo $usuario['roles'] ?></p>                        
+                        <p class="text-white"><?php echo $usuario['roles'] ?></p>                        
                     <?php
                         }
                         ?>
@@ -47,22 +47,25 @@
                     </a>
                 </li>
                 <li class="sidebar-item  ">
-                    <a href="subreceptor.php" class='sidebar-link'>
-                        <i class="bi bi-diagram-2"></i><span>Subreceptor</span>
+                    <a href="promotor.php" class='sidebar-link'>
+                    <i class="bi bi-people-fill"></i><span>Promotores</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item  ">
                     <a href="usuario.php" class='sidebar-link'>
                     <i class="bi bi-person-plus-fill"></i><span>Usuarios</span>
                     </a>
                 </li>
                 <li class="sidebar-item  ">
-                    <a href="promotor.php" class='sidebar-link'>
-                    <i class="bi bi-people-fill"></i><span>Promotores</span>
+                    <a href="cobertura.php" class='sidebar-link'>
+                    <i class="bi bi-arrows-fullscreen"></i><span>Cobertura</span>
                     </a>
                 </li>
-
+                <li class="sidebar-item  ">
+                    <a href="subreceptor.php" class='sidebar-link'>
+                        <i class="bi bi-diagram-2"></i><span>Subreceptor</span>
+                    </a>
+                </li>
             </ul>
             
             <footer>

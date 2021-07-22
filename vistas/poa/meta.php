@@ -79,8 +79,8 @@ $SUBRECEPTOR = $_GET['id'];
                 <input type="hidden" id="subreceptor" name="subreceptor" value="<?php echo $SUBRECEPTOR;?>">
                 <input type="hidden" name="cobertura" id="cobertura">
                 <div class="card border-success">
-                    <div class="card-header bg-info text-white"><i class="bi bi-bullseye"></i> RESUMEN DE METAS </div>
-                    <div class="card-body" style="background-color:bisque; font-size: 12px;">
+                <div class="card-headertext-white text-center bg-info">RESUMEN DE METAS</div>
+                    <div class="card-body bg-light-info" style="font-size: 12px;">
                         <div class="row">
                             <div class="form-group input-group-sm col-sm-1">
                                 <label class="form-label">Periodo</label>
@@ -133,8 +133,8 @@ $SUBRECEPTOR = $_GET['id'];
                     </div>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')"><i class="bi bi-plus-square-fill"></i> Guardar</button>
-                    <button type="reset" class="btn btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button>
+                    <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')"><i class="bi bi-plus-square-fill"></i> Guardar</button>
+                    <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button>
                 </div>
             </form>
 
@@ -149,9 +149,8 @@ $SUBRECEPTOR = $_GET['id'];
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
-                    <table class="table table-bordered border-primary">
-                        <thead class="text-center border-light bg-primary">
-                            <tr style="color:azure;">
+                <table class="table table-hover table-bordered">
+                        <thead class="text-center">
                                 <th>#</th>
                                 <th>Municipio</th>
                                 <th>Periodo</th>
@@ -159,7 +158,6 @@ $SUBRECEPTOR = $_GET['id'];
                                 <th>Meta mensual  Nuevos</th>
                                 <th>Meta mensual Recurrentes</th>
                                 <th>Opcion</th>
-                            </tr>
                         </thead>
                         <tbody class="text-center">
                             <?php
@@ -185,9 +183,9 @@ $SUBRECEPTOR = $_GET['id'];
                     </table>
                 </div>
                 <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
-                    <table class="table table-bordered border-primary">
-                        <thead class="text-center border-light bg-primary">
-                            <tr style="font-size: 11px; color:azure;">
+                    <table class="table table-hover table-bordered">
+                        <thead class="text-center">
+                            <tr>
                                 <th>#</th>
                                 <th>Municipio</th>
                                 <th>Julio</th>
