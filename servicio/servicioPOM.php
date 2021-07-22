@@ -71,7 +71,7 @@ if ($accion == "consultaPoa") {
             <td>" . $poa['autoPrueba'] . "</td>
             <td>" . $poa['reactivoE'] . "</td>
             <td>" . $poa['sifilis'] . "</td>
-            <td><a href='#' class='btn-sm btn-outline-info' onclick='cargarPoa(" . $poa['idPoa'] . ");'>
+            <td><a href='#' class='btn-sm btn-outline-info' onclick='cargarPoa(" . $poa['idPoa'] . "); llenarReactivo();'>
             <i class='bi bi-file-arrow-down-fill'></i> Cargar datos </a></td>
         </tr>
         ";
@@ -115,12 +115,27 @@ if ($accion == "calcularPom") {
     $sqlp1 = "SELECT * FROM subreceptor WHERE idSubreceptor = '$subreceptor'";
     $resultadop1 = $enlace->query($sqlp1);
     while ($calculo = mysqli_fetch_assoc($resultadop1)) {
-        echo    $calculo['enatural'] * $total      .",".
-                $calculo['esabor'] * $total        .",".
-                $calculo['efemenino'] * $total     .",".
-                $calculo['elubricante'] * $total   .",".
-                $calculo['ppvih'] * $total         .",".
-                $calculo['pautoprueba'] * $total;
+        echo    $calculo['enatural'] * $total      . "," .
+            $calculo['esabor'] * $total        . "," .
+            $calculo['efemenino'] * $total     . "," .
+            $calculo['elubricante'] * $total   . "," .
+            $calculo['ppvih'] * $total         . "," .
+            $calculo['pautoprueba'] * $total;
     }
     $resultadop1->close();
+}
+/**
+ * Metodo que permite obtener el reactivo segun el subreceptor y municipio
+ */
+if ($accion == "llenarReactivo") {
+
+    $subreceptor    = $_POST['subreceptor'];
+    $municipio      = $_POST['municipio'];
+
+    $sql3 = "SELECT porcentaje FROM cobertura WHERE subreceptor_id = $subreceptor AND municipio = $municipio";
+    $resultador = $enlace->query($sql3);
+    while ($cobertura = mysqli_fetch_assoc($resultador)) {
+        echo $cobertura['porcentaje'];
+    }
+    $resultador->close();
 }

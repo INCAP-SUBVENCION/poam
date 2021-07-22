@@ -149,14 +149,14 @@ function obtenerResumen(){
     var departamento = document.getElementById('departamento').value;
     var municipio = document.getElementById('municipio').value;
 
-    var accion = "llenarReactivo";
+    var accion = "obtenerReactivo";
 
     $.ajax({
         type: "POST",
         url: "../../servicio/servicioUtilidad.php",
         data: {
             accion: accion,
-            subreceptor, subreceptor,
+            subreceptor: subreceptor,
             departamento: departamento,
             municipio: municipio
         },
@@ -223,7 +223,7 @@ function obtenerMesPom(){
     var subreceptor = document.getElementById('subreceptor').value;
     var periodo     = document.getElementById('cperiodo').value;
     var municipio = document.getElementById('cmunicipio').value;
-    
+
 
     var accion = "obtenerMesPom";
 

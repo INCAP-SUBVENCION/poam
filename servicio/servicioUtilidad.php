@@ -48,7 +48,7 @@ if ($accion == "municipioCobertura") {
 /**
  * Metodo que permite llenar reactivo en el combo segun sea el departamento y subreceptor
  */
-if ($accion == "llenarReactivo") {
+if ($accion == "obtenerReactivo") {
 
     $subreceptor    = $_POST['subreceptor'];
     $departamento   = $_POST['departamento'];
@@ -127,7 +127,7 @@ if ($accion == "obtenerCobertura") {
   $rCobertura->close();
 }
 /**
- * 
+ *
  */
 if ($accion == "obtenerMesPom") {
 
@@ -135,7 +135,7 @@ if ($accion == "obtenerMesPom") {
     $periodo        = $_POST['periodo'];
     $municipio      = $_POST['municipio'];
 
-    $consultaMes   = "SELECT m.codigo as id, m.nombre as mes FROM poa p LEFT JOIN catalogo m ON m.codigo = p.mes 
+    $consultaMes   = "SELECT m.codigo as id, m.nombre as mes FROM poa p LEFT JOIN catalogo m ON m.codigo = p.mes
                     WHERE p.subreceptor_id = $subreceptor AND p.municipio = $municipio AND m.descripcion = $periodo";
     $resultadoMes  = $enlace->query($consultaMes);
     echo "<option value=''>Seleccionar mes</option>";
@@ -144,4 +144,3 @@ if ($accion == "obtenerMesPom") {
     }
     $resultadoMes->close();
   }
-  
