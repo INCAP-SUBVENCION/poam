@@ -89,16 +89,17 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `agregarPom`(
 	IN poa			INT,
+    IN estado		VARCHAR(16),
+    IN usuario		INT,
+    IN descripcion	TEXT,
     IN periodo		INT,
-	IN mes			INT,
-	IN municipio	INT,
+	IN mes			VARCHAR(16),
+	IN municipio	VARCHAR(16),
     IN fecha		DATE,
     IN inicio		TIME,
     IN fin 			TIME,
     IN lugar		TEXT,
     IN promotor		INT,
-    IN supervisado	BOOLEAN,
-    IN supervisor 	VARCHAR(100),
 	IN nuevo		FLOAT,
 	IN recurrente	FLOAT,
 	IN cnatural 	FLOAT,
@@ -112,11 +113,17 @@ CREATE PROCEDURE `agregarPom`(
     IN observacion	TEXT)
 BEGIN
 	DECLARE id INT DEFAULT 0;
+    DECLARE idE INT DEFAULT 0;
 	DECLARE idP INT DEFAULT	(SELECT COUNT(idPom) FROM pom);
+    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
 	IF(idP <=0) THEN SET id := 1;
 	ELSE SET id := idP + 1;
     END IF;
-	INSERT INTO pom VALUES(id,poa,periodo,mes,municipio,fecha,inicio,fin,lugar,promotor,supervisado,supervisor,nuevo,recurrente,cnatural,csabor,cfeminino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis,observacion);
+	INSERT INTO pom VALUES(id,periodo,mes,municipio,fecha,inicio,fin,lugar,promotor,supervisado,supervisor,nuevo,recurrente,cnatural,csabor,cfeminino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis,observacion);
+	IF(idEs <=0) THEN SET idE := 1;
+	ELSE SET idE := idEs + 1;
+    END IF;
+    INSERT INTO estado VALUES(idE, poa, id, estado, usuario, NOW(), descripcion);
 END//
 DELIMITER ;
 
@@ -131,7 +138,7 @@ CREATE PROCEDURE `agregarPromotor`(
 	IN telefono		VARCHAR(16),
 	IN email		VARCHAR(100),
     IN codigo		VARCHAR(32),
-	IN subreceptor	INT )
+	IN cobertura	INT )
 BEGIN
     DECLARE IdPersona INT DEFAULT 0;
 	DECLARE IdPromotor INT DEFAULT 0;
@@ -144,7 +151,7 @@ BEGIN
 	IF(idPro <=0) THEN SET IdPromotor := 1;
 	ELSE SET IdPromotor := idPro + 1;
     END IF;
-	INSERT INTO promotor VALUES(IdPromotor,codigo,IdPersona,subreceptor,1);
+	INSERT INTO promotor VALUES(IdPromotor,codigo,IdPersona,cobertura,1);
 END//
 DELIMITER ;
 
@@ -225,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `catalogo` (
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.catalogo: ~404 rows (aproximadamente)
+-- Volcando datos para la tabla poam.catalogo: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `catalogo` DISABLE KEYS */;
 INSERT INTO `catalogo` (`codigo`, `nombre`, `descripcion`, `categoria`) VALUES
 	('1', 'Guatemala', ' ', 'departamento'),
@@ -588,6 +595,12 @@ INSERT INTO `catalogo` (`codigo`, `nombre`, `descripcion`, `categoria`) VALUES
 	('922', 'Flores Costa Cuca', '9', 'municipio'),
 	('923', 'La Esperanza', '9', 'municipio'),
 	('924', 'Palestina de los Altos', '9', 'municipio'),
+	('ES01', 'Creado', 'El POM a sido creado', 'estado'),
+	('ES02', 'Revision', 'El POM esta revisado', 'estado'),
+	('ES03', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado'),
+	('ES04', 'Modificado', 'El POM ha sido modificado', 'estado'),
+	('ES05', 'Recalendarizado', 'El POM ha cambiado de fecha', 'estado'),
+	('ES06', 'Rechazado', 'El POM fue rechazado', 'estado'),
 	('MP11', 'Enero', '1', 'mes'),
 	('MP12', 'Febrero', '1', 'mes'),
 	('MP13', 'Marzo', '1', 'mes'),
@@ -650,21 +663,26 @@ CREATE TABLE IF NOT EXISTS `cobertura` (
 -- Volcando datos para la tabla poam.cobertura: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cobertura` DISABLE KEYS */;
 INSERT INTO `cobertura` (`idCobertura`, `subreceptor_id`, `departamento`, `municipio`, `region`, `nuevo`, `recurrente`, `porcentaje`) VALUES
-	(1, 1, '1', '102', 1, 500, 400, 0.5);
+	(1, 1, '1', '101', 1, 750, 600, 0.25);
 /*!40000 ALTER TABLE `cobertura` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.estado
 CREATE TABLE IF NOT EXISTS `estado` (
   `idEstado` int(11) NOT NULL,
-  `estado` int(11) DEFAULT NULL,
-  `descripcion` text COLLATE utf8_unicode_ci,
   `poa_id` int(11) NOT NULL,
   `pom_id` int(11) NOT NULL,
+  `estado` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `descripcion` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`idEstado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla poam.estado: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `estado` DISABLE KEYS */;
+INSERT INTO `estado` (`idEstado`, `poa_id`, `pom_id`, `estado`, `usuario_id`, `fecha`, `descripcion`) VALUES
+	(1, 1, 1, 'ES01', 1, '2021-07-26 16:38:40', 'El Plan Operativo Mensual ha sido creado con exito'),
+	(2, 1, 2, 'ES01', 1, '2021-07-26 16:42:07', 'El Plan Operativo Mensual ha sido creado con exito');
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.insumo
@@ -682,11 +700,10 @@ CREATE TABLE IF NOT EXISTS `insumo` (
   PRIMARY KEY (`idInsumo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.insumo: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla poam.insumo: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `insumo` DISABLE KEYS */;
 INSERT INTO `insumo` (`idInsumo`, `poa_id`, `cnatural`, `csabor`, `cfemenino`, `lubricante`, `pruebaVIH`, `autoPrueba`, `reactivoE`, `sifilis`) VALUES
-	(1, 1, 7500, 7500, 7500, 7500, 75, 37.5, 75, 150),
-	(2, 2, 7500, 7500, 7500, 7500, 75, 37.5, 75, 150);
+	(1, 1, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225);
 /*!40000 ALTER TABLE `insumo` ENABLE KEYS */;
 
 -- Volcando estructura para procedimiento poam.listarDepartamento
@@ -708,11 +725,11 @@ CREATE PROCEDURE `listarMunicipio`(
 	IN sub		VARCHAR(32),
     IN dep		VARCHAR(32))
 BEGIN
-SELECT t3.codigo as id, t3.nombre as municipio FROM cobertura t1
-    LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
-    LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
+SELECT t3.idCatalogo as id, t3.nombre as municipio FROM cobertura t1
+    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
+    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
     LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id 
-	WHERE t2.codigo = dep AND t1.subreceptor_id = sub;
+	WHERE t2.idCatalogo = dep AND t1.subreceptor_id = sub;
 END//
 DELIMITER ;
 
@@ -758,10 +775,11 @@ CREATE TABLE IF NOT EXISTS `persona` (
   PRIMARY KEY (`idPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.persona: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla poam.persona: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`idPersona`, `documento`, `numero`, `nombre`, `apellido`, `direccion`, `telefono`, `email`) VALUES
-	(1, 1, '112212345', 'Faustino', 'Lopez Ramos', '11-22 zona 0, Guatemala', '11223344', 'usuario@servidor.com');
+	(1, 1, '112212345', 'Faustino', 'Lopez Ramos', '11-22 zona 0, Guatemala', '11223344', 'usuario@servidor.com'),
+	(2, 1, '1', ' Fabiola', 'Lorenzana', 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh.', '1234678', 'correodeprueba@servidor.com');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.poa
@@ -781,27 +799,23 @@ CREATE TABLE IF NOT EXISTS `poa` (
   PRIMARY KEY (`idPoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.poa: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla poam.poa: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `poa` DISABLE KEYS */;
 INSERT INTO `poa` (`idPoa`, `Usuario_id`, `anio`, `mes`, `departamento`, `municipio`, `nuevo`, `recurrente`, `subreceptor_id`, `observacion`, `periodo`, `estado`) VALUES
-	(1, 1, 2021, 'MP21', '1', '102', 83.3333, 66.6667, 1, '', 2, 1),
-	(2, 1, 2021, 'MP23', '1', '102', 83.3333, 66.6667, 1, '', 2, 1);
+	(1, 1, 2021, 'MP11', '1', '101', 125, 100, 1, 'Lorem ipsum dolor sit amet', 1, 1);
 /*!40000 ALTER TABLE `poa` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.pom
 CREATE TABLE IF NOT EXISTS `pom` (
   `idPom` int(11) NOT NULL,
-  `poa_id` int(11) NOT NULL,
   `periodo` int(11) DEFAULT NULL,
-  `mes` int(11) DEFAULT NULL,
-  `municipio` int(11) DEFAULT NULL,
+  `mes` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `municipio` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `horaInicio` time DEFAULT NULL,
   `horaFin` time DEFAULT NULL,
   `lugar` text COLLATE utf8_unicode_ci,
   `promotor_id` int(11) NOT NULL,
-  `supervisado` tinyint(4) DEFAULT NULL,
-  `supervisor` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pNuevo` float DEFAULT NULL,
   `pRecurrente` float DEFAULT NULL,
   `cnatural` float DEFAULT NULL,
@@ -818,6 +832,9 @@ CREATE TABLE IF NOT EXISTS `pom` (
 
 -- Volcando datos para la tabla poam.pom: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `pom` DISABLE KEYS */;
+INSERT INTO `pom` (`idPom`, `periodo`, `mes`, `municipio`, `fecha`, `horaInicio`, `horaFin`, `lugar`, `promotor_id`, `pNuevo`, `pRecurrente`, `cnatural`, `csabor`, `cfeminino`, `lubricante`, `pruebaVIH`, `autoprueba`, `reactivo`, `sifilis`, `observacion`) VALUES
+	(1, 1, 'MP11', '101', '2021-07-27', '08:00:00', '12:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, id auctor lacinia.', 1, 125, 83.3335, 31250, 26041.7, 20833.3, 15625, 56.2501, 52.0834, 10.4167, 208.333, 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh'),
+	(2, 1, 'MP11', '101', '2021-07-27', '08:00:00', '12:00:00', 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh.', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh.');
 /*!40000 ALTER TABLE `pom` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.promotor
@@ -825,13 +842,15 @@ CREATE TABLE IF NOT EXISTS `promotor` (
   `idPromotor` int(11) NOT NULL,
   `codigo` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `persona_id` int(11) NOT NULL,
-  `subreceptor_id` int(11) NOT NULL,
+  `cobertura_id` int(11) NOT NULL,
   `estado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idPromotor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla poam.promotor: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `promotor` DISABLE KEYS */;
+INSERT INTO `promotor` (`idPromotor`, `codigo`, `persona_id`, `cobertura_id`, `estado`) VALUES
+	(1, 'C001', 2, 1, 1);
 /*!40000 ALTER TABLE `promotor` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.resumen
@@ -849,7 +868,7 @@ CREATE TABLE IF NOT EXISTS `resumen` (
 -- Volcando datos para la tabla poam.resumen: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `resumen` DISABLE KEYS */;
 INSERT INTO `resumen` (`idResumen`, `cobertura_id`, `periodo`, `meses`, `nuevo`, `recurrente`, `estado`) VALUES
-	(1, 1, 2, 6, 83.3333, 66.6667, 1);
+	(1, 1, 1, 6, 125, 100, 1);
 /*!40000 ALTER TABLE `resumen` ENABLE KEYS */;
 
 -- Volcando estructura para procedimiento poam.semestre
@@ -885,7 +904,7 @@ CREATE TABLE IF NOT EXISTS `subreceptor` (
 -- Volcando datos para la tabla poam.subreceptor: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `subreceptor` DISABLE KEYS */;
 INSERT INTO `subreceptor` (`idSubreceptor`, `codigo`, `nombre`, `enatural`, `esabor`, `efemenino`, `elubricante`, `ppvih`, `pautoprueba`) VALUES
-	(1, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 50, 50, 50, 50, 0.5, 0.25);
+	(1, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 150, 125, 100, 75, 0.75, 0.25);
 /*!40000 ALTER TABLE `subreceptor` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.usuario
@@ -900,10 +919,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.usuario: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla poam.usuario: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`idUsuario`, `persona_id`, `rol`, `usuario`, `pass`, `subreceptor_id`, `estado`) VALUES
-	(1, 1, 'R001', 'fl20211', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1);
+	(1, 1, 'R002', 'fl20211', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

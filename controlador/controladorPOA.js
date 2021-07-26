@@ -55,7 +55,6 @@
             } else {
                 alertify.error("¡ERROR!... No se pudo guardar");
             }
-
         }
     });
 }

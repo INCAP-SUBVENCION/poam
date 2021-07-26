@@ -120,7 +120,7 @@ $ID = $_SESSION['idUsuario'];
                             </div>
                     </form>
                     <table class="table table-hover table-bordered">
-                    <thead>
+                    <thead style="font-size: 12px;">
                             <th>#</th>
                             <th>Codigo</th>
                             <th>Subreceptor</th>

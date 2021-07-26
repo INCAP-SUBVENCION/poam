@@ -363,50 +363,50 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('2216', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('2217',  'Quesada', '22', 'municipio');
 
 #ROLES
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R001',  'Especialista TI', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R002',  'Enlace TI', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R003',  'Expecialista TP', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004',  'Receptor principal', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Subreceptor', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R001',  'Administrador', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R002',  'Especilista Programatica', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R003',  'Enlace Programatica', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004',  'Monitorea y Evaluacion de RP', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Monitoreo y Evaluacion de SR', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R006',  'Supervisor', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R007',  'Coordinador', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Promotor', ' ', 'rol');
-#MES
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R007',  'Promotor', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Financiero', ' ', 'rol');
+#PERIODO 1
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP11', 'Enero', 1, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP12', 'Febrero', 1, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP13', 'Marzo', 1, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP14', 'Abril', 1, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP15', 'Mayo', 1, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP16', 'Junio', 1, 'mes');
-
+#PERIODO 2
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP21', 'Julio', 2, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP22', 'Agosto', 2, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP23', 'Septiembre', 2, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP24', 'Octubre', 2, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP25', 'Noviembre', 2, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP26', 'Diciembre', 2, 'mes');
-
+#PERIODO 3
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP31', 'Enero', 3, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP32', 'Febrero', 3, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP33', 'Marzo', 3, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP34', 'Abril', 3, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP35', 'Mayo', 3, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP36', 'Junio', 3, 'mes');
-
+#PERIODO 4
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP41', 'Julio', 4, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP42', 'Agosto', 4, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP43', 'Septiembre', 4, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP44', 'Octubre', 4, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP45', 'Noviembre', 4, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP46', 'Diciembre', 4, 'mes');
-
+#PERIODO 5
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP51', 'Enero', 5, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP52', 'Febrero', 5, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP53', 'Marzo', 5, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP54', 'Abril', 5, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP55', 'Mayo', 5, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP56', 'Junio', 5, 'mes');
-
+#PERIODO 6
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP61', 'Julio', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP62', 'Agosto', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP63', 'Septiembre', 6, 'mes');
@@ -420,6 +420,8 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Modificado', 'El POM ha sido modificado', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Recalendarizo', 'El POM ha cambiado de fecha', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Rechazado', 'El POM fue rechazado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES08', 'Supervisado', 'La actividad esta supervisado', 'estado');
+
 
 
 

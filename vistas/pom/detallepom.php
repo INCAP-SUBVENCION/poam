@@ -88,7 +88,7 @@ $SUBRECEPTOR = $_GET['id'];
                             </select>
                         </div>
                         <div class="form-group input-group-sm col-sm-2">
-                            <select name="cmunicipio" id="cmunicipio" class="form-control" onchange="obtenerMesPom();" style="font-size: 11px;">
+                            <select name="cmunicipio" id="cmunicipio" class="form-control" onchange="obtenerMesPom(); obtenerCantidadPromotor();" style="font-size: 11px;">
                                 <option value="">Seleccionar municipio</option>
                                 <?php
                                 $cd = "SELECT t1.municipio  as id, t2.nombre as municipio FROM cobertura t1
@@ -101,6 +101,7 @@ $SUBRECEPTOR = $_GET['id'];
                                 $rd->close(); ?>
                             </select>
                         </div>
+                        <input type="hidden" name="promotor" id="promotor">
                         <div class="form-group input-group-sm col-sm-2">
                             <select name="cmes" id="cmes" class="form-control" style="font-size: 11px;" onchange="consultaPoa();">
                             </select>
@@ -119,10 +120,12 @@ $SUBRECEPTOR = $_GET['id'];
 
 
                 <div class="col-md-4">
-                    <form action="" method="GETl">
+                    <form name="agregarPom" id="agregarPom" action="javascript: agregarPOM();" method="GET">
                         <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
                         <input type="hidden" name="usuario" id="usuario" value="<?php echo $ID; ?>">
                         <input type="hidden" name="poa" id="poa">
+                        <input type="hidden" name="estado" id="estado" value="ES01">
+                        <input type="hidden" name="descripcion" id="descripcion" value="El Plan Operativo Mensual ha sido creado con exito">
                         <div class="card text-dark">
                             <div class="bg-info text-center">DATOS PRINCIPALES</div>
                             <div class="card-body bg-light-primary" style="font-size: 12px; ">
@@ -166,7 +169,7 @@ $SUBRECEPTOR = $_GET['id'];
                         <div class="bg-info text-center">PROYECCIÓN DE INSUMOS</div>
                         <div class="card-body bg-light-primary" style="font-size: 12px;">
                             <div class="row">
-                                <div class="form-group input-group-sm col-sm-3">
+                                <div class="form-group input-group-sm col-sm-4">
                                     <label for="exampleFormControlTextarea1" class="form-label" style="font-size: 12px;">Promotor responsable:</label>
                                     <select name="promotor" id="promotor" class="form-control" style="font-size: 12px;" required>
                                         <option value="">Seleccionar ...</option>
@@ -185,11 +188,7 @@ $SUBRECEPTOR = $_GET['id'];
                                         ?>
                                     </select>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-3">
-                                    <input type="checkbox" name="super" id="super"> Supervisado
-                                    <input type="hidden" name="supervisado" id="supervisado">
-                                    <input type="text" name="supervisor" id="supervisor" class="form-control" placeholder="Nombre del supervisor" style="font-size:12px;">
-                                </div>
+
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Nuevos</label>
                                     <input type="number" min="0.00" step="0.0001" name="nuevo" id="nuevo" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
@@ -244,7 +243,7 @@ $SUBRECEPTOR = $_GET['id'];
                                     <label class="form-label">Prueba sifilis</label>
                                     <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-3">
+                                <div class="form-group input-group-sm col-sm-5">
                                     <label class="form-label">Observaciones / otros</label>
                                     <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
                                 </div>
@@ -326,10 +325,6 @@ $SUBRECEPTOR = $_GET['id'];
         <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../controlador/controladorPOM.js"></script>
         <script src="../../controlador/controladorUtilidad.js"></script>
-
-        <script type="text/javascript">
-
-        </script>
     </body>
 
 </html>

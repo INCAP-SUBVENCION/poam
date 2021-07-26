@@ -195,7 +195,8 @@ function sumarPom(){
 
     var nuevo = parseFloat(document.getElementById('nuevo').value);
     var recurrente = parseFloat(document.getElementById('recurrente').value);
-    parseFloat(document.getElementById('total').value = nuevo + recurrente);
+    var suma = nuevo + recurrente;
+    parseFloat(document.getElementById('total').value = suma.toFixed(4));
 
 }
 
