@@ -1,15 +1,4 @@
 $(document).ready(function () {
-    $("#supervisor").hide();
-    $('#super').on('change', function () {
-        var c = document.getElementById('super').checked;
-        if (c) {
-            $("#supervisor").show();
-            document.getElementById('supervisado').value = 1;
-        } else {
-            $("#supervisor").hide();
-            document.getElementById('supervisado').value = 0;
-        }
-    });
 
 });
 

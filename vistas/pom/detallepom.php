@@ -34,7 +34,7 @@ $SUBRECEPTOR = $_GET['id'];
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../assets/images/vihinvertido.png" width="35">
-            <h1 class="text-white">PLAN OPERATIVO MENSUAL</h1>
+            <h1 class="text-white">PLAN OPERATIVO MENSUAL -POM-</h1>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
@@ -263,47 +263,32 @@ $SUBRECEPTOR = $_GET['id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">Semestre 1</button>
+                    <button class="btn btn-sm btn-primary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button" role="tab" aria-controls="pills-periodo_1" aria-selected="true">periodo 1</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">Semestre 2</button>
+                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button" role="tab" aria-controls="pills-periodo_2" aria-selected="false">periodo 2</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
-                    <table class="table table-bordered border-primary">
-                        <thead class="text-center border-light" style="background-color:dimgray;">
-                            <tr style="font-size: 10px; color:azure;">
-                                <th>#</th>
-                                <th>Municipio</th>
-                                <th>Fecha</th>
-                                <th>Inicia</th>
-                                <th>Finaliza</th>
-                                <th>Lugar</th>
-                                <th>Promotor</th>
-                                <th>Nuevo</th>
-                                <th>Recurrente</th>
-                                <th>Total</th>
-                                <th>Condon Natural</th>
-                                <th>Condon Sabor</th>
-                                <th>Condon Femenino</th>
-                                <th>Lubricante</th>
-                                <th>Prueba VIH</th>
-                                <th>Auto-prueba</th>
-                                <th>Sifilis</th>
-                                <th>Supervisado</th>
-                                <th>Estado</th>
-                                <th>Opcion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr></tr>
-                        </tbody>
-                    </table>
+                <div class="tab-pane fade show active" id="pills-periodo_1" role="tabpanel" aria-labelledby="pills-periodo_1-tab">
+                    <?php include 'periodo_1.php'; ?>
                 </div>
-                <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
+                <div class="tab-pane fade" id="pills-periodo_2" role="tabpanel" aria-labelledby="pills-periodo_2-tab">
 
                 </div>
+                <div class="tab-pane fade" id="pills-periodo_3" role="tabpanel" aria-labelledby="pills-periodo_3-tab">
+
+                </div>
+                <div class="tab-pane fade" id="pills-periodo_4" role="tabpanel" aria-labelledby="pills-periodo_4-tab">
+
+                </div>
+                <div class="tab-pane fade" id="pills-periodo_5" role="tabpanel" aria-labelledby="pills-periodo_5-tab">
+
+                </div>
+                <div class="tab-pane fade" id="pills-periodo_6" role="tabpanel" aria-labelledby="pills-periodo_6-tab">
+
+                </div>
+
             </div>
 
 

@@ -415,12 +415,13 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
 #ESTADOS
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado', 'El POM a sido creado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revision', 'El POM esta revisado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Modificado', 'El POM ha sido modificado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Recalendarizo', 'El POM ha cambiado de fecha', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Rechazado', 'El POM fue rechazado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES08', 'Supervisado', 'La actividad esta supervisado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Revision', 'El POM esta revisado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Modificado', 'El POM ha sido modificado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Recalendarizo', 'El POM ha cambiado de fecha', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Rechazado', 'El POM fue rechazado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Supervisado', 'La actividad esta supervisado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Supervisado', 'La actividad esta finalizado', 'estado');
 
 
 
