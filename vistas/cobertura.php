@@ -27,7 +27,6 @@ $ID = $_SESSION['idUsuario'];
         }
     </style>
 </head>
-
 <body>
     <div id="app">
         <div id="main">
@@ -40,7 +39,6 @@ $ID = $_SESSION['idUsuario'];
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-
                             <h3><i class="bi bi-arrows-fullscreen"></i> COBERTURA</h3>
                             <p class="text-subtitle text-muted">Registro de cobertura de los subreceptores</p>
                         </div>
@@ -51,7 +49,7 @@ $ID = $_SESSION['idUsuario'];
                     <form name="agregarCobertura" id="agregarCobertura" action="javascript: agregarCobertura();" method="GET">
                         <div class="card border-primary mb-3" style="max-width: 85rem;">
                             <div class="card-headertext-white text-center bg-info">REGISTRO DE COBERTURA</div>
-                            <div class="card-body text-primary bg-light-info" style="font-size: 12px;">
+                            <div class="card-body text-primary bg-light-warning" style="font-size: 12px;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Subreceptor:</label>
@@ -138,7 +136,7 @@ $ID = $_SESSION['idUsuario'];
                         <tbody class="text-center">
                             <?php
                             $contador = 1;
-                            $sql = "SELECT t4.nombre as subreceptor, t2.nombre as departamento, t3.nombre as municipio, t1.region, t1.nuevo, t1.recurrente, t1.porcentaje 
+                            $sql = "SELECT t4.nombre as subreceptor, t2.nombre as departamento, t3.nombre as municipio, t1.region, t1.nuevo, t1.recurrente, t1.porcentaje
                                     FROM cobertura t1
                                     LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
                                     LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio

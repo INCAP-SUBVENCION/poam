@@ -36,7 +36,7 @@ $SUBRECEPTOR = $_GET['id'];
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../assets/images/vihinvertido.png" width="35">
-            <h1 class="text-white">Resumen de metas</h1>
+            <h1 class="text-white"><i class="bi bi-fullscreen"></i> Resumen de metas</h1>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
@@ -76,11 +76,11 @@ $SUBRECEPTOR = $_GET['id'];
             }
             ?>
             <form name="agregarMeta" id="agregarMeta" action="javascript: agregarResumen();" method="POST">
-                <input type="hidden" id="subreceptor" name="subreceptor" value="<?php echo $SUBRECEPTOR;?>">
+                <input type="hidden" id="subreceptor" name="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
                 <input type="hidden" name="cobertura" id="cobertura">
                 <div class="card border-success">
-                <div class="card-headertext-white text-center bg-info">RESUMEN DE METAS</div>
-                    <div class="card-body bg-light-info" style="font-size: 12px;">
+                    <div class="card-headertext-white text-center bg-info">RESUMEN DE METAS</div>
+                    <div class="card-body bg-light-warning">
                         <div class="row">
                             <div class="form-group input-group-sm col-sm-1">
                                 <label class="form-label">Periodo</label>
@@ -96,7 +96,7 @@ $SUBRECEPTOR = $_GET['id'];
                             </div>
                             <div class="form-group input-group-sm col-sm-2">
                                 <label class="form-label">Municipio:</label>
-                                <select name="municipio" id="municipio" onchange="obtenerMeta();" class="form-select" required>
+                                <select name="municipio" id="municipio" onchange="obtenerMeta();" style="font-size: 12px;" class="form-select" required>
                                     <option value="">Seleccionar...</option>
                                     <?php
                                     $cm = "SELECT t1.municipio  as id, t2.nombre as municipio FROM cobertura t1
@@ -110,12 +110,12 @@ $SUBRECEPTOR = $_GET['id'];
                             </div>
 
                             <div class="form-group input-group-sm col-sm-1">
-                                <label class="form-label">Meta nuevos</label>
-                                <input type="text"  name="nuevo" id="nuevo" class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                                <label class="form-label">Nuevos</label>
+                                <input type="number" name="nuevo" id="nuevo" onchange="calcularMeta();" class="form-control form-control-sm" style="font-size: 12px;" required>
                             </div>
-                            <div class="form-group input-group-sm col-sm-2">
-                                <label class="form-label">Meta recurrencias</label>
-                                <input type="number" min="0" name="recurrente" id="recurrente" class="form-control form-control-sm" style="font-size: 12px;" required>
+                            <div class="form-group input-group-sm col-sm-1">
+                                <label class="form-label">Recurrentes</label>
+                                <input type="number" min="0" name="recurrente" id="recurrente" onchange="calcularMeta();" class="form-control form-control-sm" style="font-size: 12px;" required>
                             </div>
                             <div class="form-group input-group-sm col-sm-1">
                                 <label class="form-label"># Meses</label>
@@ -123,86 +123,98 @@ $SUBRECEPTOR = $_GET['id'];
                             </div>
                             <div class="form-group input-group-sm col-sm-2">
                                 <label class="form-label">Meta nuevo mensual</label>
-                                <input type="text" name="metaNuevos" id="metaNuevos"  class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                                <input type="text" name="metaNuevos" id="metaNuevos" class="form-control form-control-sm" style="font-size: 12px;" disabled>
                             </div>
                             <div class="form-group input-group-sm col-sm-2">
                                 <label class="form-label">Meta recurrente mensual</label>
-                                <input type="text" name="metaRecurrentes" id="metaRecurrentes"  class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                                <input type="text" name="metaRecurrentes" id="metaRecurrentes" class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                            </div>
+                            <div class="form-group input-group-sm col-sm-2">
+                              <br>
+                              <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')"><i class="bi bi-plus-square-fill"></i> Guardar</button>
+                              <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')"><i class="bi bi-plus-square-fill"></i> Guardar</button>
-                    <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button>
                 </div>
             </form>
 
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn-primary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">SEMESTRE I</button>
+                    <button class="btn btn-sm btn-secundary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">
+                    <i class="bi bi-fullscreen"></i> PERIODO I</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn-primary" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">SEMESTRE II</button>
+                    <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">
+                    <i class="bi bi-fullscreen"></i> PERIODO II</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-primary" id="pills-semestre_3-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_3" type="button" role="tab" aria-controls="pills-semestre_3" aria-selected="true">
+                    <i class="bi bi-fullscreen"></i> PERIODO III</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-warning" id="pills-semestre_4-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_4" type="button" role="tab" aria-controls="pills-semestre_4" aria-selected="false">
+                    <i class="bi bi-fullscreen"></i> PERIODO IV</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-success" id="pills-semestre_5-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_5" type="button" role="tab" aria-controls="pills-semestre_5" aria-selected="true">
+                    <i class="bi bi-fullscreen"></i> PERIODO V</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-sm btn-danger" id="pills-semestre_6-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_6" type="button" role="tab" aria-controls="pills-semestre_6" aria-selected="false">
+                    <i class="bi bi-fullscreen"></i> PERIODO VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
-                <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered">
                         <thead class="text-center">
-                                <th>#</th>
-                                <th>Municipio</th>
-                                <th>Periodo</th>
-                                <th># Meses</th>
-                                <th>Meta mensual  Nuevos</th>
-                                <th>Meta mensual Recurrentes</th>
-                                <th>Opcion</th>
+                            <th>#</th>
+                            <th>Municipio</th>
+                            <th>Periodo</th>
+                            <th># Meses</th>
+                            <th>Meta mensual Nuevos</th>
+                            <th>Meta mensual Recurrentes</th>
+                            <th>Opcion</th>
                         </thead>
                         <tbody class="text-center">
                             <?php
                             $contador1 = 1;
-                            $consultaR = "SELECT t3.nombre as municipio, t1.periodo, t1.meses, t1.nuevo, t1.recurrente FROM resumen t1 
+                            $consultaR = "SELECT t3.nombre as municipio, t1.periodo, t1.meses, t1.nuevo, t1.recurrente FROM resumen t1
                             LEFT JOIN cobertura t2 ON t2.idCobertura = t1.cobertura_id
-                            LEFT JOIN catalogo t3 ON t3.codigo = t2.municipio WHERE t2.subreceptor_id = $SUBRECEPTOR";
+                            LEFT JOIN catalogo t3 ON t3.codigo = t2.municipio WHERE t2.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 1";
                             $resultadoR = $enlace->query($consultaR);
                             while ($resumen = $resultadoR->fetch_assoc()) {
-                               ?>
-                               <tr>
-                                   <td><?php echo $contador1++;?></td>
-                                   <td><?php echo $resumen['municipio'];?></td>
-                                   <td><?php echo $resumen['periodo'];?></td>
-                                   <td><?php echo $resumen['meses'];?></td>
-                                   <td style="background-color:lightgreen;"><?php echo $resumen['nuevo'];?></td>
-                                   <td style="background-color:lightsalmon;"><?php echo $resumen['recurrente'];?></td>
-                               </tr>
-                               <?php
+                            ?>
+                                <tr>
+                                    <td><?php echo $contador1++; ?></td>
+                                    <td><?php echo $resumen['municipio']; ?></td>
+                                    <td><?php echo $resumen['periodo']; ?></td>
+                                    <td><?php echo $resumen['meses']; ?></td>
+                                    <td style="background-color:lightgreen;"><?php echo $resumen['nuevo']; ?></td>
+                                    <td style="background-color:lightsalmon;"><?php echo $resumen['recurrente']; ?></td>
+                                </tr>
+                            <?php
                             }
                             ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
-                    <table class="table table-hover table-bordered">
-                        <thead class="text-center">
-                            <tr>
-                                <th>#</th>
-                                <th>Municipio</th>
-                                <th>Julio</th>
-                                <th>Agosto</th>
-                                <th>Septiembre</th>
-                                <th>Octubre</th>
-                                <th>Noviembre</th>
-                                <th>Diciembre</th>
-                                <th>Total</th>
-                                <th>Meta mensual</th>
-                                <th>Opcion</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center bg-light" style="font-size: 12px;">
-
-                        </tbody>
-                    </table>
+                    <p>Periodo 2 aun no habilitado</p>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
+                    <p>Periodo 3 aun no habilitado</p>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
+                    <p>Periodo 4 aun no habilitado</p>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_5" role="tabpanel" aria-labelledby="pills-semestre_5-tab">
+                    <p>Periodo 5 aun no habilitado</p>
+                </div>
+                <div class="tab-pane fade" id="pills-semestre_6" role="tabpanel" aria-labelledby="pills-semestre_6-tab">
+                    <p>Periodo 6 aun no habilitado</p>
                 </div>
             </div>
 

@@ -51,7 +51,7 @@ $ID = $_SESSION['idUsuario'];
                 <form name="agregarPromotor" id="agregarPromotor" action="javascript: agregarPromotor();" method="POST">
                     <div class="card border-primary" style="max-width: 90rem;">
                         <div class="card-headertext-white text-center bg-info" style="color:black">REGISTRO DE PROMOTORES</div>
-                            <div class="card-body text-primary bg-light-primary">
+                            <div class="card-body text-primary bg-light-warning">
 
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-1">

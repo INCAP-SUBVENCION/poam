@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="font-size: 11px;">
-                <form name="agregarSub" id="agregarSub" action="javascript: editarSubreceptor();" method="GET">
+                <form name="editarSub" id="editarSub" action="javascript: editarSubreceptor();" method="GET">
                     <div class="row">
                     <?php
                             $id = $data['idSubreceptor'];

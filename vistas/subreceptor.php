@@ -49,7 +49,7 @@ $ID = $_SESSION['idUsuario'];
                 <section class="section">
                     <div class="card border-primary mb-3" style="max-width: 60rem;">
                         <div class="card-headertext-white bg-info text-center">REGISTRO DE SUBRECEPTOR</div>
-                        <div class="card-body text-primary bg-light-primary" style="font-size: 12px;">
+                        <div class="card-body text-primary bg-light-warning" style="font-size: 12px;">
                             <form name="agregarSub" id="agregarSub" action="javascript: agregarSubreceptor();" method="GET">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-2">
@@ -85,6 +85,7 @@ $ID = $_SESSION['idUsuario'];
                                         <input type="number" min="0" max="1" step="0.01" name="autoprueba" id="autoprueba" class="form-control form-control-sm" style="font-size: 12px;font-weight: bolder; color:darkblue;" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-4">
+                                        <br>
                                         <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
                                         <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-octagon-fill"></i> Cancelar</button>
                                     </div>
