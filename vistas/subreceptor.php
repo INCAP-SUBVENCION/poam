@@ -41,9 +41,16 @@ $ID = $_SESSION['idUsuario'];
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3><i class="bi bi-diagram-2-fill"></i> SUBRECEPTORES</h3>
-                            <p class="text-subtitle text-muted">Registro de subreceptores</p>
                         </div>
-
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                   <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Configuracion</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Subreceptores</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
                 </div>
                 <section class="section">
@@ -151,7 +158,7 @@ $ID = $_SESSION['idUsuario'];
     <script src="../controlador/controladorUtilidad.js"></script>
     <!---- ARCHIVOS EXTERNOS--->
     <?php
-    include 'componente/menu.php';
+    include 'componente/menuConfig.php';
     ?>
 </body>
 

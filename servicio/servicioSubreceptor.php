@@ -21,6 +21,10 @@
         $pruebavih  = $_POST['pruebavih'];
         $autoprueba = $_POST['autoprueba'];
 
+        $_duplicado =$enlace->query("SELECT * FROM subreceptor WHERE codigo = '$codigo'");
+        if(mysqli_num_rows($_duplicado)){
+            echo "Duplicado";
+        } else {
             $sql1 = "CALL agregarSubreceptor('$codigo', '$nombre', $cnatural, $csabor, $cfemenino, $lubricante, $pruebavih, $autoprueba)";
             $resultado1 = mysqli_query($enlace, $sql1);
             $sub = mysqli_affected_rows($enlace);
@@ -29,6 +33,7 @@
             } else {
                 echo "Error";
             }
+        }
     }
     /**
      * Metodo que permite agregar reactivo esperado
@@ -42,8 +47,11 @@
         $nuevo          = $_POST['nuevo'];
         $recurrente     = $_POST['recurrente'];
         $reactivo       = $_POST['reactivo'];
-       
 
+        $_duplicado =$enlace->query("SELECT * FROM cobertura WHERE subreceptor_id = $subreceptor AND departamento = '$departamento'AND municipio = '$municipio'");
+        if(mysqli_num_rows($_duplicado)){
+            echo "Duplicado";
+        } else {
             $sql2 = "CALL agregarCobertura($subreceptor, $departamento, $municipio, $region, $nuevo, $recurrente, $reactivo)";
             $resultado2 = mysqli_query($enlace, $sql2);
             $cobertura = mysqli_affected_rows($enlace);
@@ -52,4 +60,6 @@
             } else {
                 echo "Error";
             }
+        }
+
     }

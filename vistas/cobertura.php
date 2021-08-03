@@ -39,10 +39,17 @@ $ID = $_SESSION['idUsuario'];
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3><i class="bi bi-arrows-fullscreen"></i> COBERTURA</h3>
-                            <p class="text-subtitle text-muted">Registro de cobertura de los subreceptores</p>
+                            <h3><i class="bi bi-arrows-fullscreen"></i> COBERTURAS</h3>
                         </div>
-
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                   <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Configuracion</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Coberturas</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
                 </div>
                 <section class="section">
@@ -108,7 +115,7 @@ $ID = $_SESSION['idUsuario'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-1">
                                         <label class="form-label">Reactividad:</label>
-                                        <input type="number" min="0.0" step="0.01" name="reactivo" id="reactivo" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                        <input type="number" min="0.0" max="1" step="0.01" name="reactivo" id="reactivo" class="form-control form-control-sm" style="font-size: 12px;" required>
                                     </div>
 
                                 </div>
@@ -181,7 +188,7 @@ $ID = $_SESSION['idUsuario'];
     <script src="../controlador/controladorUtilidad.js"></script>
     <!---- ARCHIVOS EXTERNOS--->
     <?php
-    include 'componente/menu.php';
+    include 'componente/menuConfig.php';
     ?>
 </body>
 

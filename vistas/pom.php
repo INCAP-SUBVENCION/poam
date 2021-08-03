@@ -40,10 +40,17 @@ $ID =$_SESSION['idUsuario'];
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>POM</h3>
+                            <h3> <i class="bi bi-calendar4-week"></i> POM</h3>
                             <p class="text-subtitle text-muted">Plan Operativo Mensual</p>
                         </div>
-
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                   <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">POM</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -73,10 +80,6 @@ $ID =$_SESSION['idUsuario'];
                     }
                 ?>
   </div>
-
-
-
-
 
             </div>
 

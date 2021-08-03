@@ -188,7 +188,9 @@ function sumarPom(){
     parseFloat(document.getElementById('total').value = suma.toFixed(4));
 
 }
-
+/**
+ * Funcion que permite obtener los municipios de cobertura
+ */
 function obtenerCobertura(){
 
     var subreceptor = document.getElementById('subreceptor').value;
@@ -207,7 +209,9 @@ function obtenerCobertura(){
         }
     });
 }
-
+/**
+ * Funcion que permite obtener el mes para crear el POM
+ */
 function obtenerMesPom(){
 
     var subreceptor = document.getElementById('subreceptor').value;
@@ -231,3 +235,42 @@ function obtenerMesPom(){
         }
     });
 }
+/**
+ * Funcion para crear el nombre de usuario
+ */
+function creaUsuario(){
+    var pnombre = document.getElementById('pnombre').value;
+    var snombre = document.getElementById('snombre').value;
+    var papellido = document.getElementById('papellido').value;
+    var usuario = pnombre.substr(-20,1) + snombre.substr(-20,1)+papellido;
+    document.getElementById('usuario').value = usuario.toLowerCase();
+}
+/**
+ * Funcion mostar la edicion del POM
+ */
+ function editarPOM(){
+     var editar = document.getElementById('editar');
+     
+     if (editar.style.display === 'none') {
+        editar.style.display = 'block';
+    } else {
+        editar.style.display = 'none';
+    }
+}
+function detallarPOM(){
+   var detallar = document.getElementById('detallar');
+   if (detallar.style.display === 'none') {
+       detallar.style.display = 'block';
+   } else {
+       detallar.style.display = 'none';
+   }
+}
+function estadosPOM(){
+    var estados = document.getElementById('estados');
+    if (estados.style.display === 'none') {
+        estados.style.display = 'block';
+    } else {
+        estados.style.display = 'none';
+    }
+ }
+ 

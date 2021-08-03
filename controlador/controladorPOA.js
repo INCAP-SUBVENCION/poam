@@ -52,7 +52,10 @@
                 alertify.success('¡GUARDADO!...');
                 $('#agregarPoa').trigger("reset");
                 window.location.reload('poa.php');
-            } else {
+            } else if (datos == 'Duplicado') {
+                alertify.warning('¡El POA ya existe!...');
+            }
+            else {
                 alertify.error("¡ERROR!... No se pudo guardar");
             }
         }
@@ -128,6 +131,8 @@ function agregarResumen() {
                 alertify.success('¡GUARDADO!...');
                 $('#agregarMeta').trigger("reset");
                 window.location.reload('poa.php');
+            } else if (datos == 'Duplicado') {
+                alertify.warning('¡El resumen ya existe!...');
             } else {
                 alertify.error("¡ERROR!... No se pudo guardar");
             }

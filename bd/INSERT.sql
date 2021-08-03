@@ -417,16 +417,10 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado', 'El POM a sido creado', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Revision', 'El POM esta revisado', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Modificado', 'El POM ha sido modificado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Recalendarizo', 'El POM ha cambiado de fecha', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Rechazado', 'El POM fue rechazado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Supervisado', 'La actividad esta supervisado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Supervisado', 'La actividad esta finalizado', 'estado');
 
 
 
 
 
 
-
-#CALL agregarUsuario(1,'112212345','Faustino','Lopez Ramos','11-22 zona 0, Guatemala','11223344','usuario@servidor.com', 'R002',1);
+#CALL agregarUsuario(1, "123498742589", "Faustino", "", "Lopez", "Ramos", "37 Calle B 19-16 zona 12, ciudad de Guatemala", "77889911", "correodeprueba@gmail.com", "R001", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);

@@ -49,7 +49,7 @@ $SUBRECEPTOR = $_GET['id'];
                         <i class="bi bi-person-fill"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-size: 13px;">
+                    <ul class="dropdown-menu bg-warning" aria-labelledby="dropdownMenuButton1" style="font-size: 13px;">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-check2-square"></i> Permisos</a></li>
                         <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>

@@ -24,8 +24,8 @@
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
         $contap_1 = 1;
-        $sqlp_1 = "SELECT DISTINCT t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t5.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
-        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfeminino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t1.estado FROM estado t1
+        $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t5.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
+        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t1.estado FROM estado t1
         LEFT JOIN pom t2 ON t2.idPom = t1.pom_id
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
@@ -51,25 +51,15 @@
                     <td><?php echo $periodo_1['pRecurrente']; ?></td>
                     <th><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
-                    <p style="color:black;"></p>
+                    <p style="color:orange;"></p>
 
                     <th><?php if ($periodo_1['estado'] == 'ES01') {
                             echo '<p style="color: dodgerblue;"><i class="bi bi-node-plus-fill"></i> Creado</p>';
                         } else if ($periodo_1['estado'] == 'ES02') {
-                            echo '<p style="color: blue;"><i class="bi bi-search"></i> En revision </p>';
+                            echo '<p style="color: orange;"><i class="bi bi-search"></i> En revision </p>';
                         } else if ($periodo_1['estado'] == 'ES03') {
                             echo '<p style="color: limegreen;"><i class="bi bi-check-square-fill"></i> Autorizado</p>';
-                        } else if ($periodo_1['estado'] == 'ES04') {
-                            echo '<i class="bi bi-pencil-square"></i> Modificado</p>';
-                        } else if ($periodo_1['estado'] == 'ES05') {
-                            echo '<p style="color: orange;"><i class="bi bi-calendar2-check"></i> Recalendarizo</p>';
-                        } else if ($periodo_1['estado'] == 'ES06') {
-                            echo '<p style="color: red;"><i class="bi bi-x-square-fill"></i> Rechazado</p>';
-                        } else if ($periodo_1['estado'] == 'ES07') {
-                            echo '<p style="color: lightseagreen;"><i class="bi bi-clipboard-check"></i> Supervisado</p>';
-                        } else {
-                            echo '<p style="color: black;"><i class="bi bi-clock-fill"></i> Finalizado</p>';
-                        }
+                        } 
                         ?>
                     </th>
                     <td>
@@ -77,8 +67,8 @@
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
                             <i class="bi bi-gear"></i> Opcion
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Detalles</a></li>
+                            <ul class="dropdown-menu bg-info">
+                                <li><a class="dropdown-item" href="detalle.php?id=<?php echo $periodo_1['idPom'];?>">Detalles</a></li>
                                 <li><a class="dropdown-item" href="#">Historial</a></li>
                                 <li><a class="dropdown-item" href="#">Cambiar de estado</a></li>
                             </ul>

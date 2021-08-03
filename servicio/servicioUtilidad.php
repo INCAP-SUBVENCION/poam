@@ -127,7 +127,7 @@ if ($accion == "obtenerCobertura") {
   $rCobertura->close();
 }
 /**
- *
+ * Metodo que permite obtener los meses segun sea el subrecetpor, municipio y periodo
  */
 if ($accion == "obtenerMesPom") {
 

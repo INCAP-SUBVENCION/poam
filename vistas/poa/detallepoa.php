@@ -126,11 +126,11 @@ $SUBRECEPTOR = $_GET['id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Nuevos</label>
-                                        <input type="text" name="nuevo" id="nuevo" class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                                        <input type="text" name="nuevo" id="nuevo" class="form-control form-control-sm" style="font-size: 12px;" disabled required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Recurrentes</label>
-                                        <input type="text" name="recurrente" id="recurrente" class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                                        <input type="text" name="recurrente" id="recurrente" class="form-control form-control-sm" style="font-size: 12px;" disabled required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Proyeccion</label>
@@ -138,7 +138,7 @@ $SUBRECEPTOR = $_GET['id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Total</label>
-                                        <input type="text" name="total" id="total" class="form-control form-control-sm" disabled style="color:orangered;">
+                                        <input type="text" name="total" id="total" class="form-control form-control-sm" disabled style="color:orangered;" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-4">
                                         <label for="exampleFormControlTextarea1" class="form-label">Observaciones / otros</label>

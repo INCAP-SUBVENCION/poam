@@ -189,7 +189,10 @@ function agregarPOM() {
                 alertify.success('¡GUARDADO!...');
                 $('#agregarPom').trigger("reset");
                 window.location.reload('pom.php');
-            } else {
+            } else if(datos == 'Duplicado') {
+                alertify.warning('¡El POM ya existe!...');
+            }
+            else {
                 alertify.error("¡ERROR!... No se pudo guardar");
             }
         }
@@ -218,4 +221,3 @@ function obtenerCantidadPromotor(){
         }
     });
 }
-

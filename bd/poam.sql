@@ -70,17 +70,8 @@ CREATE PROCEDURE `agregarPoa`(
 	IN reactivoE	FLOAT,
 	IN sifilis		FLOAT )
 BEGIN
-	DECLARE IdPoa INT DEFAULT 0;
-    DECLARE IdInsumo INT DEFAULT 0;
-	DECLARE idP INT DEFAULT	(SELECT COUNT(idPoa) FROM poa);
-	DECLARE idI INT DEFAULT (SELECT COUNT(idInsumo) FROM insumo);
-	IF(idP <= 0) THEN SET IdPoa := 1;
-	ELSE SET IdPoa := idP + 1;
-    END IF;
 	INSERT INTO poa VALUES(IdPoa,usuario,year(now()),mes,departamento,municipio,nuevo,recurrente,subreceptor,observacion,periodo,1);
-	IF(idI <=0) THEN SET IdInsumo := 1;
-	ELSE SET IdInsumo := idI + 1;
-    END IF;
+    
 	INSERT INTO insumo VALUES(IdInsumo,IdPoa,cnatural,csabor,cfemenino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis);
 END//
 DELIMITER ;
@@ -92,7 +83,6 @@ CREATE PROCEDURE `agregarPom`(
     IN estado		VARCHAR(16),
     IN usuario		INT,
     IN descripcion	TEXT,
-    
     IN periodo		INT,
 	IN mes			VARCHAR(16),
 	IN municipio	VARCHAR(16),
@@ -133,26 +123,38 @@ DELIMITER //
 CREATE PROCEDURE `agregarPromotor`(
 	IN documento	BOOLEAN,
 	IN numero		VARCHAR(16),
-	IN nombre 		VARCHAR(50),
-	IN apellido		VARCHAR(50),
+	IN pnombre 		VARCHAR(32),
+    IN snombre 		VARCHAR(32),
+	IN papellido	VARCHAR(32),
+    IN sapellido	VARCHAR(32),
 	IN direccion	VARCHAR(100),
 	IN telefono		VARCHAR(16),
 	IN email		VARCHAR(100),
     IN codigo		VARCHAR(32),
-	IN cobertura	INT )
+	IN cobertura	INT,
+    IN usuario		VARCHAR(32),
+    IN rol			VARCHAR(16)
+    )
 BEGIN
     DECLARE IdPersona INT DEFAULT 0;
 	DECLARE IdPromotor INT DEFAULT 0;
+    DECLARE IdUsuario INT DEFAULT 0;
 	DECLARE idPer INT DEFAULT	(SELECT COUNT(idPersona) FROM persona);
 	DECLARE idPro INT DEFAULT (SELECT COUNT(idPromotor) FROM promotor);
+	DECLARE idU INT DEFAULT (SELECT COUNT(idUsuario) FROM usuario);
+    DECLARE subreceptor INT DEFAULT (SELECT subreceptor_id FROM cobertura WHERE idCobertura= cobertura);
 	IF(idPer <= 0) THEN SET IdPersona := 1;
 	ELSE SET IdPersona := idPer + 1;
     END IF;
-	INSERT INTO persona VALUES(IdPersona,documento,numero,nombre,apellido,direccion,telefono,email);
+	INSERT INTO persona VALUES(IdPersona, documento, numero, concat(pnombre,' ',snombre), concat(papellido,' ',sapellido), direccion, telefono, email);
 	IF(idPro <=0) THEN SET IdPromotor := 1;
 	ELSE SET IdPromotor := idPro + 1;
     END IF;
-	INSERT INTO promotor VALUES(IdPromotor,codigo,IdPersona,cobertura,1);
+	INSERT INTO promotor VALUES(IdPromotor, codigo, IdPersona, cobertura, 1);
+    IF(idU <=0) THEN SET IdUsuario := 1;
+	ELSE SET IdUsuario := idU + 1;
+    END IF;
+    INSERT INTO usuario VALUES(IdUsuario, IdPersona, rol, usuario, SHA('Usuario01'), subreceptor, 1);
 END//
 DELIMITER ;
 
@@ -179,19 +181,19 @@ DELIMITER //
 CREATE PROCEDURE `agregarSubreceptor`(
 	IN codigo 		VARCHAR(24),
     IN nombre 		VARCHAR(100),
-    IN ecnatural 	INT,
-    IN ecsabor 		INT,
-    IN ecfemenino	INT,
-    IN elubricante	INT,
-    IN ppvih 		FLOAT,
-    IN ppautoprueba	FLOAT )
+    IN cnatural 	INT,
+    IN csabor 		INT,
+    IN cfemenino	INT,
+    IN lubricante	INT,
+    IN pruebavih 	FLOAT,
+    IN autoprueba	FLOAT )
 BEGIN
 	DECLARE id INT DEFAULT 0;
 	DECLARE idSub INT DEFAULT (SELECT COUNT(idSubreceptor) FROM subreceptor);
 	IF(idSub <= 0) THEN SET id := 1;
 	ELSE  SET id := idSub + 1;
 	END IF;
-	INSERT INTO subreceptor VALUES(id,codigo,nombre,ecnatural,ecsabor,ecfemenino,elubricante,ppvih,ppautoprueba);
+	INSERT INTO subreceptor VALUES(id, codigo, nombre, cnatural, csabor, cfemenino, lubricante, pruebavih, autoprueba);
 	END//
 DELIMITER ;
 
@@ -200,27 +202,45 @@ DELIMITER //
 CREATE PROCEDURE `agregarUsuario`(
 	IN documento 	BOOLEAN,
 	IN numero		VARCHAR(16),
-	IN nombre 		VARCHAR(50),
-	IN apellido		VARCHAR(50),
+	IN pnombre 		VARCHAR(32),
+    IN snombre		VARCHAR(32),
+	IN papellido	VARCHAR(32),
+    IN sapellido	VARCHAR(32),
 	IN direccion	VARCHAR(100),
 	IN telefono		VARCHAR(16),
 	IN email		VARCHAR(100),
     IN rol			VARCHAR(24),
-	IN subreceptor	INT
+    IN sub			INT,
+    IN editar		BOOLEAN,
+	IN agregar		BOOLEAN,
+    IN usuario		BOOLEAN,
+    IN poa 			BOOLEAN,
+    IN pom 			BOOLEAN,
+    IN subreceptor	BOOLEAN,
+    IN promotor		BOOLEAN,
+    IN catalogo		BOOLEAN,
+    IN resumen 		BOOLEAN,
+    IN cobertura	BOOLEAN
     )
 BEGIN
 	DECLARE IdPersona INT DEFAULT 0;
     DECLARE IdUsuario INT DEFAULT 0;
+    DECLARE ID INT DEFAULT 0;
 	DECLARE idP INT DEFAULT (SELECT COUNT(idPersona) FROM persona);
 	DECLARE idU INT DEFAULT (SELECT COUNT(idUsuario) FROM usuario);
+    DECLARE idPer INT DEFAULT (SELECT COUNT(idPermiso) FROM permiso);
 	IF(idP <= 0) THEN SET IdPersona := 1;
 	ELSE SET IdPersona := idP + 1;
     END IF;
-	INSERT INTO persona VALUES(IdPersona,documento,numero,nombre,apellido,direccion,telefono,email);
+	INSERT INTO persona VALUES(IdPersona, documento, numero, CONCAT(pnombre,' ',snombre), CONCAT(papellido,' ',sapellido), direccion, telefono, email);
 	IF(idU <=0) THEN SET IdUsuario := 1;
 	ELSE SET IdUsuario := idU + 1;
     END IF;
-	INSERT INTO usuario VALUES(IdUsuario,IdPersona,rol,lower(concat(left(nombre,1),left(apellido,1),year(now()),IdPersona)),SHA('Usuario01'),subreceptor,1);
+	INSERT INTO usuario VALUES(IdUsuario, IdPersona, rol, lower(concat(left(pnombre,1),papellido,left(sapellido,1))), SHA('Usuario01'), sub, 1);
+    IF(idPer <= 0) THEN SET ID :=1;
+    ELSE SET ID = id + 1;
+    END IF;
+    INSERT INTO permiso VALUES(ID, IdUsuario, editar, agregar, usuario, poa, pom, subreceptor, promotor, catalogo, resumen, cobertura);
 END//
 DELIMITER ;
 
@@ -599,10 +619,6 @@ INSERT INTO `catalogo` (`codigo`, `nombre`, `descripcion`, `categoria`) VALUES
 	('ES01', 'Creado', 'El POM a sido creado', 'estado'),
 	('ES02', 'Revision', 'El POM esta revisado', 'estado'),
 	('ES03', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado'),
-	('ES04', 'Modificado', 'El POM ha sido modificado', 'estado'),
-	('ES05', 'Recalendarizo', 'El POM ha cambiado de fecha', 'estado'),
-	('ES06', 'Rechazado', 'El POM fue rechazado', 'estado'),
-	('ES07', 'Supervisado', 'La actividad esta supervisado', 'estado'),
 	('MP11', 'Enero', '1', 'mes'),
 	('MP12', 'Febrero', '1', 'mes'),
 	('MP13', 'Marzo', '1', 'mes'),
@@ -665,8 +681,191 @@ CREATE TABLE IF NOT EXISTS `cobertura` (
 -- Volcando datos para la tabla poam.cobertura: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cobertura` DISABLE KEYS */;
 INSERT INTO `cobertura` (`idCobertura`, `subreceptor_id`, `departamento`, `municipio`, `region`, `nuevo`, `recurrente`, `porcentaje`) VALUES
-	(1, 1, '1', '101', 1, 750, 600, 0.25);
+	(1, 1, '1', '101', 1, 78, 56, 0.25);
 /*!40000 ALTER TABLE `cobertura` ENABLE KEYS */;
+
+-- Volcando estructura para procedimiento poam.editarCatalogo
+DELIMITER //
+CREATE PROCEDURE `editarCatalogo`(
+	IN ecodigo		VARCHAR(24),
+    IN enombre		VARCHAR(100),
+    IN edescripcion	TEXT,
+    IN ecategoria 	VARCHAR(32) )
+BEGIN
+	UPDATE  catalogo SET codigo = ecodigo, nombre = enombre, descripcion = edescripcion, categoria = ecategoria WHERE codigo = ecodigo;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarCobertura
+DELIMITER //
+CREATE PROCEDURE `editarCobertura`(
+	IN id			INT,
+	IN esubreceptor	INT,
+    IN edepartamento VARCHAR(24),
+    IN emunicipio 	VARCHAR(24),
+	IN eregion		INT,
+    IN enuevo		FLOAT,
+    IN erecurrente	FLOAT,
+	IN eporcentaje	FLOAT)
+BEGIN
+	UPDATE cobertura SET subreceptor_id=esubreceptor, departamento=edepartamento, municipio=emunicipio, region=eregion, nuevo=enuevo, recurrente=erecurrente, porcentaje=eporcentaje WHERE idCobertura = id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarInsumo
+DELIMITER //
+CREATE PROCEDURE `editarInsumo`(
+	IN id			INT,
+	IN ecnatural 	FLOAT,
+	IN ecsabor		FLOAT,
+    IN ecfemenino	FLOAT,
+	IN elubricante	FLOAT,
+	IN epruebaVIH	FLOAT,
+	IN eautoPrueba	FLOAT,
+	IN ereactivoE	FLOAT,
+	IN esifilis		FLOAT )
+BEGIN
+	UPDATE poa SET cnatural=ecnatural, csabor=ecsabor, cfemenino=ecfemenino, lubricante=elubricante, pruebaVIH=epruebaVIH, autoPrueba=eautoPrueba, reactivoE=ereactivoE, sifilis=esifilis WHERE idInsumo=id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarPersona
+DELIMITER //
+CREATE PROCEDURE `editarPersona`(
+	IN id			INT,
+	IN edocumento 	BOOLEAN,
+	IN enumero		VARCHAR(16),
+	IN enombre 		VARCHAR(50),
+	IN eapellido	VARCHAR(50),
+	IN edireccion	VARCHAR(100),
+	IN etelefono	VARCHAR(16),
+	IN eemail		VARCHAR(100) )
+BEGIN
+	UPDATE persona SET documento=edocumento, numero=enumero, nombre=enombre, apellido=eapellido, direccion=edireccion, telefono=etelefono, email=eemail WHERE idPersona=id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarPoa
+DELIMITER //
+CREATE PROCEDURE `editarPoa`(
+	IN id			INT,
+	IN eusuario		INT,
+	IN emes			VARCHAR(24),
+	IN edepartamento VARCHAR(24),
+	IN emunicipio	VARCHAR(24),
+	IN enuevo		FLOAT,
+	IN erecurrente	FLOAT,
+	IN esubreceptor	INT,
+    IN eobservacion	TEXT,
+    IN eperiodo		INT)
+BEGIN
+	UPDATE poa SET mes=emes,departamento=edepartamento,municipio=emunicipio,nuevo=enuevo,recurrente=erecurrente,subreceptor=esubreceptor,observacion=eobservacion,periodo=eperiodo,estado=estado WHERE idPoa=id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarPom
+DELIMITER //
+CREATE PROCEDURE `editarPom`(
+	IN id			INT,
+    IN eperiodo		INT,
+	IN emes			VARCHAR(16),
+	IN emunicipio	VARCHAR(16),
+    IN efecha		DATE,
+    IN einicio		TIME,
+    IN efin 		TIME,
+    IN elugar		TEXT,
+    IN epromotor	INT,
+	IN enuevo		FLOAT,
+	IN erecurrente	FLOAT,
+	IN ecnatural 	FLOAT,
+	IN ecsabor		FLOAT,
+    IN ecfemenino	FLOAT,
+	IN elubricante	FLOAT,
+	IN epruebaVIH	FLOAT,
+	IN eautoPrueba	FLOAT,
+	IN ereactivo	FLOAT,
+	IN esifilis		FLOAT,
+    IN eobservacion	TEXT)
+BEGIN
+	UPDATE pom SET periodo=eperiodo, mes=emes, municipio=emunicipio, fecha=efecha, horaInicio=einicio, horaFin=efin, lugar=elugar, promotor_id=epromotor, nuevo=enuevo, recurrente=erecurrente, cnatural=ecnatural, 
+    csabor=esabor, cfemenino=ecfemenino, lubricante=elubricante, pruebaVIH=epruebaVIH, autoPrueba=eautoPrueba, reactivo=ereactivo, sifilis=esifilis, observacion=eobservacion WHERE idPom =id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarPromotor
+DELIMITER //
+CREATE PROCEDURE `editarPromotor`(
+	IN id			INT,
+    IN ecodigo		VARCHAR(32),
+	IN ecobertura	INT,
+	IN eestado		BOOLEAN
+    )
+BEGIN
+	UPDATE promotor SET codigo = ecodigo, cobertura_id=ecobertura, estado=eestado WHERE idPromotor = id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarResumen
+DELIMITER //
+CREATE PROCEDURE `editarResumen`(
+	IN id			INT,
+	IN ecobertura	INT,
+    IN eperiodo		INT,
+    IN emeses	 	INT,
+    IN enuevo		FLOAT,
+    IN erecurrente	FLOAT,
+    IN eestado		BOOLEAN)
+BEGIN
+	UPDATE resumen SET cobertura_id=ecobertura, periodo=eperiodo, meses=emeses, nuevo=enuevo, recurrente=erecurrente, estado=eestado WHERE idResumen=id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarrResumen
+DELIMITER //
+CREATE PROCEDURE `editarrResumen`(
+	IN id			INT,
+	IN ecobertura	INT,
+    IN eperiodo		INT,
+    IN emeses	 	INT,
+    IN enuevo		FLOAT,
+    IN erecurrente	FLOAT,
+    IN eestado		BOOLEAN)
+BEGIN
+	UPDATE resumen SET cobertura_id=ecobertura, periodo=eperiodo, meses=emeses, nuevo=enuevo, recurrente=erecurrente, estado=eestado WHERE idResumen=id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarSubreceptor
+DELIMITER //
+CREATE PROCEDURE `editarSubreceptor`(
+	IN id			INT,
+	IN ecodigo 		VARCHAR(24),
+    IN enombre 		VARCHAR(100),
+    IN ecnatural 	INT,
+    IN ecsabor 		INT,
+    IN ecfemenino	INT,
+    IN lubricante	INT,
+    IN epruebavih 	FLOAT,
+    IN eautoprueba	FLOAT )
+BEGIN
+	UPDATE subreceptor SET codigo=ecodigo, nombre=enombre, enatural=ecnatural, esabor=ecsabor, efemenino=ecfemenino, elubricante=lubricante, ppvih=epruebavih, pautoprueba=eautoprueba WHERE idSubreceptor = id;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.editarUsuario
+DELIMITER //
+CREATE PROCEDURE `editarUsuario`(
+	IN id			INT,
+    IN erol			VARCHAR(24),
+    IN eusuario		VARCHAR(32),
+    IN epass		VARCHAR(32),
+	IN esubreceptor	INT,
+    IN eestado		BOOLEAN
+    )
+BEGIN
+	UPDATE usuario SET rol=erol, usuario=eusuario, pass=SHA(epass), subreceptor=esubreceptor, estado=eestado WHERE idUsuario = id;
+END//
+DELIMITER ;
 
 -- Volcando estructura para tabla poam.estado
 CREATE TABLE IF NOT EXISTS `estado` (
@@ -680,17 +879,10 @@ CREATE TABLE IF NOT EXISTS `estado` (
   PRIMARY KEY (`idEstado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.estado: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla poam.estado: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `estado` DISABLE KEYS */;
 INSERT INTO `estado` (`idEstado`, `poa_id`, `pom_id`, `estado`, `usuario_id`, `fecha`, `descripcion`) VALUES
-	(1, 1, 1, 'ES02', 1, '2021-07-26 16:38:40', 'El Plan Operativo Mensual ha sido creado con exito'),
-	(2, 1, 2, 'ES03', 1, '2021-07-26 16:42:07', 'El Plan Operativo Mensual ha sido creado con exito'),
-	(3, 1, 3, 'ES04', 1, '2021-07-27 09:44:00', 'El Plan Operativo Mensual ha sido creado con exito'),
-	(4, 1, 4, 'ES05', 1, '2021-07-27 09:52:01', 'El Plan Operativo Mensual ha sido creado con exito'),
-	(5, 1, 5, 'ES06', 1, '2021-07-27 10:05:49', 'El Plan Operativo Mensual ha sido creado con exito'),
-	(6, 1, 6, 'ES07', 1, '2021-07-27 10:09:18', 'El Plan Operativo Mensual ha sido creado con exito'),
-	(7, 1, 7, 'ES08', 1, '2021-07-27 10:26:06', 'El Plan Operativo Mensual ha sido creado con exito'),
-	(8, 1, 8, 'ES01', 1, '2021-07-27 10:30:02', 'El Plan Operativo Mensual ha sido creado con exito');
+	(1, 1, 1, 'ES01', 1, '2021-08-03 11:15:11', 'El Plan Operativo Mensual ha sido creado con exito');
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.insumo
@@ -711,35 +903,8 @@ CREATE TABLE IF NOT EXISTS `insumo` (
 -- Volcando datos para la tabla poam.insumo: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `insumo` DISABLE KEYS */;
 INSERT INTO `insumo` (`idInsumo`, `poa_id`, `cnatural`, `csabor`, `cfemenino`, `lubricante`, `pruebaVIH`, `autoPrueba`, `reactivoE`, `sifilis`) VALUES
-	(1, 1, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225);
+	(1, 1, 3908.33, 2791.66, 3350, 2791.66, 16.75, 5.5833, 5.5833, 22.3333);
 /*!40000 ALTER TABLE `insumo` ENABLE KEYS */;
-
--- Volcando estructura para procedimiento poam.listarDepartamento
-DELIMITER //
-CREATE PROCEDURE `listarDepartamento`(
-	IN sub		VARCHAR(32))
-BEGIN
-SELECT t2.idCatalogo as id, t2.nombre as departamento FROM cobertura t1
-    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
-    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
-    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id 
-    WHERE t1.subreceptor_id = sub GROUP BY t1.departamento;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.listarMunicipio
-DELIMITER //
-CREATE PROCEDURE `listarMunicipio`(
-	IN sub		VARCHAR(32),
-    IN dep		VARCHAR(32))
-BEGIN
-SELECT t3.idCatalogo as id, t3.nombre as municipio FROM cobertura t1
-    LEFT JOIN catalogo t2 ON t2.idCatalogo = t1.departamento
-    LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.municipio
-    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id 
-	WHERE t2.idCatalogo = dep AND t1.subreceptor_id = sub;
-END//
-DELIMITER ;
 
 -- Volcando estructura para procedimiento poam.login
 DELIMITER //
@@ -748,6 +913,18 @@ CREATE PROCEDURE `login`(
     IN contra		VARCHAR(32))
 BEGIN
 	SELECT * FROM usuario WHERE usuario = users AND pass = SHA(contra) AND estado = 1;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.modificarCatalogo
+DELIMITER //
+CREATE PROCEDURE `modificarCatalogo`(
+	IN codigo		VARCHAR(24),
+    IN nombre		VARCHAR(100),
+    IN descripcion	TEXT,
+    IN categoria 	VARCHAR(32) )
+BEGIN
+	INSERT INTO catalogo VALUES(codigo, nombre, descripcion, categoria);
 END//
 DELIMITER ;
 
@@ -763,11 +940,16 @@ CREATE TABLE IF NOT EXISTS `permiso` (
   `subreceptor` tinyint(4) DEFAULT '0',
   `promotor` tinyint(4) DEFAULT '0',
   `catalogo` tinyint(4) DEFAULT '0',
+  `resumen` tinyint(4) DEFAULT NULL,
+  `cobertura` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idPermiso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla poam.permiso: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `permiso` DISABLE KEYS */;
+INSERT INTO `permiso` (`idPermiso`, `usuario_id`, `editar`, `agregar`, `usuario`, `poa`, `pom`, `subreceptor`, `promotor`, `catalogo`, `resumen`, `cobertura`) VALUES
+	(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+	(2, 2, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0);
 /*!40000 ALTER TABLE `permiso` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.persona
@@ -783,11 +965,12 @@ CREATE TABLE IF NOT EXISTS `persona` (
   PRIMARY KEY (`idPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.persona: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla poam.persona: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`idPersona`, `documento`, `numero`, `nombre`, `apellido`, `direccion`, `telefono`, `email`) VALUES
-	(1, 1, '112212345', 'Faustino', 'Lopez Ramos', '11-22 zona 0, Guatemala', '11223344', 'usuario@servidor.com'),
-	(2, 1, '1', ' Fabiola', 'Lorenzana', 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh.', '1234678', 'correodeprueba@servidor.com');
+	(1, 1, '123498742589', 'Faustino ', 'Lopez Ramos', '37 Calle B 19-16 zona 12, ciudad de Guatemala', '77889911', 'correodeprueba@gmail.com'),
+	(2, 1, '7894561231234', 'Fabiola ', 'Lorenzana Ramirez', '48 calle 19-6 zona 11, ciudad de Guatemala', '77889963', 'correodeprueba@gmail.com'),
+	(3, 1, '7894561231234', 'Fabiola ', 'Lorenzana Ramirez', '48 calle 19-6 zona 11, ciudad de Guatemala', '77889963', 'correodeprueba@gmail.com');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.poa
@@ -810,7 +993,7 @@ CREATE TABLE IF NOT EXISTS `poa` (
 -- Volcando datos para la tabla poam.poa: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `poa` DISABLE KEYS */;
 INSERT INTO `poa` (`idPoa`, `Usuario_id`, `anio`, `mes`, `departamento`, `municipio`, `nuevo`, `recurrente`, `subreceptor_id`, `observacion`, `periodo`, `estado`) VALUES
-	(1, 1, 2021, 'MP11', '1', '101', 125, 100, 1, 'Lorem ipsum dolor sit amet', 1, 1);
+	(1, 1, 2021, 'MP11', '1', '101', 13, 9.3333, 1, 'Lorem ipsum text dummy', 1, 1);
 /*!40000 ALTER TABLE `poa` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.pom
@@ -828,7 +1011,7 @@ CREATE TABLE IF NOT EXISTS `pom` (
   `pRecurrente` float DEFAULT NULL,
   `cnatural` float DEFAULT NULL,
   `csabor` float DEFAULT NULL,
-  `cfeminino` float DEFAULT NULL,
+  `cfemenino` float DEFAULT NULL,
   `lubricante` float DEFAULT NULL,
   `pruebaVIH` float DEFAULT NULL,
   `autoprueba` float DEFAULT NULL,
@@ -838,17 +1021,10 @@ CREATE TABLE IF NOT EXISTS `pom` (
   PRIMARY KEY (`idPom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.pom: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla poam.pom: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `pom` DISABLE KEYS */;
-INSERT INTO `pom` (`idPom`, `periodo`, `mes`, `municipio`, `fecha`, `horaInicio`, `horaFin`, `lugar`, `promotor_id`, `pNuevo`, `pRecurrente`, `cnatural`, `csabor`, `cfeminino`, `lubricante`, `pruebaVIH`, `autoprueba`, `reactivo`, `sifilis`, `observacion`) VALUES
-	(1, 1, 'MP11', '101', '2021-07-27', '08:00:00', '12:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, id auctor lacinia.', 1, 125, 83.3335, 31250, 26041.7, 20833.3, 15625, 56.2501, 52.0834, 10.4167, 208.333, 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh'),
-	(2, 1, 'MP11', '101', '2021-07-27', '08:00:00', '12:00:00', 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh.', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Lorem ipsum dolor sit amet consectetur, adipiscing elit vel nibh.'),
-	(3, 1, 'MP11', '101', '2021-07-28', '07:00:00', '12:00:00', 'Lugar de prueba', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Observaciones de prueba'),
-	(4, 1, 'MP11', '101', '2021-07-30', '08:00:00', '14:00:00', 'Lugar de prueba', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Observaciones de prueba'),
-	(5, 1, 'MP11', '101', '2021-08-02', '08:00:00', '14:00:00', 'Lugar de prueba', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Observaciones de prueba'),
-	(6, 1, 'MP11', '101', '2021-08-03', '07:00:00', '13:00:00', 'Lugar de prueba', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Observaciones de prueba'),
-	(7, 1, 'MP11', '101', '2021-08-05', '11:00:00', '13:00:00', 'Lugar de pruebac                                                                                                                                                                                                 ', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Observaciones de prueba'),
-	(8, 1, 'MP11', '101', '2021-08-06', '12:00:00', '16:00:00', 'Lugar de prueba', 1, 125, 100, 33750, 28125, 22500, 16875, 168.75, 56.25, 56.25, 225, 'Observaciones de prueba');
+INSERT INTO `pom` (`idPom`, `periodo`, `mes`, `municipio`, `fecha`, `horaInicio`, `horaFin`, `lugar`, `promotor_id`, `pNuevo`, `pRecurrente`, `cnatural`, `csabor`, `cfemenino`, `lubricante`, `pruebaVIH`, `autoprueba`, `reactivo`, `sifilis`, `observacion`) VALUES
+	(1, 1, 'MP11', '101', '2021-08-04', '08:00:00', '12:00:00', 'Lorem ipsum dolor sit amet.', 1, 13, 9.3334, 3908.34, 2791.68, 3350.01, 2791.68, 16.7501, 5.5834, 5.5834, 22.3334, 'Lorem ipsum text dummy');
 /*!40000 ALTER TABLE `pom` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.promotor
@@ -864,7 +1040,7 @@ CREATE TABLE IF NOT EXISTS `promotor` (
 -- Volcando datos para la tabla poam.promotor: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `promotor` DISABLE KEYS */;
 INSERT INTO `promotor` (`idPromotor`, `codigo`, `persona_id`, `cobertura_id`, `estado`) VALUES
-	(1, 'C001', 2, 1, 1);
+	(1, 'C001', 3, 1, 1);
 /*!40000 ALTER TABLE `promotor` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.resumen
@@ -882,7 +1058,7 @@ CREATE TABLE IF NOT EXISTS `resumen` (
 -- Volcando datos para la tabla poam.resumen: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `resumen` DISABLE KEYS */;
 INSERT INTO `resumen` (`idResumen`, `cobertura_id`, `periodo`, `meses`, `nuevo`, `recurrente`, `estado`) VALUES
-	(1, 1, 1, 6, 125, 100, 1);
+	(1, 1, 1, 6, 13, 9.3333, 1);
 /*!40000 ALTER TABLE `resumen` ENABLE KEYS */;
 
 -- Volcando estructura para procedimiento poam.semestre
@@ -918,7 +1094,7 @@ CREATE TABLE IF NOT EXISTS `subreceptor` (
 -- Volcando datos para la tabla poam.subreceptor: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `subreceptor` DISABLE KEYS */;
 INSERT INTO `subreceptor` (`idSubreceptor`, `codigo`, `nombre`, `enatural`, `esabor`, `efemenino`, `elubricante`, `ppvih`, `pautoprueba`) VALUES
-	(1, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 150, 125, 100, 75, 0.75, 0.25);
+	(1, 'INCAP', 'Instituto de Nutricion de Centro America y Panama', 175, 125, 150, 125, 0.75, 0.25);
 /*!40000 ALTER TABLE `subreceptor` ENABLE KEYS */;
 
 -- Volcando estructura para tabla poam.usuario
@@ -933,10 +1109,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla poam.usuario: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla poam.usuario: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`idUsuario`, `persona_id`, `rol`, `usuario`, `pass`, `subreceptor_id`, `estado`) VALUES
-	(1, 1, 'R001', 'fl20211', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1);
+	(1, 1, 'R001', 'flopezr', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(2, 2, 'R001', 'florenzanar', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(3, 3, 'R007', 'florenzana', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

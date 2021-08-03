@@ -26,7 +26,7 @@ if ($accion == "consultaPoa") {
     $contador = 1;
 
     $sqlPoa =
-    "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.codigo, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total,
+        "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.codigo, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total,
     t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.subreceptor_id
     FROM poa t1 LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
@@ -88,7 +88,7 @@ if ($accion == "cargarPoa") {
     $ID = $_POST['id'];
 
     $consulPoa =
-    "SELECT  t1.idPoa, t1.periodo,t2.codigo as id, t2.nombre as mes,
+        "SELECT  t1.idPoa, t1.periodo,t2.codigo as id, t2.nombre as mes,
     t3.codigo as idm, t3.nombre as municipio, t1.nuevo, t1.recurrente FROM poa t1
     LEFT JOIN catalogo t2 ON t2.codigo = t1.mes LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
         WHERE t1.idPoa = $ID";
@@ -100,7 +100,7 @@ if ($accion == "cargarPoa") {
             $fila['id']       . "," .
             $fila['mes']      . "," .
             $fila['idm']      . "," .
-            $fila['municipio']. "," .
+            $fila['municipio'] . "," .
             $fila['nuevo']    . "," .
             $fila['recurrente'];
     }
@@ -167,15 +167,15 @@ if ($accion == "obtnerNuevoRecurrente") {
     $consultaNR = "SELECT nuevo, recurrente FROM poa WHERE municipio = $municipio AND subreceptor_id = $subreceptor";
     $resultadoNR = $enlace->query($consultaNR);
     while ($NR =  $resultadoNR->fetch_assoc()) {
-        echo $NR['nuevo'] .",".
-             $NR['recurrente'];
+        echo $NR['nuevo'] . "," .
+            $NR['recurrente'];
     }
 }
 /**
  * 
  */
 if ($accion == "agregarPOM") {
-    
+
     $poa            = $_POST['poa'];
     $estado         = $_POST['estado'];
     $usuario        = $_POST['usuario'];
@@ -200,13 +200,18 @@ if ($accion == "agregarPOM") {
     $sifilis        = $_POST['sifilis'];
     $observacion    = $_POST['observacion'];
 
-    $sql = "CALL agregarPom($poa, '$estado', $usuario, '$descripcion', $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotor, $nuevo, 
-    $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion')";
-    $resultado = mysqli_query($enlace,$sql);
-    $pom = mysqli_affected_rows($enlace);
-    if($pom > 0){
-        echo "Exito";
+    $_duplicado = $enlace->query("SELECT * FROM pom WHERE periodo = $periodo AND mes = '$mes' AND municipio = '$municipio' AND horaInicio = '$inicio' AND horaFin = '$fin'");
+    if (mysqli_num_rows($_duplicado)) {
+        echo "Duplicado";
     } else {
-        echo "Error";
+        $sql = "CALL agregarPom($poa, '$estado', $usuario, '$descripcion', $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotor, $nuevo, 
+        $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion')";
+        $resultado = mysqli_query($enlace, $sql);
+        $pom = mysqli_affected_rows($enlace);
+        if ($pom > 0) {
+            echo "Exito";
+        } else {
+            echo "Error";
+        }
     }
 }

@@ -33,8 +33,11 @@ function agregarSubreceptor() {
                 $('#agregarSub').trigger("reset");
                 $('#nuevoSub').modal('hide')
                 window.location.reload('vistas/subreceptor.php');
-            } else {
+            } else if (datos == 'Error') {
                 alertify.error('ERROR!... No se pudo guardar');
+            }
+            else {
+                alertify.warning('¡El subreceptor ya existe!...');
             }
 
         }
@@ -43,15 +46,14 @@ function agregarSubreceptor() {
 /**
  * Funcion para agregar el reactivo esperado para calcular el POA
  */
- function agregarCobertura() {
-    var subreceptor   = parseInt(document.getElementById('sub').value);
-    var departamento  = parseInt(document.getElementById('departamento').value);
-    var municipio     = parseInt(document.getElementById('municipio').value);
-    var region        = document.getElementById('region').value;
-    var nuevo         = parseFloat(document.getElementById('nuevo').value);
-    var recurrente    = parseFloat(document.getElementById('recurrente').value);
-    var reactivo      = parseFloat(document.getElementById('reactivo').value);
-
+function agregarCobertura() {
+    var subreceptor = parseInt(document.getElementById('sub').value);
+    var departamento = parseInt(document.getElementById('departamento').value);
+    var municipio = parseInt(document.getElementById('municipio').value);
+    var region = document.getElementById('region').value;
+    var nuevo = parseFloat(document.getElementById('nuevo').value);
+    var recurrente = parseFloat(document.getElementById('recurrente').value);
+    var reactivo = parseFloat(document.getElementById('reactivo').value);
 
     var accion = "agregarCobertura";
 
@@ -73,6 +75,8 @@ function agregarSubreceptor() {
                 alertify.success('¡GUARDADO!...');
                 $('#agregarCobertura').trigger("reset");
                 window.location.reload('vistas/subreceptor.php');
+            } else if (datos == 'Duplicado') {
+                alertify.warning('¡La cobertura ya existe!...');
             } else {
                 alertify.error('ERROR!... No se pudo guardar');
             }

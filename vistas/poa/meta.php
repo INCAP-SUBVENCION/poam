@@ -36,7 +36,7 @@ $SUBRECEPTOR = $_GET['id'];
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../assets/images/vihinvertido.png" width="35">
-            <h1 class="text-white"><i class="bi bi-fullscreen"></i> Resumen de metas</h1>
+            <h1 class="text-white"><i class="bi bi-fullscreen"></i> METAS</h1>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
