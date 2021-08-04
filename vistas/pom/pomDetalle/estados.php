@@ -1,9 +1,9 @@
 <div class="card text-dark mb-3" style="max-width: 50rem;">
     <div class="card-body">
         <table class="table table-bordered">
-            <thead class="text-center">
+            <thead class="text-center text-white" style="background-color:navy;">
                 <tr>
-                    <th rowspan="3">ESTADOS</th>
+                    <th rowspan="3">ESTADO</th>
                 </tr>
                 <tr>
                     <th colspan="4">RESPONSABLE</th>

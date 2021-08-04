@@ -35,7 +35,7 @@ $POM = $_GET['id'];
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../assets/images/vihinvertido.png" width="35">
-            <h1 class="text-white"><i class="bi bi-calendar4-week"></i> PLAN OPERATIVO MENSUAL -POM-</h1>
+            <h2 class="text-white"><i class="bi bi-calendar4-week"></i> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
@@ -62,21 +62,12 @@ $POM = $_GET['id'];
 
         <!-- Striped rows start -->
         <section class="section">
-            <button class="btn btn-sm btn-success" onclick="detallarPOM();">Detalles</button>
-            <button class="btn btn-sm btn-info" onclick="editarPOM();">Editar</button>
-            <button class="btn btn-sm btn-info" onclick="estadosPOM();">Historial de estado</button>
-            <div id="detallar" style="display: none;">
             <?php include 'pomDetalle/detallarPom.php'; ?>
-            </div>
+            <button class="btn btn-sm btn-warning" onclick="editarPOM();">Editar</button>
             <div id="editar" style="display: none;">
                 <?php include 'pomDetalle/editarPom.php'; ?>
             </div>
-            <div id="estados" style="display: none;">
             <?php include 'pomDetalle/estados.php'; ?>
-            </div>
-            
-
-
         </section>
 
         <footer>

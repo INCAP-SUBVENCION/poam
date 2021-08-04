@@ -36,7 +36,7 @@ $SUBRECEPTOR = $_GET['id'];
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../assets/images/vihinvertido.png" width="35">
-            <h1 class="text-white"><i class="bi bi-calendar-range-fill"></i> PLAN OPERATIVO ANUAL -POA-</h1>
+            <h2 class="text-white"><i class="bi bi-calendar-range-fill"></i> PLAN OPERATIVO ANUAL -POA-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
@@ -194,7 +194,7 @@ $SUBRECEPTOR = $_GET['id'];
                                     <div class="form-group input-group-sm col-sm-2 text-center">
                                         <label for="form-label">..::..</label>
                                         <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
-                                          <i class="bi bi-save-fill"></i> Guardar</button>
+                                            <i class="bi bi-save-fill"></i> Guardar</button>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2 text-center">
                                         <label for="form-label">..::..</label>
@@ -209,34 +209,28 @@ $SUBRECEPTOR = $_GET['id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-periodo_1" type="button" role="tab" aria-controls="pills-periodo_1" aria-selected="true">
-                    <i class="bi bi-calendar-range-fill"></i> Periodo I</button>
+                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button" role="tab" aria-controls="pills-periodo_1" aria-selected="true">
+                        <i class="bi bi-calendar-range-fill"></i> Periodo I</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-periodo_2" type="button" role="tab" aria-controls="pills-periodo_2" aria-selected="false">
-                    <i class="bi bi-calendar-range-fill"></i> Periodo II</button>
+                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button" role="tab" aria-controls="pills-periodo_2" aria-selected="false">
+                        <i class="bi bi-calendar-range-fill"></i> Periodo II</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-periodo_3" type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true">
-                    <i class="bi bi-calendar-range-fill"></i> Periodo III</button>
+                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true">
+                        <i class="bi bi-calendar-range-fill"></i> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-periodo_4" type="button" role="tab" aria-controls="pills-periodo_4" aria-selected="false">
-                    <i class="bi bi-calendar-range-fill"></i> Periodo IV</button>
+                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button" role="tab" aria-controls="pills-periodo_4" aria-selected="false">
+                        <i class="bi bi-calendar-range-fill"></i> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-periodo_5" type="button" role="tab" aria-controls="pills-periodo_5" aria-selected="true">
-                    <i class="bi bi-calendar-range-fill"></i> Periodo V</button>
+                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button" role="tab" aria-controls="pills-periodo_5" aria-selected="true">
+                        <i class="bi bi-calendar-range-fill"></i> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-periodo_6" type="button" role="tab" aria-controls="pills-periodo_6" aria-selected="false">
-                    <i class="bi bi-calendar-range-fill"></i> Periodo VI</button>
+                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button" role="tab" aria-controls="pills-periodo_6" aria-selected="false">
+                        <i class="bi bi-calendar-range-fill"></i> Periodo VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">

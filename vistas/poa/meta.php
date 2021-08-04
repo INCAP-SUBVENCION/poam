@@ -79,8 +79,8 @@ $SUBRECEPTOR = $_GET['id'];
                 <input type="hidden" id="subreceptor" name="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
                 <input type="hidden" name="cobertura" id="cobertura">
                 <div class="card border-success">
-                    <div class="card-headertext-white text-center bg-info">RESUMEN DE METAS</div>
-                    <div class="card-body bg-light-warning">
+                    <div class="text-white text-center" style="background-color:navy;">RESUMEN DE METAS</div>
+                    <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                         <div class="row">
                             <div class="form-group input-group-sm col-sm-1">
                                 <label class="form-label">Periodo</label>
@@ -130,40 +130,39 @@ $SUBRECEPTOR = $_GET['id'];
                                 <input type="text" name="metaRecurrentes" id="metaRecurrentes" class="form-control form-control-sm" style="font-size: 12px;" disabled>
                             </div>
                             <div class="form-group input-group-sm col-sm-2">
-                              <br>
-                              <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')"><i class="bi bi-plus-square-fill"></i> Guardar</button>
-                              <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button
+                                <br>
+                                <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')"><i class="bi bi-plus-square-fill"></i> Guardar</button>
+                                <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </form>
 
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">
-                    <i class="bi bi-fullscreen"></i> PERIODO I</button>
+                        <i class="bi bi-fullscreen"></i> PERIODO I</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">
-                    <i class="bi bi-fullscreen"></i> PERIODO II</button>
+                        <i class="bi bi-fullscreen"></i> PERIODO II</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-primary" id="pills-semestre_3-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_3" type="button" role="tab" aria-controls="pills-semestre_3" aria-selected="true">
-                    <i class="bi bi-fullscreen"></i> PERIODO III</button>
+                        <i class="bi bi-fullscreen"></i> PERIODO III</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-warning" id="pills-semestre_4-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_4" type="button" role="tab" aria-controls="pills-semestre_4" aria-selected="false">
-                    <i class="bi bi-fullscreen"></i> PERIODO IV</button>
+                        <i class="bi bi-fullscreen"></i> PERIODO IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-success" id="pills-semestre_5-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_5" type="button" role="tab" aria-controls="pills-semestre_5" aria-selected="true">
-                    <i class="bi bi-fullscreen"></i> PERIODO V</button>
+                        <i class="bi bi-fullscreen"></i> PERIODO V</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-danger" id="pills-semestre_6-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_6" type="button" role="tab" aria-controls="pills-semestre_6" aria-selected="false">
-                    <i class="bi bi-fullscreen"></i> PERIODO VI</button>
+                        <i class="bi bi-fullscreen"></i> PERIODO VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">

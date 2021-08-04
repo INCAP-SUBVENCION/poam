@@ -250,7 +250,7 @@ $SUBRECEPTOR = $_GET['id'];
                                 <div class="form-group input-group-sm col-sm-3">
                                     <br>
                                     <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
-                                      <i class="bi bi-check-square-fill"></i> Guardar</button>
+                                        <i class="bi bi-check-square-fill"></i> Guardar</button>
                                     <button type="reset" class="btn btn-outline-danger"> <i class="bi bi-x-square-fill"></i> Cancelar</button>
                                 </div>
                             </div>
@@ -264,48 +264,42 @@ $SUBRECEPTOR = $_GET['id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1"
-                    type="button" role="tab" aria-controls="pills-periodo_1" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo I</button>
+                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button" role="tab" aria-controls="pills-periodo_1" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo I</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2"
-                    type="button" role="tab" aria-controls="pills-periodo_2" aria-selected="false"><i class="bi bi-calendar4-week"></i> Periodo II</button>
+                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button" role="tab" aria-controls="pills-periodo_2" aria-selected="false"><i class="bi bi-calendar4-week"></i> Periodo II</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3"
-                    type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo III</button>
+                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4"
-                    type="button" role="tab" aria-controls="pills-periodo_4" aria-selected="false"><i class="bi bi-calendar4-week"></i> Periodo IV</button>
+                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button" role="tab" aria-controls="pills-periodo_4" aria-selected="false"><i class="bi bi-calendar4-week"></i> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5"
-                    type="button" role="tab" aria-controls="pills-periodo_5" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo V</button>
+                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button" role="tab" aria-controls="pills-periodo_5" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6"
-                    type="button" role="tab" aria-controls="pills-periodo_6" aria-selected="false"><i class="bi bi-calendar4-week"></i> periodo VI</button>
+                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button" role="tab" aria-controls="pills-periodo_6" aria-selected="false"><i class="bi bi-calendar4-week"></i> periodo VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-periodo_1" role="tabpanel" aria-labelledby="pills-periodo_1-tab">
-                    <?php include 'periodo_1.php';?>
+                    <?php include 'periodo_1.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_2" role="tabpanel" aria-labelledby="pills-periodo_2-tab">
-                    <?php include 'periodo_2.php';?>
+                    <?php include 'periodo_2.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_3" role="tabpanel" aria-labelledby="pills-periodo_3-tab">
                     <p>Aun no habilitado</p>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_4" role="tabpanel" aria-labelledby="pills-periodo_4-tab">
-                <p>Aun no habilitado</p>
+                    <p>Aun no habilitado</p>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_5" role="tabpanel" aria-labelledby="pills-periodo_5-tab">
-                <p>Aun no habilitado</p>
+                    <p>Aun no habilitado</p>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_6" role="tabpanel" aria-labelledby="pills-periodo_6-tab">
-                <p>Aun no habilitado</p>
+                    <p>Aun no habilitado</p>
                 </div>
             </div>
 

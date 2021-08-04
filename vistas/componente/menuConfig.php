@@ -31,9 +31,9 @@
 
         <div class="sidebar-menu">
             <ul class="menu">
-            <li class="sidebar-item  ">
+                <li class="sidebar-item  ">
                     <a href="principal.php" class='sidebar-link'>
-                    <i class="bi bi-house-door-fill"></i><span>Inicio</span>
+                        <i class="bi bi-house-door-fill"></i><span>Inicio</span>
                     </a>
                 </li>
                 <li class="sidebar-item  ">

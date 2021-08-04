@@ -27,6 +27,7 @@ $ID = $_SESSION['idUsuario'];
         }
     </style>
 </head>
+
 <body>
     <div id="app">
         <div id="main">
@@ -44,7 +45,7 @@ $ID = $_SESSION['idUsuario'];
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                   <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="#">Configuracion</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Coberturas</li>
                                 </ol>
@@ -55,8 +56,8 @@ $ID = $_SESSION['idUsuario'];
                 <section class="section">
                     <form name="agregarCobertura" id="agregarCobertura" action="javascript: agregarCobertura();" method="GET">
                         <div class="card border-primary mb-3" style="max-width: 85rem;">
-                            <div class="card-headertext-white text-center bg-info">REGISTRO DE COBERTURA</div>
-                            <div class="card-body text-primary bg-light-warning" style="font-size: 12px;">
+                            <div class="text-white text-center" style="background-color:navy;">REGISTRO DE COBERTURA</div>
+                            <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Subreceptor:</label>

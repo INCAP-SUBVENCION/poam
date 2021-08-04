@@ -46,7 +46,7 @@ $ID = $_SESSION['idUsuario'];
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                   <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="#">Configuracion</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
                                 </ol>
@@ -58,8 +58,8 @@ $ID = $_SESSION['idUsuario'];
                     <form name="agregarUsuario" id="agregarUsuario" action="javascript: agregarUsuario();" method="POST">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card-headertext-white text-center bg-info">REGISTRO DE USUARIOS</div>
-                                <div class="card-body bg-light-warning" style="font-size: 12px;">
+                                <div class="text-white text-center" style="background-color:navy;">REGISTRO DE USUARIOS</div>
+                                <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                     <div class="row">
                                         <div class="form-group input-group-sm col-sm-2">
                                             <label class="form-label">Documento:</label>
@@ -135,8 +135,8 @@ $ID = $_SESSION['idUsuario'];
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card-headertext-white text-center bg-info">PERMISO</div>
-                                <div class="card-body bg-light-warning">
+                                <div class="text-white text-center" style="background-color:navy;">PERMISO</div>
+                                <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                     <div class="row">
                                         <table class="table-sm">
                                             <tr>
@@ -215,8 +215,8 @@ $ID = $_SESSION['idUsuario'];
                             <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-circle-fill"></i> Cancelar</button>
                         </div>
                     </form>
-                    <table class="table table-striped table-light">
-                        <thead class="table-dark text-center" style="font-size: 12px;">
+                    <table class="table table-bordered">
+                        <thead class="text-center" style="font-size: 12px;">
                             <th>#</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>

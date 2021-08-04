@@ -46,7 +46,7 @@ $ID = $_SESSION['idUsuario'];
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                   <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="#">Configuracion</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Promotor</li>
                                 </ol>
@@ -57,13 +57,12 @@ $ID = $_SESSION['idUsuario'];
                 <section class="section">
                     <form name="agregarPromotor" id="agregarPromotor" action="javascript: agregarPromotor();" method="POST">
                         <div class="card border-primary" style="max-width: 90rem;">
-                            <div class="card-headertext-white text-center bg-info" style="color:black">REGISTRO DE PROMOTORES</div>
-                            <div class="card-body text-primary bg-light-warning">
-
+                            <div class="text-white text-center" style="background-color:navy;">REGISTRO DE PROMOTORES</div>
+                            <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Codigo:</label>
-                                        <input type="text" name="codigo" id="codigo" class="form-control form-control-sm"  required>
+                                        <input type="text" name="codigo" id="codigo" class="form-control form-control-sm" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Subreceptor:</label>
@@ -88,7 +87,7 @@ $ID = $_SESSION['idUsuario'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Tipo documento</label>
-                                        <select name="documento" id="documento" class="form-control"  required>
+                                        <select name="documento" id="documento" class="form-control" required>
                                             <option value="">Seleccionar</option>
                                             <option value="1">DPI</option>
                                             <option value="0">Pasaporte</option>
@@ -100,15 +99,15 @@ $ID = $_SESSION['idUsuario'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Primer nombre:</label>
-                                        <input type="text" name="pnombre" id="pnombre" class="form-control form-control-sm"  required>
+                                        <input type="text" name="pnombre" id="pnombre" class="form-control form-control-sm" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Segundo nombre:</label>
-                                        <input type="text" name="snombre" id="snombre" class="form-control form-control-sm" >
+                                        <input type="text" name="snombre" id="snombre" class="form-control form-control-sm">
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Primer apellido: </label>
-                                        <input type="text" name="papellido" id="papellido" onchange="creaUsuario();" class="form-control form-control-sm"  required>
+                                        <input type="text" name="papellido" id="papellido" onchange="creaUsuario();" class="form-control form-control-sm" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Segundo apellido: </label>

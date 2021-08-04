@@ -257,20 +257,5 @@ function creaUsuario(){
         editar.style.display = 'none';
     }
 }
-function detallarPOM(){
-   var detallar = document.getElementById('detallar');
-   if (detallar.style.display === 'none') {
-       detallar.style.display = 'block';
-   } else {
-       detallar.style.display = 'none';
-   }
-}
-function estadosPOM(){
-    var estados = document.getElementById('estados');
-    if (estados.style.display === 'none') {
-        estados.style.display = 'block';
-    } else {
-        estados.style.display = 'none';
-    }
- }
+
  

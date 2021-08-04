@@ -46,7 +46,7 @@ $ID = $_SESSION['idUsuario'];
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                   <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="principal.php">Inicio</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">POA</li>
                                 </ol>
                             </nav>
@@ -70,9 +70,9 @@ $ID = $_SESSION['idUsuario'];
                                         <div class="col-sm-9">
                                             <p class="text-muted font-semibold"><?php echo $fila['nombre'] ?></p>
                                             <a class="font-extrabold mb-0" href="poa/meta.php?id=<?php echo $fila['idSubreceptor'] ?>">
-                                            <i class="bi bi-fullscreen"></i> Resumen de metas</a><br>
+                                                <i class="bi bi-fullscreen"></i> Resumen de metas</a><br>
                                             <a class="font-extrabold mb-0" href="poa/detallepoa.php?id=<?php echo $fila['idSubreceptor'] ?>">
-                                            <i class="bi bi-calendar-range-fill"></i> Plan Operativo Anual</a><br>
+                                                <i class="bi bi-calendar-range-fill"></i> Plan Operativo Anual</a><br>
                                         </div>
                                     </div>
                                 </div>

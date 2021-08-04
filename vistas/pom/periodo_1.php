@@ -59,16 +59,16 @@
                             echo '<p style="color: orange;"><i class="bi bi-search"></i> En revision </p>';
                         } else if ($periodo_1['estado'] == 'ES03') {
                             echo '<p style="color: limegreen;"><i class="bi bi-check-square-fill"></i> Autorizado</p>';
-                        } 
+                        }
                         ?>
                     </th>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
-                            <i class="bi bi-gear"></i> Opcion
+                                <i class="bi bi-gear"></i> Opcion
                             </button>
                             <ul class="dropdown-menu bg-info">
-                                <li><a class="dropdown-item" href="detalle.php?id=<?php echo $periodo_1['idPom'];?>">Detalles</a></li>
+                                <li><a class="dropdown-item" href="detalle.php?id=<?php echo $periodo_1['idPom']; ?>">Detalles</a></li>
                                 <li><a class="dropdown-item" href="#">Historial</a></li>
                                 <li><a class="dropdown-item" href="#">Cambiar de estado</a></li>
                             </ul>

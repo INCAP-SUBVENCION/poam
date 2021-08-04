@@ -16,7 +16,7 @@ header("Content-Type: text/html;charset=utf-8");
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="assets/vendors/alertifyjs/css/themes/default.css">
-    
+
     <title>Inicio de sesion</title>
 
     <style>

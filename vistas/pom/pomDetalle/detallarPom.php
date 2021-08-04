@@ -48,40 +48,40 @@
                     <th colspan="8" class="text-center">PROYECCION DE INSUMOS</th>
                 </tr>
                 <tr>
-                    <th style="background-color:lightgray;">Nuevos</th>
+                    <th style="background-color:lightskyblue;">Nuevos</th>
                     <td><?php echo $detalles['pNuevo']; ?></td>
-                    <th style="background-color:lightgray;">Recurrente</th>
+                    <th style="background-color:lightskyblue;">Recurrente</th>
                     <td><?php echo $detalles['pRecurrente']; ?></td>
-                    <th style="background-color:lightgray;">Total</th>
+                    <th style="background-color:lightskyblue;">Total</th>
                     <td><?php echo round($detalles['total'], 4); ?></td>
-                    <th style="background-color:lightgray;">Condon natural</th>
+                    <th style="background-color:lightskyblue;">Condon natural</th>
                     <td><?php echo $detalles['cnatural']; ?></td>
                 </tr>
                 <tr>
-                    <th style="background-color:lightgray;">Condon de sabor</th>
+                    <th style="background-color:lightskyblue;">Condon de sabor</th>
                     <td><?php echo $detalles['csabor']; ?></td>
-                    <th style="background-color:lightgray;">Condon femenino</th>
+                    <th style="background-color:lightskyblue;">Condon femenino</th>
                     <td><?php echo $detalles['cfemenino']; ?></td>
-                    <th style="background-color:lightgray;">Lubricante</th>
+                    <th style="background-color:lightskyblue;">Lubricante</th>
                     <td><?php echo $detalles['lubricante']; ?></td>
-                    <th style="background-color:lightgray;">Prueba VIH</th>
+                    <th style="background-color:lightskyblue;">Prueba VIH</th>
                     <td><?php echo $detalles['pruebaVIH']; ?></td>
                 </tr>
                 <tr>
-                    <th style="background-color:lightgray;">Auto-prueba VIH</th>
+                    <th style="background-color:lightskyblue;">Auto-prueba VIH</th>
                     <td><?php echo $detalles['autoprueba']; ?></td>
-                    <th style="background-color:lightgray;">Reactivo experado</th>
+                    <th style="background-color:lightskyblue;">Reactivo experado</th>
                     <td><?php echo $detalles['reactivo']; ?></td>
-                    <th style="background-color:lightgray;">Sifilis</th>
+                    <th style="background-color:lightskyblue;">Sifilis</th>
                     <td><?php echo $detalles['sifilis']; ?></td>
-                    <th style="background-color:lightgray;">Codigo promotor</th>
+                    <th style="background-color:lightskyblue;">Codigo promotor</th>
                     <td><?php echo $detalles['codigo']; ?></td>
 
                 </tr>
                 <tr>
-                    <th style="background-color:lightgray;">Promotor</th>
+                    <th style="background-color:lightskyblue;">Promotor</th>
                     <td colspan="2"><?php echo $detalles['nombres']; ?></td>
-                    <th style="background-color:lightgray;">Observaciones</th>
+                    <th style="background-color:lightskyblue;">Observaciones</th>
                     <td colspan="4"><?php echo $detalles['observacion']; ?></td>
                 </tr>
             </table>

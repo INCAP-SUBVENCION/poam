@@ -18,8 +18,8 @@
                 <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $editar['subreceptor_id']; ?>">
                 <input type="hidden" name="descripcion" id="descripcion" value="El Plan Operativo Mensual ha sido creado con exito">
                 <div class="card text-dark">
-                    <div class="bg-info text-center">DATOS PRINCIPALES</div>
-                    <div class="card-body bg-light-warning" style="font-size: 12px; ">
+                    <div class="text-white text-center" style="background-color:navy;">DATOS PRINCIPALES</div>
+                    <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                         <div class="row">
                             <div class="form-group input-group-sm col-sm-3">
                                 <label class="form-label">Periodo:</label>
@@ -57,8 +57,8 @@
     </div>
     <div class="col-md-8">
         <div class="card text-dark">
-            <div class="bg-info text-center">PROYECCIÓN DE INSUMOS</div>
-            <div class="card-body bg-light-warning" style="font-size: 12px;">
+            <div class="text-white text-center" style="background-color:navy;">PROYECCIÓN DE INSUMOS</div>
+            <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                 <div class="row">
                     <div class="form-group input-group-sm col-sm-4">
                         <label for="exampleFormControlTextarea1" class="form-label" style="font-size: 12px;">Promotor responsable:</label>

@@ -42,7 +42,7 @@
                     <td><?php echo $semestre['municipio']; ?></td>
                     <td><?php echo $semestre['nuevo']; ?></td>
                     <td><?php echo $semestre['recurrente']; ?></td>
-                    <th><?php echo round($semestre['total'],2); ?></th>
+                    <th><?php echo round($semestre['total'], 2); ?></th>
                     <td><?php echo $semestre['cnatural']; ?></td>
                     <td><?php echo $semestre['csabor']; ?></td>
                     <td><?php echo $semestre['cfemenino']; ?></td>

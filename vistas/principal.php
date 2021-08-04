@@ -2,7 +2,7 @@
 include_once('../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
-if(!isset($_SESSION['idUsuario'])){
+if (!isset($_SESSION['idUsuario'])) {
     header('Location: ../error.php');
 }
 $ID = $_SESSION['idUsuario'];
@@ -29,13 +29,9 @@ $ID = $_SESSION['idUsuario'];
             font-size: smaller;
         }
     </style>
-
 </head>
 
 <body>
-
-
-
     <div id="app">
         <div id="main">
             <header class="mb-1">

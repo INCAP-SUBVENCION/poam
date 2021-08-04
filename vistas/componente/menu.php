@@ -46,33 +46,33 @@
                         <i class="bi bi-calendar2-range-fill"></i><span>POA</span>
                     </a>
                 </li>
-                    <li class="sidebar-item" data-bs-toggle="dropdown">
+                <li class="sidebar-item" data-bs-toggle="dropdown">
                     <a href="subreceptor.php" class='sidebar-link'>
-                    <i class="bi bi-gear-fill"></i> <span> Configuracion</span>
+                        <i class="bi bi-gear-fill"></i> <span> Configuracion</span>
                     </a>
                 </li>
-                    <ul class="dropdown-menu">
-                        <li class="sidebar-item  ">
-                    <a href="promotor.php" class='sidebar-link'>
-                        <i class="bi bi-people-fill"></i><span>Promotores</span>
-                    </a>
-                </li>
-                <li class="sidebar-item  ">
-                    <a href="usuario.php" class='sidebar-link'>
-                        <i class="bi bi-person-plus-fill"></i><span>Usuarios</span>
-                    </a>
-                </li>
-                <li class="sidebar-item  ">
-                    <a href="cobertura.php" class='sidebar-link'>
-                        <i class="bi bi-arrows-fullscreen"></i><span>Cobertura</span>
-                    </a>
-                </li>
-                <li class="sidebar-item  ">
-                    <a href="subreceptor.php" class='sidebar-link'>
-                        <i class="bi bi-diagram-2"></i><span>Subreceptor</span>
-                    </a>
-                </li>
-                    </ul>
+                <ul class="dropdown-menu">
+                    <li class="sidebar-item  ">
+                        <a href="promotor.php" class='sidebar-link'>
+                            <i class="bi bi-people-fill"></i><span>Promotores</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="usuario.php" class='sidebar-link'>
+                            <i class="bi bi-person-plus-fill"></i><span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="cobertura.php" class='sidebar-link'>
+                            <i class="bi bi-arrows-fullscreen"></i><span>Cobertura</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="subreceptor.php" class='sidebar-link'>
+                            <i class="bi bi-diagram-2"></i><span>Subreceptor</span>
+                        </a>
+                    </li>
+                </ul>
 
             </ul>
 

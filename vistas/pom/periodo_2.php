@@ -75,7 +75,7 @@
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
-                            <i class="bi bi-gear"></i> Opcion
+                                <i class="bi bi-gear"></i> Opcion
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Detalles</a></li>
