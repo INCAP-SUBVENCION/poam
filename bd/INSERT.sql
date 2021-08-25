@@ -366,8 +366,8 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('2217', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R001',  'Administrador', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R002',  'Especilista Programatica', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R003',  'Enlace Programatica', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004',  'Monitorea y Evaluacion de RP', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Monitoreo y Evaluacion de SR', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004',  'Monitoreo y Evaluacion de RP', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Coordinador de Monitoreo y Evaluacion del Subreceptor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R006',  'Supervisor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R007',  'Promotor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Financiero', ' ', 'rol');

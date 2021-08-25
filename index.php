@@ -34,7 +34,7 @@ header("Content-Type: text/html;charset=utf-8");
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="text-center">
-                        <img src="assets/images/vih.png" width="125">
+                        <img src="assets/images/vih.png" width="150">
                     </div>
                     <h4 class="auth-title text-center">Iniciar sesion</h4>
                     <form name="login" id="login" method="POST" action="javascript: login();">
@@ -56,8 +56,8 @@ header("Content-Type: text/html;charset=utf-8");
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right">
-                    <img src="assets/images/logo.png" width="600" alt="">
-                    <img src="assets/images/sica.png" width="600" alt="">
+                    <img src="assets/images/logo.png" width="400" alt="">
+                    <img src="assets/images/sica.png" width="400" alt="">
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@ header("Content-Type: text/html;charset=utf-8");
     <!--- JS --->
     <script src="assets/vendors/alertifyjs/alertify.js"></script>
     <script src="assets/vendors/jquery/jquery.min.js"></script>
-    <script src="controlador/controladorLogin.js"></script>
+    <script src="login.js"></script>
 
 </body>
 
