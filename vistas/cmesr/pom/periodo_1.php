@@ -1,4 +1,12 @@
-<table class="table table-hover table-bordered">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="col-sm-4">
+        <div class="input-group input-group-sm">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
+            <input class="form-control" type="text" id="buscador" placeholder="Buscar..." />
+        </div>
+    </div>
+</div>
+<table class="table table-hover table-bordered" id="pom_periodo_1">
     <thead style="font-size: 12px;" class="table-dark">
 
         <tr>
@@ -31,7 +39,7 @@
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo=1 AND t2.estado= 'ES02' AND t7.subreceptor_id = $SUBRECEPTOR";
+        WHERE t2.estado NOT IN ('ES01') AND t2.periodo = 1 AND t7.subreceptor_id = $SUBRECEPTOR";
         if ($resp_1 = $enlace->query($sqlp_1)) {
             while ($periodo_1 = $resp_1->fetch_assoc()) {
         ?>
@@ -50,12 +58,10 @@
                     <td><?php echo $periodo_1['pRecurrente']; ?></td>
                     <th><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
-                    <p style="color:orange;"></p>
-
                     <th><?php if ($periodo_1['estado'] == 'ES02') {
                             echo '<p style="color: orange;"><i class="bi bi-search"></i> Revisar </p>';
-                        } else {
-                            echo '<p style="color: orange;"><i class="bi bi-search"></i> Autorizado </p>';
+                        } else if ($periodo_1['estado'] == 'ES03')  {
+                            echo '<p style="color:green;"><i class="bi bi-check-all"></i> Revisado y Autorizado </p>';
                         }
                         ?>
                     </th>
@@ -66,27 +72,27 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
-                                    <i class="bi bi-card-list"></i> Detalles</a>
+                                        <i class="bi bi-card-list"></i> Detalles</a>
                                 </li>
                                 <?php
-                                if($periodo_1['estado'] == 'ES02'){
-                                    ?>
-                                    <li class="bg-success">
-                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cambiarEstado<?php echo $periodo_1['idPom']; ?>">
-                                    <i class="bi bi-arrow-right-circle-fill"></i> Autorizar</a>
+                                if ($periodo_1['estado'] == 'ES02') {
+                                ?>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom'];?>, <?php echo $ID;?>, 'ES03')" class="btn btn-success" type="button"> 
+                                            <i class="bi bi-check-square-fill"></i> Autorizar</button>
+                                        </div>
                                     </li>
-                                    <?php
+                                <?php
                                 }
                                 ?>
-
-                                
                             </ul>
                         </div>
                     </td>
-                    <?php include 'modal/cambiarEstado.php';?>
                 </tr>
         <?php }
             $resp_1->close();
         }  ?>
     </tbody>
 </table>
+<?php include '../modal/cambiarEstadoPom.php'; ?>

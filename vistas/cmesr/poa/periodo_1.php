@@ -69,15 +69,17 @@
                                 <i class="bi bi-grid"></i> Opciones
                             </a>
                             <?php
-                                if ($periodo_1['estado'] == 'ES01') {
+                            if ($periodo_1['estado'] == 'ES01') {
                             ?>
-                            <ul class="dropdown-menu" style="font-size: 13px;">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Editar</a></li>
-                                <li>
-                                    <div class="d-grid gap-2"><button onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>)" class="btn btn-primary" type="button">Enviar a revision</button> </div>
-                                </li>
-                            </ul>
-                            <?php }?>
+                                <ul class="dropdown-menu" style="font-size: 13px;">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Editar</a></li>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')" class="btn btn-primary" type="button">Enviar a revision</button> 
+                                        </div>
+                                    </li>
+                                </ul>
+                            <?php } ?>
                         </div>
                     </td>
 

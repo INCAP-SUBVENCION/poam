@@ -173,7 +173,7 @@ if ($accion == "obtnerNuevoRecurrente") {
     }
 }
 /**
- *
+ * Metodo que permite agregar nuevo POM
  */
 if ($accion == "agregarPOM") {
 
@@ -214,23 +214,4 @@ if ($accion == "agregarPOM") {
             echo "Error";
         }
     }
-}
-
-if ($accion == "cambiarEstado") {
-
-    $usuario    = $_POST['usuario'];
-    $tipo       = $_POST['tipo'];
-    $id         = $_POST['id'];
-    $estado     = $_POST['estado'];
-    $descripcion= $_POST['descripcion'];
-
-    $sqlEs = "CALL cambiarEstado($usuario, $tipo, $id, '$estado', '$descripcion')";
-    $resultadoEs = mysqli_query($enlace, $sqlEs);
-    $estados = mysqli_affected_rows($enlace);
-        if ($estados > 0) {
-            echo "Exito";
-        } else {
-            echo "Error";
-        }
-
 }

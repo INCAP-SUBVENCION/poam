@@ -130,7 +130,7 @@ function obtenerResumen(){
 }
 
 /**
- * Funcion que permite llenar el reactivo segun sea el muncipio y subreceptor semestre 1
+ * Funcion que permite llenar el reactivo segun sea el muncipio y subreceptor 
  */
  function obtenerReactivo() {
 
@@ -150,9 +150,9 @@ function obtenerResumen(){
             municipio: municipio
         },
         success: function (datos) {
-            var reactividad = datos.concat(' %');
+            var reactividad = datos * 100;
             document.getElementById('reactivo').value = datos;
-            $("#porcentaje").html(reactividad);
+            $("#porcentaje").html(reactividad + ' %');
         }
     });
 }
@@ -169,8 +169,8 @@ function calcularMeta(){
   var nMeses      = document.getElementById('meses').value;
   metaNuevo     = nuevo / nMeses;
   metaRecurrente= recurrente / nMeses;
-  document.getElementById('metaNuevos').value     = metaNuevo.toFixed(4);
-  document.getElementById('metaRecurrentes').value= metaRecurrente.toFixed(4);
+  document.getElementById('metaNuevos').value     = metaNuevo.toFixed(2);
+  document.getElementById('metaRecurrentes').value= metaRecurrente.toFixed(2);
 }
 /**
  * funcion que permite llamar varias fuciones para crear el POA
@@ -185,7 +185,7 @@ function sumarPom(){
     var nuevo = parseFloat(document.getElementById('nuevo').value);
     var recurrente = parseFloat(document.getElementById('recurrente').value);
     var suma = nuevo + recurrente;
-    parseFloat(document.getElementById('total').value = suma.toFixed(4));
+    parseFloat(document.getElementById('total').value = suma.toFixed(2));
 
 }
 /**

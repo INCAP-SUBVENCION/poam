@@ -1,3 +1,6 @@
+/**
+ * Funcion que permite agregar nuevo usuario
+ */
 function agregarUsuario() {
 
     var documento   = document.getElementById('documento').value;

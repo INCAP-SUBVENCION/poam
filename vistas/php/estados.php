@@ -8,6 +8,9 @@ if (isset($_GET['accion'])) {
     $accion = $_GET['accion'];
 }
 
+/**
+ * Metodo que permite consultar los datos del POA para cambiar el estado
+ */
 if ($accion == "consultaPoa") {
 
     $poa_id = $_POST['id'];
@@ -21,7 +24,9 @@ if ($accion == "consultaPoa") {
     }
     echo json_encode($response);
 }
-
+/**
+ * Metodo que permite cambiar el estado del POA
+ */
 if ($accion == "cambiarEstadoPoa") {
 
     $usuario = $_POST['usuario'];
@@ -36,12 +41,14 @@ if ($accion == "cambiarEstadoPoa") {
     }
 }
 
-
+/**
+ * Metodo que permite consultar los datos del POM para cambiar el estado
+ */
 if ($accion == "consultaPoM") {
 
     $pom_id = $_POST['id'];
-    $sql = "SELECT DISTINCT t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin  FROM pom t1 
-    LEFT JOIN catalogo t2 ON t2.codigo = t1.mes LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio WHERE t1.idPom = $pom_id";
+    $sql = "SELECT DISTINCT t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, t1.pRecurrente, truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total 
+    FROM pom t1 LEFT JOIN catalogo t2 ON t2.codigo = t1.mes LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio WHERE t1.idPom = $pom_id";
 
     $consulta = $enlace->query($sql);
     $response = array();
@@ -51,7 +58,9 @@ if ($accion == "consultaPoM") {
     echo json_encode($response);
 }
 
-
+/**
+ * Metodo que permite cambiar el estado de POM
+ */
 if ($accion == "cambiarEstadoPom") {
 
     $usuario = $_POST['usuario'];

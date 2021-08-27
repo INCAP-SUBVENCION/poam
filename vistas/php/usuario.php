@@ -10,7 +10,9 @@ if (isset($_POST['accion'])) {
 if (isset($_GET['accion'])) {
     $accion = $_GET['accion'];
 }
-
+/**
+ * Metodo que permite agregar nuevo usuario
+ */
 if ($accion == "agregarUsuario") {
     $documento  = $_POST['documento'];
     $numero     = $_POST['numero'];

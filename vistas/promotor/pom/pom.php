@@ -12,11 +12,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Operativo Anual</title>
+    <title>Plan Operativo Mensual</title>
 
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../../assets/css/bootstrap.css">
-
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
@@ -267,24 +266,24 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <i class="bi bi-calendar4-week"></i> Periodo I</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button">
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button">
                         <i class="bi bi-calendar4-week"></i> Periodo II
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
                         <i class="bi bi-calendar4-week"></i> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button">
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button">
                         <i class="bi bi-calendar4-week"></i> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button">
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button">
                         <i class="bi bi-calendar4-week"></i> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button">
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button">
                         <i class="bi bi-calendar4-week"></i> periodo VI</button>
                 </li>
             </ul>
@@ -327,6 +326,24 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/pom.js"></script>
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
+
+        <!-- Script para la busqueda -->
+        <script type="text/javascript">
+            jQuery("#buscador").keyup(function() {
+                if (jQuery(this).val() != "") {
+                    jQuery("#pom_periodo_1 tbody>tr").hide();
+                    jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+                } else {
+                    jQuery("#pom_periodo_1 tbody>tr").show();
+                }
+            });
+            jQuery.extend(jQuery.expr[":"], {
+                "contiene-palabra": function(elem, i, match, array) {
+                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                }
+            });
+        </script>
+
     </body>
 
 </html>

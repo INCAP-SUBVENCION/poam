@@ -1,6 +1,13 @@
-<table class="table table-hover table-bordered">
-    <thead style="font-size: 12px;" class="table-dark">
-
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="col-sm-4">
+        <div class="input-group input-group-sm">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
+            <input class="form-control" type="text" id="buscador" placeholder="Buscar..." />
+        </div>
+    </div>
+</div>
+<table class="table table-hover table-bordered" id="pom_periodo_1">
+    <thead style="font-size: 12px;" class="table-info">
         <tr>
             <th>#</th>
             <th>Periodo</th>
@@ -21,7 +28,7 @@
 
         </tr>
     </thead>
-    <tbody class="text-center bg-light" style="font-size: 12px;">
+    <tbody style="font-size: 12px;">
         <?php
         $contap_1 = 1;
         $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t5.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
@@ -50,8 +57,6 @@
                     <td><?php echo $periodo_1['pRecurrente']; ?></td>
                     <th><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
-                    <p style="color:orange;"></p>
-
                     <th><?php if ($periodo_1['estado'] == 'ES01') {
                             echo '<p style="color: dodgerblue;"><i class="bi bi-node-plus-fill"></i> Creado</p>';
                         } else if ($periodo_1['estado'] == 'ES02') {
@@ -68,29 +73,26 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
-                                    <i class="bi bi-card-list"></i> Detalles</a>
+                                        <i class="bi bi-card-list"></i> Detalles</a>
                                 </li>
                                 <?php
-                                if($periodo_1['estado'] == 'ES01'){
-                                    ?>
-                                <li>
-                                    <div class="d-grid gap-2">
-                                        <button onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>)" class="btn btn-primary" type="button">Enviar a revision</button> 
-                                    </div>
-                                </li>
-                                    <?php
+                                if ($periodo_1['estado'] == 'ES01') {
+                                ?>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES02')" class="btn btn-primary" type="button">Enviar a revision</button>
+                                        </div>
+                                    </li>
+                                <?php
                                 }
                                 ?>
-
-                                
                             </ul>
                         </div>
                     </td>
-                   
                 </tr>
         <?php }
             $resp_1->close();
         }  ?>
     </tbody>
 </table>
-<?php include '../modal/cambiarEstadoPom.php';?>
+<?php include '../modal/cambiarEstadoPom.php'; ?>

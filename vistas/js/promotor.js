@@ -1,3 +1,6 @@
+/**
+ * Funcion que permite agregar nuevo promotor
+ */
 function agregarPromotor(){
     var subreceptor = document.getElementById('subreceptor').value;
     var codigo      = document.getElementById('codigo').value;

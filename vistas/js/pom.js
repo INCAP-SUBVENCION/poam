@@ -62,8 +62,8 @@ function cargarPoa(id, prom, dias) {
             document.getElementById('nombreMes').value = respuesta[3];
             document.getElementById('municipio').value = respuesta[4];
             document.getElementById('nombreMunicipio').value = respuesta[5];
-            document.getElementById('nuevo').value = rnuevos.toFixed(4);
-            document.getElementById('recurrente').value = rrecurrentes.toFixed(4);
+            document.getElementById('nuevo').value = rnuevos.toFixed(2);
+            document.getElementById('recurrente').value = rrecurrentes.toFixed(2);
 
         }
     });
@@ -121,13 +121,13 @@ function calcularPom() {
             var pruebaVIH = parseFloat(resultado[4]);
             var autoPrueba = parseFloat(resultado[5]);
             var reactivo = total * procentaje;
-            document.getElementById('cnatural').value = cnatural.toFixed(4);
-            document.getElementById('csabor').value = csabor.toFixed(4);
-            document.getElementById('cfemenino').value = cfemenino.toFixed(4);
-            document.getElementById('lubricante').value = lubricante.toFixed(4);
-            document.getElementById('pruebaVIH').value = pruebaVIH.toFixed(4);
-            document.getElementById('autoPrueba').value = autoPrueba.toFixed(4);
-            document.getElementById('reactivoEs').value = reactivo.toFixed(4);
+            document.getElementById('cnatural').value = cnatural.toFixed(2);
+            document.getElementById('csabor').value = csabor.toFixed(2);
+            document.getElementById('cfemenino').value = cfemenino.toFixed(2);
+            document.getElementById('lubricante').value = lubricante.toFixed(2);
+            document.getElementById('pruebaVIH').value = pruebaVIH.toFixed(2);
+            document.getElementById('autoPrueba').value = autoPrueba.toFixed(2);
+            document.getElementById('reactivoEs').value = reactivo.toFixed(2);
             document.getElementById('sifilis').value = total;
         }
     });
