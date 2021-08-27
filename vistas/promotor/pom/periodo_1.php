@@ -73,10 +73,11 @@
                                 <?php
                                 if($periodo_1['estado'] == 'ES01'){
                                     ?>
-                                    <li class="bg-warning">
-                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cambiarEstado<?php echo $periodo_1['idPom']; ?>">
-                                    <i class="bi bi-arrow-right-circle-fill"></i> Enviar a revision</a>
-                                    </li>
+                                <li>
+                                    <div class="d-grid gap-2">
+                                        <button onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>)" class="btn btn-primary" type="button">Enviar a revision</button> 
+                                    </div>
+                                </li>
                                     <?php
                                 }
                                 ?>
@@ -85,10 +86,11 @@
                             </ul>
                         </div>
                     </td>
-                    <?php include 'modal/cambiarEstado.php';?>
+                   
                 </tr>
         <?php }
             $resp_1->close();
         }  ?>
     </tbody>
 </table>
+<?php include '../modal/cambiarEstadoPom.php';?>

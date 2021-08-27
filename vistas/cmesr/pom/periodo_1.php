@@ -31,7 +31,7 @@
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo=1 AND t7.subreceptor_id = $SUBRECEPTOR AND t2.estado NOT IN ('ES01')";
+        WHERE t2.periodo=1 AND t2.estado= 'ES02' AND t7.subreceptor_id = $SUBRECEPTOR";
         if ($resp_1 = $enlace->query($sqlp_1)) {
             while ($periodo_1 = $resp_1->fetch_assoc()) {
         ?>
@@ -54,8 +54,8 @@
 
                     <th><?php if ($periodo_1['estado'] == 'ES02') {
                             echo '<p style="color: orange;"><i class="bi bi-search"></i> Revisar </p>';
-                        } else if ($periodo_1['estado'] == 'ES03') {
-                            echo '<p style="color: limegreen;"><i class="bi bi-check-square-fill"></i> Autorizado</p>';
+                        } else {
+                            echo '<p style="color: orange;"><i class="bi bi-search"></i> Autorizado </p>';
                         }
                         ?>
                     </th>
@@ -65,14 +65,25 @@
                                 <i class="bi bi-gear"></i> Opcion
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="detalle.php?id=<?php echo $periodo_1['idPom']; ?>">Detalles</a></li>
-                                <li> <div class="d-grid gap-2"><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#revision<?php echo $periodo_1['idPom']; ?>">
-                                <i class="bi bi-check-square-fill"></i> Autorizar</button></div> </li>
-                                <li><a class="dropdown-item" href="#">Rechazado</a></li>
+                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
+                                    <i class="bi bi-card-list"></i> Detalles</a>
+                                </li>
+                                <?php
+                                if($periodo_1['estado'] == 'ES02'){
+                                    ?>
+                                    <li class="bg-success">
+                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cambiarEstado<?php echo $periodo_1['idPom']; ?>">
+                                    <i class="bi bi-arrow-right-circle-fill"></i> Autorizar</a>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
+
+                                
                             </ul>
                         </div>
                     </td>
-                    <?php include 'modal/revision.php';?>
+                    <?php include 'modal/cambiarEstado.php';?>
                 </tr>
         <?php }
             $resp_1->close();

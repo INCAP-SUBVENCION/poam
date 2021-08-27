@@ -62,6 +62,7 @@
                         <p>Subvencion 2021 &copy; incap.int</p>
                     </div>
                 </div>
+                <img src="../../assets/images/logo.png" width="200">
             </footer>
         </div>
     </div>

@@ -3,7 +3,7 @@ include_once('../../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 $ID = $_SESSION['idUsuario'];
-$SUBRECEPTOR = $_GET['id'];
+$SUBRECEPTOR = $_SESSION['subreceptor_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,7 +32,7 @@ $SUBRECEPTOR = $_GET['id'];
 <body>
 
     <body>
-    <nav class="navbar navbar-dark" style="background-color:darkblue;">
+        <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../../assets/images/vihinvertido.png" width="35">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
@@ -103,7 +103,7 @@ $SUBRECEPTOR = $_GET['id'];
                         <!--Resultado de obtenerCantidadPromotor() -->
                         <input type="hidden" name="promotor" id="promotor">
                         <input type="hidden" name="dias" id="dias">
-                        
+
                         <div class="form-group input-group-sm col-sm-2">
                             <select name="cmes" id="cmes" class="form-control" style="font-size: 11px;" onchange="consultaPoa();">
                             </select>
@@ -123,13 +123,13 @@ $SUBRECEPTOR = $_GET['id'];
 
                 <div class="col-md-4">
                     <form name="agregarPom" id="agregarPom" action="javascript: agregarPOM();" method="POST">
-                        
+
                         <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
                         <input type="hidden" name="usuario" id="usuario" value="<?php echo $ID; ?>">
                         <input type="hidden" name="poa" id="poa">
-    
+
                         <div class="card text-dark">
-                        <div class="text-white text-center" style="background-color:navy;">DATOS PRINCIPALES</div>
+                            <div class="text-white text-center" style="background-color:navy;">DATOS PRINCIPALES</div>
                             <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -168,23 +168,24 @@ $SUBRECEPTOR = $_GET['id'];
                 </div>
                 <div class="col-md-8">
                     <div class="card text-dark">
-                    <div class="text-white text-center" style="background-color:navy;">PROYECCIÓN DE INSUMOS</div>
+                        <div class="text-white text-center" style="background-color:navy;">PROYECCIÓN DE INSUMOS</div>
                         <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                             <div class="row">
                                 <div class="form-group input-group-sm col-sm-4">
                                     <label for="exampleFormControlTextarea1" class="form-label" style="font-size: 12px;">Promotor responsable:</label>
-                                    
-                                        <?php
-                                        $consultaPro = "SELECT DISTINCT t2.nombre AS nombres, t2.apellido AS apellidos, t3.idPromotor FROM usuario t1 
+
+                                    <?php
+                                    $consultaPro = "SELECT DISTINCT t2.nombre AS nombres, t2.apellido AS apellidos, t3.idPromotor FROM usuario t1 
                                         LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id 
                                         LEFT JOIN promotor t3 ON t3.persona_id = t1.persona_id
                                         WHERE t1.idUsuario = $ID";
-                                        $resultadoPro = $enlace->query($consultaPro);
-                                        while ($promotor = $resultadoPro->fetch_assoc()) {
-                                        ?>
-                                        <input type="hidden" name="promotor" id="promotor" value="<?php echo $promotor['idPromotor'];?>">
-                                        <input type="text" value="<?php echo $promotor['nombres'].' '.$promotor['apellidos'];?>" class="form-control form-control-sm" disabled>
-                                        <?php } $resultadoPro->close(); ?>
+                                    $resultadoPro = $enlace->query($consultaPro);
+                                    while ($promotor = $resultadoPro->fetch_assoc()) {
+                                    ?>
+                                        <input type="hidden" name="promotor" id="promotor" value="<?php echo $promotor['idPromotor']; ?>">
+                                        <input type="text" value="<?php echo $promotor['nombres'] . ' ' . $promotor['apellidos']; ?>" class="form-control form-control-sm" disabled>
+                                    <?php }
+                                    $resultadoPro->close(); ?>
                                 </div>
 
                                 <div class="form-group input-group-sm col-sm-2">
@@ -262,22 +263,29 @@ $SUBRECEPTOR = $_GET['id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button" role="tab" aria-controls="pills-periodo_1" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo I</button>
+                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button">
+                        <i class="bi bi-calendar4-week"></i> Periodo I</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button" role="tab" aria-controls="pills-periodo_2" aria-selected="false"><i class="bi bi-calendar4-week"></i> Periodo II</button>
+                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button">
+                        <i class="bi bi-calendar4-week"></i> Periodo II
+                    </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo III</button>
+                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
+                        <i class="bi bi-calendar4-week"></i> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button" role="tab" aria-controls="pills-periodo_4" aria-selected="false"><i class="bi bi-calendar4-week"></i> Periodo IV</button>
+                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button">
+                        <i class="bi bi-calendar4-week"></i> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button" role="tab" aria-controls="pills-periodo_5" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo V</button>
+                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button">
+                        <i class="bi bi-calendar4-week"></i> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button" role="tab" aria-controls="pills-periodo_6" aria-selected="false"><i class="bi bi-calendar4-week"></i> periodo VI</button>
+                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button">
+                        <i class="bi bi-calendar4-week"></i> periodo VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -318,6 +326,7 @@ $SUBRECEPTOR = $_GET['id'];
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/pom.js"></script>
         <script src="../../js/utilidad.js"></script>
+        <script src="../../js/estados.js"></script>
     </body>
 
 </html>

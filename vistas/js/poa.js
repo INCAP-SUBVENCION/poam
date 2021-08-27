@@ -140,33 +140,3 @@ function agregarResumen() {
     });
 }
 
-function cambiarEstadoPoa(){
-
-    var usuario = document.getElementById('use').value;
-    var poa = document.getElementById('poae').value;
-    var estado = document.getElementById('ese').value;
-    var descripcion = document.getElementById('dese').value;
-
-    var accion = "cambiarEstadoPoa";
-
-    $.ajax({
-        type: "GET",
-        url: "../../php/poa.php",
-        data: {
-            accion: accion,
-            usuario: usuario,
-            poa: poa,
-            estado: estado,
-            descripcion: descripcion
-        },
-        success: function (datos) {
-            if (datos == 'Exito') {
-                alertify.success('¡Estado cambiado!...');
-                window.location.reload('vistas/configuracion/usuario.php');
-                $('#cambiar').trigger("reset");
-            }  else {
-                alertify.error("¡ERROR!... No se pudo cambiar de ESTADO");
-            }
-        }
-    });
-}

@@ -7,7 +7,7 @@ if (!isset($_SESSION['idUsuario'])) {
 }
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
-$SUBRECEPTOR = $_GET['id'];
+$SUBRECEPTOR = $_SESSION['subreceptor_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -44,7 +44,7 @@ $SUBRECEPTOR = $_GET['id'];
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
                 LEFT JOIN catalogo r ON u.rol=r.codigo
-                LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
+                LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario = $ID";
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
@@ -56,7 +56,6 @@ $SUBRECEPTOR = $_GET['id'];
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-check2-square"></i> Permisos</a></li>
                         <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
                     </ul>
                 </div>
@@ -85,7 +84,7 @@ $SUBRECEPTOR = $_GET['id'];
                     ?>
                     <div class="col-md-6">
                         <div class="card text-dark">
-                        <div class="text-white text-center" style="background-color:firebrick;">DATOS PRINCIPALES</div>
+                            <div class="text-white text-center" style="background-color:firebrick;">DATOS PRINCIPALES</div>
                             <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -152,7 +151,7 @@ $SUBRECEPTOR = $_GET['id'];
                     </div>
                     <div class="col-md-6">
                         <div class="card text-dark">
-                        <div class="text-white text-center" style="background-color:firebrick;">PROYECCION DE INSUMOS</div>
+                            <div class="text-white text-center" style="background-color:firebrick;">PROYECCION DE INSUMOS</div>
                             <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -194,12 +193,12 @@ $SUBRECEPTOR = $_GET['id'];
                                         <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2 text-center">
-                                        <label for="form-label">..::..</label>
+                                        <br>
                                         <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
                                             <i class="bi bi-save-fill"></i> Guardar</button>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2 text-center">
-                                        <label for="form-label">..::..</label>
+                                        <br>
                                         <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button>
                                     </div>
                                 </div>
@@ -211,51 +210,50 @@ $SUBRECEPTOR = $_GET['id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button" role="tab" aria-controls="pills-periodo_1" aria-selected="true">
+                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button">
                         <i class="bi bi-calendar-range-fill"></i> Periodo I</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button" role="tab" aria-controls="pills-periodo_2" aria-selected="false">
+                    <button class="btn btn-sm btn-info" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button">
                         <i class="bi bi-calendar-range-fill"></i> Periodo II</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true">
+                    <button class="btn btn-sm btn-primary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
                         <i class="bi bi-calendar-range-fill"></i> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button" role="tab" aria-controls="pills-periodo_4" aria-selected="false">
+                    <button class="btn btn-sm btn-warning" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button">
                         <i class="bi bi-calendar-range-fill"></i> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button" role="tab" aria-controls="pills-periodo_5" aria-selected="true">
+                    <button class="btn btn-sm btn-success" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button">
                         <i class="bi bi-calendar-range-fill"></i> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button" role="tab" aria-controls="pills-periodo_6" aria-selected="false">
+                    <button class="btn btn-sm btn-danger" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button">
                         <i class="bi bi-calendar-range-fill"></i> Periodo VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade" id="pills-periodo_1" role="tabpanel" aria-labelledby="pills-periodo_1-tab">
+                <div class="tab-pane fade show active" id="pills-periodo_1">
                     <?php include 'periodo_1.php'; ?>
                 </div>
-                <div class="tab-pane fade show active" id="pills-periodo_2" role="tabpanel" aria-labelledby="pills-periodo_2-tab">
+                <div class="tab-pane fade" id="pills-periodo_2">
                     <?php include 'periodo_2.php'; ?>
                 </div>
-                <div class="tab-pane fade" id="pills-periodo_3" role="tabpanel" aria-labelledby="pills-periodo_3-tab">
-                    <p>Aun no habilitado</p>
+                <div class="tab-pane fade" id="pills-periodo_3">
+                    <p>PERIODO 3 no habilitado</p>
                 </div>
-                <div class="tab-pane fade" id="pills-periodo_4" role="tabpanel" aria-labelledby="pills-periodo_4-tab">
-                    <p>Aun no habilitado</p>
+                <div class="tab-pane fade" id="pills-periodo_4">
+                    <p>PERIODO 4 no habilitado</p>
                 </div>
-                <div class="tab-pane fade" id="pills-periodo_5" role="tabpanel" aria-labelledby="pills-periodo_5-tab">
-                    <p>Aun no habilitado</p>
+                <div class="tab-pane fade" id="pills-periodo_5">
+                    <p>PERIODO 5 no habilitado</p>
                 </div>
-                <div class="tab-pane fade" id="pills-periodo_6" role="tabpanel" aria-labelledby="pills-periodo_6-tab">
-                    <p>Aun no habilitado</p>
+                <div class="tab-pane fade" id="pills-periodo_6">
+                    <p>PERIODO 6 habilitado</p>
                 </div>
             </div>
-
 
         </section>
 
@@ -267,13 +265,13 @@ $SUBRECEPTOR = $_GET['id'];
             </div>
         </footer>
 
-
         <!------ JS ------>
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/poa.js"></script>
         <script src="../../js/utilidad.js"></script>
+        <script src="../../js/estados.js"></script>
     </body>
 
 </html>

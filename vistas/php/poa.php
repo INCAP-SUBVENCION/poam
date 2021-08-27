@@ -93,19 +93,3 @@ if ($accion == "agregarResumen") {
         }
     }
 }
-
-if ($accion == "cambiarEstadoPoa") {
-    
-    $usuario     = $_GET['usuario'];
-    $poa         = $_GET['poa'];
-    $estado      = $_GET['estado'];
-    $descripcion = $_GET['descripcion'];
-
-    $sqlCambiar = "CALL cambiarEstadoPoa($usuario, $poa, '$estado', '$descripcion')";
-    
-    if ($enlace->query($sqlCambiar) === TRUE) {
-        echo "Exito";
-    } else {
-        echo "Error";
-    }
-}

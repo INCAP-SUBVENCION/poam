@@ -72,16 +72,22 @@ CREATE PROCEDURE `agregarPoa`(
 BEGIN
 	DECLARE IdPoa INT DEFAULT 0;
     DECLARE IdInsumo INT DEFAULT 0;
+    DECLARE idE INT DEFAULT 0;
+    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
 	DECLARE idP INT DEFAULT	(SELECT COUNT(idPoa) FROM poa);
 	DECLARE idI INT DEFAULT (SELECT COUNT(idInsumo) FROM insumo);
 	IF(idP <= 0) THEN SET IdPoa := 1;
 	ELSE SET IdPoa := idP + 1;
     END IF;
-	INSERT INTO poa VALUES(IdPoa,usuario,year(now()),mes,departamento,municipio,nuevo,recurrente,subreceptor,observacion,periodo,1);
+	INSERT INTO poa VALUES(IdPoa, year(now()), mes, departamento, municipio, nuevo, recurrente, subreceptor, observacion, periodo, 'ES01');
 	IF(idI <=0) THEN SET IdInsumo := 1;
 	ELSE SET IdInsumo := idI + 1;
     END IF;
 	INSERT INTO insumo VALUES(IdInsumo,IdPoa,cnatural,csabor,cfemenino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis);
+    IF (idEs <= 0) THEN SET idE := 1;
+    ELSE SET idE := idEs + 1;
+    END IF;
+    INSERT INTO estado VALUES(idE, usuario, idPoa, NULL, 'ES01', 'El Plan Operativo Anual se ha CREADO con exito', now());
 END//
 DELIMITER ;
 
@@ -89,9 +95,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `agregarPom`(
 	IN poa			INT,
-    IN estado		VARCHAR(16),
     IN usuario		INT,
-    IN descripcion	TEXT,
     IN periodo		INT,
 	IN mes			VARCHAR(16),
 	IN municipio	VARCHAR(16),
@@ -110,26 +114,28 @@ CREATE PROCEDURE `agregarPom`(
 	IN autoPrueba	FLOAT,
 	IN reactivoE	FLOAT,
 	IN sifilis		FLOAT,
-    IN observacion	TEXT)
+    IN observacion	TEXT,
+    IN subreceptor	INT)
 BEGIN
-	DECLARE id INT DEFAULT 0;
+    DECLARE id INT DEFAULT 0;
     DECLARE idE INT DEFAULT 0;
-	DECLARE idP INT DEFAULT	(SELECT COUNT(idPom) FROM pom);
     DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
+	DECLARE idP INT DEFAULT	(SELECT COUNT(idPom) FROM pom);
 	IF(idP <=0) THEN SET id := 1;
 	ELSE SET id := idP + 1;
     END IF;
-	INSERT INTO pom VALUES(id,periodo,mes,municipio,fecha,inicio,fin,lugar,promotor,nuevo,recurrente,cnatural,csabor,cfeminino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis,observacion);
-	IF(idEs <=0) THEN SET idE := 1;
-	ELSE SET idE := idEs + 1;
+	INSERT INTO pom VALUES(id,periodo,mes,municipio,fecha,inicio,fin,lugar,promotor,nuevo,recurrente,cnatural,csabor,cfeminino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis,observacion,poa,'ES01', subreceptor);
+	IF (idEs <= 0) THEN SET idE := 1;
+    ELSE SET idE := idEs + 1;
     END IF;
-    INSERT INTO estado VALUES(idE, poa, id, estado, usuario, NOW(), descripcion);
+    INSERT INTO estado VALUES(idE, usuario, NULL, id, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', now());
 END//
 DELIMITER ;
 
 -- Volcando estructura para procedimiento poam.agregarPromotor
 DELIMITER //
 CREATE PROCEDURE `agregarPromotor`(
+	IN subreceptor	INT,
 	IN documento	BOOLEAN,
 	IN numero		VARCHAR(16),
 	IN pnombre 		VARCHAR(32),
@@ -140,9 +146,9 @@ CREATE PROCEDURE `agregarPromotor`(
 	IN telefono		VARCHAR(16),
 	IN email		VARCHAR(100),
     IN codigo		VARCHAR(32),
-	IN cobertura	INT,
     IN usuario		VARCHAR(32),
-    IN rol			VARCHAR(16)
+    IN rol			VARCHAR(16),
+    IN dias			INT
     )
 BEGIN
     DECLARE IdPersona INT DEFAULT 0;
@@ -151,7 +157,6 @@ BEGIN
 	DECLARE idPer INT DEFAULT	(SELECT COUNT(idPersona) FROM persona);
 	DECLARE idPro INT DEFAULT (SELECT COUNT(idPromotor) FROM promotor);
 	DECLARE idU INT DEFAULT (SELECT COUNT(idUsuario) FROM usuario);
-    DECLARE subreceptor INT DEFAULT (SELECT subreceptor_id FROM cobertura WHERE idCobertura= cobertura);
 	IF(idPer <= 0) THEN SET IdPersona := 1;
 	ELSE SET IdPersona := idPer + 1;
     END IF;
@@ -159,7 +164,7 @@ BEGIN
 	IF(idPro <=0) THEN SET IdPromotor := 1;
 	ELSE SET IdPromotor := idPro + 1;
     END IF;
-	INSERT INTO promotor VALUES(IdPromotor, codigo, IdPersona, cobertura, 1);
+	INSERT INTO promotor VALUES(IdPromotor, codigo, IdPersona, dias, 1);
     IF(idU <=0) THEN SET IdUsuario := 1;
 	ELSE SET IdUsuario := idU + 1;
     END IF;
@@ -219,25 +224,13 @@ CREATE PROCEDURE `agregarUsuario`(
 	IN telefono		VARCHAR(16),
 	IN email		VARCHAR(100),
     IN rol			VARCHAR(24),
-    IN sub			INT,
-    IN editar		BOOLEAN,
-	IN agregar		BOOLEAN,
-    IN usuario		BOOLEAN,
-    IN poa 			BOOLEAN,
-    IN pom 			BOOLEAN,
-    IN subreceptor	BOOLEAN,
-    IN promotor		BOOLEAN,
-    IN catalogo		BOOLEAN,
-    IN resumen 		BOOLEAN,
-    IN cobertura	BOOLEAN
+    IN sub			INT
     )
 BEGIN
 	DECLARE IdPersona INT DEFAULT 0;
     DECLARE IdUsuario INT DEFAULT 0;
-    DECLARE idAuto INT DEFAULT 0;
 	DECLARE idP INT DEFAULT (SELECT COUNT(idPersona) FROM persona);
 	DECLARE idU INT DEFAULT (SELECT COUNT(idUsuario) FROM usuario);
-    DECLARE idA INT DEFAULT (SELECT COUNT(idPermiso) FROM permiso);
 	IF(idP <= 0) THEN SET IdPersona := 1;
 	ELSE SET IdPersona := idP + 1;
     END IF;
@@ -246,10 +239,52 @@ BEGIN
 	ELSE SET IdUsuario := idU + 1;
     END IF;
 	INSERT INTO usuario VALUES(IdUsuario, IdPersona, rol, lower(concat(left(pnombre,1),papellido,left(sapellido,1))), SHA('Usuario01'), sub, 1);
-    IF(idA <= 0) THEN SET idAuto := 1;
-    ELSE SET idAuto = idA + 1;
+END//
+DELIMITER ;
+
+-- Volcando estructura para tabla poam.asignacion
+CREATE TABLE IF NOT EXISTS `asignacion` (
+  `idAsignacion` int(11) NOT NULL AUTO_INCREMENT,
+  `promotor_id` int(11) NOT NULL,
+  `cobertura_id` int(11) NOT NULL,
+  PRIMARY KEY (`idAsignacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para procedimiento poam.cambiarEstadoPoa
+DELIMITER //
+CREATE PROCEDURE `cambiarEstadoPoa`(
+	IN usuario		INT,
+    IN id_poa 		INT,
+    IN estados		VARCHAR(24),
+    IN descripcion	TEXT )
+BEGIN
+	DECLARE idE INT DEFAULT 0;
+    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
+    IF (idEs <= 0) THEN SET idE := 1;
+    ELSE SET idE := idEs + 1;
     END IF;
-    INSERT INTO permiso VALUES(idAuto, IdUsuario, editar, agregar, usuario, poa, pom, subreceptor, promotor, catalogo, resumen, cobertura);
+    INSERT INTO estado VALUES(idE, usuario, id_poa, NULL, estados, descripcion, now());
+    UPDATE poa SET estado = estados WHERE idPoa = id_poa;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento poam.cambiarEstadoPom
+DELIMITER //
+CREATE PROCEDURE `cambiarEstadoPom`(
+	IN usuario		INT,
+    IN id_pom 		INT,
+    IN estados		VARCHAR(24),
+    IN descripcion	TEXT )
+BEGIN
+	DECLARE idE INT DEFAULT 0;
+    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
+    IF (idEs <= 0) THEN SET idE := 1;
+    ELSE SET idE := idEs + 1;
+    END IF;
+    INSERT INTO estado VALUES(idE, usuario, NULL, id_pom, estados, descripcion, now());
+    UPDATE pom SET estado = estados WHERE idPom = id_pom;
 END//
 DELIMITER ;
 
@@ -465,12 +500,12 @@ DELIMITER ;
 -- Volcando estructura para tabla poam.estado
 CREATE TABLE IF NOT EXISTS `estado` (
   `idEstado` int(11) NOT NULL,
-  `poa_id` int(11) NOT NULL,
-  `pom_id` int(11) NOT NULL,
-  `estado` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `fecha` datetime DEFAULT NULL,
+  `poa_id` int(11) DEFAULT NULL,
+  `pom_id` int(11) DEFAULT NULL,
+  `estado` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_unicode_ci,
+  `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`idEstado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -518,17 +553,9 @@ DELIMITER ;
 -- Volcando estructura para tabla poam.permiso
 CREATE TABLE IF NOT EXISTS `permiso` (
   `idPermiso` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `editar` tinyint(4) DEFAULT '0',
-  `agregar` tinyint(4) DEFAULT '0',
-  `usuario` tinyint(4) DEFAULT '0',
-  `poa` tinyint(4) DEFAULT '0',
-  `pom` tinyint(4) DEFAULT '0',
-  `subreceptor` tinyint(4) DEFAULT '0',
-  `promotor` tinyint(4) DEFAULT '0',
-  `catalogo` tinyint(4) DEFAULT '0',
-  `resumen` tinyint(4) DEFAULT NULL,
-  `cobertura` tinyint(4) DEFAULT NULL,
+  `poa` tinyint(4) DEFAULT NULL,
+  `pom` tinyint(4) DEFAULT NULL,
+  `rol_idRol` int(11) NOT NULL,
   PRIMARY KEY (`idPermiso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -552,7 +579,6 @@ CREATE TABLE IF NOT EXISTS `persona` (
 -- Volcando estructura para tabla poam.poa
 CREATE TABLE IF NOT EXISTS `poa` (
   `idPoa` int(11) NOT NULL,
-  `Usuario_id` int(11) NOT NULL,
   `anio` int(11) DEFAULT NULL,
   `mes` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
   `departamento` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
@@ -562,7 +588,7 @@ CREATE TABLE IF NOT EXISTS `poa` (
   `subreceptor_id` int(11) NOT NULL,
   `observacion` text COLLATE utf8_unicode_ci,
   `periodo` int(11) DEFAULT NULL,
-  `estado` tinyint(4) DEFAULT NULL,
+  `estado` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idPoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -590,6 +616,9 @@ CREATE TABLE IF NOT EXISTS `pom` (
   `reactivo` float DEFAULT NULL,
   `sifilis` float DEFAULT NULL,
   `observacion` text COLLATE utf8_unicode_ci,
+  `poa_id` int(11) NOT NULL,
+  `estado` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subreceptor_id` int(11) NOT NULL,
   PRIMARY KEY (`idPom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -600,7 +629,7 @@ CREATE TABLE IF NOT EXISTS `promotor` (
   `idPromotor` int(11) NOT NULL,
   `codigo` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `persona_id` int(11) NOT NULL,
-  `cobertura_id` int(11) NOT NULL,
+  `dias` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `estado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idPromotor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

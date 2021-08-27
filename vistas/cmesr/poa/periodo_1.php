@@ -27,12 +27,12 @@
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
         $cont = 1;
-        $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total, 
+        $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total,
         t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado
-        FROM poa t1 
+        FROM poa t1
 	    LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
-	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio 
+	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
 	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 1 ORDER BY mes";
         if ($res = $enlace->query($consult)) {
@@ -66,29 +66,25 @@
                     <td>
                         <div class="dropdown">
                             <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 12px;">
-                                <i class="bi bi-grid"></i> Opcion
+                                <i class="bi bi-grid"></i> Opciones
                             </a>
-                            <ul class="dropdown-menu" style="font-size: 13px;">
                             <?php
-                                if($periodo_1['estado'] == 'ES01'){
-                                    ?>
-                                    <li class="bg-warning">
-                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cambiarEstado<?php echo $periodo_1['idPoa']; ?>">
-                                    <i class="bi bi-arrow-right-circle-fill"></i> Enviar a revision</a>
-                                    </li>
-                                    <?php
-                                }
+                                if ($periodo_1['estado'] == 'ES01') {
                             ?>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-ui-checks-grid"></i> Crear POM</a></li>
+                            <ul class="dropdown-menu" style="font-size: 13px;">
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Editar</a></li>
+                                <li>
+                                    <div class="d-grid gap-2"><button onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>)" class="btn btn-primary" type="button">Enviar a revision</button> </div>
+                                </li>
                             </ul>
+                            <?php }?>
                         </div>
-                        <?php include 'modal/cambiarEstado.php'; ?>
                     </td>
-                    
+
                 </tr>
         <?php }
             $res->close();
         }  ?>
     </tbody>
 </table>
+<?php include '../modal/cambiarEstadoPoa.php'; ?>

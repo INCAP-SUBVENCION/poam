@@ -413,14 +413,17 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP63', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP64', 'Octubre', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 'Noviembre', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
-#ESTADOS
+#ESTADOS DEL PROMOTOR
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado', 'El POM a sido creado', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Revision', 'El POM esta revisado', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado');
-
-
-
-
-
+#ESTADO DEL COORDINADOR
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES11', 'Creado', 'El POM a sido creado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES12', 'Revision', 'El POM esta revisado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES13', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado');
+#ESTADO DEL RP
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES21', 'Creado', 'El POM a sido creado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES22', 'Revision', 'El POM esta revisado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES23', 'Autorizado', 'El POM ha sido autorizado con exito', 'estado');
 
 #CALL agregarUsuario(1, "123498742589", "Faustino", "", "Lopez", "Ramos", "37 Calle B 19-16 zona 12, ciudad de Guatemala", "77889911", "correodeprueba@gmail.com", "R001", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
