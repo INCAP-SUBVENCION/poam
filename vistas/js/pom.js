@@ -17,7 +17,7 @@ function consultaPoa() {
         url: "../../php/pom.php",
         data: {
             accion: accion,
-            subreceptor, subreceptor,
+            subreceptor: subreceptor,
             periodo: periodo,
             municipio: municipio,
             mes: mes,

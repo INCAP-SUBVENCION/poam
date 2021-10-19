@@ -2,7 +2,7 @@
     include_once('../../bd/conexion.php');
     header("Content-Type: text/html;charset=utf-8");
     date_default_timezone_set("America/Guatemala");
-	  session_start();
+	session_start();
 
     if (isset($_POST['accion'])) { $accion = $_POST['accion']; }
     if (isset($_GET['accion'])) { $accion = $_GET['accion'];}

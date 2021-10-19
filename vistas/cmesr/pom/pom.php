@@ -33,7 +33,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkorange;">
-            <img src="../../../assets/images/vihinvertido.png" width="35">
+            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
@@ -43,20 +43,20 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
-                <a class="navbar-brand" href="../cmesr.php"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
                     <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-fill"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-check2-square"></i> Permisos</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                        <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
+                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
                     </ul>
                 </div>
             <?php }
             $res1->close(); ?>
+                <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
 
         <!-- Striped rows start -->

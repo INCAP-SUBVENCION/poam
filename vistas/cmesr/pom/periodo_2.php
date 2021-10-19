@@ -1,4 +1,4 @@
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered" aria-describedby="">
     <thead style="font-size: 12px;" class="table-dark">
 
         <tr>

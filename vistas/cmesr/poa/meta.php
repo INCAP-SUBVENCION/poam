@@ -33,8 +33,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
 
     <body>
-    <nav class="navbar navbar-dark" style="background-color:deepskyblue;">
-            <img src="../../../assets/images/vihinvertido.png" width="35">
+        <nav class="navbar navbar-dark" style="background-color:deepskyblue;">
+            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
             <h2 class="text-white"> METAS</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
@@ -44,20 +44,20 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
-                <a class="navbar-brand" href="../cmesr.php"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
                     <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-fill"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-check2-square"></i> Permisos</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                        <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
+                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
                     </ul>
                 </div>
             <?php }
             $res1->close(); ?>
+            <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
 
 
@@ -131,7 +131,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <div class="form-group input-group-sm col-sm-2">
                                 <br>
                                 <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')"><i class="bi bi-plus-square-fill"></i> Guardar</button>
-                                <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button </div>
+                                <button type="reset" class="btn btn-sm btn-outline-danger"><em class="bi bi-x-square-fill"></em> Cancelar</button </div>
                             </div>
                         </div>
                     </div>
@@ -144,23 +144,23 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <i class="bi bi-fullscreen"></i> PERIODO I</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-info" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">
+                    <button class="btn btn-sm btn-secundary" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">
                         <i class="bi bi-fullscreen"></i> PERIODO II</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-primary" id="pills-semestre_3-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_3" type="button" role="tab" aria-controls="pills-semestre_3" aria-selected="true">
+                    <button class="btn btn-sm btn-secundary" id="pills-semestre_3-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_3" type="button" role="tab" aria-controls="pills-semestre_3" aria-selected="true">
                         <i class="bi bi-fullscreen"></i> PERIODO III</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-warning" id="pills-semestre_4-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_4" type="button" role="tab" aria-controls="pills-semestre_4" aria-selected="false">
+                    <button class="btn btn-sm btn-secundary" id="pills-semestre_4-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_4" type="button" role="tab" aria-controls="pills-semestre_4" aria-selected="false">
                         <i class="bi bi-fullscreen"></i> PERIODO IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-success" id="pills-semestre_5-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_5" type="button" role="tab" aria-controls="pills-semestre_5" aria-selected="true">
+                    <button class="btn btn-sm btn-secundary" id="pills-semestre_5-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_5" type="button" role="tab" aria-controls="pills-semestre_5" aria-selected="true">
                         <i class="bi bi-fullscreen"></i> PERIODO V</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-danger" id="pills-semestre_6-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_6" type="button" role="tab" aria-controls="pills-semestre_6" aria-selected="false">
+                    <button class="btn btn-sm btn-secundary" id="pills-semestre_6-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_6" type="button" role="tab" aria-controls="pills-semestre_6" aria-selected="false">
                         <i class="bi bi-fullscreen"></i> PERIODO VI</button>
                 </li>
             </ul>
@@ -172,9 +172,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <th>Municipio</th>
                             <th>Periodo</th>
                             <th># Meses</th>
-                            <th>Meta mensual Nuevos</th>
-                            <th>Meta mensual Recurrentes</th>
-                            <th>Opcion</th>
+                            <th style="background-color:greenyellow">Meta mensual Nuevos</th>
+                            <th style="background-color:cyan;">Meta mensual Recurrentes</th>
                         </thead>
                         <tbody class="text-center">
                             <?php
@@ -190,8 +189,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <td><?php echo $resumen['municipio']; ?></td>
                                     <td><?php echo $resumen['periodo']; ?></td>
                                     <td><?php echo $resumen['meses']; ?></td>
-                                    <td style="background-color:lightgreen;"><?php echo $resumen['nuevo']; ?></td>
-                                    <td style="background-color:lightsalmon;"><?php echo $resumen['recurrente']; ?></td>
+                                    <th scope="" style="background-color:greenyellow"><?php echo $resumen['nuevo']; ?></th>
+                                    <th scope="" style="background-color:cyan;"><?php echo $resumen['recurrente']; ?></th>
                                 </tr>
                             <?php
                             }

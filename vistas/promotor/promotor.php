@@ -3,7 +3,9 @@ include_once('../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
-    header('Location: ../error.php');
+    header('Location: ../../error.php');
+} else if($_SESSION['rol'] != 'R007'){
+    header('Location: ../../error.php');
 }
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
@@ -37,7 +39,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <div id="main">
             <header class="mb-1">
                 <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
+                    <strong class="bi bi-justify fs-3"></strong>
                 </a>
             </header>
             <div class="page-heading">
@@ -55,7 +57,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     <div class="col-md-6">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="../../assets/images/plan.png" width="225">
+                                    <img src="../../assets/images/plan.png" width="225" alt="" >
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

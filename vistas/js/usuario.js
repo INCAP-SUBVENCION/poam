@@ -48,3 +48,14 @@ function agregarUsuario() {
         }
     });
 }
+
+function cambiarContraseña(){
+    var pass_1 = document.getElementById('pass_1').value;
+    var pass_2 = document.getElementById('pass_2').value;
+
+    if(pass_1 != pass_2){
+     
+    }
+
+
+}

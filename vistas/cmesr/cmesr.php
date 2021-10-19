@@ -40,7 +40,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <div id="main">
             <header class="mb-1">
                 <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
+                    <em class="bi bi-justify fs-3"></em>
                 </a>
             </header>
             <div class="page-heading">
@@ -58,7 +58,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <div class="col-md-4">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="../../assets/images/plan.png" width="125">
+                                    <img src="../../assets/images/plan.png" width="125" alt="">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -73,13 +73,13 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <div class="col-md-4">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="../../assets/images/plann.png" width="125">
+                                    <img src="../../assets/images/plann.png" width="125" alt="">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h6 class="card-title">Plan Operativo Anual</h6>
                                         <div class="d-grid gap-2">
-                                            <a href="poa/poa.php" class="btn btn-sm btn-danger btn-lg"> POA</a>
+                                            <a href="poa/poa.php" class="btn btn-sm btn-primary btn-lg"> POA</a>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <div class="col-md-4">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="../../assets/images/meta.png" width="150">
+                                    <img src="../../assets/images/meta.png" width="150" alt="">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

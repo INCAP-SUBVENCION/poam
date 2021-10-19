@@ -1,28 +1,22 @@
-<table class="table table-bordered border-primary">
-    <thead class="text-center border-light" style="background-color:dimgray;">
-        <tr>
-            <td colspan="6" class="text-white">DATOS PRINCIPALES </td>
-            <td colspan="11" class="text-white">INSUMOS PROYECTADOS POR MES</td>
-        </tr>
-        <tr style="font-size: 11px; color:azure;">
-            <th>#</th>
-            <th>Mes</th>
-            <th>Municipio</th>
-            <th>Nuevos</th>
-            <th>Recurrentes</th>
-            <th>Total</th>
-            <th>Condon natural</th>
-            <th>Condon sabor</th>
-            <th>Condon femenino</th>
-            <th>Lubricantes</th>
-            <th>Prueba VIH</th>
-            <th>Auto prueba VIH</th>
-            <th>Reactivos esperados</th>
-            <th>Prueba Sifilis</th>
-            <th>Observaciones</th>
-            <th>Estado</th>
-            <th>ACTION</th>
-        </tr>
+<table class="table table-hover table-bordered" id="pom_periodo_1" aria-describedby="">
+    <thead style="font-size: 12px;">
+        <th scope="">#</th>
+        <th scope="">Mes</th>
+        <th scope="">Municipio</th>
+        <th scope="">Nuevos</th>
+        <th scope="">Recurrentes</th>
+        <th scope="">Total</th>
+        <th scope="">Condon natural</th>
+        <th scope="">Condon sabor</th>
+        <th scope="">Condon femenino</th>
+        <th scope="">Lubricantes</th>
+        <th scope="">Prueba VIH</th>
+        <th scope="">Auto prueba VIH</th>
+        <th scope="">Reactivos esperados</th>
+        <th scope="">Prueba Sifilis</th>
+        <th scope="">Observaciones</th>
+        <th scope="">Estado</th>
+        <th scope="">ACTION</th>
     </thead>
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
@@ -38,44 +32,45 @@
         if ($res = $enlace->query($consult)) {
             while ($periodo_1 = $res->fetch_assoc()) {
         ?>
-                <tr>
-                    <td><?php echo $cont++; ?></td>
-                    <td><?php echo $periodo_1['mes']; ?></td>
-                    <td><?php echo $periodo_1['municipio']; ?></td>
-                    <td><?php echo $periodo_1['nuevo']; ?></td>
-                    <td><?php echo $periodo_1['recurrente']; ?></td>
-                    <th><?php echo round($periodo_1['total'], 2); ?></th>
-                    <td><?php echo $periodo_1['cnatural']; ?></td>
-                    <td><?php echo $periodo_1['csabor']; ?></td>
-                    <td><?php echo $periodo_1['cfemenino']; ?></td>
-                    <td><?php echo $periodo_1['lubricante']; ?></td>
-                    <td><?php echo $periodo_1['pruebaVIH']; ?></td>
-                    <td><?php echo $periodo_1['autoPrueba']; ?></td>
-                    <td><?php echo $periodo_1['reactivoE']; ?></td>
-                    <td><?php echo $periodo_1['sifilis']; ?></td>
-                    <td><?php echo $periodo_1['observacion']; ?></td>
-                    <th><?php if ($periodo_1['estado'] == 'ES01') {
-                            echo '<p style="color: dodgerblue;"><i class="bi bi-node-plus-fill"></i> Creado</p>';
-                        } else if ($periodo_1['estado'] == 'ES02') {
-                            echo '<p style="color: orange;"><i class="bi bi-search"></i> En revision </p>';
-                        } else if ($periodo_1['estado'] == 'ES03') {
-                            echo '<p style="color: limegreen;"><i class="bi bi-check-square-fill"></i> Autorizado</p>';
-                        }
-                        ?>
+            <tr>
+                <td><?php echo $cont++; ?></td>
+                <td><?php echo $periodo_1['mes']; ?></td>
+                <td><?php echo $periodo_1['municipio']; ?></td>
+                <td><?php echo $periodo_1['nuevo']; ?></td>
+                <td><?php echo $periodo_1['recurrente']; ?></td>
+                <th scope=""><?php echo round($periodo_1['total'], 2); ?></th>
+                <td><?php echo $periodo_1['cnatural']; ?></td>
+                <td><?php echo $periodo_1['csabor']; ?></td>
+                <td><?php echo $periodo_1['cfemenino']; ?></td>
+                <td><?php echo $periodo_1['lubricante']; ?></td>
+                <td><?php echo $periodo_1['pruebaVIH']; ?></td>
+                <td><?php echo $periodo_1['autoPrueba']; ?></td>
+                <td><?php echo $periodo_1['reactivoE']; ?></td>
+                <td><?php echo $periodo_1['sifilis']; ?></td>
+                <td><?php echo $periodo_1['observacion']; ?></td>
+                <th scope="">
+                <?php if ($periodo_1['estado'] == 'ES01') {
+                    echo '<p style="color: dodgerblue;"><i class="bi bi-node-plus-fill"></i> Creado</p>';
+                    } else if ($periodo_1['estado'] == 'ES02') {
+                        echo '<p style="color: orange;"><i class="bi bi-search"></i> En revision </p>';
+                    } else if ($periodo_1['estado'] == 'ES03') {
+                        echo '<p style="color: limegreen;"><i class="bi bi-check-square-fill"></i> Autorizado</p>';
+                    }
+                ?>
                     </th>
                     <td>
                         <div class="dropdown">
                             <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 12px;">
-                                <i class="bi bi-grid"></i> Opciones
+                                <em class="bi bi-grid"></em> Opciones
                             </a>
                             <?php
                             if ($periodo_1['estado'] == 'ES01') {
                             ?>
                                 <ul class="dropdown-menu" style="font-size: 13px;">
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Editar</a></li>
+                                    <li><a class="dropdown-item" href="#"><em class="bi bi-pencil-square"></em> Editar</a></li>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')" class="btn btn-primary" type="button">Enviar a revision</button> 
+                                            <button onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')" class="btn btn-primary" type="button">Enviar a revision</button>
                                         </div>
                                     </li>
                                 </ul>

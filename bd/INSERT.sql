@@ -415,8 +415,8 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
 #ESTADOS DEL LOS SUBRECEPTORES
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Enviado para Revision', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado y Autorizado', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Revisado y Aprobado', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'En Revision', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado', '', 'estado');
 
 #CALL agregarUsuario(1, "123498742589", "Faustino", "", "Lopez", "Ramos", "37 Calle B 19-16 zona 12, ciudad de Guatemala", "77889911", "correodeprueba@gmail.com", "R001", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);

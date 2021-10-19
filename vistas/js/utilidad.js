@@ -1,7 +1,3 @@
-$(document).ready(function () {
-
-});
-
 /**
  * Funcion que perminte llenar combo con los municipios segun el departamento semestre 1
  */

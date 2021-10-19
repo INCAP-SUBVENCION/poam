@@ -1,30 +1,32 @@
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-4">
+
         <div class="input-group input-group-sm">
-            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
+        <a class="btn btn-success" href="../../php/generarExcelPom.php?periodo=1" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
+            <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
             <input class="form-control" type="text" id="buscador" placeholder="Buscar..." />
         </div>
     </div>
 </div>
-<table class="table table-hover table-bordered" id="pom_periodo_1">
+<table class="table table-hover table-bordered" id="pom_periodo_1" aria-describedby="pom del periodo 1">
     <thead style="font-size: 12px;" class="table-info">
         <tr>
-            <th>#</th>
-            <th>Periodo</th>
-            <th>Mes</th>
-            <th>Municipio</th>
-            <th>Lugar</th>
-            <th>Fecha</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Codigo</th>
-            <th>Subreceptor</th>
-            <th>Nuevos</th>
-            <th>Recurrentes</th>
-            <th>Total</th>
-            <th>Observacion</th>
-            <th>Estado</th>
-            <th>Opcion</th>
+            <th scope>#</th>
+            <th scope>Periodo</th>
+            <th scope>Mes</th>
+            <th scope>Municipio</th>
+            <th scope>Lugar</th>
+            <th scope>Fecha</th>
+            <th scope>Inicio</th>
+            <th scope>Fin</th>
+            <th scope>Codigo</th>
+            <th scope>Subreceptor</th>
+            <th scope>Nuevos</th>
+            <th scope>Recurrentes</th>
+            <th scope>Total</th>
+            <th scope>Observacion</th>
+            <th scope>Estado</th>
+            <th scope>Opcion</th>
 
         </tr>
     </thead>
@@ -55,25 +57,27 @@
                     <td><?php echo $periodo_1['nombres']; ?></td>
                     <td><?php echo $periodo_1['pNuevo']; ?></td>
                     <td><?php echo $periodo_1['pRecurrente']; ?></td>
-                    <th><?php echo round($periodo_1['total'], 2); ?></th>
+                    <th scope><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
-                    <th><?php if ($periodo_1['estado'] == 'ES01') {
-                            echo '<p style="color: dodgerblue;"><i class="bi bi-node-plus-fill"></i> Creado</p>';
+                    <th scope><?php if ($periodo_1['estado'] == 'ES01') {
+                            echo '<p class="text-primary"><i class="bi bi-node-plus-fill"></i> Creado</p>';
                         } else if ($periodo_1['estado'] == 'ES02') {
-                            echo '<p style="color: orange;"><i class="bi bi-search"></i> En revision </p>';
+                            echo '<p class="text-warning"><i class="bi bi-search"></i> En revision </p>';
                         } else if ($periodo_1['estado'] == 'ES03') {
-                            echo '<p style="color: limegreen;"><i class="bi bi-check-square-fill"></i> Autorizado</p>';
+                            echo '<p class="text-info"><i class="bi bi-check"></i> Revisado </p>';
+                        } else if ($periodo_1['estado'] == 'ES04') {
+                            echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Aprobado</p>';
                         }
                         ?>
                     </th>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
-                                <i class="bi bi-gear"></i> Opcion
+                                <em class="bi bi-gear"></em> Opcion
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
-                                        <i class="bi bi-card-list"></i> Detalles</a>
+                                        <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
                                 <?php
                                 if ($periodo_1['estado'] == 'ES01') {

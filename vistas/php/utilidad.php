@@ -1,6 +1,8 @@
 <?php
-header("Content-Type: text/html;charset=utf-8");
 include_once('../../bd/conexion.php');
+header("Content-Type: text/html;charset=utf-8");
+date_default_timezone_set("America/Guatemala");
+session_start();
 
 if (isset($_POST['accion'])) {
     $accion = $_POST['accion'];
@@ -18,9 +20,9 @@ if ($accion == "llenarMunicipio") {
 
     $sql1 = "SELECT * FROM catalogo WHERE categoria = 'municipio' AND descripcion = '$departamento' ORDER BY codigo";
     $resultadom = $enlace->query($sql1);
-    echo "<option value=''>Seleccionar...</option>";
+    echo '<option value="">Seleccionar...</option>';
     while ($municipio = mysqli_fetch_assoc($resultadom)) {
-        echo '<option value="' . $municipio['codigo'] . '">' . $municipio['nombre'] . '</option>';
+        echo '<option value="'.$municipio['codigo'].'">'.$municipio['nombre'].'</option>';
     }
     $resultadom->close();
 }

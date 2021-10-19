@@ -37,8 +37,9 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:firebrick;">
-            <img src="../../../assets/images/vihinvertido.png" width="35">
+        <nav class="navbar navbar-dark" style="background-color:darkblue;">
+            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
+
             <h2 class="text-white">PLAN OPERATIVO ANUAL -POA-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
@@ -48,19 +49,20 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
-                <a class="navbar-brand" href="../cmesr.php"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
                     <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-fill"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                        <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
+                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
                     </ul>
                 </div>
             <?php }
             $res1->close(); ?>
+            <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
 
 
@@ -84,7 +86,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     ?>
                     <div class="col-md-6">
                         <div class="card text-dark">
-                            <div class="text-white text-center" style="background-color:firebrick;">DATOS PRINCIPALES</div>
+                            <div class="text-white text-center" style="background-color:darkblue;">DATOS PRINCIPALES</div>
                             <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -151,7 +153,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     </div>
                     <div class="col-md-6">
                         <div class="card text-dark">
-                            <div class="text-white text-center" style="background-color:firebrick;">PROYECCION DE INSUMOS</div>
+                            <div class="text-white text-center" style="background-color:darkblue;">PROYECCION DE INSUMOS</div>
                             <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -195,7 +197,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <div class="form-group input-group-sm col-sm-2 text-center">
                                         <br>
                                         <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
-                                            <i class="bi bi-save-fill"></i> Guardar</button>
+                                            <em class="bi bi-save-fill"></em> Guardar</button>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2 text-center">
                                         <br>
@@ -211,27 +213,27 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button">
-                        <i class="bi bi-calendar-range-fill"></i> Periodo I</button>
+                        <em class="bi bi-calendar-range-fill"></em> Periodo I</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button">
-                        <i class="bi bi-calendar-range-fill"></i> Periodo II</button>
+                        <em class="bi bi-calendar-range-fill"></em> Periodo II</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
-                        <i class="bi bi-calendar-range-fill"></i> Periodo III</button>
+                        <em class="bi bi-calendar-range-fill"></em> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button">
-                        <i class="bi bi-calendar-range-fill"></i> Periodo IV</button>
+                        <em class="bi bi-calendar-range-fill"></em> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button">
-                        <i class="bi bi-calendar-range-fill"></i> Periodo V</button>
+                        <em class="bi bi-calendar-range-fill"></em> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button">
-                        <i class="bi bi-calendar-range-fill"></i> Periodo VI</button>
+                        <em class="bi bi-calendar-range-fill"></em> Periodo VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">

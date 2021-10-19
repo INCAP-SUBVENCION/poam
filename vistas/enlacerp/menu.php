@@ -1,6 +1,6 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper">
-    <div class="sidebar-header">
+        <div class="sidebar-header">
             <div class="text-center">
 
                 <img src="../../assets/images/vihinvertido.png" alt="">
@@ -20,7 +20,6 @@
                         </button>
                         <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item text-info" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
-                            <li><a class="dropdown-item text-warning" href="#"><i class="bi bi-check2-square"></i> Permisos</a></li>
                             <li><a class="dropdown-item text-danger" href="salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
                         </ul>
                     </div>
