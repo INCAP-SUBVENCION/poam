@@ -201,7 +201,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2 text-center">
                                         <br>
-                                        <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square-fill"></i> Cancelar</button>
+                                        <button type="reset" class="btn btn-sm btn-outline-danger"><em class="bi bi-x-square-fill"></em> Cancelar</button>
                                     </div>
                                 </div>
                             </div>
@@ -274,6 +274,24 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/poa.js"></script>
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
+
+        <!-- Script para la busqueda -->
+        <script type="text/javascript">
+            jQuery("#buscador_1").keyup(function() {
+                if (jQuery(this).val() != "") {
+                    jQuery("#poa_periodo_1 tbody>tr").hide();
+                    jQuery("#poa_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+                } else {
+                    jQuery("#poa_periodo_1 tbody>tr").show();
+                }
+            });
+
+            jQuery.extend(jQuery.expr[":"], {
+                "contiene-palabra": function(elem, i, match, array) {
+                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                }
+            });
+        </script>
     </body>
 
 </html>

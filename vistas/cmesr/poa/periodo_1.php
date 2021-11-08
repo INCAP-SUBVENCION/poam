@@ -1,4 +1,12 @@
-<table class="table table-hover table-bordered" id="pom_periodo_1" aria-describedby="">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="col-sm-4">
+        <div class="input-group input-group-sm">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
+            <input class="form-control" type="text" id="buscador_1" placeholder="Buscar..." />
+        </div>
+    </div>
+</div>
+<table class="table table-hover table-bordered" id="poa_periodo_1" aria-describedby="">
     <thead style="font-size: 12px;">
         <th scope="">#</th>
         <th scope="">Mes</th>
@@ -60,7 +68,7 @@
                     </th>
                     <td>
                         <div class="dropdown">
-                            <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 12px;">
+                            <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 11px;">
                                 <em class="bi bi-grid"></em> Opciones
                             </a>
                             <?php

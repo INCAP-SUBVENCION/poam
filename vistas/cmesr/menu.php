@@ -1,6 +1,6 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper">
-    <div class="sidebar-header">
+        <div class="sidebar-header">
             <div class="text-center">
 
                 <img src="../../assets/images/vihinvertido.png" alt="">
@@ -19,8 +19,8 @@
                             <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
                         </button>
                         <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item text-info" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
-                            <li><a class="dropdown-item text-danger" href="salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                            <li><a class="dropdown-item text-info" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
+                            <li><a class="dropdown-item text-danger" href="salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
                         </ul>
                     </div>
                 <?php } ?>
@@ -29,21 +29,17 @@
 
         <div class="sidebar-menu">
             <ul class="menu">
-
-                <li class="sidebar-item  ">
-                    <a href="cmesr.php" class='sidebar-link'>
-                        <i class="bi bi-calendar4-week"></i><span>Principal</span>
-                    </a>
-                </li>
             </ul>
+
             <footer>
+                <img src="../../assets/images/logo.png" width="200" alt="">
                 <div class="footer clearfix text-muted">
                     <div class="float-start">
                         <p>Subvencion 2021 &copy; incap.int</p>
                     </div>
                 </div>
-                <img src="../../assets/images/logo.png" width="200">
-                
+
+
             </footer>
         </div>
     </div>

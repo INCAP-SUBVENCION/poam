@@ -139,7 +139,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
         <!-- Script para la busqueda -->
         <script type="text/javascript">
-            jQuery("#buscador").keyup(function() {
+            jQuery("#buscador_1").keyup(function() {
                 if (jQuery(this).val() != "") {
                     jQuery("#pom_periodo_1 tbody>tr").hide();
                     jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();

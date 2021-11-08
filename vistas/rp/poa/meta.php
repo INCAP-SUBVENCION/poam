@@ -102,7 +102,7 @@ $SUBRECEPTOR = $_GET['id'];
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered" aria-describedby="">
                         <thead class="text-center">
                             <th>#</th>
                             <th>Municipio</th>
@@ -110,7 +110,6 @@ $SUBRECEPTOR = $_GET['id'];
                             <th># Meses</th>
                             <th>Meta mensual Nuevos</th>
                             <th>Meta mensual Recurrentes</th>
-                            <th>Opcion</th>
                         </thead>
                         <tbody class="text-center">
                             <?php

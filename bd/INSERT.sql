@@ -365,7 +365,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('2217', 
 #ROLES
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R001',  'Administrador', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R002',  'Especilista Programatica', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R003',  'Enlace Programatica', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R003',  'Enlace Programatica RP', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004',  'Monitoreo y Evaluacion de RP', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Coordinador de Monitoreo y Evaluacion del Subreceptor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R006',  'Supervisor', ' ', 'rol');
@@ -413,10 +413,15 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP63', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP64', 'Octubre', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 'Noviembre', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
-#ESTADOS DEL LOS SUBRECEPTORES
+#ESTADOS
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'En Revision', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Revisado', 'Revisado por el supervisor', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Autoriza', 'Autorizado por el CMESR', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Revisado', 'Revisado por el Enlace Programatico', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Aprobado', 'Aprobado por el Especialista Progrmatica', 'rdysf');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Recalendarizado', 'Actividad cambio de fecha', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Cancelado', 'Actividad cancelada', 'estado');
+
+
 
 #CALL agregarUsuario(1, "123498742589", "Faustino", "", "Lopez", "Ramos", "37 Calle B 19-16 zona 12, ciudad de Guatemala", "77889911", "correodeprueba@gmail.com", "R001", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);

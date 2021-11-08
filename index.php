@@ -34,20 +34,20 @@ header("Content-Type: text/html;charset=utf-8");
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="text-center">
-                        <img src="assets/images/vih.png" width="150">
+                        <img src="assets/images/vih.png" width="150" alt="">
                     </div>
                     <h4 class="auth-title text-center">Iniciar sesion</h4>
                     <form name="login" id="login" method="POST" action="javascript: login();">
                         <div class="form-group position-relative has-icon-left">
                             <input type="text" name="usuario" id="usuario" class="form-control form-control-xl" placeholder="Usuario">
                             <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
+                                <em class="bi bi-person"></em>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left">
                             <input type="password" name="pass" id="pass" class="form-control form-control-xl" placeholder="Contraseña">
                             <div class="form-control-icon">
-                                <i class="bi bi-shield-lock"></i>
+                                <em class="bi bi-shield-lock"></em>
                             </div>
                         </div>
                         <input type="submit" value="Entrar" class="btn btn-primary btn-block btn-lg shadow-lg">

@@ -2,9 +2,10 @@
     <div class="col-sm-4">
         <div class="input-group input-group-sm">
             <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
-            <input class="form-control" type="text" id="buscador" placeholder="Buscar..." />
+            <input class="form-control" type="text" id="buscador_1" placeholder="Buscar..." />
         </div>
     </div>
+    <div></div>
 </div>
 <table class="table table-hover table-bordered" id="pom_periodo_1" aria-describedby="Tabla de poma del periodo 1">
 
