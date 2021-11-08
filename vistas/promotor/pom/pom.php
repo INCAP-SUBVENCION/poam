@@ -77,8 +77,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <div class="form-group input-group-sm col-sm-2">
                             <select name="cperiodo" id="cperiodo" class="form-select" style="font-size: 12px;">
                                 <option value="">Seleccionar periodo</option>
-                                <option value="1">Periodo I</option>
-                                <option value="2">Periodo II</option>
                                 <option value="3">Periodo III</option>
                                 <option value="4">Periodo IV</option>
                                 <option value="5">Periodo V</option>
@@ -111,8 +109,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
                 </div>
                 <div class="col-md-12">
-                    <table class="table table-bordered">
-
+                    <table class="table table-bordered" aria-describedby="">
+                        <thead>
+                            <th id=""></th>
+                        </thead>
                         <tbody class="text-center" style="font-size: 10px;" id="resultadoPOA">
 
                         </tbody>
@@ -261,44 +261,30 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
+
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button">
-                        <em class="bi bi-calendar4-week"></em> Periodo I</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button">
-                        <i class="bi bi-calendar4-week"></i> Periodo II
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
-                        <i class="bi bi-calendar4-week"></i> Periodo III</button>
+                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
+                        <em class="bi bi-calendar4-week"></em> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button">
-                        <i class="bi bi-calendar4-week"></i> Periodo IV</button>
+                        <em class="bi bi-calendar4-week"></em> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button">
-                        <i class="bi bi-calendar4-week"></i> Periodo V</button>
+                        <em class="bi bi-calendar4-week"></em> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button">
-                        <i class="bi bi-calendar4-week"></i> periodo VI</button>
+                        <em class="bi bi-calendar4-week"></em> periodo VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-periodo_1" role="tabpanel" aria-labelledby="pills-periodo_1-tab">
-                    <?php include 'periodo_1.php'; ?>
-                </div>
-                <div class="tab-pane fade" id="pills-periodo_2" role="tabpanel" aria-labelledby="pills-periodo_2-tab">
-                    <?php include 'periodo_2.php'; ?>
-                </div>
-                <div class="tab-pane fade" id="pills-periodo_3" role="tabpanel" aria-labelledby="pills-periodo_3-tab">
-                    <p>Aun no habilitado</p>
+                <div class="tab-pane fade show active" id="pills-periodo_3" role="tabpanel" aria-labelledby="pills-periodo_3-tab">
+                    <?php include 'periodo_3.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_4" role="tabpanel" aria-labelledby="pills-periodo_4-tab">
-                    <p>Aun no habilitado</p>
+                    <?php include 'periodo_4.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_5" role="tabpanel" aria-labelledby="pills-periodo_5-tab">
                     <p>Aun no habilitado</p>
@@ -327,27 +313,28 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
 
-<!-- Script para la busqueda -->
-<script type="text/javascript">
-/** Busqueda del periodo 1 */
-    jQuery("#buscador").keyup(function() {
-        if (jQuery(this).val() != "") {
-            jQuery("#pom_periodo_1 tbody>tr").hide();
-            jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-        } else {
-            jQuery("#pom_periodo_1 tbody>tr").show();
-            }
+        <!-- Script para la busqueda -->
+        <script type="text/javascript">
+            /** Busqueda del periodo 3 */
+            jQuery("#buscador").keyup(function() {
+                if (jQuery(this).val() != "") {
+                    jQuery("#pom_periodo_1 tbody>tr").hide();
+                    jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+                } else {
+                    jQuery("#pom_periodo_1 tbody>tr").show();
+                }
             });
+
+            /** Busqueda del periodo 4 */
             jQuery.extend(jQuery.expr[":"], {
                 "contiene-palabra": function(elem, i, match, array) {
                     return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
                 }
             });
-/** Busqueda del periodo 2 */
-/** Busqueda del periodo 3 */
-/** Busqueda del periodo 4 */
-/** Busqueda del periodo 5 */
-/** Busqueda del periodo 6 */
-</script>
+
+            /** Busqueda del periodo 5 */
+            /** Busqueda del periodo 6 */
+        </script>
     </body>
+
 </html>

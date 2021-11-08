@@ -85,8 +85,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                 <label class="form-label">Periodo</label>
                                 <select name="periodo" id="periodo" class="form-control" style="font-size: 12px;" required>
                                     <option value="">Seleccionar ...</option>
-                                    <option value="1">Periodo I</option>
-                                    <option value="2">Periodo II</option>
                                     <option value="3">Periodo III</option>
                                     <option value="4">Periodo IV</option>
                                     <option value="5">Periodo V</option>
@@ -140,15 +138,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-semestre_1-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_1" type="button" role="tab" aria-controls="pills-semestre_1" aria-selected="true">
-                        <i class="bi bi-fullscreen"></i> PERIODO I</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-semestre_2-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_2" type="button" role="tab" aria-controls="pills-semestre_2" aria-selected="false">
-                        <i class="bi bi-fullscreen"></i> PERIODO II</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-semestre_3-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_3" type="button" role="tab" aria-controls="pills-semestre_3" aria-selected="true">
+                    <button class="btn btn-sm btn-secundary active" id="pills-semestre_3-tab" data-bs-toggle="pill" data-bs-target="#pills-semestre_3" type="button" role="tab" aria-controls="pills-semestre_3" aria-selected="true">
                         <i class="bi bi-fullscreen"></i> PERIODO III</button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -165,7 +155,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-semestre_1" role="tabpanel" aria-labelledby="pills-semestre_1-tab">
+
+                <div class="tab-pane fade show active" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
                     <table class="table table-hover table-bordered">
                         <thead class="text-center">
                             <th>#</th>
@@ -180,7 +171,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             $contador1 = 1;
                             $consultaR = "SELECT t3.nombre as municipio, t1.periodo, t1.meses, t1.nuevo, t1.recurrente FROM resumen t1
                             LEFT JOIN cobertura t2 ON t2.idCobertura = t1.cobertura_id
-                            LEFT JOIN catalogo t3 ON t3.codigo = t2.municipio WHERE t2.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 1";
+                            LEFT JOIN catalogo t3 ON t3.codigo = t2.municipio WHERE t2.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 3";
                             $resultadoR = $enlace->query($consultaR);
                             while ($resumen = $resultadoR->fetch_assoc()) {
                             ?>
@@ -198,14 +189,38 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="pills-semestre_2" role="tabpanel" aria-labelledby="pills-semestre_2-tab">
-                    <p>Periodo 2 aun no habilitado</p>
-                </div>
-                <div class="tab-pane fade" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
-                    <p>Periodo 3 aun no habilitado</p>
-                </div>
                 <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
-                    <p>Periodo 4 aun no habilitado</p>
+                    <table class="table table-hover table-bordered" aria-describedby="">
+                        <thead class="text-center">
+                            <th>#</th>
+                            <th>Municipio</th>
+                            <th>Periodo</th>
+                            <th># Meses</th>
+                            <th style="background-color:greenyellow">Meta mensual Nuevos</th>
+                            <th style="background-color:cyan;">Meta mensual Recurrentes</th>
+                        </thead>
+                        <tbody class="text-center">
+                            <?php
+                            $contador1 = 1;
+                            $consultaR = "SELECT t3.nombre as municipio, t1.periodo, t1.meses, t1.nuevo, t1.recurrente FROM resumen t1
+                            LEFT JOIN cobertura t2 ON t2.idCobertura = t1.cobertura_id
+                            LEFT JOIN catalogo t3 ON t3.codigo = t2.municipio WHERE t2.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 4";
+                            $resultadoR = $enlace->query($consultaR);
+                            while ($resumen = $resultadoR->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $contador1++; ?></td>
+                                    <td><?php echo $resumen['municipio']; ?></td>
+                                    <td><?php echo $resumen['periodo']; ?></td>
+                                    <td><?php echo $resumen['meses']; ?></td>
+                                    <th scope="" style="background-color:greenyellow"><?php echo $resumen['nuevo']; ?></th>
+                                    <th scope="" style="background-color:cyan;"><?php echo $resumen['recurrente']; ?></th>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="tab-pane fade" id="pills-semestre_5" role="tabpanel" aria-labelledby="pills-semestre_5-tab">
                     <p>Periodo 5 aun no habilitado</p>

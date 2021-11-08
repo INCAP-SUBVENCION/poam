@@ -367,7 +367,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R001', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R002',  'Especilista Programatica', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R003',  'Enlace Programatica RP', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004',  'Monitoreo y Evaluacion de RP', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Coordinador de Monitoreo y Evaluacion del Subreceptor', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Coordinador de Monitoreo y Evaluacion de SR', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R006',  'Supervisor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R007',  'Promotor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Financiero', ' ', 'rol');
@@ -418,7 +418,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Revisado', 'Revisado por el supervisor', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Autoriza', 'Autorizado por el CMESR', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Revisado', 'Revisado por el Enlace Programatico', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Aprobado', 'Aprobado por el Especialista Progrmatica', 'rdysf');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Aprobado', 'Aprobado por el Especialista Progrmatica', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Recalendarizado', 'Actividad cambio de fecha', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Cancelado', 'Actividad cancelada', 'estado');
 

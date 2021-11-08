@@ -93,8 +93,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <label class="form-label">Periodo:</label>
                                         <select name="periodo" id="periodo" class="form-select" style="font-size: 12px;" onchange="periodo_mes();" required>
                                             <option value="">Seleccionar ...</option>
-                                            <option value="1">Periodo I</option>
-                                            <option value="2">Periodo II</option>
                                             <option value="3">Periodo III</option>
                                             <option value="4">Periodo IV</option>
                                             <option value="5">Periodo V</option>
@@ -211,16 +209,9 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </form>
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
+
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_1-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_1" type="button">
-                        <em class="bi bi-calendar-range-fill"></em> Periodo I</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-periodo_2-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_2" type="button">
-                        <em class="bi bi-calendar-range-fill"></em> Periodo II</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
+                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
                         <em class="bi bi-calendar-range-fill"></em> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -237,17 +228,12 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-periodo_1">
-                    <?php include 'periodo_1.php'; ?>
-                </div>
-                <div class="tab-pane fade" id="pills-periodo_2">
-                    <?php include 'periodo_2.php'; ?>
-                </div>
-                <div class="tab-pane fade" id="pills-periodo_3">
-                    <p>PERIODO 3 no habilitado</p>
+
+                <div class="tab-pane fade show active" id="pills-periodo_3">
+                    <?php include 'periodo_3.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_4">
-                    <p>PERIODO 4 no habilitado</p>
+                    <?php include 'periodo_4.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_5">
                     <p>PERIODO 5 no habilitado</p>

@@ -37,7 +37,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <div id="main">
             <header class="mb-1">
                 <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
+                    <em class="bi bi-justify fs-3"></em>
                 </a>
             </header>
             <div class="page-heading">
@@ -60,7 +60,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="text-center">
-                                        <img src="../../assets/images/p.png" width="200">
+                                        <img src="../../assets/images/p.png" width="200" alt="">
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title text-center"><?php echo $fila['nombre']; ?></h5>

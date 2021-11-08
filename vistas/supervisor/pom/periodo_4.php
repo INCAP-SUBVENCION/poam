@@ -25,13 +25,12 @@
         <?php
         $contap_1 = 1;
         $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t5.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
-        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t1.estado FROM estado t1
-        LEFT JOIN pom t2 ON t2.idPom = t1.pom_id
+        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.estado FROM pom t2
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
-        LEFT JOIN poa t7 ON t7.idPoa = t1.poa_id
+        LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo = 2 AND t7.subreceptor_id = $SUBRECEPTOR";
         if ($resp_1 = $enlace->query($sqlp_1)) {
             while ($periodo_1 = $resp_1->fetch_assoc()) {
@@ -68,7 +67,7 @@
                                 <i class="bi bi-gear"></i> Opcion
                             </button>
                             <ul class="dropdown-menu bg-info">
-                                <li><a class="dropdown-item" href="detalle.php?id=<?php echo $periodo_1['idPom']; ?>">Detalles</a></li>
+                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">Detalles</a></li>
                                 <li><a class="dropdown-item" href="#">Historial</a></li>
                                 <li><a class="dropdown-item" href="#">Cambiar de estado</a></li>
                             </ul>
