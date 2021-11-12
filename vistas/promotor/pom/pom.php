@@ -241,9 +241,17 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <label class="form-label">Prueba sifilis</label>
                                     <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-5">
+                                <div class="form-group input-group-sm col-sm-4">
                                     <label class="form-label">Observaciones / otros</label>
                                     <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
+                                </div>
+                                <div class="form-group input-group-sm col-sm-1 text-center">
+                                    <label class="form-label" style="font-size: 10px;">Unidad Movil</label>
+                                    <select name="movil" id="movil" class="form-select" style="font-size: 12px;">
+                                        <option value="0">NO</option>
+                                        <option value="1">SI</option>
+                                    </select>
+
                                 </div>
                                 <div class="form-group input-group-sm col-sm-3">
                                     <br>

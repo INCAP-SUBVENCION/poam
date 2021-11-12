@@ -87,11 +87,24 @@ if ($accion == "agregarResumen") {
     } else {
 
         $sqlRes = "CALL agregarResumen($cobertura, $periodo, $meses, $metaNuevos, $metaRecurrentes)";
-        
+
         if ($enlace->query($sqlRes) === TRUE) {
             echo "Exito";
         } else {
             echo "Error";
         }
     }
+}
+/**
+ * Metodo que permite enviar todo
+ */
+if ($accion == "enviarRevision") {
+  $subreceptor  = $_POST['subreceptor'];
+  $periodo      = $_POST['periodo'];
+  $estado = $_POST['estado'];
+  if($enlace->query("UPDATE poa SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo") === TRUE){
+    echo "Exito";
+  } else {
+    echo "Error";
+  }
 }

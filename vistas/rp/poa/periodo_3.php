@@ -1,29 +1,32 @@
-<table class="table table-bordered border-primary">
-    <thead class="text-center border-light" style="background-color:dimgray;">
-        <tr>
-            <td colspan="6" class="text-white">DATOS PRINCIPALES </td>
-            <td colspan="10" class="text-white">INSUMOS PROYECTADOS POR MES</td>
-            <td style="font-size: 12px;"><button class="btn btn-sm btn-primary">Autorizar todo</button></td>
-        </tr>
-        <tr style="font-size: 11px; color:azure;">
-            <th>#</th>
-            <th>Mes</th>
-            <th>Municipio</th>
-            <th>Nuevos</th>
-            <th>Recurrentes</th>
-            <th>Total</th>
-            <th>Condon natural</th>
-            <th>Condon sabor</th>
-            <th>Condon femenino</th>
-            <th>Lubricantes</th>
-            <th>Prueba VIH</th>
-            <th>Auto prueba VIH</th>
-            <th>Reactivos esperados</th>
-            <th>Prueba Sifilis</th>
-            <th>Observaciones</th>
-            <th>Estado</th>
-            <th>Opcion</th>
-        </tr>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="col-sm-5">
+        <div class="input-group input-group-sm">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
+            <input class="form-control" type="text" id="buscador_1" placeholder="Buscar..." />
+            <a class="btn btn-success" href="../../php/excel/generarExcelPoa.php?periodo=1" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
+
+        </div>
+    </div>
+</div>
+<table class="table table-hover table-bordered" id="poa_periodo_1" aria-describedby="">
+    <thead class="text-center" style="font-size: 12px;">
+        <th scope="">#</th>
+        <th scope="">Mes</th>
+        <th scope="">Municipio</th>
+        <th scope="">Nuevos</th>
+        <th scope="">Recurrentes</th>
+        <th scope="">Total</th>
+        <th scope="">Condon natural</th>
+        <th scope="">Condon sabor</th>
+        <th scope="">Condon femenino</th>
+        <th scope="">Lubricantes</th>
+        <th scope="">Prueba VIH</th>
+        <th scope="">Auto prueba VIH</th>
+        <th scope="">Reactivos esperados</th>
+        <th scope="">Prueba Sifilis</th>
+        <th scope="">Observaciones</th>
+        <th scope="">Estado</th>
+        <th scope="">ACTION</th>
     </thead>
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
@@ -35,7 +38,7 @@
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 1 AND estado = 'ES02' ORDER BY mes";
+	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 3 AND t1.estado='ES03' OR t1.estado='ES05' ORDER BY mes";
         if ($res = $enlace->query($consult)) {
             while ($periodo_1 = $res->fetch_assoc()) {
         ?>
@@ -45,7 +48,7 @@
                     <td><?php echo $periodo_1['municipio']; ?></td>
                     <td><?php echo $periodo_1['nuevo']; ?></td>
                     <td><?php echo $periodo_1['recurrente']; ?></td>
-                    <th><?php echo round($periodo_1['total'], 2); ?></th>
+                    <th scope=""><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['cnatural']; ?></td>
                     <td><?php echo $periodo_1['csabor']; ?></td>
                     <td><?php echo $periodo_1['cfemenino']; ?></td>
@@ -56,31 +59,44 @@
                     <td><?php echo $periodo_1['sifilis']; ?></td>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <th scope="">
-                <?php if ($periodo_1['estado'] == 'ES02') {
-                        echo '<p style="color: orange;"><i class="bi bi-search"></i> Pendiente de autorizar </p>';
-                    } else {
-                        echo '<p style="color: limegreen;"><i class="bi bi-check-square-fill"></i> Autorizado</p>';
-                    }
-                ?>
+                        <?php if ($periodo_1['estado'] == 'ES03') {
+                            echo '<p style="color: dodgerblue;">Revisar</p>';
+                        } else if ($periodo_1['estado'] == 'ES05') {
+                            echo '<p style="color: blue;">Aprobado </p>';
+                        }
+                        ?>
                     </th>
                     <td>
                         <div class="dropdown">
-                            <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 12px;">
-                                <em class="bi bi-grid"></em> Opcion
+                            <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 11px;">
+                                <em class="bi bi-grid"></em> Opciones
                             </a>
-                            <ul class="dropdown-menu" style="font-size: 13px;">
-                                    <li><a class="dropdown-item" href="#"><em class="bi bi-pencil-square"></em> Editar</a></li>
+                            <?php
+                            if ($periodo_1['estado'] == 'ES03') {
+                            ?>
+                                <ul class="dropdown-menu">
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')" class="btn btn-primary" type="button">Autorizar</button>
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES05')">
+                                                <em class="bi bi-arrow-right-circle"></em> Aprobar</button>
                                         </div>
                                     </li>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="enviarRevision(<?php echo $SUBRECEPTOR; ?>, 3, 'ES05')">
+                                                <em class="bi bi-arrow-clockwise"></em> Aprobar todo</button>
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"><em class="bi bi-pencil-square"></em> Editar</a></li>
                                 </ul>
+                            <?php } ?>
                         </div>
                     </td>
+
                 </tr>
         <?php }
             $res->close();
         }  ?>
     </tbody>
 </table>
+<?php include '../modal/cambiarEstadoPoa.php'; ?>

@@ -1,5 +1,5 @@
 <?php
-include_once('../../bd/conexion.php');
+include_once('../../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 date_default_timezone_set("America/Guatemala");
 session_start();

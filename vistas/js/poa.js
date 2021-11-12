@@ -140,3 +140,31 @@ function agregarResumen() {
     });
 }
 
+function enviarRevision(sub, per, es) {
+    var subreceptor = sub;
+    var periodo = per;
+    var estado = es;
+    var accion = "enviarRevision";
+    if(confirm('Esta seguro que desea enviar todos a revision')){
+        $.ajax({
+            type: "POST",
+            url: "../../php/poa.php",
+            data:{
+                accion: accion,
+                subreceptor: subreceptor,
+                periodo: periodo,
+                estado: estado
+            },
+            success: function (datos) {
+                if (datos == 'Exito') {
+                    alertify.success('¡ENVIADO A REVISION!...');
+                    window.location.reload('poa.php');
+                } else {
+                    alertify.error("¡ERROR!... No se pudo enviar a REVISION");
+                }
+    
+            }
+        });
+    }
+}
+

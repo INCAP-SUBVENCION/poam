@@ -159,6 +159,7 @@ function agregarPOM() {
     var sifilis = document.getElementById('sifilis').value;
     var observacion = document.getElementById('observacion').value;
     var subreceptor = document.getElementById('subreceptor').value;
+    var movil = document.getElementById('movil').value;
 
     var accion = "agregarPOM";
 
@@ -188,7 +189,8 @@ function agregarPOM() {
             reactivoEs: reactivoEs,
             sifilis: sifilis,
             observacion: observacion,
-            subreceptor: subreceptor
+            subreceptor: subreceptor,
+            movil: movil
         },
         success: function (datos) {
             if (datos == 'Exito') {
@@ -230,4 +232,37 @@ function obtenerCantidadPromotor() {
             document.getElementById('dias').value = dias;
         }
     });
+}
+/**
+ * 
+ * @param {*} sub identificador del subreceptor
+ * @param {*} per identificador del periodo
+ * @param {*} es  identificador del estado
+ */
+function enviarTodoPom(sub, per, es) {
+    var subreceptor = sub;
+    var periodo = per;
+    var estado = es;
+    var accion = "enviarTodoPom";
+    if(confirm('Esta seguro que desea enviar todos a revision')){
+        $.ajax({
+            type: "POST",
+            url: "../../php/pom.php",
+            data:{
+                accion: accion,
+                subreceptor: subreceptor,
+                periodo: periodo,
+                estado: estado
+            },
+            success: function (datos) {
+                if (datos == 'Exito') {
+                    alertify.success('¡ENVIADO A REVISION!...');
+                    window.location.reload('poa.php');
+                } else {
+                    alertify.error("¡ERROR!... No se pudo enviar a REVISION");
+                }
+    
+            }
+        });
+    }
 }

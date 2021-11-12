@@ -416,11 +416,12 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 
 #ESTADOS
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado', '', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Revisado', 'Revisado por el supervisor', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Autoriza', 'Autorizado por el CMESR', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Revisado', 'Revisado por el Enlace Programatico', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Aprobado', 'Aprobado por el Especialista Progrmatica', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Recalendarizado', 'Actividad cambio de fecha', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Cancelado', 'Actividad cancelada', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES08', 'Supervisado', 'Actividad Supervisado', 'estado');
 
 
 

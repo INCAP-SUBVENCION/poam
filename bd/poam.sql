@@ -87,7 +87,7 @@ BEGIN
     IF (idEs <= 0) THEN SET idE := 1;
     ELSE SET idE := idEs + 1;
     END IF;
-    INSERT INTO estado VALUES(idE, usuario, idPoa, NULL, 'ES01', 'El Plan Operativo Anual se ha CREADO con exito', now());
+    INSERT INTO estado VALUES(idE, usuario, idPoa, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', now());
 END//
 DELIMITER ;
 
@@ -115,7 +115,8 @@ CREATE PROCEDURE `agregarPom`(
 	IN reactivoE	FLOAT,
 	IN sifilis		FLOAT,
     IN observacion	TEXT,
-    IN subreceptor	INT)
+    IN subreceptor	INT,
+    IN movil 		TINYINT)
 BEGIN
     DECLARE id INT DEFAULT 0;
     DECLARE idE INT DEFAULT 0;
@@ -124,7 +125,7 @@ BEGIN
 	IF(idP <=0) THEN SET id := 1;
 	ELSE SET id := idP + 1;
     END IF;
-	INSERT INTO pom VALUES(id,periodo,mes,municipio,fecha,inicio,fin,lugar,promotor,nuevo,recurrente,cnatural,csabor,cfeminino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis,observacion,poa,'ES01', subreceptor);
+	INSERT INTO pom VALUES(id,periodo,mes,municipio,fecha,inicio,fin,lugar,promotor,nuevo,recurrente,cnatural,csabor,cfeminino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis,observacion,poa,'ES01',subreceptor,movil);
 	IF (idEs <= 0) THEN SET idE := 1;
     ELSE SET idE := idEs + 1;
     END IF;
@@ -248,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `asignacion` (
   `promotor_id` int(11) NOT NULL,
   `cobertura_id` int(11) NOT NULL,
   PRIMARY KEY (`idAsignacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -619,6 +620,7 @@ CREATE TABLE IF NOT EXISTS `pom` (
   `poa_id` int(11) NOT NULL,
   `estado` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
   `subreceptor_id` int(11) NOT NULL,
+  `movil` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`idPom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

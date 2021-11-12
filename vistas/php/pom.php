@@ -199,13 +199,14 @@ if ($accion == "agregarPOM") {
     $sifilis      = $_POST['sifilis'];
     $observacion  = $_POST['observacion'];
     $subreceptor  = $_POST['subreceptor'];
+    $movil        = $_POST['movil'];
 
     $_duplicado = $enlace->query("SELECT * FROM pom WHERE periodo = $periodo AND mes = '$mes' AND municipio = '$municipio' AND fecha = '$fecha'  AND horaInicio = '$inicio' AND horaFin = '$fin'");
     if (mysqli_num_rows($_duplicado)) {
         echo "Duplicado";
     } else {
-        $sql = "CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotor, $nuevo,
-        $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor)";
+        $sql = "CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotor, $nuevo, $recurrente, 
+        $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor, $movil)";
         $resultado = mysqli_query($enlace, $sql);
         $pom = mysqli_affected_rows($enlace);
         if ($pom > 0) {
@@ -215,3 +216,18 @@ if ($accion == "agregarPOM") {
         }
     }
 }
+
+/**
+ * Metodo que permite enviar todo
+ */
+if ($accion == "enviarTodoPom") {
+    $subreceptor  = $_POST['subreceptor'];
+    $periodo      = $_POST['periodo'];
+    $estado = $_POST['estado'];
+    if($enlace->query("UPDATE pom SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo") === TRUE){
+      echo "Exito";
+    } else {
+      echo "Error";
+    }
+  }
+  

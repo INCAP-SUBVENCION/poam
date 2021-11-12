@@ -26,7 +26,6 @@ if ($ROL != 'R001') {
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
-    <link rel="stylesheet" href="../../assets/css/app.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -40,14 +39,14 @@ if ($ROL != 'R001') {
         <div id="main">
             <header class="mb-1">
                 <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
+                    <em class="bi bi-justify fs-3"></em>
                 </a>
             </header>
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3><i class="bi bi-person-plus"></i> USUARIOS</h3>
+                            <h3><em class="bi bi-person-plus"></em> USUARIOS</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -153,19 +152,19 @@ if ($ROL != 'R001') {
                         </div>
                     </div>
 
-                    <table class="table table-bordered" id="listadoUsuario">
+                    <table class="table table-bordered" id="listadoUsuario" aria-describedby="">
                         <thead class="text-center" style="font-size: 12px;">
-                            <th>#</th>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Usuario</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
-                            <th>Correo</th>
-                            <th>Rol</th>
-                            <th>Subreceptor</th>
-                            <th>Estado</th>
-                            <th>Opciones</th>
+                            <th scope="">#</th>
+                            <th scope="">Nombres</th>
+                            <th scope="">Apellidos</th>
+                            <th scope="">Usuario</th>
+                            <th scope="">Direccion</th>
+                            <th scope="">Telefono</th>
+                            <th scope="">Correo</th>
+                            <th scope="">Rol</th>
+                            <th scope="">Subreceptor</th>
+                            <th scope="">Estado</th>
+                            <th scope="">Opciones</th>
                         </thead>
                         <tbody class="text-center" style="font-size: 12px;">
                             <?php
@@ -213,6 +212,7 @@ if ($ROL != 'R001') {
     <?php include 'menu.php'; ?>
 
     <script type="text/javascript">
+
         jQuery("#buscador").keyup(function() {
             if (jQuery(this).val() != "") {
                 jQuery("#listadoUsuario tbody>tr").hide();
