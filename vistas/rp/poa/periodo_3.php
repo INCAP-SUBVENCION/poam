@@ -8,6 +8,7 @@
         </div>
     </div>
 </div>
+
 <table class="table table-hover table-bordered" id="poa_periodo_1" aria-describedby="">
     <thead class="text-center" style="font-size: 12px;">
         <th scope="">#</th>
@@ -38,7 +39,7 @@
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 3 AND t1.estado='ES03' OR t1.estado='ES05' ORDER BY mes";
+	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 3 AND t1.estado='ES04' OR t1.estado='ES05' ORDER BY mes";
         if ($res = $enlace->query($consult)) {
             while ($periodo_1 = $res->fetch_assoc()) {
         ?>
@@ -59,32 +60,33 @@
                     <td><?php echo $periodo_1['sifilis']; ?></td>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <th scope="">
-                        <?php if ($periodo_1['estado'] == 'ES03') {
+                        <?php if ($periodo_1['estado'] == 'ES04') {
                             echo '<p style="color: dodgerblue;">Revisar</p>';
                         } else if ($periodo_1['estado'] == 'ES05') {
-                            echo '<p style="color: blue;">Aprobado </p>';
+                            echo '<p style="color: orange;">Aprobado </p>';
                         }
                         ?>
                     </th>
+                
                     <td>
                         <div class="dropdown">
                             <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 11px;">
                                 <em class="bi bi-grid"></em> Opciones
                             </a>
                             <?php
-                            if ($periodo_1['estado'] == 'ES03') {
+                            if ($periodo_1['estado'] == 'ES04') {
                             ?>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Aprobar</button>
+                                                <em class="bi bi-arrow-right-circle"></em> Aprobar </button>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="enviarRevision(<?php echo $SUBRECEPTOR; ?>, 3, 'ES05')">
-                                                <em class="bi bi-arrow-clockwise"></em> Aprobar todo</button>
+                                        <button class="dropdown-item" onclick="cambiarTodo(<?php echo $SUBRECEPTOR; ?>, 3, 'ES05', 'ES04')">
+                                                <em class="bi bi-arrow-clockwise"></em> Aprobar todo </button>
                                         </div>
                                     </li>
                                     <li><a class="dropdown-item" href="#"><em class="bi bi-pencil-square"></em> Editar</a></li>

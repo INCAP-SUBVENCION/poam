@@ -34,7 +34,7 @@
                             <input type="text" class="form-control" id="estado_total" style="font-size: 12px;" disabled>
                         </div>
                     </div>
-                    <h3>Enviar POA a revision</h3>
+                    <h3>Revisar y Autorizar el POA</h3>
                     <div class="form-group">
                         <label>Observaciones / cometarios</label>
                         <input type="text" class="form-control" id="estado_descripcion" style="font-size: 12px;">

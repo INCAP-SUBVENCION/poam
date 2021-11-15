@@ -61,13 +61,13 @@
                     <th scope="">
                         <?php if ($periodo_1['estado'] == 'ES01') {
                             echo '<p style="color: dodgerblue;">Creado</p>';
-                        } else if ($periodo_1['estado'] == 'ES02') {
-                            echo '<p style="color: orange;">En revision </p>';
                         } else if ($periodo_1['estado'] == 'ES03') {
-                            echo '<p style="color: limegreen;"> Autorizado</p>';
+                            echo '<p style="color: orange;">Enviado al RP </p>';
+                        } else if ($periodo_1['estado'] == 'ES04') {
+                            echo '<p style="color: limegreen;">Revisado por el RP</p>';
                         }
                         else if ($periodo_1['estado'] == 'ES05') {
-                            echo '<p style="color: limegreen;"> Aprobado</p>';
+                            echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
                         }
                         ?>
                     </th>
@@ -82,14 +82,14 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')">
-                                                <em class="bi bi-arrow-right-circle"></em> Enviar a revision</button>
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES03')">
+                                                <em class="bi bi-arrow-right-circle"></em> Enviar al RP</button>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="enviarRevision(<?php echo $SUBRECEPTOR; ?>, 3, 'ES02')">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo a revision</button>
+                                            <button class="dropdown-item" onclick="cambiarTodo(<?php echo $SUBRECEPTOR; ?>, 3, 'ES03', 'ES01')">
+                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo al RP</button>
                                         </div>
                                     </li>
                                     <li><a class="dropdown-item" href="#"><em class="bi bi-pencil-square"></em> Editar</a></li>

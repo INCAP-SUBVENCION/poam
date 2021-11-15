@@ -223,8 +223,9 @@ if ($accion == "agregarPOM") {
 if ($accion == "enviarTodoPom") {
     $subreceptor  = $_POST['subreceptor'];
     $periodo      = $_POST['periodo'];
-    $estado = $_POST['estado'];
-    if($enlace->query("UPDATE pom SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo") === TRUE){
+    $estado       = $_POST['estado'];
+    $estadoActual = $_POST['estadoActual'];
+    if($enlace->query("UPDATE pom SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo AND estado = '$estadoActual'") === TRUE){
       echo "Exito";
     } else {
       echo "Error";

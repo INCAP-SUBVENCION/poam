@@ -7,7 +7,7 @@
     LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
     LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
     LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-    WHERE t2.periodo= 1 AND t7.subreceptor_id = $SUBRECEPTOR AND t2.idPom = $POM";
+    WHERE t7.subreceptor_id = $SUBRECEPTOR AND t2.idPom = $POM";
     $detallar = $enlace->query($sqlD);
     while ($detalles = $detallar->fetch_assoc()) {
     ?>

@@ -239,10 +239,11 @@ function obtenerCantidadPromotor() {
  * @param {*} per identificador del periodo
  * @param {*} es  identificador del estado
  */
-function enviarTodoPom(sub, per, es) {
+function enviarTodoPom(sub, per, es, actual) {
     var subreceptor = sub;
     var periodo = per;
     var estado = es;
+    var estadoActual = actual;
     var accion = "enviarTodoPom";
     if(confirm('Esta seguro que desea enviar todos a revision')){
         $.ajax({
@@ -252,7 +253,8 @@ function enviarTodoPom(sub, per, es) {
                 accion: accion,
                 subreceptor: subreceptor,
                 periodo: periodo,
-                estado: estado
+                estado: estado,
+                estadoActual: estadoActual
             },
             success: function (datos) {
                 if (datos == 'Exito') {

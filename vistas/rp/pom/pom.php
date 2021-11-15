@@ -3,7 +3,7 @@ include_once('../../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 $ID = $_SESSION['idUsuario'];
-$SUBRECEPTOR = $_GET['id'];
+$SUBRECEPTOR = $_SESSION['subreceptor_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,8 +33,8 @@ $SUBRECEPTOR = $_GET['id'];
 
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkblue;">
-            <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
-            <h1 class="text-white"><em class="bi bi-calendar4-week"></em> PLAN OPERATIVO MENSUAL -POM-</h1>
+            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
+            <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
@@ -45,33 +45,36 @@ $SUBRECEPTOR = $_GET['id'];
             ?>
                 <a class="navbar-brand" href="../rp.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 11px;">
+                    <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
                         <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
-                    </button>
-                    <ul class="dropdown-menu bg-warning" aria-labelledby="dropdownMenuButton1" style="font-size: 13px;">
+                    </a>
+                    <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
-                        <li><a class="dropdown-item" href="#"><em class="bi bi-check2-square"></em> Permisos</a></li>
                         <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
                     </ul>
                 </div>
             <?php }
             $res1->close(); ?>
+                <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
 
         <!-- Striped rows start -->
         <section class="section">
-        <?php
-            $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
-            $resultado = mysqli_query($enlace, $sql);
-            while ($subr = mysqli_fetch_assoc($resultado)) {
-            ?>
-                <div class="text-center">
-                    <h4><?php echo $subr['nombre']; ?></h4>
-                </div>
-            <?php
-            }
-            ?>
+            <div class="row">
+                <?php
+                $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
+                $resultado = mysqli_query($enlace, $sql);
+                while ($subr = mysqli_fetch_assoc($resultado)) {
+                ?>
+                    <div class="text-center">
+                        <h4><?php echo $subr['nombre']; ?></h4>
+                    </div>
+                <?php
+                }
+                ?>
+
+            </div>
 
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -91,10 +94,10 @@ $SUBRECEPTOR = $_GET['id'];
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-periodo_3" role="tabpanel" aria-labelledby="pills-periodo_3-tab">
-                <?php include 'periodo_3.php'; ?>
+                    <?php include 'periodo_3.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_4" role="tabpanel" aria-labelledby="pills-periodo_4-tab">
-                <?php include 'periodo_4.php'; ?>
+                    <?php include 'periodo_4.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_5" role="tabpanel" aria-labelledby="pills-periodo_5-tab">
                     <p>Aun no habilitado</p>
@@ -121,6 +124,25 @@ $SUBRECEPTOR = $_GET['id'];
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/pom.js"></script>
         <script src="../../js/utilidad.js"></script>
+        <script src="../../js/estados.js"></script>
+
+        <!-- Script para la busqueda -->
+        <script type="text/javascript">
+            jQuery("#buscador_1").keyup(function() {
+                if (jQuery(this).val() != "") {
+                    jQuery("#pom_periodo_1 tbody>tr").hide();
+                    jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+                } else {
+                    jQuery("#pom_periodo_1 tbody>tr").show();
+                }
+            });
+            jQuery.extend(jQuery.expr[":"], {
+                "contiene-palabra": function(elem, i, match, array) {
+                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                }
+            });
+        </script>
+
     </body>
 
 </html>

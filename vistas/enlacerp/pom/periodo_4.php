@@ -1,5 +1,6 @@
 <table class="table table-hover table-bordered" aria-describedby="">
     <thead style="font-size: 12px;" class="table-dark">
+
         <tr>
             <th>#</th>
             <th>Periodo</th>
@@ -48,11 +49,11 @@
                     <td><?php echo $periodo_1['nombres']; ?></td>
                     <td><?php echo $periodo_1['pNuevo']; ?></td>
                     <td><?php echo $periodo_1['pRecurrente']; ?></td>
-                    <th id><?php echo round($periodo_1['total'], 2); ?></th>
+                    <th><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <p style="color:orange;"></p>
 
-                    <th id=""><?php if ($periodo_1['estado'] == 'ES01') {
+                    <th><?php if ($periodo_1['estado'] == 'ES01') {
                             echo '<p style="color: dodgerblue;"><i class="bi bi-node-plus-fill"></i> Creado</p>';
                         } else if ($periodo_1['estado'] == 'ES02') {
                             echo '<p style="color: orange;"><i class="bi bi-search"></i> En revision </p>';
@@ -64,7 +65,7 @@
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
-                                <em class="bi bi-gear"></em> Opcion
+                                <i class="bi bi-gear"></i> Opcion
                             </button>
                             <ul class="dropdown-menu bg-info">
                                 <li><a class="dropdown-item" href="detalle.php?id=<?php echo $periodo_1['idPom']; ?>">Detalles</a></li>

@@ -17,7 +17,6 @@ $POM = $_GET['id'];
 
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../../../assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
@@ -44,7 +43,7 @@ $POM = $_GET['id'];
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
-                <a class="navbar-brand" href="../enlacerp.php"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                <a class="navbar-brand" href="pom.php"><i class="bi bi-house-door-fill"></i> Inicio</a>
                 <div class="dropdown">
                     <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 11px;">
                         <i class="bi bi-person-fill"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
@@ -62,7 +61,7 @@ $POM = $_GET['id'];
 
         <!-- Striped rows start -->
         <section class="section">
-            <?php include 'detalles/detallarPom.php'; ?>
+            <?php include 'detalles/detalles.php'; ?>
             <?php include 'detalles/estados.php'; ?>
         </section>
 
@@ -76,12 +75,9 @@ $POM = $_GET['id'];
 
 
         <!------ JS ------>
-        <script src="../../../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
-        <script src="../../../controlador/controladorPOM.js"></script>
-        <script src="../../../controlador/controladorUtilidad.js"></script>
     </body>
 
 </html>

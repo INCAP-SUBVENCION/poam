@@ -140,11 +140,12 @@ function agregarResumen() {
     });
 }
 
-function enviarRevision(sub, per, es) {
+function cambiarTodo(sub, per, es, ea) {
     var subreceptor = sub;
     var periodo = per;
     var estado = es;
-    var accion = "enviarRevision";
+    var estadoActual = ea;
+    var accion = "cambiarTodo";
     if(confirm('Esta seguro que desea enviar todos a revision')){
         $.ajax({
             type: "POST",
@@ -153,7 +154,8 @@ function enviarRevision(sub, per, es) {
                 accion: accion,
                 subreceptor: subreceptor,
                 periodo: periodo,
-                estado: estado
+                estado: estado,
+                estadoActual: estadoActual
             },
             success: function (datos) {
                 if (datos == 'Exito') {

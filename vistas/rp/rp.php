@@ -21,7 +21,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../../assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
 
@@ -83,11 +82,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
     </div>
     <!------ JS ------>
-    <script src="../../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/main.js"></script>
-    <script src="../../assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="../../assets/js/pages/ui-chartjs.js"></script>
 
     <?php
     include 'menu.php';

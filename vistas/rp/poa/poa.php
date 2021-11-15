@@ -20,6 +20,7 @@ $SUBRECEPTOR = $_GET['id'];
 
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
@@ -37,7 +38,7 @@ $SUBRECEPTOR = $_GET['id'];
 
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:firebrick;">
+        <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
             <h2 class="text-white"><em class="bi bi-calendar-range-fill"></em> PLAN OPERATIVO ANUAL -POA-</h2>
             <?php
@@ -50,11 +51,11 @@ $SUBRECEPTOR = $_GET['id'];
             ?>
                 <a class="navbar-brand" href="../rp.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
-                    <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
-                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                    <a class="btn-outline-secundary" type="button" data-bs-toggle="dropdown" style="font-size: 11px;">
+                        <em class="bi bi-person-fill text-white"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="font-size: 13px;">
                         <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
                         <li><a class="dropdown-item" href="#"><em class="bi bi-check2-square"></em> Permisos</a></li>
                         <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
@@ -67,17 +68,7 @@ $SUBRECEPTOR = $_GET['id'];
 
         <!-- Striped rows start -->
         <section class="section">
-        <?php
-            $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
-            $resultado = mysqli_query($enlace, $sql);
-            while ($subr = mysqli_fetch_assoc($resultado)) {
-            ?>
-                <div class="text-center">
-                    <h4><?php echo $subr['nombre']; ?></h4>
-                </div>
-            <?php
-            }
-            ?>
+
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -98,8 +89,9 @@ $SUBRECEPTOR = $_GET['id'];
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
+
                 <div class="tab-pane fade show active" id="pills-periodo_3" role="tabpanel" aria-labelledby="pills-periodo_3-tab">
-                 <?php include 'periodo_3.php'; ?>
+                    <?php include 'periodo_3.php'; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-periodo_4" role="tabpanel" aria-labelledby="pills-periodo_4-tab">
                     <?php include 'periodo_4.php'; ?>
@@ -123,14 +115,31 @@ $SUBRECEPTOR = $_GET['id'];
             </div>
         </footer>
 
-
         <!------ JS ------>
-        <script src="../../../assets/js/main.js"></script>
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/poa.js"></script>
         <script src="../../js/utilidad.js"></script>
+        <script src="../../js/estados.js"></script>
+
+        <!-- Script para la busqueda -->
+        <script type="text/javascript">
+            jQuery("#buscador_1").keyup(function() {
+                if (jQuery(this).val() != "") {
+                    jQuery("#poa_periodo_1 tbody>tr").hide();
+                    jQuery("#poa_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+                } else {
+                    jQuery("#poa_periodo_1 tbody>tr").show();
+                }
+            });
+
+            jQuery.extend(jQuery.expr[":"], {
+                "contiene-palabra": function(elem, i, match, array) {
+                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                }
+            });
+        </script>
     </body>
 
 </html>

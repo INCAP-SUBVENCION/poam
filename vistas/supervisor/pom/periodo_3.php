@@ -2,7 +2,7 @@
     <div class="col-sm-4">
 
         <div class="input-group input-group-sm">
-        <a class="btn btn-success" href="../../php/generarExcelPom.php?periodo=1" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
+            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
             <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
             <input class="form-control" type="text" id="buscador" placeholder="Buscar..." />
         </div>
@@ -40,7 +40,7 @@
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo=1 AND t7.subreceptor_id = $SUBRECEPTOR";
+        WHERE t2.periodo=3 AND t7.subreceptor_id = $SUBRECEPTOR";
         if ($resp_1 = $enlace->query($sqlp_1)) {
             while ($periodo_1 = $resp_1->fetch_assoc()) {
         ?>
@@ -60,15 +60,18 @@
                     <th scope><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <th scope><?php if ($periodo_1['estado'] == 'ES01') {
-                            echo '<p class="text-primary"><i class="bi bi-node-plus-fill"></i> Creado</p>';
-                        } else if ($periodo_1['estado'] == 'ES02') {
-                            echo '<p class="text-warning"><i class="bi bi-search"></i> En revision </p>';
-                        } else if ($periodo_1['estado'] == 'ES03') {
-                            echo '<p class="text-info"><i class="bi bi-check"></i> Revisado </p>';
-                        } else if ($periodo_1['estado'] == 'ES04') {
-                            echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Aprobado</p>';
-                        }
-                        ?>
+                                    echo '<p class="text-primary">Pendiente de revisar</p>';
+                                } else if ($periodo_1['estado'] == 'ES02') {
+                                    echo '<p class="text-warning">En revision</p>';
+                                } else if ($periodo_1['estado'] == 'ES03') {
+                                    echo '<p class="text-info">Revisado </p>';
+                                } else if ($periodo_1['estado'] == 'ES04') {
+                                    echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Autorizado</p>';
+                                }
+                                else if ($periodo_1['estado'] == 'ES05') {
+                                    echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Aprobado</p>';
+                                }
+                                ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -82,9 +85,17 @@
                                 <?php
                                 if ($periodo_1['estado'] == 'ES01') {
                                 ?>
+
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES02')" class="btn btn-primary" type="button">Enviar a revision</button>
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
+                                            <em class="bi bi-arrow-right-circle"></em> Enviar a revision</button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="enviarTodoPom(<?php echo $SUBRECEPTOR; ?>, 3, 'ES02', 'ES01')">
+                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo a revision</button>
                                         </div>
                                     </li>
                                 <?php
@@ -99,4 +110,4 @@
         }  ?>
     </tbody>
 </table>
-
+<?php include '../modal/cambiarEstadoPom.php'; ?>

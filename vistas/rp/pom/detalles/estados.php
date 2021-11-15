@@ -17,20 +17,20 @@
             </thead>
             <tbody>
                 <?php
-                $sqlEstado = "SELECT t2.nombre as estado, t1.fecha, t4.nombre, t4.apellido, t4.nombre, t5.nombre as rol, t1.descripcion FROM estado t1
-                            LEFT JOIN catalogo t2 ON t2.codigo = t1.estado
-                            LEFT JOIN usuario t3 ON t3.idUsuario = t1.usuario_id
-                            LEFT JOIN persona t4 ON t4.idPersona = t3.persona_id
-                            LEFT JOIN catalogo t5 ON t5.codigo = t3.rol
-                            WHERE t1.pom_id = $POM";
+                $sqlEstado = "SELECT DISTINCT t1.estado, t4.nombre as estados, t1.fecha, t3.nombre, t3.apellido, t5.nombre as roles, t1.descripcion FROM estado t1
+                LEFT JOIN usuario t2 ON t2.idUsuario = t1.usuario_id
+                LEFT JOIN persona t3 ON t3.idPersona = t2.persona_id
+                LEFT JOIN catalogo t4 ON t4.codigo = t1.estado
+                LEFT JOIN catalogo t5 ON t5.codigo = t2.rol
+                WHERE t1.pom_id = $POM AND t2.subreceptor_id = $SUBRECEPTOR";
                 $resultadoEstado = $enlace->query($sqlEstado);
                 while ($estado = $resultadoEstado->fetch_assoc()) {
                 ?>
                     <tr>
-                        <td><?php echo $estado['estado']; ?></td>
+                        <td><?php echo $estado['estados']; ?></td>
 
                         <td><?php echo $estado['nombre'] . ' ' . $estado['apellido']; ?></tdss>
-                        <td><?php echo $estado['rol']; ?></td>
+                        <td><?php echo $estado['roles']; ?></td>
                         <td><?php echo $estado['descripcion']; ?></td>
                         <td><?php echo $estado['fecha']; ?></td>
                     </tr>

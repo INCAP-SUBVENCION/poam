@@ -60,13 +60,15 @@
                     <th scope><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <th scope><?php if ($periodo_1['estado'] == 'ES01') {
-                                    echo '<p class="text-primary"><i class="bi bi-node-plus-fill"></i> Creado</p>';
+                                    echo '<p class="text-primary"> Creado</p>';
                                 } else if ($periodo_1['estado'] == 'ES02') {
-                                    echo '<p class="text-warning"><i class="bi bi-search"></i> En revision </p>';
+                                    echo '<p class="text-warning"> En revision </p>';
                                 } else if ($periodo_1['estado'] == 'ES03') {
-                                    echo '<p class="text-info"><i class="bi bi-check"></i> Revisado </p>';
+                                    echo '<p class="text-info"> Revisado por SR </p>';
                                 } else if ($periodo_1['estado'] == 'ES04') {
-                                    echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Aprobado</p>';
+                                    echo '<p class = "text-success"> Revisado por RP</p>';
+                                } else if ($periodo_1['estado'] == 'ES05') {
+                                    echo '<p class = "text-success"> Aprobado por RP</p>';
                                 }
                                 ?>
                     </th>
@@ -79,25 +81,6 @@
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
-                                <?php
-                                if ($periodo_1['estado'] == 'ES01') {
-                                ?>
-
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
-                                            <em class="bi bi-arrow-right-circle"></em> Enviar a revision</button>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="enviarTodoPom(<?php echo $SUBRECEPTOR; ?>, 3, 'ES02')">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo a revision</button>
-                                        </div>
-                                    </li>
-                                <?php
-                                }
-                                ?>
                             </ul>
                         </div>
                     </td>
