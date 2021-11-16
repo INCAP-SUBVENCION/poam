@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body bg-light-primary">
                 <div class="row">
-                <h5 class="text-center">Enviar actividad para revision</h5>
+                <h5 class="text-center">CANCELAR ACTIVIDAD</h5>
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text" style="font-size: 12px;">Mes:</span>
@@ -59,8 +59,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Observaciones / cometarios</label>
-                        <input type="text" class="form-control" id="estado_descripcion" style="font-size: 12px;">
+                        <label>Motivo</label>
+                        <input type="text" class="form-control" id="estado_descripcion" style="font-size: 12px;" required>
                     </div>
                     <!-- hidden -->
                     <input type="hidden" id="estado_id">

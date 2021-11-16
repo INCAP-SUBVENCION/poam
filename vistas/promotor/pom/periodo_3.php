@@ -69,7 +69,9 @@
                                     echo '<p class = "text-success"> Revisado por RP</p>';
                                 } else if ($periodo_1['estado'] == 'ES05') {
                                     echo '<p class = "text-success"> Aprobado por RP</p>';
-                                }
+                                }  else if ($periodo_1['estado'] == 'ES07') {
+                                    echo '<p class = "text-danger"> Cancelado </p>';
+                                } 
                                 ?>
                     </th>
                     <td>
@@ -81,6 +83,12 @@
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
+                                <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES07')">
+                                            <em class="bi bi-arrow-right-circle"></em> Cancelar</button>
+                                        </div>
+                                    </li>
                             </ul>
                         </div>
                     </td>

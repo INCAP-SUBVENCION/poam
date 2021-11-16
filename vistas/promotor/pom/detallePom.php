@@ -43,7 +43,7 @@ $POM = $_GET['id'];
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
-                <a class="navbar-brand" href="../promotor.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
+                <a class="navbar-brand" href="../pom/pom.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
                     <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 11px;">
                         <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>

@@ -44,7 +44,7 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo=3 AND t7.subreceptor_id = $SUBRECEPTOR 
-        AND t2.estado = 'ES04' OR t2.estado = 'ES05'";
+        AND t2.estado = 'ES04' OR t2.estado = 'ES05' OR t2.estado = 'ES07' ";
         if ($resp_1 = $enlace->query($sqlp_1)) {
             while ($periodo_1 = $resp_1->fetch_assoc()) {
         ?>
@@ -66,7 +66,9 @@
                     <th scope><?php if ($periodo_1['estado'] == 'ES04') {
                                     echo '<p class="text-primary">Revisar</p>';
                                 } else if ($periodo_1['estado'] == 'ES05') {
-                                    echo '<p class="text-warning">Aprobado</p>';
+                                    echo '<p class="text-success">Aprobado</p>';
+                                } else if ($periodo_1['estado'] == 'ES07') {
+                                    echo '<p class="text-danger">Cancelado</p>';
                                 }
                                 ?>
                     </th>

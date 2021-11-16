@@ -71,6 +71,8 @@
                                     echo '<p class="text-info">Aprobado </p>';
                                 } else if ($periodo_1['estado'] == 'ES06') {
                                     echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Aprobado</p>';
+                                } else if ($periodo_1['estado'] == 'ES07') {
+                                    echo '<p class = "text-danger"> Cancelado</p>';
                                 }
                                 ?>
                     </th>
