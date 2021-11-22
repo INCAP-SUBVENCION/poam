@@ -1,11 +1,11 @@
 <?php
-include_once('../../bd/conexion.php');
-header("Content-Type: text/html;charset=utf-8");
+include_once '../../bd/conexion.php';
+header('Content-Type: text/html;charset=utf-8');
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
     header('Location: ../error.php');
 }
-$ID  = $_SESSION['idUsuario'];
+$ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
 if ($ROL != 'R001') {
     header('Location: salir.php');
@@ -98,13 +98,20 @@ if ($ROL != 'R001') {
                                                 <select name="subreceptor" id="subreceptor" class="form-control" onchange="obtenerCobertura();" style="font-size: 12px;" required>
                                                     <option value="">Seleccionar...</option>
                                                     <?php
-                                                    $csub = "SELECT *FROM subreceptor";
-                                                    $rsub = $enlace->query($csub);
-                                                    while ($sub = $rsub->fetch_assoc()) {
-                                                    ?>
-                                                        <option value="<?php echo $sub['idSubreceptor'] ?>"><?php echo $sub['nombre'] ?></option>
-                                                    <?php
-                                                    }
+                                                    $csub =
+                                                        'SELECT *FROM subreceptor';
+                                                    $rsub = $enlace->query(
+                                                        $csub
+                                                    );
+                                                    while (
+                                                        $sub = $rsub->fetch_assoc()
+                                                    ) { ?>
+                                                        <option value="<?php echo $sub[
+                                                            'idSubreceptor'
+                                                        ]; ?>"><?php echo $sub[
+    'nombre'
+]; ?></option>
+                                                    <?php }
                                                     $rsub->close();
                                                     ?>
                                                 </select>
@@ -177,34 +184,42 @@ if ($ROL != 'R001') {
                             RIGHT JOIN promotor t3 ON t3.persona_id = t2.idPersona
                             LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id";
                             $consultaPromotor = $enlace->query($sqlPromotor);
-                            while ($promotor = $consultaPromotor->fetch_assoc()) {
-                            ?>
+                            while (
+                                $promotor = $consultaPromotor->fetch_assoc()
+                            ) { ?>
                                 <tr>
                                     <td><?php echo $contador++; ?></td>
                                     <td><?php echo $promotor['codigo']; ?></td>
-                                    <td><?php echo $promotor['subreceptor']; ?></td>
-                                    <td><?php echo $promotor['nombre'] . ' ' . $promotor['apellido']; ?></td>
-                                    <td><?php echo $promotor['direccion']; ?></td>
-                                    <td><?php echo $promotor['telefono']; ?></td>
+                                    <td><?php echo $promotor[
+                                        'subreceptor'
+                                    ]; ?></td>
+                                    <td><?php echo $promotor['nombre'] .
+                                        ' ' .
+                                        $promotor['apellido']; ?></td>
+                                    <td><?php echo $promotor[
+                                        'direccion'
+                                    ]; ?></td>
+                                    <td><?php echo $promotor[
+                                        'telefono'
+                                    ]; ?></td>
                                     <td><?php echo $promotor['email']; ?></td>
                                     <td>
-                                        <?php
-                                        if ($promotor['estado'] == 1) {
+                                        <?php if ($promotor['estado'] == 1) {
                                             echo '<i class="bi bi-check-circle-fill text-success"></i>';
                                         } else {
                                             echo '<i class="bi bi-x-circle-fill text-danger"></i>';
-                                        }
-                                        ?>
+                                        } ?>
                                     </td>
                                     <td><?php echo $promotor['dias']; ?></td>
                                     <td>
-                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $promotor['idSubreceptor']; ?>" style="font-size: 12px;">
+                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $promotor[
+                                            'idSubreceptor'
+                                        ]; ?>" style="font-size: 12px;">
                                             <i class="bi bi-pencil-fill"></i></a>
                                     </td>
                                 </tr>
 
-                            <?php
-                            }
+                            <?php }
                             $consultaPromotor->close();
                             ?>
                         </tbody>

@@ -14,13 +14,11 @@ if (isset($_GET['accion'])) {
  * Metodo que permite agregar nuevo usuario
  */
 if ($accion == "agregarUsuario") {
-    $documento  = $_POST['documento'];
-    $numero     = $_POST['numero'];
+    $codigo     = $_POST['codigo'];
     $pnombre    = $_POST['pnombre'];
     $snombre    = $_POST['snombre'];
     $papellido  = $_POST['papellido'];
     $sapellido  = $_POST['sapellido'];
-    $direccion  = $_POST['direccion'];
     $telefono   = $_POST['telefono'];
     $correo     = $_POST['correo'];
     $rol        = $_POST['rol'];
@@ -31,7 +29,7 @@ if ($accion == "agregarUsuario") {
     if(mysqli_num_rows($_duplicado)){
         echo "Duplicado";
     } else {
-        $sql = "CALL agregarUsuario($documento,'$numero','$pnombre','$snombre','$papellido','$sapellido','$direccion','$telefono','$correo','$rol',$subreceptor)";
+        $sql = "CALL agregarUsuario('$codigo','$pnombre','$snombre','$papellido','$sapellido','$telefono','$correo','$rol',$subreceptor)";
         $resultadou = mysqli_query($enlace, $sql);
         $usuarios = mysqli_affected_rows($enlace);
         if ($usuarios > 0) {
@@ -39,5 +37,14 @@ if ($accion == "agregarUsuario") {
         } else {
             echo "Error";
         }
+
+
+
+
+
+
+
+
+        
     }
 }
