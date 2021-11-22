@@ -65,18 +65,10 @@ if ($ROL != 'R001') {
                                 <div class="text-white text-center" style="background-color:navy;">REGISTRO DE USUARIOS</div>
                                 <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                     <div class="row">
-                                        <div class="form-group input-group-sm col-sm-2">
-                                            <label class="form-label">Documento:</label>
-                                            <select name="documento" id="documento" class="form-control form-control-sm" style="font-size: 12px;">
-                                                <option value="">Seleccionar...</option>
-                                                <option value="1">DPI</option>
-                                                <option value="0">Pasaporte</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group input-group-sm col-sm-2">
-                                            <label class="form-label"># Documento:</label>
-                                            <input type="text" name="numero" id="numero" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                        </div>
+                                    <div class="form-group input-group-sm col-sm-2">
+                                            <label class="form-label">Codigo:</label>
+                                            <input type="text" name="codigo" id="codigo" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                    </div>
                                         <div class="form-group input-group-sm col-sm-2">
                                             <label class="form-label">Primer nombre:</label>
                                             <input type="text" name="pnombre" id="pnombre" class="form-control form-control-sm" style="font-size: 12px;" required>
@@ -93,11 +85,8 @@ if ($ROL != 'R001') {
                                             <label class="form-label">Segundo apellido:</label>
                                             <input type="text" name="sapellido" id="sapellido" class="form-control form-control-sm" style="font-size: 12px;" required>
                                         </div>
-                                        <div class="form-group input-group-sm col-sm-3">
-                                            <label class="form-label">Direccion:</label>
-                                            <input type="text" name="direccion" id="direccion" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                        </div>
-                                        <div class="form-group input-group-sm col-sm-1">
+
+                                        <div class="form-group input-group-sm col-sm-2">
                                             <label class="form-label">Telefono:</label>
                                             <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" style="font-size: 12px;" required>
                                         </div>
@@ -120,7 +109,7 @@ if ($ROL != 'R001') {
                                                 ?>
                                             </select>
                                         </div>
-                                        <div class="form-group input-group-sm col-sm-3">
+                                        <div class="form-group input-group-sm col-sm-4">
                                             <label class="form-label">Subreceptor:</label>
                                             <select name="subreceptor" id="subreceptor" class="form-control form-control-sm" style="font-size: 12px;" required>
                                                 <option value="">Seleccionar..</option>
@@ -135,14 +124,18 @@ if ($ROL != 'R001') {
                                                 ?>
                                             </select>
                                         </div>
+                                        <div class="form-group input-group-sm col-sm-3">
+                                            <br>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-plus-circle-fill"></i> Guardar</button>
+                            <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-circle-fill"></i> Cancelar</button>
+                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-plus-circle-fill"></i> Guardar</button>
-                            <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-circle-fill"></i> Cancelar</button>
-                        </div>
+
                     </form>
 
                     <div class="col-sm-4">
@@ -158,7 +151,6 @@ if ($ROL != 'R001') {
                             <th scope="">Nombres</th>
                             <th scope="">Apellidos</th>
                             <th scope="">Usuario</th>
-                            <th scope="">Direccion</th>
                             <th scope="">Telefono</th>
                             <th scope="">Correo</th>
                             <th scope="">Rol</th>
@@ -169,7 +161,7 @@ if ($ROL != 'R001') {
                         <tbody class="text-center" style="font-size: 12px;">
                             <?php
                             $cont = 1;
-                            $sql1 = "SELECT p.nombre, p.apellido, p.direccion, p.telefono, p.email, u.usuario, r.nombre as rol, s.nombre as subreceptor, u.estado FROM usuario u
+                            $sql1 = "SELECT p.nombre, p.apellido, p.telefono, p.correo, u.usuario, r.nombre as rol, s.nombre as subreceptor, u.estado FROM usuario u
                             LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
                             LEFT JOIN catalogo r ON u.rol=r.codigo
                             LEFT JOIN persona p ON p.idPersona=u.Persona_id ORDER BY rol";
@@ -181,9 +173,8 @@ if ($ROL != 'R001') {
                                     <td><?php echo $usuario['nombre']; ?></td>
                                     <td><?php echo $usuario['apellido']; ?></td>
                                     <td><?php echo $usuario['usuario']; ?></td>
-                                    <td><?php echo $usuario['direccion']; ?></td>
                                     <td><?php echo $usuario['telefono']; ?></td>
-                                    <td><?php echo $usuario['email']; ?></td>
+                                    <td><?php echo $usuario['correo']; ?></td>
                                     <td><?php echo $usuario['rol'] ?></td>
                                     <td><?php echo $usuario['subreceptor'] ?></td>
                                     <td><?php if ($usuario['estado'] == '1') {

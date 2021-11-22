@@ -131,7 +131,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Recurrentes</label>
-                                        <input type="text" name="recurrente" id="recurrente" class="form-control form-control-sm" style="font-size: 12px;" disabled required>
+                                        <input type="text" name="recurrente" id="recurrente" class="form-control form-control-sm" style="font-size: 12px;" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Proyeccion</label>

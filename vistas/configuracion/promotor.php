@@ -68,38 +68,7 @@ if ($ROL != 'R001') {
                                     <div class="text-white text-center" style="background-color:navy;">REGISTRO DE PROMOTORES</div>
                                     <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                         <div class="row">
-                                            <div class="form-group input-group-sm col-sm-3">
-                                                <label class="form-label">Codigo:</label>
-                                                <input type="text" name="codigo" id="codigo" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                            </div>
-                                            <div class="form-group input-group-sm col-sm-4">
-                                                <label class="form-label">Subreceptor:</label>
-                                                <select name="subreceptor" id="subreceptor" class="form-control" onchange="obtenerCobertura();" style="font-size: 12px;" required>
-                                                    <option value="">Seleccionar...</option>
-                                                    <?php
-                                                    $csub = "SELECT *FROM subreceptor";
-                                                    $rsub = $enlace->query($csub);
-                                                    while ($sub = $rsub->fetch_assoc()) {
-                                                    ?>
-                                                        <option value="<?php echo $sub['idSubreceptor'] ?>"><?php echo $sub['nombre'] ?></option>
-                                                    <?php
-                                                    }
-                                                    $rsub->close();
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group input-group-sm col-sm-2">
-                                                <label class="form-label">Tipo documento</label>
-                                                <select name="documento" id="documento" class="form-control" style="font-size: 12px;" required>
-                                                    <option value="">Seleccionar</option>
-                                                    <option value="1">DPI</option>
-                                                    <option value="0">Pasaporte</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group input-group-sm col-sm-3">
-                                                <label class="form-label">Numero:</label>
-                                                <input type="text" maxlength="13" name="numero" id="numero" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                            </div>
+                                        <input type="hidden" name="rol" id="rol" value="R007">
                                             <div class="form-group input-group-sm col-sm-3">
                                                 <label class="form-label">Primer nombre:</label>
                                                 <input type="text" name="pnombre" id="pnombre" class="form-control form-control-sm" style="font-size: 12px;" required>
@@ -116,11 +85,32 @@ if ($ROL != 'R001') {
                                                 <label class="form-label">Segundo apellido: </label>
                                                 <input type="text" name="sapellido" id="sapellido" class="form-control form-control-sm" style="font-size: 12px;" required>
                                             </div>
-                                            <div class="form-group input-group-sm col-sm-5">
-                                                <label class="form-label">Direccion: </label>
-                                                <input type="text" name="direccion" id="direccion" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                            <div class="form-group input-group-sm col-sm-2">
+                                                <label class="form-label">Usuario: </label>
+                                                <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" style="color:dodgerblue;" style="font-size: 12px;" disabled>
                                             </div>
                                             <div class="form-group input-group-sm col-sm-2">
+                                                <label class="form-label">Codigo:</label>
+                                                <input type="text" name="codigo" id="codigo" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                            </div>
+                                            <div class="form-group input-group-sm col-sm-5">
+                                                <label class="form-label">Subreceptor:</label>
+                                                <select name="subreceptor" id="subreceptor" class="form-control" onchange="obtenerCobertura();" style="font-size: 12px;" required>
+                                                    <option value="">Seleccionar...</option>
+                                                    <?php
+                                                    $csub = "SELECT *FROM subreceptor";
+                                                    $rsub = $enlace->query($csub);
+                                                    while ($sub = $rsub->fetch_assoc()) {
+                                                    ?>
+                                                        <option value="<?php echo $sub['idSubreceptor'] ?>"><?php echo $sub['nombre'] ?></option>
+                                                    <?php
+                                                    }
+                                                    $rsub->close();
+                                                    ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group input-group-sm col-sm-3">
                                                 <label class="form-label">Telefono</label>
                                                 <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" style="font-size: 12px;" required>
                                             </div>
@@ -128,19 +118,13 @@ if ($ROL != 'R001') {
                                                 <label class="form-label">Correo</label>
                                                 <input type="text" name="correo" id="correo" class="form-control form-control-sm" style="font-size: 12px;" required>
                                             </div>
-                                            <div class="form-group input-group-sm col-sm-2">
+                                            <div class="form-group input-group-sm col-sm-3">
                                                 <label class="form-label"># Dias </label>
                                                 <input type="number" min="0" name="dias" id="dias" class="form-control form-control-sm" placeholder="Dias laborales" title="Numero de dias laborales" required>
                                             </div>
-                                            <div class="form-group input-group-sm col-sm-3">
-                                                <label class="form-label">Usuario: </label>
-                                                <input type="text" name="usuario" id="usuario" class="form-control form-control-sm" style="color:dodgerblue;" style="font-size: 12px;" disabled>
-                                            </div>
-                                            <div class="form-group input-group-sm col-sm-3">
-                                                <label class="form-label">Rol: </label>
-                                                <input type="text" name="rolNombre" id="rolNombre" class="form-control form-control-sm" value="Promotor" style="color:dodgerblue;" style="font-size: 12px;" disabled>
-                                                <input type="hidden" name="rol" id="rol" value="R007">
-                                            </div>
+                                           
+                                            
+
                                             <div class="form-group input-group-sm col-sm-4">
                                                 <br>
                                                 <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
@@ -187,7 +171,7 @@ if ($ROL != 'R001') {
                         <tbody class="text-center" style="font-size: 12px;">
                             <?php
                             $contador = 1;
-                            $sqlPromotor = "SELECT t3.codigo, t4.nombre as subreceptor, t2.nombre, t2.apellido, t2.direccion, t2.telefono, t2.email, t3.estado, t3.dias  
+                            $sqlPromotor = "SELECT t2.codigo, t4.nombre as subreceptor, t2.nombre, t2.apellido, t2.telefono, t2.correo, t3.estado, t3.dias  
                             FROM usuario t1
                             LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id
                             RIGHT JOIN promotor t3 ON t3.persona_id = t2.idPersona
@@ -220,7 +204,8 @@ if ($ROL != 'R001') {
                                 </tr>
 
                             <?php
-                            } $consultaPromotor->close();
+                            }
+                            $consultaPromotor->close();
                             ?>
                         </tbody>
 

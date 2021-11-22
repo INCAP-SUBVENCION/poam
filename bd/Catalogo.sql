@@ -423,6 +423,10 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Cancelado', 'Actividad cancelada', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES08', 'Supervisado', 'Actividad Supervisado', 'estado');
 
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE01', 'Recalendarizado', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE02', 'Revisado', 'Revisado por el supervisor', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE03', 'Autorizado', 'Autorizado por el CMESR', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE04', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 
 
 #CALL agregarUsuario(1, "123498742589", "Faustino", "", "Lopez", "Ramos", "37 Calle B 19-16 zona 12, ciudad de Guatemala", "77889911", "correodeprueba@gmail.com", "R001", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
