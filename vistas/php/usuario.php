@@ -25,7 +25,7 @@ if ($accion == "agregarUsuario") {
     $subreceptor= $_POST['subreceptor'];
 
 
-    $_duplicado =$enlace->query("SELECT (SELECT idPersona FROM persona WHERE numero = '$numero') AS persona FROM usuario WHERE rol='$rol'");
+    $_duplicado =$enlace->query("SELECT codigo FROM persona WHERE codigo = '$codigo'");
     if(mysqli_num_rows($_duplicado)){
         echo "Duplicado";
     } else {

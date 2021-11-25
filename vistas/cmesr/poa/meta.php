@@ -116,7 +116,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             </div>
                             <div class="form-group input-group-sm col-sm-1">
                                 <label class="form-label"># Meses</label>
-                                <input type="number" min="0" name="meses" id="meses" onchange="calcularMeta();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                <input type="number" min="0.00" step="0.01" name="meses" id="meses" onchange="calcularMeta();" class="form-control form-control-sm" style="font-size: 12px;" required>
                             </div>
                             <div class="form-group input-group-sm col-sm-2">
                                 <label class="form-label">Meta nuevo mensual</label>

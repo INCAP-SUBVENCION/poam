@@ -98,19 +98,10 @@ if ($ROL != 'R001') {
                                                 <select name="subreceptor" id="subreceptor" class="form-control" onchange="obtenerCobertura();" style="font-size: 12px;" required>
                                                     <option value="">Seleccionar...</option>
                                                     <?php
-                                                    $csub =
-                                                        'SELECT *FROM subreceptor';
-                                                    $rsub = $enlace->query(
-                                                        $csub
-                                                    );
-                                                    while (
-                                                        $sub = $rsub->fetch_assoc()
-                                                    ) { ?>
-                                                        <option value="<?php echo $sub[
-                                                            'idSubreceptor'
-                                                        ]; ?>"><?php echo $sub[
-    'nombre'
-]; ?></option>
+                                                    $csub ='SELECT *FROM subreceptor';
+                                                    $rsub = $enlace->query($csub);
+                                                    while ($sub = $rsub->fetch_assoc() ) { ?>
+                                                        <option value="<?php echo $sub['idSubreceptor']; ?>"><?php echo $sub['nombre']; ?></option>
                                                     <?php }
                                                     $rsub->close();
                                                     ?>
@@ -168,7 +159,6 @@ if ($ROL != 'R001') {
                             <th>Codigo</th>
                             <th>Subreceptor</th>
                             <th>Nombre completo</th>
-                            <th>Direccion</th>
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Estado</th>
@@ -178,31 +168,20 @@ if ($ROL != 'R001') {
                         <tbody class="text-center" style="font-size: 12px;">
                             <?php
                             $contador = 1;
-                            $sqlPromotor = "SELECT t2.codigo, t4.nombre as subreceptor, t2.nombre, t2.apellido, t2.telefono, t2.correo, t3.estado, t3.dias  
-                            FROM usuario t1
+                            $sqlPromotor = "SELECT t2.codigo, t4.nombre as subreceptor, t2.nombre, t2.apellido, 
+                            t2.telefono, t2.correo, t3.estado, t3.dias FROM usuario t1
                             LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id
                             RIGHT JOIN promotor t3 ON t3.persona_id = t2.idPersona
                             LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id";
                             $consultaPromotor = $enlace->query($sqlPromotor);
-                            while (
-                                $promotor = $consultaPromotor->fetch_assoc()
-                            ) { ?>
+                            while ($promotor = $consultaPromotor->fetch_assoc()) { ?>
                                 <tr>
                                     <td><?php echo $contador++; ?></td>
                                     <td><?php echo $promotor['codigo']; ?></td>
-                                    <td><?php echo $promotor[
-                                        'subreceptor'
-                                    ]; ?></td>
-                                    <td><?php echo $promotor['nombre'] .
-                                        ' ' .
-                                        $promotor['apellido']; ?></td>
-                                    <td><?php echo $promotor[
-                                        'direccion'
-                                    ]; ?></td>
-                                    <td><?php echo $promotor[
-                                        'telefono'
-                                    ]; ?></td>
-                                    <td><?php echo $promotor['email']; ?></td>
+                                    <td><?php echo $promotor['subreceptor']; ?></td>
+                                    <td><?php echo $promotor['nombre'] . ' ' . $promotor['apellido']; ?></td>
+                                    <td><?php echo $promotor['telefono']; ?></td>
+                                    <td><?php echo $promotor['correo']; ?></td>
                                     <td>
                                         <?php if ($promotor['estado'] == 1) {
                                             echo '<i class="bi bi-check-circle-fill text-success"></i>';

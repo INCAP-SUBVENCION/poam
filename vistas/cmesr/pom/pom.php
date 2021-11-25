@@ -1,6 +1,6 @@
 <?php
-include_once('../../../bd/conexion.php');
-header("Content-Type: text/html;charset=utf-8");
+include_once '../../../bd/conexion.php';
+header('Content-Type: text/html;charset=utf-8');
 session_start();
 $ID = $_SESSION['idUsuario'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
@@ -12,15 +12,15 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Operativo Anual</title>
+    <title>Plan Operativo Mensual</title>
 
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../../assets/css/bootstrap.css">
-
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -32,8 +32,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkorange;">
-            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
+        <nav class="navbar navbar-dark" style="background-color:darkgoldenrod;">
+            <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
@@ -41,55 +41,269 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 LEFT JOIN catalogo r ON u.rol=r.codigo
                 LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
             $res1 = $enlace->query($consulta1);
-            while ($usuario = mysqli_fetch_assoc($res1)) {
-            ?>
+            while ($usuario = mysqli_fetch_assoc($res1)) { ?>
                 <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
                     <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
-                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                        <em class="bi bi-person-fill"></em> <?php echo $usuario[
+                            'nombre'
+                        ] .
+                            ' ' .
+                            $usuario['apellido']; ?>
 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
                     </ul>
                 </div>
             <?php }
-            $res1->close(); ?>
-                <img src="../../../assets/images/incap.png" width="75" alt="">
+            $res1->close();
+            ?>
         </nav>
-
         <!-- Striped rows start -->
         <section class="section">
             <div class="row">
                 <?php
                 $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
                 $resultado = mysqli_query($enlace, $sql);
-                while ($subr = mysqli_fetch_assoc($resultado)) {
-                ?>
+                while ($subr = mysqli_fetch_assoc($resultado)) { ?>
                     <div class="text-center">
-                        <h4><?php echo $subr['nombre']; ?></h4>
+                        <h6><?php echo $subr['nombre']; ?></h6>
                     </div>
-                <?php
-                }
+                <?php }
                 ?>
+                <div class="col-md-12">
+                    <div class="row">
 
+                        <div class="form-group input-group-sm col-sm-2">
+                            <select name="cperiodo" id="cperiodo" class="form-select" style="font-size: 12px;">
+                                <option value="">Seleccionar periodo</option>
+                                <option value="3">Periodo III</option>
+                                <option value="4">Periodo IV</option>
+                                <option value="5">Periodo V</option>
+                                <option value="6">Periodo VI</option>
+                            </select>
+                        </div>
+                        <div class="form-group input-group-sm col-sm-2">
+                            <select name="cmunicipio" id="cmunicipio" class="form-control" onchange="obtenerMesPom(); obtenerCantidadPromotor();" style="font-size: 11px;">
+                                <option value="">Seleccionar municipio</option>
+                                <?php
+                                $cd = "SELECT t1.municipio  as id, t2.nombre as municipio FROM cobertura t1
+                                        LEFT JOIN catalogo t2 ON t2.codigo = t1.municipio
+                                        WHERE t1.subreceptor_id =  $SUBRECEPTOR";
+                                $rd = $enlace->query($cd);
+                                while ($municipio = $rd->fetch_assoc()) { ?>
+                                    <option value="<?php echo $municipio[
+                                        'id'
+                                    ]; ?>"><?php echo $municipio[
+    'municipio'
+]; ?></option>
+                                <?php }
+                                $rd->close();
+                                ?>
+                            </select>
+                        </div>
+                        <!--Resultado de obtenerCantidadPromotor() -->
+                        <input type="hidden" name="promotor" id="promotor">
+                        <input type="hidden" name="dias" id="dias">
+
+                        <div class="form-group input-group-sm col-sm-2">
+                            <select name="cmes" id="cmes" class="form-control" style="font-size: 11px;" onchange="consultaPoa();">
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-bordered" aria-describedby="">
+                        <thead>
+                            <th id=""></th>
+                        </thead>
+                        <tbody class="text-center" style="font-size: 10px;" id="resultadoPOA">
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="col-md-4">
+                    <form name="agregarPom" id="agregarPom" action="javascript: agregarPOM();" method="POST">
+
+                        <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
+                        <input type="hidden" name="usuario" id="usuario" value="<?php echo $ID; ?>">
+                        <input type="hidden" name="poa" id="poa">
+
+                        <div class="card text-dark">
+                            <div class="text-white text-center" style="background-color:navy;">DATOS PRINCIPALES</div>
+                            <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
+                                <div class="row">
+                                    <div class="form-group input-group-sm col-sm-3">
+                                        <label class="form-label">Periodo:</label>
+                                        <input type="text" name="periodo" id="periodo" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-3">
+                                        <label class="form-label">Mes:</label>
+                                        <input type="text" name="nombreMes" id="nombreMes" class="form-control" disabled>
+                                        <input type="hidden" name="mes" id="mes">
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-6">
+                                        <label class="form-label">Municipio:</label>
+                                        <input type="text" name="nombreMunicipio" id="nombreMunicipio" class="form-control" disabled>
+                                        <input type="hidden" name="municipio" id="municipio">
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-6">
+                                        <label class="form-label">Fecha:</label>
+                                        <input type="date" name="fecha" id="fecha" class="form-control form-control-sm" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-3">
+                                        <label class="form-label">Inicio:</label>
+                                        <input type="time" name="inicio" id="inicio" class="form-control form-control-sm" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-3">
+                                        <label class="form-label">Fin:</label>
+                                        <input type="time" name="fin" id="fin" class="form-control form-control-sm" required>
+                                    </div>
+                                    <div class="form-group input-group-sm col-sm-12">
+                                        <label class="form-label">Lugar:</label>
+                                        <input type="text" name="lugar" id="lugar" class="form-control form-control-sm" style="font-size:12px;" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+
+                <div class="col-md-8">
+                    <div class="card text-dark">
+                        <div class="text-white text-center" style="background-color:navy;">PROYECCIÓN DE INSUMOS</div>
+                        <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
+                            <div class="row">
+                            <div class="form-group input-group-sm col-sm-3">
+                                            <label class="form-label">Promotor responsable:</label>
+                                            <select name="promotor" id="promotor" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                                <option value="">Seleccionar..</option>
+                                                <?php
+                                                $resultado = $enlace->query("SELECT DISTINCT t3.idPromotor, t4.nombre, t4.apellido FROM asignacion t1 
+                                                LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
+                                                LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
+                                                LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
+                                                WHERE t2.subreceptor_id = $SUBRECEPTOR 
+                                                GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
+                                                while (
+                                                    $prom = $resultado->fetch_assoc()
+                                                ) { ?>
+                                                    <option value="<?php echo $prom[
+                                                        'idPromotor'
+                                                    ]; ?>"><?php echo $prom[
+    'nombre'
+] .
+    ' ' .
+    $prom['apellido']; ?></option>
+                                                <?php }
+                                                $resultado->close();
+                                                ?>
+                                            </select>
+                                        </div>
+
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Nuevos</label>
+                                    <input type="number" min="0.00" step="0.01" name="nuevo" id="nuevo" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Recurrentes</label>
+                                    <input type="number" min="0.00" step="0.01" name="recurrente" id="recurrente" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Total</label>
+                                    <input type="text" name="total" id="total" class="form-control form-control-sm" disabled style="color:orangered;">
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Proyeccion</label> <br>
+                                    <button type="button" class="btn btn-outline-info" onclick="calcularPom();"><em class="bi bi-calculator-fill"></em> Calcular</button>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Condon natural</label>
+                                    <input type="text" name="cnatural" id="cnatural" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Condon sabor</label>
+                                    <input type="text" name="csabor" id="csabor" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Condon femenino</label>
+                                    <input type="text" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Lubricante</label>
+                                    <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Prueba VIH</label>
+                                    <input type="text" name="pruebaVIH" id="pruebaVIH" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Autoprueba VIH</label>
+                                    <input type="text" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Reactivo esperado
+                                    </label>
+                                    <input type="hidden" name="reactivo" id="reactivo">
+                                    <div class="position-relative">
+                                        <input type="text" name="reactivoEs" id="reactivoEs" class="form-control form-control-sm" style="color:blue" disabled>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" id="porcentaje">
+                                    </div>
+                                    </span>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-2">
+                                    <label class="form-label">Prueba sifilis</label>
+                                    <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-4">
+                                    <label class="form-label">Observaciones / otros</label>
+                                    <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
+                                </div>
+                                <div class="form-group input-group-sm col-sm-1 text-center">
+                                    <label class="form-label" style="font-size: 10px;">Unidad Movil</label>
+                                    <select name="movil" id="movil" class="form-select" style="font-size: 12px;">
+                                        <option value="0">NO</option>
+                                        <option value="1">SI</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group input-group-sm col-sm-3">
+                                    <br>
+                                    <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
+                                        <em class="bi bi-check-square-fill"></em> Guardar</button>
+                                    <button type="reset" class="btn btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </form>
             </div>
 
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo III</button>
+                    <button class="btn btn-sm btn-secundary active" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
+                        <em class="bi bi-calendar4-week"></em> Periodo III</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button" role="tab" aria-controls="pills-periodo_4" aria-selected="false"><i class="bi bi-calendar4-week"></i> Periodo IV</button>
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_4-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_4" type="button">
+                        <em class="bi bi-calendar4-week"></em> Periodo IV</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button" role="tab" aria-controls="pills-periodo_5" aria-selected="true"><i class="bi bi-calendar4-week"></i> Periodo V</button>
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_5-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_5" type="button">
+                        <em class="bi bi-calendar4-week"></em> Periodo V</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="btn btn-sm btn-secundary" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button" role="tab" aria-controls="pills-periodo_6" aria-selected="false"><i class="bi bi-calendar4-week"></i> periodo VI</button>
+                    <button class="btn btn-sm btn-secundary" id="pills-periodo_6-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_6" type="button">
+                        <em class="bi bi-calendar4-week"></em> periodo VI</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -125,24 +339,50 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/pom.js"></script>
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
-
+        <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
         <!-- Script para la busqueda -->
-        <script type="text/javascript">
-            jQuery("#buscador_1").keyup(function() {
-                if (jQuery(this).val() != "") {
-                    jQuery("#pom_periodo_1 tbody>tr").hide();
-                    jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-                } else {
-                    jQuery("#pom_periodo_1 tbody>tr").show();
-                }
-            });
-            jQuery.extend(jQuery.expr[":"], {
-                "contiene-palabra": function(elem, i, match, array) {
-                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-                }
-            });
+        <script>
+        $(document).ready(function() {
+        /**
+         * Metodo que permite filtrar pom del periodo 3
+         */
+        $('#pom_periodo_3').DataTable( {
+        initComplete: function () {
+            this.api().columns([2, 3]).every( function () {
+                var column = this;
+                var select = $('<select><option value="">Filtar</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search( val ? '^'+val+'$' : '', true, false ).draw();
+                    } );
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+            }
+            } );
+        /**
+         * Metodo que permite filtrar pom del periodo 4
+         */
+            $('#pom_periodo_4').DataTable( {
+            initComplete: function () {
+            this.api().columns([2, 3]).every( function () {
+                var column = this;
+                var select = $('<select><option value="">Filtar</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search( val ? '^'+val+'$' : '', true, false ).draw();
+                    } );
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+            }
+            } );
+        } );
         </script>
-
     </body>
 
 </html>

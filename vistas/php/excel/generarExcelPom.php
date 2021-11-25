@@ -6,7 +6,7 @@ session_start();
 $PERIODO = $_GET['periodo'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 $CONTADOR = 1;
-$sql_p1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t5.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
+$sql_p1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
 t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.estado FROM pom t2
 LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
 LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio

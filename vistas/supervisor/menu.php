@@ -28,14 +28,7 @@
         </div>
 
         <div class="sidebar-menu">
-            <ul class="menu">
 
-                <li class="sidebar-item  ">
-                    <a href="promotor.php" class='sidebar-link'>
-                        <em class="bi bi-calendar4-week"></em><span>Principal</span>
-                    </a>
-                </li>
-            </ul>
             <footer>
                 <div class="footer clearfix text-muted">
                     <div class="float-start">

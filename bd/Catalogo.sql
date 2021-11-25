@@ -428,4 +428,4 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE02', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE03', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE04', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 
-CALL agregarUsuario("INCAP01","Faustino","", "Lopez", "Ramos", "77889911", "correodeprueba@gmail.com", "R001", 1);
+CALL agregarUsuario("INCAP02","Faustino","", "Lopez", "Ramos", "77889911", "correodeprueba@gmail.com", "R001", 1);

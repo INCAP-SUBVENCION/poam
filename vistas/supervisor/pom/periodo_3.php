@@ -33,7 +33,7 @@
     <tbody style="font-size: 12px;">
         <?php
         $contap_1 = 1;
-        $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t5.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
+        $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
         t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.estado FROM pom t2
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
@@ -60,17 +60,18 @@
                     <th scope><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <th scope><?php if ($periodo_1['estado'] == 'ES01') {
-                                    echo '<p class="text-primary">Pendiente de revisar</p>';
+                                    echo '<p class="text-primary"> Creado</p>';
                                 } else if ($periodo_1['estado'] == 'ES02') {
-                                    echo '<p class="text-warning">En revision</p>';
+                                    echo '<p class="text-warning"> En revision </p>';
                                 } else if ($periodo_1['estado'] == 'ES03') {
-                                    echo '<p class="text-info">Revisado </p>';
+                                    echo '<p class="text-info"> Revisado por SR </p>';
                                 } else if ($periodo_1['estado'] == 'ES04') {
-                                    echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Autorizado</p>';
-                                }
-                                else if ($periodo_1['estado'] == 'ES05') {
-                                    echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Aprobado</p>';
-                                }
+                                    echo '<p class = "text-success"> Revisado por RP</p>';
+                                } else if ($periodo_1['estado'] == 'ES05') {
+                                    echo '<p class = "text-success"> Aprobado por RP</p>';
+                                }  else if ($periodo_1['estado'] == 'ES07') {
+                                    echo '<p class = "text-danger"> Cancelado </p>';
+                                } 
                                 ?>
                     </th>
                     <td>
@@ -82,25 +83,12 @@
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
-                                <?php
-                                if ($periodo_1['estado'] == 'ES01') {
-                                ?>
-
-                                    <li>
+                                <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
-                                            <em class="bi bi-arrow-right-circle"></em> Enviar a revision</button>
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES07')">
+                                            <em class="bi bi-arrow-right-circle"></em> Cancelar</button>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="enviarTodoPom(<?php echo $SUBRECEPTOR; ?>, 3, 'ES02', 'ES01')">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo a revision</button>
-                                        </div>
-                                    </li>
-                                <?php
-                                }
-                                ?>
                             </ul>
                         </div>
                     </td>

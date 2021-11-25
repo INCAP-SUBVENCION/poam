@@ -189,11 +189,11 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Nuevos</label>
-                                    <input type="number" min="0.00" step="0.0001" name="nuevo" id="nuevo" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                    <input type="number" min="0.00" step="0.01" name="nuevo" id="nuevo" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
                                 </div>
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Recurrentes</label>
-                                    <input type="number" min="0" step="0.0001" name="recurrente" id="recurrente" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                    <input type="number" min="0.00" step="0.01" name="recurrente" id="recurrente" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
                                 </div>
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Total</label>

@@ -28,10 +28,10 @@ if ($accion == "agregarPromotor") {
     $dias       = $_POST['dias'];
     $cobertura  = $_POST['cobertura'];
     //Validacion de duplicado
-    $consultar = "SELECT t1.usuario,t3.codigo, t2.numero FROM usuario t1  
+    $consultar = "SELECT t1.usuario,t2.codigo FROM usuario t1  
     LEFT JOIN persona t2 ON t2.idPersona=t1.persona_id 
     RIGHT JOIN promotor t3 ON t3.persona_id = t2.idPersona  
-    WHERE t1.usuario= '$usuario' AND t3.codigo = '$codigo' AND t2.numero = '$numero'";
+    WHERE t1.usuario= '$usuario' AND t2.codigo = '$codigo'";
     if (mysqli_num_rows($enlace->query($consultar))) {
         echo "Duplicado";
     } else {
