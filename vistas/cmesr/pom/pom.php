@@ -32,7 +32,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkgoldenrod;">
+        <nav class="navbar navbar-dark" style="background-color:darkorange;">
             <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
@@ -322,7 +322,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </div>
 
         </section>
-
+        <?php include '../modal/cambiarEstadoPom.php'; ?>
         <footer>
             <div class="footer clearfix mb-10 text-muted">
                 <div class="float-start">
@@ -340,49 +340,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
         <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
-        <!-- Script para la busqueda -->
-        <script>
-        $(document).ready(function() {
-        /**
-         * Metodo que permite filtrar pom del periodo 3
-         */
-        $('#pom_periodo_3').DataTable( {
-        initComplete: function () {
-            this.api().columns([2, 3]).every( function () {
-                var column = this;
-                var select = $('<select><option value="">Filtar</option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                        column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                    } );
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-            }
-            } );
-        /**
-         * Metodo que permite filtrar pom del periodo 4
-         */
-            $('#pom_periodo_4').DataTable( {
-            initComplete: function () {
-            this.api().columns([2, 3]).every( function () {
-                var column = this;
-                var select = $('<select><option value="">Filtar</option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                        column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                    } );
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-            }
-            } );
-        } );
-        </script>
+        <script src="../../js/tabla.js"></script>
+
     </body>
 
 </html>

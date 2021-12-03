@@ -26,6 +26,7 @@ if ($ROL != 'R001') {
     <link rel="stylesheet" href="../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/themes/default.css">
+    <link rel="stylesheet" href="../../assets/vendors/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
     <style>
         body {
@@ -138,12 +139,7 @@ if ($ROL != 'R001') {
                             </div>
                     </form>
 
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
-                            <input class="form-control" type="text" id="buscador" placeholder="Buscar cobertura" />
-                        </div>
-                    </div>
+
 
                     <table class="table table-hover table-bordered" id="listadoCobertura">
                         <thead class="text-center" style="font-size:12px;">
@@ -157,6 +153,16 @@ if ($ROL != 'R001') {
                             <th>% Reactividad</th>
                             <th>Opciones</th>
                         </thead>
+                        <tfoot>
+                        <th>#</th>
+                            <th>Subreceptor</th>
+                            <th>Departamento</th>
+                            <th>Municipio</th>
+                            <th>Region</th>
+                            <th># Nuevos</th>
+                            <th># Recurrentes</th>
+                            <th>% Reactividad</th>
+                        </tfoot>
                         <tbody class="text-center" style="font-size:12px;">
                             <?php
                             $contador = 1;
@@ -199,25 +205,37 @@ if ($ROL != 'R001') {
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
+    <script src="../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
     <script src="../js/subreceptor.js"></script>
     <script src="../js/utilidad.js"></script>
     <!---- ARCHIVOS EXTERNOS--->
     <?php include 'menu.php'; ?>
+
     <script type="text/javascript">
-        jQuery("#buscador").keyup(function() {
-            if (jQuery(this).val() != "") {
-                jQuery("#listadoCobertura tbody>tr").hide();
-                jQuery("#listadoCobertura td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-            } else {
-                jQuery("#listadoCobertura tbody>tr").show();
-            }
-        });
-        jQuery.extend(jQuery.expr[":"], {
-            "contiene-palabra": function(elem, i, match, array) {
-                return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-            }
+        $(document).ready(function() {
+            /**
+             * Metodo que permite filtrar pom del periodo 3
+             */
+            $('#listadoCobertura').DataTable({
+                initComplete: function() {
+                    this.api().columns([1, 2, 3]).every(function() {
+                        var column = this;
+                        var select = $('<select><option value="">Filtar</option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function() {
+                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                                column.search(val ? '^' + val + '$' : '', true, false).draw();
+                            });
+                        column.data().unique().sort().each(function(d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
+
         });
     </script>
+
 </body>
 
 </html>

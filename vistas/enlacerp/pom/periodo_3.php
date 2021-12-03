@@ -1,14 +1,5 @@
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-4">
 
-        <div class="input-group input-group-sm">
-            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-            <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
-            <input class="form-control" type="text" id="buscador" placeholder="Buscar..." />
-        </div>
-    </div>
-</div>
-<table class="table table-hover table-bordered" id="pom_periodo_1" aria-describedby="pom del periodo 1">
+<table class="table table-hover table-bordered" id="pom_periodo_3" aria-describedby="pom del periodo 1">
     <thead style="font-size: 12px;" class="table-info">
         <tr>
             <th scope>#</th>
@@ -27,17 +18,13 @@
             <th scope>Observacion</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
-
         </tr>
     </thead>
     <tbody style="font-size: 12px;">
         <?php
         $contap_1 = 1;
-        $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, 
-        t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t5.codigo, CONCAT(t6.nombre, ' ', 
-        t6.apellido) as nombres,t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total,
-        t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, 
-        t2.reactivo, t2.sifilis, t2.observacion, t2.estado FROM pom t2
+        $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
+        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.estado FROM pom t2
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
@@ -46,8 +33,7 @@
         WHERE t2.periodo=3 AND t7.subreceptor_id = $SUBRECEPTOR 
         AND t2.estado NOT IN(SELECT estado FROM pom WHERE estado = 'ES01')";
         if ($resp_1 = $enlace->query($sqlp_1)) {
-            while ($periodo_1 = $resp_1->fetch_assoc()) {
-        ?>
+            while ($periodo_1 = $resp_1->fetch_assoc()) { ?>
                 <tr>
                     <td><?php echo $contap_1++; ?></td>
                     <td><?php echo $periodo_1['periodo']; ?></td>
@@ -63,15 +49,15 @@
                     <td><?php echo $periodo_1['pRecurrente']; ?></td>
                     <th scope><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
-                    <th scope><?php if ($periodo_1['estado'] == 'ES03') {
+                    <th scope><?php if ($periodo_1['estado'] == 'ES02') {
                                     echo '<p class="text-primary">Revisar</p>';
-                                } else if ($periodo_1['estado'] == 'ES04') {
+                                } else if ($periodo_1['estado'] == 'ES03') {
                                     echo '<p class="text-warning">Revisado</p>';
-                                } else if ($periodo_1['estado'] == 'ES05') {
+                                } else if ($periodo_1['estado'] == 'ES04') {
                                     echo '<p class="text-info">Aprobado </p>';
-                                } else if ($periodo_1['estado'] == 'ES06') {
+                                } else if ($periodo_1['estado'] == 'ES05') {
                                     echo '<p class = "text-success"><i class="bi bi-check2-all"></i> Aprobado</p>';
-                                } else if ($periodo_1['estado'] == 'ES07') {
+                                } else if ($periodo_1['estado'] == 'ES06') {
                                     echo '<p class = "text-danger"> Cancelado</p>';
                                 }
                                 ?>
@@ -86,18 +72,18 @@
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
                                 <?php
-                                if ($periodo_1['estado'] == 'ES03') {
+                                if ($periodo_1['estado'] == 'ES02') {
                                 ?>
 
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES04')">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES03')">
                                             <em class="bi bi-arrow-right-circle"></em> Revisar y autorizar  </button>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="enviarTodoPom(<?php echo $SUBRECEPTOR; ?>, 3, 'ES04', 'ES03')">
+                                            <button class="dropdown-item" onclick="enviarTodoPom(<?php echo $SUBRECEPTOR; ?>, 3, 'ES03', 'ES02')">
                                                 <em class="bi bi-arrow-clockwise"></em> Revisar y autorizar todo </button>
                                         </div>
                                     </li>
@@ -108,9 +94,32 @@
                         </div>
                     </td>
                 </tr>
-        <?php }
-            $resp_1->close();
-        }  ?>
+        <?php } $resp_1->close(); }  ?>
     </tbody>
+    <tfoot>
+    <tr>
+      <th>#</th>
+      <th>Periodo</th>
+      <th>Mes</th>
+      <th>Municipio</th>
+      <th>Lugar</th>
+      <th>Fecha</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Codigo</th>
+      <th>Subreceptor</th>
+      <td class="text-center"><strong id="tnuevo3">0</strong></td>
+      <td class="text-center"><strong id="tnuevo3">0</strong></td>
+      <td class="text-center"><strong id="ttotal3">0</strong></td>
+      <th>Observacion</th>
+      <th>Estado</th>
+    </tr>
+  </tfoot>
 </table>
-<?php include '../modal/cambiarEstadoPom.php'; ?>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="col-sm-6">
+        <div class="input-group input-group-sm">
+            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
+       </div>
+    </div>
+</div>

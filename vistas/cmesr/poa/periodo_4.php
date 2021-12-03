@@ -1,14 +1,5 @@
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-5">
-        <div class="input-group input-group-sm">
-            <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
-            <input class="form-control" type="text" id="buscador_1" placeholder="Buscar..." />
-            <a class="btn btn-success" href="../../php/excel/generarExcelPoa.php?periodo=1" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
 
-        </div>
-    </div>
-</div>
-<table class="table table-hover table-bordered" id="poa_periodo_1" aria-describedby="">
+<table class="table table-hover table-bordered" id="poa_periodo_4" aria-describedby="">
     <thead class="text-center" style="font-size: 12px;">
         <th scope="">#</th>
         <th scope="">Mes</th>
@@ -26,7 +17,7 @@
         <th scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
-        <th scope="">ACTION</th>
+        <th scope="">Opciones</th>
     </thead>
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
@@ -38,7 +29,7 @@
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 4 ORDER BY mes";
+	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 4 ORDER BY mes, municipio";
         if ($res = $enlace->query($consult)) {
             while ($periodo_1 = $res->fetch_assoc()) {
         ?>
@@ -61,12 +52,12 @@
                     <th scope="">
                         <?php if ($periodo_1['estado'] == 'ES01') {
                             echo '<p style="color: dodgerblue;">Creado</p>';
-                        } else if ($periodo_1['estado'] == 'ES03') {
+                        } else if ($periodo_1['estado'] == 'ES02') {
                             echo '<p style="color: orange;">Enviado al RP </p>';
-                        } else if ($periodo_1['estado'] == 'ES04') {
+                        } else if ($periodo_1['estado'] == 'ES03') {
                             echo '<p style="color: limegreen;">Revisado por el RP</p>';
                         }
-                        else if ($periodo_1['estado'] == 'ES05') {
+                        else if ($periodo_1['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
                         }
                         ?>
@@ -74,7 +65,7 @@
                     <td>
                         <div class="dropdown">
                             <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 11px;">
-                                <em class="bi bi-grid"></em> Opciones
+                                <em class="bi bi-grid"></em>
                             </a>
                             <?php
                             if ($periodo_1['estado'] == 'ES01') {
@@ -82,13 +73,13 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES03')">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')">
                                                 <em class="bi bi-arrow-right-circle"></em> Enviar al RP</button>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="cambiarTodo(<?php echo $SUBRECEPTOR; ?>, 3, 'ES03', 'ES01')">
+                                            <button class="dropdown-item" onclick="cambiarTodo(<?php echo $SUBRECEPTOR; ?>, 4, 'ES02', 'ES01')">
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar todo al RP</button>
                                         </div>
                                     </li>
@@ -103,5 +94,24 @@
             $res->close();
         }  ?>
     </tbody>
+    <tfoot>
+        <th scope="">#</th>
+        <th scope="">Mes</th>
+        <th scope="">Municipio</th>
+        <td class="text-center"><strong id="tnuevos4">0</strong></td>
+        <td class="text-center"><strong id="trecurrentes4">0</strong></td>
+        <td class="text-center"><strong id="total4">0</strong></td>
+        <td class="text-center"><strong id="tnatural4">0</strong></td>
+        <td class="text-center"><strong id="tsabor4">0</strong></td>
+        <td class="text-center"><strong id="tfemenino4">0</strong></td>
+        <td class="text-center"><strong id="tlubricantes4">0</strong></td>
+        <td class="text-center"><strong id="tpruebavih4">0</strong></td>
+        <td class="text-center"><strong id="tautoprueba4">0</strong></td>
+        <td class="text-center"><strong id="treactivos4">0</strong></td>
+        <td class="text-center"><strong id="tsifilis4">0</strong></td>
+        <th scope="">Observaciones</th>
+        <th scope="">Estado</th>
+    </tfoot>
 </table>
-<?php include '../modal/cambiarEstadoPoa.php'; ?>
+<a class="btn btn-success" href="../../php/excel/generarExcelPoa.php?periodo=4" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
+

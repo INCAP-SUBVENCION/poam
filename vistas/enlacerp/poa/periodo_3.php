@@ -1,14 +1,4 @@
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-5">
-        <div class="input-group input-group-sm">
-            <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
-            <input class="form-control" type="text" id="buscador_1" placeholder="Buscar..." />
-            <a class="btn btn-success" href="../../php/excel/generarExcelPoa.php?periodo=1" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-
-        </div>
-    </div>
-</div>
-<table class="table table-hover table-bordered" id="poa_periodo_1" aria-describedby="">
+<table class="table table-hover table-bordered" id="poa_periodo_3" aria-describedby="">
     <thead class="text-center" style="font-size: 12px;">
         <th scope="">#</th>
         <th scope="">Mes</th>
@@ -26,7 +16,7 @@
         <th scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
-        <th scope="">ACTION</th>
+        <th scope="">Opcion</th>
     </thead>
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
@@ -59,11 +49,11 @@
                     <td><?php echo $periodo_1['sifilis']; ?></td>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <th scope="">
-                        <?php if ($periodo_1['estado'] == 'ES03') {
+                        <?php if ($periodo_1['estado'] == 'ES02') {
                             echo '<p style="color: dodgerblue;">Revisar</p>';
-                        } else if ($periodo_1['estado'] == 'ES04') {
+                        } else if ($periodo_1['estado'] == 'ES03') {
                             echo '<p style="color: orange;">Revisado </p>';
-                        } else if ($periodo_1['estado'] == 'ES05') {
+                        } else if ($periodo_1['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado</p>';
                         }
                         
@@ -72,21 +62,21 @@
                     <td>
                         <div class="dropdown">
                             <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 11px;">
-                                <em class="bi bi-grid"></em> Opciones
+                                <em class="bi bi-grid"></em>
                             </a>
                             <?php
-                            if ($periodo_1['estado'] == 'ES03') {
+                            if ($periodo_1['estado'] == 'ES02') {
                             ?>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES04')">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES03')">
                                                 <em class="bi bi-arrow-right-circle"></em> Autorizar POA</button>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-grid gap-2">
-                                        <button class="dropdown-item" onclick="cambiarTodo(<?php echo $SUBRECEPTOR; ?>, 3, 'ES04', 'ES03')">
+                                        <button class="dropdown-item" onclick="cambiarTodo(<?php echo $SUBRECEPTOR; ?>, 3, 'ES03', 'ES02')">
                                                 <em class="bi bi-arrow-clockwise"></em> Autorizar todo el POA</button>
                                         </div>
                                     </li>
@@ -101,5 +91,24 @@
             $res->close();
         }  ?>
     </tbody>
+    <tfoot>
+        <th scope="">#</th>
+        <th scope="">Mes</th>
+        <th scope="">Municipio</th>
+        <td class="text-center"><strong id="tnuevos3">0</strong></td>
+        <td class="text-center"><strong id="trecurrentes3">0</strong></td>
+        <td class="text-center"><strong id="total3">0</strong></td>
+        <td class="text-center"><strong id="tnatural3">0</strong></td>
+        <td class="text-center"><strong id="tsabor3">0</strong></td>
+        <td class="text-center"><strong id="tfemenino3">0</strong></td>
+        <td class="text-center"><strong id="tlubricantes3">0</strong></td>
+        <td class="text-center"><strong id="tpruebavih3">0</strong></td>
+        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
+        <td class="text-center"><strong id="treactivos3">0</strong></td>
+        <td class="text-center"><strong id="tsifilis3">0</strong></td>
+        <th scope="">Observaciones</th>
+        <th scope="">Estado</th>
+    </tfoot>
 </table>
-<?php include '../modal/cambiarEstadoPoa.php'; ?>
+<a class="btn btn-success" href="../../php/excel/generarExcelPoa.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
+

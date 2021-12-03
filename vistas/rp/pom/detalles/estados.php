@@ -1,7 +1,7 @@
 <div class="card text-dark mb-3" style="max-width: 65rem;">
     <div class="card-body">
         <table class="table table-bordered">
-            <thead class="text-center text-white" style="background-color:darkslategrey;">
+            <thead class="text-center text-white" style="background-color:darkblue;">
                 <tr>
                     <th rowspan="3">ESTADO</th>
                 </tr>
@@ -25,16 +25,41 @@
                 WHERE t1.pom_id = $POM AND t2.subreceptor_id = $SUBRECEPTOR";
                 $resultadoEstado = $enlace->query($sqlEstado);
                 while ($estado = $resultadoEstado->fetch_assoc()) {
+                    if ($estado['estado'] == 'ES01') {
                 ?>
-                    <tr>
-                        <td><?php echo $estado['estados']; ?></td>
-
-                        <td><?php echo $estado['nombre'] . ' ' . $estado['apellido']; ?></tdss>
-                        <td><?php echo $estado['roles']; ?></td>
-                        <td><?php echo $estado['descripcion']; ?></td>
-                        <td><?php echo $estado['fecha']; ?></td>
-                    </tr>
+                        <tr class="text-primary">
+                            <td><i class="bi bi-node-plus-fill"></i> <?php echo $estado['estados']; ?></td>
+                            <td><?php echo $estado['nombre'] . ' ' . $estado['apellido']; ?></tdss>
+                            <td><?php echo $estado['roles']; ?></td>
+                            <td><?php echo $estado['descripcion']; ?></td>
+                            <td><?php echo $estado['fecha']; ?></td>
+                        </tr>
+                    <?php } else if ($estado['estado'] == 'ES02') { ?>
+                        <tr class="text-warning">
+                            <td><i class="bi bi-search"></i> <?php echo $estado['estados']; ?></td>
+                            <td><?php echo $estado['nombre'] . ' ' . $estado['apellido']; ?></tdss>
+                            <td><?php echo $estado['roles']; ?></td>
+                            <td><?php echo $estado['descripcion']; ?></td>
+                            <td><?php echo $estado['fecha']; ?></td>
+                        </tr>
+                    <?php } else if ($estado['estado'] == 'ES03') { ?>
+                        <tr class="text-info">
+                            <td><i class="bi bi-check"></i></i> <?php echo $estado['estados']; ?></td>
+                            <td><?php echo $estado['nombre'] . ' ' . $estado['apellido']; ?></tdss>
+                            <td><?php echo $estado['roles']; ?></td>
+                            <td><?php echo $estado['descripcion']; ?></td>
+                            <td><?php echo $estado['fecha']; ?></td>
+                        </tr>
+                    <?php } else if ($estado['estado'] == 'ES04') { ?>
+                        <tr class="text-success">
+                            <td><i class="bi bi-check2-all"></i> <?php echo $estado['estados']; ?></td>
+                            <td><?php echo $estado['nombre'] . ' ' . $estado['apellido']; ?></tdss>
+                            <td><?php echo $estado['roles']; ?></td>
+                            <td><?php echo $estado['descripcion']; ?></td>
+                            <td><?php echo $estado['fecha']; ?></td>
+                        </tr>
                 <?php
+                    }
                 }
                 $resultadoEstado->close();
                 ?>

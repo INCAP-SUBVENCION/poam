@@ -32,7 +32,7 @@ $POM = $_GET['id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkblue;">
+        <nav class="navbar navbar-dark" style="background-color:darkorange;">
             <img src="../../../assets/images/vihinvertido.png" width="35">
             <h2 class="text-white"><i class="bi bi-calendar4-week"></i> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php

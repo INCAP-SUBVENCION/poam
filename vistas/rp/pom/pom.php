@@ -20,6 +20,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
     <style>
         body {
@@ -32,7 +33,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkblue;">
+        <nav class="navbar navbar-dark" style="background-color:darkorange;">
             <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
@@ -108,6 +109,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </div>
 
         </section>
+        <?php include '../modal/cambiarEstadoPom.php'; ?>
 
         <footer>
             <div class="footer clearfix mb-10 text-muted">
@@ -125,23 +127,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/pom.js"></script>
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
-
-        <!-- Script para la busqueda -->
-        <script type="text/javascript">
-            jQuery("#buscador_1").keyup(function() {
-                if (jQuery(this).val() != "") {
-                    jQuery("#pom_periodo_1 tbody>tr").hide();
-                    jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-                } else {
-                    jQuery("#pom_periodo_1 tbody>tr").show();
-                }
-            });
-            jQuery.extend(jQuery.expr[":"], {
-                "contiene-palabra": function(elem, i, match, array) {
-                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-                }
-            });
-        </script>
+        <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
+        <script src="../../js/tabla.js"></script>
 
     </body>
 

@@ -1,14 +1,5 @@
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-4">
 
-        <div class="input-group input-group-sm">
-            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-            <span class="input-group-text" id="inputGroup-sizing-sm"><em class="bi bi-search"></em></span>
-            <input class="form-control" type="text" id="buscador" placeholder="Buscar..." />
-        </div>
-    </div>
-</div>
-<table class="table table-hover table-bordered" id="pom_periodo_1" aria-describedby="pom del periodo 1">
+<table class="table table-hover table-bordered" id="pom_periodo_3" aria-describedby="pom del periodo 1">
     <thead style="font-size: 12px;" class="table-info">
         <tr>
             <th scope>#</th>
@@ -27,7 +18,6 @@
             <th scope>Observacion</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
-
         </tr>
     </thead>
     <tbody style="font-size: 12px;">
@@ -40,10 +30,9 @@
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo=3 AND t7.subreceptor_id = $SUBRECEPTOR";
+        WHERE t2.periodo=3 AND t7.subreceptor_id = $SUBRECEPTOR ORDER BY municipio";
         if ($resp_1 = $enlace->query($sqlp_1)) {
-            while ($periodo_1 = $resp_1->fetch_assoc()) {
-        ?>
+            while ($periodo_1 = $resp_1->fetch_assoc()) { ?>
                 <tr>
                     <td><?php echo $contap_1++; ?></td>
                     <td><?php echo $periodo_1['periodo']; ?></td>
@@ -60,19 +49,18 @@
                     <th scope><?php echo round($periodo_1['total'], 2); ?></th>
                     <td><?php echo $periodo_1['observacion']; ?></td>
                     <th scope><?php if ($periodo_1['estado'] == 'ES01') {
-                                    echo '<p class="text-primary"> Creado</p>';
-                                } else if ($periodo_1['estado'] == 'ES02') {
-                                    echo '<p class="text-warning"> En revision </p>';
-                                } else if ($periodo_1['estado'] == 'ES03') {
-                                    echo '<p class="text-info"> Revisado por SR </p>';
-                                } else if ($periodo_1['estado'] == 'ES04') {
-                                    echo '<p class = "text-success"> Revisado por RP</p>';
-                                } else if ($periodo_1['estado'] == 'ES05') {
-                                    echo '<p class = "text-success"> Aprobado por RP</p>';
-                                }  else if ($periodo_1['estado'] == 'ES07') {
-                                    echo '<p class = "text-danger"> Cancelado </p>';
-                                } 
-                                ?>
+                        echo '<p class="text-primary"> Creado</p>';
+                    } elseif ($periodo_1['estado'] == 'ES02') {
+                        echo '<p class="text-warning"> En revision </p>';
+                    } elseif ($periodo_1['estado'] == 'ES03') {
+                        echo '<p class="text-info"> Revisado por SR </p>';
+                    } elseif ($periodo_1['estado'] == 'ES04') {
+                        echo '<p class = "text-success"> Revisado por RP</p>';
+                    } elseif ($periodo_1['estado'] == 'ES05') {
+                        echo '<p class = "text-success"> Aprobado por RP</p>';
+                    } elseif ($periodo_1['estado'] == 'ES07') {
+                        echo '<p class = "text-danger"> Cancelado </p>';
+                    } ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -80,12 +68,16 @@
                                 <em class="bi bi-gear"></em> Opcion
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
+                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1[
+                                    'idPom'
+                                ]; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
                                 <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES07')">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1[
+                                                'idPom'
+                                            ]; ?>, <?php echo $ID; ?>, 'ES07')">
                                             <em class="bi bi-arrow-right-circle"></em> Cancelar</button>
                                         </div>
                                     </li>
@@ -95,7 +87,34 @@
                 </tr>
         <?php }
             $resp_1->close();
-        }  ?>
+        }
+        ?>
     </tbody>
+    <tfoot>
+    <tr>
+      <th>#</th>
+      <th>Periodo</th>
+      <th>Mes</th>
+      <th>Municipio</th>
+      <th>Lugar</th>
+      <th>Fecha</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Codigo</th>
+      <th>Subreceptor</th>
+      <td class="text-center"><strong id="tnuevo3">0</strong></td>
+      <td class="text-center"><strong id="tnuevo3">0</strong></td>
+      <td class="text-center"><strong id="ttotal3">0</strong></td>
+      <th>Observacion</th>
+      <th>Estado</th>
+    </tr>
+  </tfoot>
 </table>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="col-sm-6">
+        <div class="input-group input-group-sm">
+            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
+       </div>
+    </div>
+</div>
 <?php include '../modal/cambiarEstadoPom.php'; ?>

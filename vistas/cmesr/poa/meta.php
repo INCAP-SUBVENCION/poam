@@ -112,7 +112,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             </div>
                             <div class="form-group input-group-sm col-sm-1">
                                 <label class="form-label">Recurrentes</label>
-                                <input type="number" min="0" name="recurrente" id="recurrente" onchange="calcularMeta();" class="form-control form-control-sm" style="font-size: 12px;" disabled>
+                                <input type="number" min="0" name="recurrente" id="recurrente" onchange="calcularMeta();" class="form-control form-control-sm" style="font-size: 12px;" >
                             </div>
                             <div class="form-group input-group-sm col-sm-1">
                                 <label class="form-label"># Meses</label>

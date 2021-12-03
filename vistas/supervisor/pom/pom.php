@@ -7,7 +7,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +20,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -324,29 +325,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/pom.js"></script>
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
-
-        <!-- Script para la busqueda -->
-        <script type="text/javascript">
-            /** Busqueda del periodo 3 */
-            jQuery("#buscador").keyup(function() {
-                if (jQuery(this).val() != "") {
-                    jQuery("#pom_periodo_1 tbody>tr").hide();
-                    jQuery("#pom_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-                } else {
-                    jQuery("#pom_periodo_1 tbody>tr").show();
-                }
-            });
-
-            /** Busqueda del periodo 4 */
-            jQuery.extend(jQuery.expr[":"], {
-                "contiene-palabra": function(elem, i, match, array) {
-                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-                }
-            });
-
-            /** Busqueda del periodo 5 */
-            /** Busqueda del periodo 6 */
-        </script>
+        <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
+        <script src="../../js/tabla.js"></script>
     </body>
 
 </html>

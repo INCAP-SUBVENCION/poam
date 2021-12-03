@@ -23,6 +23,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
     <style>
         body {
@@ -228,7 +229,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-
+            <?php include '../modal/cambiarEstadoPoa.php'; ?>
                 <div class="tab-pane fade show active" id="pills-periodo_3">
                     <?php include 'periodo_3.php'; ?>
                 </div>
@@ -257,27 +258,12 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
+        <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
         <script src="../../js/poa.js"></script>
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
+        <script src="../../js/tabla.js"></script>
 
-        <!-- Script para la busqueda -->
-        <script type="text/javascript">
-            jQuery("#buscador_1").keyup(function() {
-                if (jQuery(this).val() != "") {
-                    jQuery("#poa_periodo_1 tbody>tr").hide();
-                    jQuery("#poa_periodo_1 td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-                } else {
-                    jQuery("#poa_periodo_1 tbody>tr").show();
-                }
-            });
-
-            jQuery.extend(jQuery.expr[":"], {
-                "contiene-palabra": function(elem, i, match, array) {
-                    return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-                }
-            });
-        </script>
     </body>
 
 </html>

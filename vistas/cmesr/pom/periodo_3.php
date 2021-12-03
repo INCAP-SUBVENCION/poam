@@ -20,14 +20,6 @@
             <th scope>Opcion</th>
         </tr>
     </thead>
-    <tfoot>
-    <tr>
-      <th>#</th>
-      <th>Periodo</th>
-      <th>Mes</th>
-      <th>Municipio</th>
-    </tr>
-  </tfoot>
     <tbody style="font-size: 12px;">
         <?php
         $contap_1 = 1;
@@ -61,7 +53,7 @@
                     } elseif ($periodo_1['estado'] == 'ES02') {
                         echo '<p class="text-warning"> En revision </p>';
                     } elseif ($periodo_1['estado'] == 'ES03') {
-                        echo '<p class="text-info"> Revisado por SR </p>';
+                        echo '<p class="text-info"> Revisado por RP </p>';
                     } elseif ($periodo_1['estado'] == 'ES04') {
                         echo '<p class = "text-success"> Revisado por RP</p>';
                     } elseif ($periodo_1['estado'] == 'ES05') {
@@ -76,19 +68,28 @@
                                 <em class="bi bi-gear"></em> Opcion
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1[
-                                    'idPom'
-                                ]; ?>">
+                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_1['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
-                                <li>
+                                <?php
+                                if ($periodo_1['estado'] == 'ES01') {
+                                ?>
+
+                                    <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1[
-                                                'idPom'
-                                            ]; ?>, <?php echo $ID; ?>, 'ES07')">
-                                            <em class="bi bi-arrow-right-circle"></em> Cancelar</button>
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_1['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
+                                            <em class="bi bi-arrow-right-circle"></em> Enviar al RP  </button>
                                         </div>
                                     </li>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="enviarTodoPom(<?php echo $SUBRECEPTOR; ?>, 3, 'ES02', 'ES01')">
+                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo al RP </button>
+                                        </div>
+                                    </li>
+                                <?php
+                                }
+                                ?>
                             </ul>
                         </div>
                     </td>
@@ -98,6 +99,25 @@
         }
         ?>
     </tbody>
+    <tfoot>
+    <tr>
+      <th>#</th>
+      <th>Periodo</th>
+      <th>Mes</th>
+      <th>Municipio</th>
+      <th>Lugar</th>
+      <th>Fecha</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Codigo</th>
+      <th>Subreceptor</th>
+      <td class="text-center"><strong id="tnuevo3">0</strong></td>
+      <td class="text-center"><strong id="tnuevo3">0</strong></td>
+      <td class="text-center"><strong id="ttotal3">0</strong></td>
+      <th>Observacion</th>
+      <th>Estado</th>
+    </tr>
+  </tfoot>
 </table>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
@@ -106,4 +126,4 @@
        </div>
     </div>
 </div>
-<?php include '../modal/cambiarEstadoPom.php'; ?>
+
