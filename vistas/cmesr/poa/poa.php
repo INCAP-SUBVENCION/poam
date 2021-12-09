@@ -128,7 +128,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Nuevos</label>
-                                        <input type="text" name="nuevo" id="nuevo" class="form-control form-control-sm" style="font-size: 12px;" disabled required>
+                                        <input type="text" name="nuevo" id="nuevo" class="form-control form-control-sm" style="font-size: 12px;" required>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Recurrentes</label>
@@ -230,6 +230,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </ul>
             <div class="tab-content" id="pills-tabContent">
             <?php include '../modal/cambiarEstadoPoa.php'; ?>
+            <?php include '../modal/editarPoa.php'; ?>
                 <div class="tab-pane fade show active" id="pills-periodo_3">
                     <?php include 'periodo_3.php'; ?>
                 </div>

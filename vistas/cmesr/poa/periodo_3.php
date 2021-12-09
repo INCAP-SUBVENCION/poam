@@ -1,6 +1,6 @@
 
 <table class="table table-hover table-bordered" id="poa_periodo_3" aria-describedby="">
-    <thead class="text-center" style="font-size: 12px;">
+    <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
         <th scope="">Mes</th>
         <th scope="">Municipio</th>
@@ -29,7 +29,7 @@
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 3 ORDER BY mes, municipio";
+	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 3";
         if ($res = $enlace->query($consult)) {
             while ($periodo_1 = $res->fetch_assoc()) {
         ?>
@@ -83,11 +83,12 @@
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar todo al RP</button>
                                         </div>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><em class="bi bi-pencil-square"></em> Editar</a></li>
+                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_1['idPoa']; ?>)">
+                                    <em class="bi bi-pencil-square"></em> Editar </button>
                                 </ul>
                             <?php } ?>
                         </div>
-                    </td>
+                    </td> 
 
                 </tr>
         <?php }

@@ -146,7 +146,7 @@ function agregarPOM() {
     var inicio = document.getElementById('inicio').value;
     var fin = document.getElementById('fin').value;
     var lugar = document.getElementById('lugar').value;
-    var promotor = document.getElementById('promotor').value;
+    var promotores = document.getElementById('promotores').value;
     var nuevo = document.getElementById('nuevo').value;
     var recurrente = document.getElementById('recurrente').value;
     var cnatural = document.getElementById('cnatural').value;
@@ -160,7 +160,9 @@ function agregarPOM() {
     var observacion = document.getElementById('observacion').value;
     var subreceptor = document.getElementById('subreceptor').value;
     var movil = document.getElementById('movil').value;
-
+    var supervisado = document.getElementById('supervisado').value;
+    var supervisor = document.getElementById('supervisor').value;
+    
     var accion = "agregarPOM";
 
     $.ajax({
@@ -177,7 +179,7 @@ function agregarPOM() {
             inicio: inicio,
             fin: fin,
             lugar: lugar,
-            promotor: promotor,
+            promotores: promotores,
             nuevo: nuevo,
             recurrente: recurrente,
             cnatural: cnatural,
@@ -190,7 +192,9 @@ function agregarPOM() {
             sifilis: sifilis,
             observacion: observacion,
             subreceptor: subreceptor,
-            movil: movil
+            movil: movil,
+            supervisado: supervisado,
+            supervisor: supervisor
         },
         success: function (datos) {
             if (datos == 'Exito') {

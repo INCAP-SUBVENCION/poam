@@ -99,13 +99,70 @@ if ($accion == "agregarResumen") {
  * Metodo que permite enviar todo
  */
 if ($accion == "cambiarTodo") {
-  $subreceptor  = $_POST['subreceptor'];
-  $periodo      = $_POST['periodo'];
-  $estado       = $_POST['estado'];
-  $estadoActual = $_POST['estadoActual'];
-  if($enlace->query("UPDATE poa SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo AND estado = '$estadoActual'") === TRUE){
-    echo "Exito";
-  } else {
-    echo "Error";
-  }
+    $subreceptor  = $_POST['subreceptor'];
+    $periodo      = $_POST['periodo'];
+    $estado       = $_POST['estado'];
+    $estadoActual = $_POST['estadoActual'];
+    if ($enlace->query("UPDATE poa SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo AND estado = '$estadoActual'") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+////////////////////////////////////////EDITAR///////////////////////
+if ($accion == "consultaEditar") {
+    $subreceptor = $_POST['subreceptor'];
+    $periodo = $_POST['periodo'];
+    $poa = $_POST['poa'];
+    $sql = "SELECT DISTINCT t1.idPoa, t2.idInsumo, t5.codigo as codigoM, t5.nombre as mes, t3.codigo as codigoD, 
+    t3.nombre as departamento,t4.codigo as codigoMuni, t4.nombre as municipio, t1.nuevo, 
+    t1.recurrente, round((t1.nuevo+t1.recurrente),2) as total,t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, 
+    t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis FROM poa t1
+    LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
+    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
+    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
+    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
+    WHERE t1.subreceptor_id = $subreceptor AND t1.anio = YEAR(NOW()) AND t1.periodo = $periodo AND t1.idPoa=$poa";
+
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($poa = $consulta->fetch_assoc()) {
+        $response = $poa;
+    }
+    echo json_encode($response);
+}
+
+/**
+ * 
+ */
+if ($accion == "editarPoa") {
+
+    $poa            = $_POST['poa'];
+    $insumo         = $_POST['insumo'];
+    $usuario        = $_POST['eusuario'];
+    $mes            = $_POST['emes'];
+    $departamento   = $_POST['edepartamento'];
+    $municipio      = $_POST['emunicipio'];
+    $nuevo          = $_POST['enuevo'];
+    $recurrente     = $_POST['erecurrente'];
+    $subreceptor    = $_POST['esubreceptor'];
+    $observacion    = $_POST['eobservacion'];
+    $periodo        = $_POST['eperiodo'];
+    $cnatural       = $_POST['ecnatural'];
+    $csabor         = $_POST['ecsabor'];
+    $cfemenino      = $_POST['ecfemenino'];
+    $lubricante     = $_POST['elubricante'];
+    $pruebaVIH      = $_POST['epruebaVIH'];
+    $autoPrueba     = $_POST['eautoPrueba'];
+    $reactivoEs     = $_POST['ereactivoEs'];
+    $sifilis        = $_POST['esifilis'];
+
+    $sqlPoa = "CALL editarPoa($poa, $insumo, '$mes', '$departamento', '$municipio', $nuevo, $recurrente, $subreceptor,
+        '$observacion', $periodo, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis)";
+
+    if ($enlace->query($sqlPoa) === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
 }

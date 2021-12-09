@@ -83,7 +83,8 @@
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar todo al RP</button>
                                         </div>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><em class="bi bi-pencil-square"></em> Editar</a></li>
+                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_1['idPoa']; ?>)">
+                                    <em class="bi bi-pencil-square"></em> Editar </button>
                                 </ul>
                             <?php } ?>
                         </div>

@@ -14,9 +14,9 @@ function modalCambiarEstadoPoa(id, usuario, estado) {
         data: {
             accion : accion,
             id:id
-        },
+        }, 
     success: function (datos, status){
-
+ 
         var poa = JSON.parse(datos);
         document.getElementById("estado_id").value = id
         document.getElementById("estado_mes").value = poa.mes;

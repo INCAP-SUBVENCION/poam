@@ -40,6 +40,11 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('114',  
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('115',  'Villa Nueva', '1', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('116',  'Villa Canales', '1', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('117',  'Petapa', '1', 'municipio');
+
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('118',  'Pavoncito', '1', 'municipio');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('119',  'Granja Modelo Pavon', '1', 'municipio');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('120',  'Centro Preventivo zona 18', '1', 'municipio');
+
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('201',  'Guastatoya', '2', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('202',  'Morazán', '2', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('203',  'San Agustín Acasaguastlán', '2', 'municipio');
@@ -93,6 +98,9 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('510',  
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('511',  'Palín', '5', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('512',  'San Vicente Pacaya', '5', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('513',  'Nueva Concepción', '5', 'municipio');
+
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('514',  'Granja Modelo Canada', '5', 'municipio');
+
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('601',  'Cuilapa', '6', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('602',  'Barberena', '6', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('603',  'Santa Rosa de Lima', '6', 'municipio');
@@ -158,6 +166,9 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('921',  
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('922',  'Flores Costa Cuca', '9', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('923',  'La Esperanza', '9', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('924',  'Palestina de los Altos', '9', 'municipio');
+
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('925',  'Granja Modelo Cantel', '9', 'municipio');
+
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('1001',  'Mazatenango', '10', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('1002',  'Cuyotenango', '10', 'municipio');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('1003',  'San Francisco Zapotitlán', '10', 'municipio');
@@ -371,6 +382,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R006',  'Supervisor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R007',  'Promotor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Financiero', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R009',  'Coordinador de proyectos', ' ', 'rol');
 #PERIODO 1
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP11', 'Enero', 1, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP12', 'Febrero', 1, 'mes');
@@ -427,4 +439,4 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE02', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE03', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE04', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 
-CALL agregarUsuario("INCAP01","Faustino","", "Lopez", "Ramos", "77889911", "correodeprueba@gmail.com", "R001", 1);
+CALL agregarUsuario("INCAP02","Osberto","", "Juarez", "Vasquez", "57619344", "ojuarez@incap.int", "R001", 1);

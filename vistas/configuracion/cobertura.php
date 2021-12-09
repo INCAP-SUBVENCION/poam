@@ -125,7 +125,7 @@ if ($ROL != 'R001') {
                                     </div>
                                     <div class="form-group input-group-sm col-sm-1">
                                         <label class="form-label">Reactividad:</label>
-                                        <input type="number" min="0.0" max="1" step="0.01" name="reactivo" id="reactivo" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                        <input type="number" min="0.000" max="1" step="0.001" name="reactivo" id="reactivo" class="form-control form-control-sm" style="font-size: 12px;" required>
                                     </div>
 
                                 </div>

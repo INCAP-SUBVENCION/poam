@@ -42,6 +42,28 @@ function llenarMunicipioCobertura() {
         }
     });
 }
+/**
+ * Funcion que perminte llenar combo con los municipios segun el departamento semestre 1 a editar
+ */
+ function llenarMunicipioCobertura_editar() {
+
+    var subreceptor = document.getElementById('esubreceptor').value;
+    var departamento = parseInt(document.getElementById('edepartamento').value);
+    var accion = "municipioCobertura";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/utilidad.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            departamento: departamento
+        },
+        success: function (datos) {
+            $("#emunicipio").html(datos);
+        }
+    });
+}
 
 /**
  * Funcion para obtener los meses segun el semestre
@@ -61,6 +83,28 @@ function periodo_mes() {
         },
         success: function (datos) {
             $("#mes").html(datos);
+        }
+    });
+}
+
+/**
+ * Funcion para obtener los meses segun el semestre para editar
+ */
+ function periodo_mes_editar() {
+
+    var periodo = document.getElementById('eperiodo').value;
+
+    var accion = "periodo_mes";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/utilidad.php",
+        data: {
+            accion: accion,
+            periodo: periodo
+        },
+        success: function (datos) {
+            $("#emes").html(datos);
         }
     });
 }
@@ -241,17 +285,64 @@ function creaUsuario(){
     var usuario = pnombre.substr(-20,1) + snombre.substr(-20,1)+papellido;
     document.getElementById('usuario').value = usuario.toLowerCase();
 }
+////////////////////////////EDITAR//////////////////////////////////////
 /**
- * Funcion mostar la edicion del POM
+ * Funcion que permite llenar el reactivo segun sea el muncipio y subreceptor 
  */
- function editarPOM(){
-     var editar = document.getElementById('editar');
-     
-     if (editar.style.display === 'none') {
-        editar.style.display = 'block';
-    } else {
-        editar.style.display = 'none';
-    }
-}
+ function obtenerReactivo_editar() {
 
- 
+    var subreceptor = document.getElementById('esubreceptor').value;
+    var departamento = document.getElementById('edepartamento').value;
+    var municipio = document.getElementById('emunicipio').value;
+
+    var accion = "obtenerReactivo";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/utilidad.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            departamento: departamento,
+            municipio: municipio
+        },
+        success: function (datos) {
+            var reactividad = datos * 100;
+            document.getElementById('ereactivo').value = datos;
+            $("#eporcentaje").html(reactividad + ' %');
+        }
+    });
+}
+/**
+ * Funcion para obtener los datos del municipio
+ */
+ function obtenerResumen_editar(){
+
+    var periodo    = document.getElementById('eperiodo').value;
+    var municipio   = document.getElementById('emunicipio').value;
+    var subreceptor = document.getElementById('esubreceptor').value;
+
+    var accion = "obtenerResumen";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/utilidad.php",
+        data: {
+            accion: accion,
+            periodo: periodo,
+            municipio: municipio,
+            subreceptor: subreceptor
+        },
+        success: function (datos) {
+            var respuesta = datos.split(',')
+            var nuevos = respuesta[0];
+            var recurrentes = respuesta[1];
+            document.getElementById('enuevo').value = nuevos;
+            document.getElementById('erecurrente').value=recurrentes;
+        }
+    });
+}
+function calculos_editar() {
+    obtenerResumen_editar()
+    obtenerReactivo_editar();
+}

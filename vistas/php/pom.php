@@ -186,7 +186,7 @@ if ($accion == "agregarPOM") {
     $inicio       = $_POST['inicio'];
     $fin          = $_POST['fin'];
     $lugar        = $_POST['lugar'];
-    $promotor     = $_POST['promotor'];
+    $promotores   = $_POST['promotores'];
     $nuevo        = $_POST['nuevo'];
     $recurrente   = $_POST['recurrente'];
     $cnatural     = $_POST['cnatural'];
@@ -200,13 +200,11 @@ if ($accion == "agregarPOM") {
     $observacion  = $_POST['observacion'];
     $subreceptor  = $_POST['subreceptor'];
     $movil        = $_POST['movil'];
+    $supervisado  = $_POST['supervisado'];
+    $supervisor   = $_POST['supervisor'];
 
-    $_duplicado = $enlace->query("SELECT * FROM pom WHERE periodo = $periodo AND mes = '$mes' AND municipio = '$municipio' AND fecha = '$fecha'  AND horaInicio = '$inicio' AND horaFin = '$fin'");
-    if (mysqli_num_rows($_duplicado)) {
-        echo "Duplicado";
-    } else {
-        $sql = "CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotor, $nuevo, $recurrente, 
-        $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor, $movil)";
+        $sql = "CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, $nuevo, $recurrente, 
+        $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor, $movil,$supervisado,'$supervisor')";
         $resultado = mysqli_query($enlace, $sql);
         $pom = mysqli_affected_rows($enlace);
         if ($pom > 0) {
@@ -214,7 +212,7 @@ if ($accion == "agregarPOM") {
         } else {
             echo "Error";
         }
-    }
+    
 }
 
 /**
