@@ -7,7 +7,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +50,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="../perfil.php"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
                         <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
                     </ul>
                 </div>
@@ -171,26 +171,26 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <div class="text-white text-center" style="background-color:navy;">PROYECCIÓN DE INSUMOS</div>
                         <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                             <div class="row">
-                            <div class="form-group input-group-sm col-sm-3">
-                                            <label class="form-label">Promotor responsable:</label>
-                                            <select name="promotor" id="promotor" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                                <option value="">Seleccionar..</option>
-                                                <?php
-                                                $resultado = $enlace->query("SELECT DISTINCT t3.idPromotor, t4.nombre, t4.apellido FROM asignacion t1 
+                                <div class="form-group input-group-sm col-sm-3">
+                                    <label class="form-label">Promotor responsable:</label>
+                                    <select name="promotor" id="promotor" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                        <option value="">Seleccionar..</option>
+                                        <?php
+                                        $resultado = $enlace->query("SELECT DISTINCT t3.idPromotor, t4.nombre, t4.apellido FROM asignacion t1 
                                                 LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
                                                 LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
                                                 LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
                                                 WHERE t2.subreceptor_id = $SUBRECEPTOR 
                                                 GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
-                                                while ($prom = $resultado->fetch_assoc()) {
-                                                ?>
-                                                    <option value="<?php echo $prom['idPromotor'] ?>"><?php echo $prom['nombre'] . ' ' . $prom['apellido'] ?></option>
-                                                <?php
-                                                }
-                                                $resultado->close();
-                                                ?>
-                                            </select>
-                                        </div>
+                                        while ($prom = $resultado->fetch_assoc()) {
+                                        ?>
+                                            <option value="<?php echo $prom['idPromotor'] ?>"><?php echo $prom['nombre'] . ' ' . $prom['apellido'] ?></option>
+                                        <?php
+                                        }
+                                        $resultado->close();
+                                        ?>
+                                    </select>
+                                </div>
 
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Nuevos</label>
@@ -246,9 +246,20 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <label class="form-label">Prueba sifilis</label>
                                     <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-4">
+                                <div class="form-group input-group-sm col-sm-3">
                                     <label class="form-label">Observaciones / otros</label>
                                     <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
+                                </div>
+                                <div class="form-group input-group-sm col-sm-1 text-center">
+                                    <label class="form-label" style="font-size: 10px;">Supervisado</label>
+                                    <select name="supervisado" id="supervisado" class="form-select" style="font-size: 12px;">
+                                        <option value="0">NO</option>
+                                        <option value="1">SI</option>
+                                    </select>
+                                </div>
+                                <div class="form-group input-group-sm col-sm-3">
+                                    <label class="form-label">Nombre del Supervisor:</label>
+                                    <input type="text" name="supervisor" id="supervisor" style="font-size: 12px;" class="form-control form-control-sm">
                                 </div>
                                 <div class="form-group input-group-sm col-sm-1 text-center">
                                     <label class="form-label" style="font-size: 10px;">Unidad Movil</label>
@@ -258,14 +269,14 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </select>
 
                                 </div>
-                                <div class="form-group input-group-sm col-sm-3">
-                                    <br>
-                                    <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
-                                        <em class="bi bi-check-square-fill"></em> Guardar</button>
-                                    <button type="reset" class="btn btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
-                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group input-group-sm col-sm-3">
+                        <br>
+                        <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
+                            <em class="bi bi-check-square-fill"></em> Guardar</button>
+                        <button type="reset" class="btn btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
                     </div>
                 </div>
 

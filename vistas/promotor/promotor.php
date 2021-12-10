@@ -54,14 +54,14 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </div>
                 <section class="section">
                     <div class="row">
-                    <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="../../assets/images/plan.png" width="225" alt="" >
+                                    <img src="../../assets/images/plan.png" width="125" alt="">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h3 class="card-title">Plan Operativo Mensual</h3>
+                                        <h6 class="card-title">Plan Operativo Mensual</h6>
                                         <div class="d-grid gap-2">
                                             <a href="pom/pom.php" class="btn btn-sm btn-warning btn-lg"> POM</a>
                                         </div>
@@ -69,8 +69,25 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="../../assets/images/plann.png" width="125" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Plan Operativo Anual</h6>
+                                        <div class="d-grid gap-2">
+                                            <a href="poa/poa.php" class="btn btn-sm btn-primary btn-lg"> POA</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </section>
+            </div>
+            </section>
             </div>
         </div>
 
