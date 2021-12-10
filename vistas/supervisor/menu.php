@@ -15,7 +15,7 @@
 
                     <p class="text-warning"><?php echo $usuario['roles']; ?></p>
                     <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false" style="color:white; font-size: 13px;;">
+                        <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white; font-size: 13px;;">
                             <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
                         </button>
                         <ul class="dropdown-menu bg-dark">
@@ -28,7 +28,13 @@
         </div>
 
         <div class="sidebar-menu">
-
+            <ul class="menu">
+                <li class="sidebar-item  ">
+                    <a href="supervisor.php" class='sidebar-link'>
+                        <i class="bi bi-house-door-fill"></i><span>Inicio</span>
+                    </a>
+                </li>
+            </ul>
             <footer>
                 <div class="footer clearfix text-muted">
                     <div class="float-start">

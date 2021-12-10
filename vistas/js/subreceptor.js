@@ -96,10 +96,10 @@ function agregarCobertura() {
     var subreceptor = parseInt(document.getElementById('sub').value);
     var departamento = parseInt(document.getElementById('departamento').value);
     var municipio = parseInt(document.getElementById('municipio').value);
-    var region = document.getElementById('region').value;
     var nuevo = parseFloat(document.getElementById('nuevo').value);
     var recurrente = parseFloat(document.getElementById('recurrente').value);
     var reactivo = parseFloat(document.getElementById('reactivo').value);
+    var periodo = document.getElementById('periodo').value;
 
     var accion = "agregarCobertura";
 
@@ -111,10 +111,10 @@ function agregarCobertura() {
             subreceptor: subreceptor,
             departamento: departamento,
             municipio: municipio,
-            region: region,
             nuevo: nuevo,
             recurrente: recurrente,
-            reactivo: reactivo
+            reactivo: reactivo,
+            periodo: periodo
         },
         success: function (datos) {
             if (datos == 'Exito') {

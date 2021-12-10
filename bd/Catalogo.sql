@@ -432,11 +432,12 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado', 'Aprobado por el Especialista Progrmatica', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Recalendarizado', 'Actividad cambio de fecha', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Cancelado', 'Actividad cancelada', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Supervisado', 'Actividad Supervisado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Editar', 'Modificar por hallazgos', 'estado');
 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE01', 'Recalendarizado', '', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE02', 'Revisado', 'Revisado por el supervisor', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE03', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE04', 'Autorizado', 'Autorizado por el CMESR', 'estado');
 
+CALL agregarUsuario("INCAP01","Faustino","", "Lopez", "Ramos", "57619399", "flopez@incap.int", "R001", 1);
 CALL agregarUsuario("INCAP02","Osberto","", "Juarez", "Vasquez", "57619344", "ojuarez@incap.int", "R001", 1);

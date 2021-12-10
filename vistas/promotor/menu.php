@@ -32,7 +32,7 @@
 
                 <li class="sidebar-item  ">
                     <a href="promotor.php" class='sidebar-link'>
-                        <i class="bi bi-calendar4-week"></i><span>Principal</span>
+                        <i class="bi bi-calendar4-week"></i><span>Inicio</span>
                     </a>
                 </li>
             </ul>

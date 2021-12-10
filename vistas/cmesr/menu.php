@@ -19,7 +19,7 @@
                             <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
                         </button>
                         <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item text-info" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
+                            <li><a class="dropdown-item text-info" href="perfil.php"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
                             <li><a class="dropdown-item text-danger" href="salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
                         </ul>
                     </div>
@@ -29,8 +29,12 @@
 
         <div class="sidebar-menu">
             <ul class="menu">
+                <li class="sidebar-item  ">
+                    <a href="cmesr.php" class='sidebar-link'>
+                        <i class="bi bi-house-door-fill"></i><span>Inicio</span>
+                    </a>
+                </li>
             </ul>
-
             <footer>
                 <img src="../../assets/images/logo.png" width="200" alt="">
                 <div class="footer clearfix text-muted">

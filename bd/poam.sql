@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
+-- Host:                         localhost
 -- Versión del servidor:         5.7.33 - MySQL Community Server (GPL)
 -- SO del servidor:              Win64
 -- HeidiSQL Versión:             11.2.0.6213
@@ -12,691 +12,698 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Volcando datos para la tabla poam.asignacion: ~21 rows (aproximadamente)
+/*!40000 ALTER TABLE `asignacion` DISABLE KEYS */;
+INSERT INTO `asignacion` (`idAsignacion`, `promotor_id`, `cobertura_id`) VALUES
+	(1, 1, 1),
+	(2, 2, 1),
+	(3, 3, 2),
+	(4, 4, 1),
+	(5, 5, 16),
+	(6, 6, 16),
+	(7, 7, 19),
+	(8, 7, 20),
+	(9, 7, 21),
+	(10, 7, 22),
+	(11, 7, 23),
+	(12, 8, 19),
+	(13, 8, 20),
+	(14, 8, 21),
+	(15, 8, 22),
+	(16, 8, 23),
+	(17, 9, 19),
+	(18, 9, 20),
+	(19, 9, 21),
+	(20, 9, 22),
+	(21, 9, 23);
+/*!40000 ALTER TABLE `asignacion` ENABLE KEYS */;
 
--- Volcando estructura de base de datos para poam
-CREATE DATABASE IF NOT EXISTS `poam` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `poam`;
+-- Volcando datos para la tabla poam.catalogo: ~415 rows (aproximadamente)
+/*!40000 ALTER TABLE `catalogo` DISABLE KEYS */;
+INSERT INTO `catalogo` (`codigo`, `nombre`, `descripcion`, `categoria`) VALUES
+	('1', 'Guatemala', ' ', 'departamento'),
+	('10', 'Suchitepéquez', ' ', 'departamento'),
+	('1001', 'Mazatenango', '10', 'municipio'),
+	('1002', 'Cuyotenango', '10', 'municipio'),
+	('1003', 'San Francisco Zapotitlán', '10', 'municipio'),
+	('1004', 'San Bernardino', '10', 'municipio'),
+	('1005', 'San José el Idolo', '10', 'municipio'),
+	('1006', 'Santo Domingo Suchitepéquez', '10', 'municipio'),
+	('1007', 'San Lorenzo', '10', 'municipio'),
+	('1008', 'Samayac', '10', 'municipio'),
+	('1009', 'San Pablo Jocopilas', '10', 'municipio'),
+	('101', 'Guatemala', '1', 'municipio'),
+	('1010', 'San Antonio Suchitepéquez', '10', 'municipio'),
+	('1011', 'San Miguel Panán', '10', 'municipio'),
+	('1012', 'San Gabriel', '10', 'municipio'),
+	('1013', 'Chicacao', '10', 'municipio'),
+	('1014', 'Patulul', '10', 'municipio'),
+	('1015', 'Santa Bárbara', '10', 'municipio'),
+	('1016', 'San Juan Bautista', '10', 'municipio'),
+	('1017', 'Santo Tomás la Unión', '10', 'municipio'),
+	('1018', 'Zunilito', '10', 'municipio'),
+	('1019', 'Pueblo Nuevo', '10', 'municipio'),
+	('102', 'Santa Catarina Pinula', '1', 'municipio'),
+	('1020', 'Río Bravo', '10', 'municipio'),
+	('1021', 'San José La Máquina', '10', 'municipio'),
+	('103', 'San José Pinula', '1', 'municipio'),
+	('104', 'San José del Golfo', '1', 'municipio'),
+	('105', 'Palencia', '1', 'municipio'),
+	('106', 'Chinautla', '1', 'municipio'),
+	('107', 'San Pedro Ayampuc', '1', 'municipio'),
+	('108', 'Mixco', '1', 'municipio'),
+	('109', 'San Pedro Sacatepéquez', '1', 'municipio'),
+	('11', 'Retalhuleu', ' ', 'departamento'),
+	('110', 'San Juan Sacatepéquez', '1', 'municipio'),
+	('1101', 'Retalhuleu', '11', 'municipio'),
+	('1102', 'San Sebastián', '11', 'municipio'),
+	('1103', 'Santa Cruz Muluá', '11', 'municipio'),
+	('1104', 'San Martín Zapotitlán', '11', 'municipio'),
+	('1105', 'San Felipe', '11', 'municipio'),
+	('1106', 'San Andrés Villa Seca', '11', 'municipio'),
+	('1107', 'Champerico', '11', 'municipio'),
+	('1108', 'Nuevo San Carlos', '11', 'municipio'),
+	('1109', 'El Asintal', '11', 'municipio'),
+	('111', 'San Raymundo', '1', 'municipio'),
+	('112', 'Chuarrancho', '1', 'municipio'),
+	('113', 'Fraijanes', '1', 'municipio'),
+	('114', 'Amatitlán', '1', 'municipio'),
+	('115', 'Villa Nueva', '1', 'municipio'),
+	('116', 'Villa Canales', '1', 'municipio'),
+	('117', 'Petapa', '1', 'municipio'),
+	('118', 'Pavoncito', '1', 'municipio'),
+	('119', 'Granja Modelo Pavon', '1', 'municipio'),
+	('12', 'San Marcos', ' ', 'departamento'),
+	('120', 'Centro Preventivo zona 18', '1', 'municipio'),
+	('1201', 'San Marcos', '12', 'municipio'),
+	('1202', 'San Pedro Sacatepéquez', '12', 'municipio'),
+	('1203', 'San Antonio Sacatepéquez', '12', 'municipio'),
+	('1204', 'Comitancillo', '12', 'municipio'),
+	('1205', 'San Miguel Ixtahuacán', '12', 'municipio'),
+	('1206', 'Concepción Tutuapa', '12', 'municipio'),
+	('1207', 'Tacaná', '12', 'municipio'),
+	('1208', 'Sibinal', '12', 'municipio'),
+	('1209', 'Tajumulco', '12', 'municipio'),
+	('1210', 'Tejutla', '12', 'municipio'),
+	('1211', 'San Rafael Pié de la Cuesta', '12', 'municipio'),
+	('1212', 'Nuevo Progreso', '12', 'municipio'),
+	('1213', 'El Tumbador', '12', 'municipio'),
+	('1214', 'El Rodeo', '12', 'municipio'),
+	('1215', 'Malacatán', '12', 'municipio'),
+	('1216', 'Catarina', '12', 'municipio'),
+	('1217', 'Ayutla', '12', 'municipio'),
+	('1218', 'Ocós', '12', 'municipio'),
+	('1219', 'San Pablo', '12', 'municipio'),
+	('1220', 'El Quetzal', '12', 'municipio'),
+	('1221', 'La Reforma', '12', 'municipio'),
+	('1222', 'Pajapita', '12', 'municipio'),
+	('1223', 'Ixchiguán', '12', 'municipio'),
+	('1224', 'San José Ojetenán', '12', 'municipio'),
+	('1225', 'San Cristóbal Cucho', '12', 'municipio'),
+	('1226', 'Sipacapa', '12', 'municipio'),
+	('1227', 'Esquipulas Palo Gordo', '12', 'municipio'),
+	('1228', 'Río Blanco', '12', 'municipio'),
+	('1229', 'San Lorenzo', '12', 'municipio'),
+	('1230', 'La Blanca', '12', 'municipio'),
+	('13', 'Huehuetenango', ' ', 'departamento'),
+	('1301', 'Huehuetenango', '13', 'municipio'),
+	('1302', 'Chiantla', '13', 'municipio'),
+	('1303', 'Malacatancito', '13', 'municipio'),
+	('1304', 'Cuilco', '13', 'municipio'),
+	('1305', 'Nentón', '13', 'municipio'),
+	('1306', 'San Pedro Necta', '13', 'municipio'),
+	('1307', 'Jacaltenango', '13', 'municipio'),
+	('1308', 'Soloma', '13', 'municipio'),
+	('1309', 'Ixtahuacán', '13', 'municipio'),
+	('1310', 'Santa Bárbara', '13', 'municipio'),
+	('1311', 'La Libertad', '13', 'municipio'),
+	('1312', 'La Democracia', '13', 'municipio'),
+	('1313', 'San Miguel Acatán', '13', 'municipio'),
+	('1314', 'San Rafael la Independencia', '13', 'municipio'),
+	('1315', 'Todos Santos Cuchumatán', '13', 'municipio'),
+	('1316', 'San Juan Atitán', '13', 'municipio'),
+	('1317', 'Santa Eulalia', '13', 'municipio'),
+	('1318', 'San Mateo Ixtatán', '13', 'municipio'),
+	('1319', 'Colotenango', '13', 'municipio'),
+	('1320', 'San Sebastián Huehuetenango', '13', 'municipio'),
+	('1321', 'Tectitán', '13', 'municipio'),
+	('1322', 'Concepción Huista', '13', 'municipio'),
+	('1323', 'San Juan Ixcoy', '13', 'municipio'),
+	('1324', 'San Antonio Huista', '13', 'municipio'),
+	('1325', 'San Sebastián Coatán', '13', 'municipio'),
+	('1326', 'Barillas', '13', 'municipio'),
+	('1327', 'Aguacatán', '13', 'municipio'),
+	('1328', 'San Rafael Petzal', '13', 'municipio'),
+	('1329', 'San Gaspar Ixchil', '13', 'municipio'),
+	('1330', 'Santiago Chimaltenango', '13', 'municipio'),
+	('1331', 'Santa Ana Huista', '13', 'municipio'),
+	('1332', 'Unión Cantinil', '13', 'municipio'),
+	('14', 'Quiché', ' ', 'departamento'),
+	('1401', 'Santa Cruz del Quiché', '14', 'municipio'),
+	('1402', 'Chiché', '14', 'municipio'),
+	('1403', 'Chinique', '14', 'municipio'),
+	('1404', 'Zacualpa', '14', 'municipio'),
+	('1405', 'Chajul', '14', 'municipio'),
+	('1406', 'Chichicastenango', '14', 'municipio'),
+	('1407', 'Patzité', '14', 'municipio'),
+	('1408', 'San Antonio Ilotenango', '14', 'municipio'),
+	('1409', 'San Pedro Jocopilas', '14', 'municipio'),
+	('1410', 'Cunén', '14', 'municipio'),
+	('1411', 'San Juan Cotzal', '14', 'municipio'),
+	('1412', 'Joyabaj', '14', 'municipio'),
+	('1413', 'Nebaj', '14', 'municipio'),
+	('1414', 'San Andrés Sajcabajá', '14', 'municipio'),
+	('1415', 'Uspantán', '14', 'municipio'),
+	('1416', 'Sacapulas', '14', 'municipio'),
+	('1417', 'San Bartolomé Jocotenango', '14', 'municipio'),
+	('1418', 'Canillá', '14', 'municipio'),
+	('1419', 'Chicamán', '14', 'municipio'),
+	('1420', 'Ixcán', '14', 'municipio'),
+	('1421', 'Pachalum', '14', 'municipio'),
+	('15', 'Baja Verapaz', ' ', 'departamento'),
+	('1501', 'Salamá', '15', 'municipio'),
+	('1502', 'San Miguel Chicaj', '15', 'municipio'),
+	('1503', 'Rabinal', '15', 'municipio'),
+	('1504', 'Cubulco', '15', 'municipio'),
+	('1505', 'Granados', '15', 'municipio'),
+	('1506', 'El Chol', '15', 'municipio'),
+	('1507', 'San Jerónimo', '15', 'municipio'),
+	('1508', 'Purulhá', '15', 'municipio'),
+	('16', 'Alta Verapaz', ' ', 'departamento'),
+	('1601', 'Cobán', '16', 'municipio'),
+	('1602', 'Santa Cruz Verapaz', '16', 'municipio'),
+	('1603', 'San Cristóbal Verapaz', '16', 'municipio'),
+	('1604', 'Tactic', '16', 'municipio'),
+	('1605', 'Tamahú', '16', 'municipio'),
+	('1606', 'Tucurú', '16', 'municipio'),
+	('1607', 'Panzós', '16', 'municipio'),
+	('1608', 'Senahú', '16', 'municipio'),
+	('1609', 'San Pedro Carchá', '16', 'municipio'),
+	('1610', 'San Juan Chamelco', '16', 'municipio'),
+	('1611', 'Lanquín', '16', 'municipio'),
+	('1612', 'Cahabón', '16', 'municipio'),
+	('1613', 'Chisec', '16', 'municipio'),
+	('1614', 'Chahal', '16', 'municipio'),
+	('1615', 'Fray Bartolomé de las Casas', '16', 'municipio'),
+	('1616', 'Santa Catalina la Tinta', '16', 'municipio'),
+	('1617', 'Raxruhá', '16', 'municipio'),
+	('17', 'Petén', ' ', 'departamento'),
+	('1701', 'Flores', '17', 'municipio'),
+	('1702', 'San José', '17', 'municipio'),
+	('1703', 'San Benito', '17', 'municipio'),
+	('1704', 'San Andrés', '17', 'municipio'),
+	('1705', 'La Libertad', '17', 'municipio'),
+	('1706', 'San Francisco', '17', 'municipio'),
+	('1707', 'Santa Ana', '17', 'municipio'),
+	('1708', 'Dolores', '17', 'municipio'),
+	('1709', 'San Luis', '17', 'municipio'),
+	('1710', 'Sayaxché', '17', 'municipio'),
+	('1711', 'Melchor de Mencos', '17', 'municipio'),
+	('1712', 'Poptún', '17', 'municipio'),
+	('1713', 'Las Cruces', '17', 'municipio'),
+	('1714', 'El Chal', '17', 'municipio'),
+	('18', 'Izabal', ' ', 'departamento'),
+	('1801', 'Puerto Barrios', '18', 'municipio'),
+	('1802', 'Livingston', '18', 'municipio'),
+	('1803', 'El Estor', '18', 'municipio'),
+	('1804', 'Morales', '18', 'municipio'),
+	('1805', 'Los Amates', '18', 'municipio'),
+	('19', 'Zacapa', ' ', 'departamento'),
+	('1901', 'Zacapa', '19', 'municipio'),
+	('1902', 'Estanzuela', '19', 'municipio'),
+	('1903', 'Río Hondo', '19', 'municipio'),
+	('1904', 'Gualán', '19', 'municipio'),
+	('1905', 'Teculután', '19', 'municipio'),
+	('1906', 'Usumatlán', '19', 'municipio'),
+	('1907', 'Cabañas', '19', 'municipio'),
+	('1908', 'San Diego', '19', 'municipio'),
+	('1909', 'La Unión', '19', 'municipio'),
+	('1910', 'Huité', '19', 'municipio'),
+	('1911', 'San Jorge', '19', 'municipio'),
+	('2', 'El Progreso', ' ', 'departamento'),
+	('20', 'Chiquimula', ' ', 'departamento'),
+	('2001', 'Chiquimula', '20', 'municipio'),
+	('2002', 'San José La Arada', '20', 'municipio'),
+	('2003', 'San Juan Ermita', '20', 'municipio'),
+	('2004', 'Jocotán', '20', 'municipio'),
+	('2005', 'Camotán', '20', 'municipio'),
+	('2006', 'Olopa', '20', 'municipio'),
+	('2007', 'Esquipulas', '20', 'municipio'),
+	('2008', 'Concepción Las Minas', '20', 'municipio'),
+	('2009', 'Quetzaltepeque', '20', 'municipio'),
+	('201', 'Guastatoya', '2', 'municipio'),
+	('2010', 'San Jacinto', '20', 'municipio'),
+	('2011', 'Ipala', '20', 'municipio'),
+	('202', 'Morazán', '2', 'municipio'),
+	('203', 'San Agustín Acasaguastlán', '2', 'municipio'),
+	('204', 'San Cristóbal Acasaguastlán', '2', 'municipio'),
+	('205', 'El Jícaro', '2', 'municipio'),
+	('206', 'Sansare', '2', 'municipio'),
+	('207', 'Sanarate', '2', 'municipio'),
+	('208', 'San Antonio la Paz', '2', 'municipio'),
+	('21', 'Jalapa', ' ', 'departamento'),
+	('2101', 'Jalapa', '21', 'municipio'),
+	('2102', 'San Pedro Pinula', '21', 'municipio'),
+	('2103', 'San Luis Jilotepeque', '21', 'municipio'),
+	('2104', 'San Manuel Chaparrón', '21', 'municipio'),
+	('2105', 'San Carlos Alzatate', '21', 'municipio'),
+	('2106', 'Monjas', '21', 'municipio'),
+	('2107', 'Mataquescuintla', '21', 'municipio'),
+	('22', 'Jutiapa', ' ', 'departamento'),
+	('2201', 'Jutiapa', '22', 'municipio'),
+	('2202', 'El Progreso', '22', 'municipio'),
+	('2203', 'Santa Catarina Mita', '22', 'municipio'),
+	('2204', 'Agua Blanca', '22', 'municipio'),
+	('2205', 'Asunción Mita', '22', 'municipio'),
+	('2206', 'Yupiltepeque', '22', 'municipio'),
+	('2207', 'Atescatempa', '22', 'municipio'),
+	('2208', 'Jerez', '22', 'municipio'),
+	('2209', 'El Adelanto', '22', 'municipio'),
+	('2210', 'Zapotitlán', '22', 'municipio'),
+	('2211', 'Comapa', '22', 'municipio'),
+	('2212', 'Jalpatagua', '22', 'municipio'),
+	('2213', 'Conguaco', '22', 'municipio'),
+	('2214', 'Moyuta', '22', 'municipio'),
+	('2215', 'Pasaco', '22', 'municipio'),
+	('2216', 'San José Acatempa', '22', 'municipio'),
+	('2217', 'Quesada', '22', 'municipio'),
+	('3', 'Sacatepéquez', ' ', 'departamento'),
+	('301', 'Antigua Guatemala', '3', 'municipio'),
+	('302', 'Jocotenango', '3', 'municipio'),
+	('303', 'Pastores', '3', 'municipio'),
+	('304', 'Sumpango', '3', 'municipio'),
+	('305', 'Santo Domingo Xenacoj', '3', 'municipio'),
+	('306', 'Santiago Sacatepéquez', '3', 'municipio'),
+	('307', 'San Bartolomé Milpas Altas', '3', 'municipio'),
+	('308', 'San Lucas Sacatepéquez', '3', 'municipio'),
+	('309', 'Santa Lucía Milpas Altas', '3', 'municipio'),
+	('310', 'Magdalena Milpas Altas', '3', 'municipio'),
+	('311', 'Santa María de Jesús', '3', 'municipio'),
+	('312', 'Ciudad Vieja', '3', 'municipio'),
+	('313', 'San Miguel Dueñas', '3', 'municipio'),
+	('314', 'Alotenango', '3', 'municipio'),
+	('315', 'San Antonio Aguas Calientes', '3', 'municipio'),
+	('316', 'Santa Catarina Barahona', '3', 'municipio'),
+	('4', 'Chimaltenango', ' ', 'departamento'),
+	('401', 'Chimaltenango', '4', 'municipio'),
+	('402', 'San José Poaquil', '4', 'municipio'),
+	('403', 'San Martín Jilotepeque', '4', 'municipio'),
+	('404', 'Comalapa', '4', 'municipio'),
+	('405', 'Santa Apolonia', '4', 'municipio'),
+	('406', 'Tecpán Guatemala', '4', 'municipio'),
+	('407', 'Patzún', '4', 'municipio'),
+	('408', 'Pochuta', '4', 'municipio'),
+	('409', 'Patzicía', '4', 'municipio'),
+	('410', 'Santa Cruz Balanyá', '4', 'municipio'),
+	('411', 'Acatenango', '4', 'municipio'),
+	('412', 'Yepocapa', '4', 'municipio'),
+	('413', 'San Andrés Itzapa', '4', 'municipio'),
+	('414', 'Parramos', '4', 'municipio'),
+	('415', 'Zaragoza', '4', 'municipio'),
+	('416', 'El Tejar', '4', 'municipio'),
+	('5', 'Escuintla', ' ', 'departamento'),
+	('501', 'Escuintla', '5', 'municipio'),
+	('502', 'Santa Lucía Cotzumalguapa', '5', 'municipio'),
+	('503', 'La Democracia', '5', 'municipio'),
+	('504', 'Siquinalá', '5', 'municipio'),
+	('505', 'Masagua', '5', 'municipio'),
+	('506', 'Tiquisate', '5', 'municipio'),
+	('507', 'La Gomera', '5', 'municipio'),
+	('508', 'Guanagazapa', '5', 'municipio'),
+	('509', 'San José', '5', 'municipio'),
+	('510', 'Iztapa', '5', 'municipio'),
+	('511', 'Palín', '5', 'municipio'),
+	('512', 'San Vicente Pacaya', '5', 'municipio'),
+	('513', 'Nueva Concepción', '5', 'municipio'),
+	('514', 'Granja Modelo Canada', '5', 'municipio'),
+	('6', 'Santa Rosa', ' ', 'departamento'),
+	('601', 'Cuilapa', '6', 'municipio'),
+	('602', 'Barberena', '6', 'municipio'),
+	('603', 'Santa Rosa de Lima', '6', 'municipio'),
+	('604', 'Casillas', '6', 'municipio'),
+	('605', 'San Rafael las Flores', '6', 'municipio'),
+	('606', 'Oratorio', '6', 'municipio'),
+	('607', 'San Juan Tecuaco', '6', 'municipio'),
+	('608', 'Chiquimulilla', '6', 'municipio'),
+	('609', 'Taxisco', '6', 'municipio'),
+	('610', 'Santa María Ixhuatán', '6', 'municipio'),
+	('611', 'Guazacapán', '6', 'municipio'),
+	('612', 'Santa Cruz Naranjo', '6', 'municipio'),
+	('613', 'Pueblo Nuevo Viñas', '6', 'municipio'),
+	('614', 'Nueva Santa Rosa', '6', 'municipio'),
+	('7', 'Sololá', ' ', 'departamento'),
+	('701', 'Sololá', '7', 'municipio'),
+	('702', 'San José Chacayá', '7', 'municipio'),
+	('703', 'Santa María Visitación', '7', 'municipio'),
+	('704', 'Santa Lucía Utatlán', '7', 'municipio'),
+	('705', 'Nahualá', '7', 'municipio'),
+	('706', 'Santa Catarina Ixtahuacán', '7', 'municipio'),
+	('707', 'Santa Clara la Laguna', '7', 'municipio'),
+	('708', 'Concepción', '7', 'municipio'),
+	('709', 'San Andrés Semetabaj', '7', 'municipio'),
+	('710', 'Panajachel', '7', 'municipio'),
+	('711', 'Santa Catarina Palopó', '7', 'municipio'),
+	('712', 'San Antonio Palopó', '7', 'municipio'),
+	('713', 'San Lucas Tolimán', '7', 'municipio'),
+	('714', 'Santa Cruz la Laguna', '7', 'municipio'),
+	('715', 'San Pablo la Laguna', '7', 'municipio'),
+	('716', 'San Marcos la Laguna', '7', 'municipio'),
+	('717', 'San Juan la Laguna', '7', 'municipio'),
+	('718', 'San Pedro la Laguna', '7', 'municipio'),
+	('719', 'Santiago Atitlán', '7', 'municipio'),
+	('8', 'Totonicapán', ' ', 'departamento'),
+	('801', 'Totonicapán', '8', 'municipio'),
+	('802', 'San Cristóbal Totonicapán', '8', 'municipio'),
+	('803', 'San Francisco el Alto', '8', 'municipio'),
+	('804', 'San Andrés Xecul', '8', 'municipio'),
+	('805', 'Momostenango', '8', 'municipio'),
+	('806', 'Santa María Chiquimula', '8', 'municipio'),
+	('807', 'Santa Lucía la Reforma', '8', 'municipio'),
+	('808', 'San Bartolo', '8', 'municipio'),
+	('9', 'Quetzaltenango', ' ', 'departamento'),
+	('901', 'Quetzaltenango', '9', 'municipio'),
+	('902', 'Salcajá', '9', 'municipio'),
+	('903', 'Olintepeque', '9', 'municipio'),
+	('904', 'San Carlos Sija', '9', 'municipio'),
+	('905', 'Sibilia', '9', 'municipio'),
+	('906', 'Cabricán', '9', 'municipio'),
+	('907', 'Cajolá', '9', 'municipio'),
+	('908', 'San Miguel Siguilá', '9', 'municipio'),
+	('909', 'Ostuncalco', '9', 'municipio'),
+	('910', 'San Mateo', '9', 'municipio'),
+	('911', 'Concepción Chiquirichapa', '9', 'municipio'),
+	('912', 'San Martín Sacatepéquez', '9', 'municipio'),
+	('913', 'Almolonga', '9', 'municipio'),
+	('914', 'Cantel', '9', 'municipio'),
+	('915', 'Huitán', '9', 'municipio'),
+	('916', 'Zunil', '9', 'municipio'),
+	('917', 'Colomba', '9', 'municipio'),
+	('918', 'San Francisco la Unión', '9', 'municipio'),
+	('919', 'El Palmar', '9', 'municipio'),
+	('920', 'Coatepeque', '9', 'municipio'),
+	('921', 'Génova', '9', 'municipio'),
+	('922', 'Flores Costa Cuca', '9', 'municipio'),
+	('923', 'La Esperanza', '9', 'municipio'),
+	('924', 'Palestina de los Altos', '9', 'municipio'),
+	('925', 'Granja Modelo Cantel', '9', 'municipio'),
+	('ES01', 'Creado', '', 'estado'),
+	('ES02', 'Enviado a revision', 'Enviado para revision', 'estado'),
+	('ES03', 'Revisado', 'Revisado por el Enlace Programatico', 'estado'),
+	('ES04', 'Aprobado', 'Aprobado por el Especialista Progrmatica', 'estado'),
+	('ES05', 'Recalendarizado', 'Actividad cambio de fecha', 'estado'),
+	('ES06', 'Cancelado', 'Actividad cancelada', 'estado'),
+	('ES07', 'Supervisado', 'Actividad Supervisado', 'estado'),
+	('MP11', 'Enero', '1', 'mes'),
+	('MP12', 'Febrero', '1', 'mes'),
+	('MP13', 'Marzo', '1', 'mes'),
+	('MP14', 'Abril', '1', 'mes'),
+	('MP15', 'Mayo', '1', 'mes'),
+	('MP16', 'Junio', '1', 'mes'),
+	('MP21', 'Julio', '2', 'mes'),
+	('MP22', 'Agosto', '2', 'mes'),
+	('MP23', 'Septiembre', '2', 'mes'),
+	('MP24', 'Octubre', '2', 'mes'),
+	('MP25', 'Noviembre', '2', 'mes'),
+	('MP26', 'Diciembre', '2', 'mes'),
+	('MP31', 'Enero', '3', 'mes'),
+	('MP32', 'Febrero', '3', 'mes'),
+	('MP33', 'Marzo', '3', 'mes'),
+	('MP34', 'Abril', '3', 'mes'),
+	('MP35', 'Mayo', '3', 'mes'),
+	('MP36', 'Junio', '3', 'mes'),
+	('MP41', 'Julio', '4', 'mes'),
+	('MP42', 'Agosto', '4', 'mes'),
+	('MP43', 'Septiembre', '4', 'mes'),
+	('MP44', 'Octubre', '4', 'mes'),
+	('MP45', 'Noviembre', '4', 'mes'),
+	('MP46', 'Diciembre', '4', 'mes'),
+	('MP51', 'Enero', '5', 'mes'),
+	('MP52', 'Febrero', '5', 'mes'),
+	('MP53', 'Marzo', '5', 'mes'),
+	('MP54', 'Abril', '5', 'mes'),
+	('MP55', 'Mayo', '5', 'mes'),
+	('MP56', 'Junio', '5', 'mes'),
+	('MP61', 'Julio', '6', 'mes'),
+	('MP62', 'Agosto', '6', 'mes'),
+	('MP63', 'Septiembre', '6', 'mes'),
+	('MP64', 'Octubre', '6', 'mes'),
+	('MP65', 'Noviembre', '6', 'mes'),
+	('MP66', 'Diciembre', '6', 'mes'),
+	('R001', 'Administrador', ' ', 'rol'),
+	('R002', 'Especilista Programatica', ' ', 'rol'),
+	('R003', 'Enlace Programatica RP', ' ', 'rol'),
+	('R004', 'Monitoreo y Evaluacion de RP', ' ', 'rol'),
+	('R005', 'Coordinador de Monitoreo y Evaluacion de SR', ' ', 'rol'),
+	('R006', 'Supervisor', ' ', 'rol'),
+	('R007', 'Promotor', ' ', 'rol'),
+	('R008', 'Financiero', ' ', 'rol'),
+	('RE01', 'Recalendarizado', '', 'estado'),
+	('RE02', 'Revisado', 'Revisado por el supervisor', 'estado'),
+	('RE03', 'Autorizado', 'Autorizado por el CMESR', 'estado'),
+	('RE04', 'Autorizado', 'Autorizado por el CMESR', 'estado');
+/*!40000 ALTER TABLE `catalogo` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarCatalogo
-DELIMITER //
-CREATE PROCEDURE `agregarCatalogo`(
-	IN codigo		VARCHAR(24),
-    IN nombre		VARCHAR(100),
-    IN descripcion	TEXT,
-    IN categoria 	VARCHAR(32) )
-BEGIN
-	INSERT INTO catalogo VALUES(codigo, nombre, descripcion, categoria);
-END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.cobertura: ~23 rows (aproximadamente)
+/*!40000 ALTER TABLE `cobertura` DISABLE KEYS */;
+INSERT INTO `cobertura` (`idCobertura`, `subreceptor_id`, `departamento`, `municipio`, `region`, `nuevo`, `recurrente`, `porcentaje`) VALUES
+	(1, 2, '1', '101', 1, 807, 80.4, 0),
+	(2, 2, '1', '115', 1, 379, 37.9, 0),
+	(3, 2, '3', '301', 2, 40, 4, 0),
+	(4, 2, '22', '2205', 3, 42, 4.1, 0),
+	(5, 2, '12', '1217', 4, 33, 3.7, 0),
+	(6, 2, '10', '1013', 5, 53, 5.7, 0),
+	(7, 2, '4', '401', 1, 85, 8.3, 0),
+	(8, 2, '9', '920', 4, 92, 9.6, 0),
+	(9, 2, '11', '1109', 4, 33, 3.7, 0),
+	(10, 2, '5', '501', 5, 136, 13.8, 0),
+	(11, 2, '17', '1701', 2, 33, 3.7, 0),
+	(12, 2, '22', '2201', 3, 128, 12.4, 0),
+	(13, 2, '17', '1705', 1, 63, 6.2, 0),
+	(14, 2, '18', '1802', 3, 64, 6.2, 0),
+	(15, 2, '12', '1215', 3, 81, 8.1, 0),
+	(16, 3, '1', '101', 1, 6045, 556.24, 0.05),
+	(17, 3, '1', '108', 1, 1830, 168.36, 0.05),
+	(18, 3, '1', '115', 1, 1704, 156.77, 0.05),
+	(19, 4, '1', '118', 1, 274, 27.3, 0.005),
+	(20, 4, '1', '119', 1, 663, 66.3, 0.005),
+	(21, 4, '1', '120', 1, 698, 69.9, 0.005),
+	(22, 4, '9', '925', 2, 340, 33.6, 0.005),
+	(23, 4, '5', '514', 3, 503, 50.1, 0.005);
+/*!40000 ALTER TABLE `cobertura` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarCobertura
-DELIMITER //
-CREATE PROCEDURE `agregarCobertura`(
-	IN subreceptor	INT,
-    IN departamento	VARCHAR(24),
-    IN municipio 	VARCHAR(24),
-	IN region		INT,
-    IN nuevo		FLOAT,
-    IN recurrente	FLOAT,
-	IN porcentaje	FLOAT)
-BEGIN
-	DECLARE id INT DEFAULT 0;
-    DECLARE idCob INT DEFAULT (SELECT COUNT(idCobertura) FROM cobertura);
-    IF (idCob <= 0) THEN SET id := 1;
-    ELSE SET id := idCob + 1;
-    END IF;
-	INSERT INTO cobertura VALUES(id, subreceptor, departamento, municipio, region, nuevo, recurrente, porcentaje);
-END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.estado: ~43 rows (aproximadamente)
+/*!40000 ALTER TABLE `estado` DISABLE KEYS */;
+INSERT INTO `estado` (`idEstado`, `usuario_id`, `poa_id`, `pom_id`, `estado`, `descripcion`, `fecha`) VALUES
+	(1, 7, 1, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 10:19:15'),
+	(2, 7, 2, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 10:19:41'),
+	(3, 7, 3, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 10:20:23'),
+	(4, 7, 4, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 10:20:38'),
+	(5, 7, 5, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 10:21:27'),
+	(6, 7, 6, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 10:22:20'),
+	(7, 7, 4, NULL, 'ES02', 'Sin comentarios', '2021-12-06 10:27:10'),
+	(8, 9, 1, NULL, 'ES03', 'Todo esta bien', '2021-12-06 10:32:59'),
+	(9, 6, NULL, 1, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-06 10:46:10'),
+	(10, 7, NULL, 1, 'ES02', 'Sin comentarios', '2021-12-06 10:48:41'),
+	(11, 9, NULL, 1, 'ES03', 'Todo esta bien', '2021-12-06 10:54:07'),
+	(12, 10, NULL, 1, 'ES04', 'Todo esta bien', '2021-12-06 10:57:26'),
+	(13, 7, 7, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 11:02:08'),
+	(14, 7, 8, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 11:02:29'),
+	(15, 7, 9, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 11:02:54'),
+	(16, 7, 10, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 11:03:22'),
+	(17, 7, 11, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 11:03:46'),
+	(18, 7, 12, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 11:04:10'),
+	(19, 7, NULL, 2, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-06 11:08:46'),
+	(20, 7, NULL, 3, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-06 11:12:12'),
+	(21, 7, NULL, 4, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-06 11:19:03'),
+	(22, 18, 13, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 15:01:41'),
+	(23, 18, 14, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 15:02:23'),
+	(24, 18, 15, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-06 15:04:25'),
+	(25, 18, 13, NULL, 'ES02', 'Meta cas correspondiente del mes de enero', '2021-12-06 15:08:17'),
+	(26, 19, 13, NULL, 'ES03', 'Sin mentarios', '2021-12-06 15:11:27'),
+	(27, 10, 13, NULL, 'ES04', 'Autorizado', '2021-12-06 15:13:55'),
+	(28, 14, NULL, 5, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-06 15:38:46'),
+	(29, 14, NULL, 6, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-06 15:52:13'),
+	(30, 23, 16, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-07 09:55:21'),
+	(31, 23, 17, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-07 09:57:57'),
+	(32, 23, 18, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-07 09:58:29'),
+	(33, 23, 19, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-07 09:59:58'),
+	(34, 23, 20, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-07 10:00:30'),
+	(35, 23, NULL, 7, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-07 10:21:58'),
+	(36, 23, NULL, 8, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-07 10:23:36'),
+	(37, 23, NULL, 7, 'ES02', '', '2021-12-07 10:24:39'),
+	(38, 23, NULL, 8, 'ES02', '', '2021-12-07 10:25:09'),
+	(39, 23, NULL, 9, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-08 08:17:27'),
+	(40, 23, 21, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', '2021-12-08 08:19:06'),
+	(41, 23, NULL, 10, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-08 15:13:17'),
+	(42, 23, NULL, 11, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-08 15:13:25'),
+	(43, 23, NULL, 12, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', '2021-12-08 16:01:10');
+/*!40000 ALTER TABLE `estado` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarPoa
-DELIMITER //
-CREATE PROCEDURE `agregarPoa`(
-	IN usuario		INT,
-	IN mes			VARCHAR(24),
-	IN departamento VARCHAR(24),
-	IN municipio	VARCHAR(24),
-	IN nuevo		FLOAT,
-	IN recurrente	FLOAT,
-	IN subreceptor	INT,
-    IN observacion	TEXT,
-    IN periodo		INT,
-	IN cnatural 	FLOAT,
-	IN csabor		FLOAT,
-    IN cfemenino	FLOAT,
-	IN lubricante	FLOAT,
-	IN pruebaVIH	FLOAT,
-	IN autoPrueba	FLOAT,
-	IN reactivoE	FLOAT,
-	IN sifilis		FLOAT )
-BEGIN
-	DECLARE IdPoa INT DEFAULT 0;
-    DECLARE IdInsumo INT DEFAULT 0;
-    DECLARE idE INT DEFAULT 0;
-    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
-	DECLARE idP INT DEFAULT	(SELECT COUNT(idPoa) FROM poa);
-	DECLARE idI INT DEFAULT (SELECT COUNT(idInsumo) FROM insumo);
-	IF(idP <= 0) THEN SET IdPoa := 1;
-	ELSE SET IdPoa := idP + 1;
-    END IF;
-	INSERT INTO poa VALUES(IdPoa, year(now()), mes, departamento, municipio, nuevo, recurrente, subreceptor, observacion, periodo, 'ES01');
-	IF(idI <=0) THEN SET IdInsumo := 1;
-	ELSE SET IdInsumo := idI + 1;
-    END IF;
-	INSERT INTO insumo VALUES(IdInsumo,IdPoa,cnatural,csabor,cfemenino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis);
-    IF (idEs <= 0) THEN SET idE := 1;
-    ELSE SET idE := idEs + 1;
-    END IF;
-    INSERT INTO estado VALUES(idE, usuario, idPoa, NULL, 'ES11', 'El Plan Operativo Anual se ha CREADO con exito', now());
-END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.insumo: ~18 rows (aproximadamente)
+/*!40000 ALTER TABLE `insumo` DISABLE KEYS */;
+INSERT INTO `insumo` (`idInsumo`, `poa_id`, `cnatural`, `csabor`, `cfemenino`, `lubricante`, `pruebaVIH`, `autoPrueba`, `reactivoE`, `sifilis`) VALUES
+	(1, 1, 700, 1500, 600, 1100, 1, 50, 1, 150),
+	(2, 2, 8070, 1345, 672.5, 1076, 0, 40.35, 0, 134.5),
+	(3, 3, 8070, 1345, 672.5, 1076, 0, 40.35, 0, 134.5),
+	(4, 4, 8070, 1345, 672.5, 1076, 0, 40.35, 0, 134.5),
+	(5, 5, 10494, 1749, 874.5, 1399.2, 0, 52.47, 0, 174.9),
+	(6, 6, 10470, 1745, 872.5, 1396, 0, 52.35, 0, 174.5),
+	(7, 7, 3790.2, 631.7, 315.85, 505.36, 0, 18.95, 0, 63.17),
+	(8, 8, 3790.2, 631.7, 315.85, 505.36, 0, 18.95, 0, 63.17),
+	(9, 9, 3790.2, 631.7, 315.85, 505.36, 0, 18.95, 0, 63.17),
+	(10, 10, 3790.2, 631.7, 315.85, 505.36, 0, 18.95, 0, 63.17),
+	(11, 11, 4930.2, 821.7, 410.85, 657.36, 0, 24.65, 0, 82.17),
+	(12, 12, 4930.2, 821.7, 410.85, 657.36, 0, 24.65, 0, 82.17),
+	(13, 13, 38668.8, 0, 0, 38668.8, 725.04, 80.56, 40.28, 805.6),
+	(14, 14, 50329, 0, 0, 50329, 943.67, 104.85, 52.43, 1048.52),
+	(15, 15, 11712, 0, 0, 11712, 219.6, 24.4, 12.2, 244),
+	(16, 16, 5583.84, 0, 0, 5583.84, 116.33, 0, 0.58, 116.33),
+	(17, 17, 2192.16, 0, 0, 2192.16, 45.67, 0, 0.23, 45.67),
+	(18, 18, 5304, 0, 0, 5304, 110.5, 0, 0.55, 110.5),
+	(19, 19, 4023.84, 0, 0, 4023.84, 83.83, 0, 0.42, 83.83),
+	(20, 20, 2720.16, 0, 0, 2720.16, 56.67, 0, 0.28, 56.67),
+	(21, 21, 4023.84, 0, 0, 4023.84, 83.83, 0, 0.42, 83.83);
+/*!40000 ALTER TABLE `insumo` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarPom
-DELIMITER //
-CREATE PROCEDURE `agregarPom`(
-	IN poa			INT,
-    IN usuario		INT,
-    IN periodo		INT,
-	IN mes			VARCHAR(16),
-	IN municipio	VARCHAR(16),
-    IN fecha		DATE,
-    IN inicio		TIME,
-    IN fin 			TIME,
-    IN lugar		TEXT,
-    IN promotor		INT,
-	IN nuevo		FLOAT,
-	IN recurrente	FLOAT,
-	IN cnatural 	FLOAT,
-	IN csabor		FLOAT,
-    IN cfeminino	FLOAT,
-	IN lubricante	FLOAT,
-	IN pruebaVIH	FLOAT,
-	IN autoPrueba	FLOAT,
-	IN reactivoE	FLOAT,
-	IN sifilis		FLOAT,
-    IN observacion	TEXT,
-    IN subreceptor	INT,
-    IN movil 		TINYINT)
-BEGIN
-    DECLARE id INT DEFAULT 0;
-    DECLARE idE INT DEFAULT 0;
-    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
-	DECLARE idP INT DEFAULT	(SELECT COUNT(idPom) FROM pom);
-	IF(idP <=0) THEN SET id := 1;
-	ELSE SET id := idP + 1;
-    END IF;
-	INSERT INTO pom VALUES(id,periodo,mes,municipio,fecha,inicio,fin,lugar,promotor,nuevo,recurrente,cnatural,csabor,cfeminino,lubricante,pruebaVIH,autoPrueba,reactivoE,sifilis,observacion,poa,'ES01',subreceptor,movil);
-	IF (idEs <= 0) THEN SET idE := 1;
-    ELSE SET idE := idEs + 1;
-    END IF;
-    INSERT INTO estado VALUES(idE, usuario, NULL, id, 'ES01', 'El Plan Operativo Mensual se ha CREADO con exito', now());
-END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.permiso: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `permiso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `permiso` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarPromotor
-DELIMITER //
-CREATE PROCEDURE `agregarPromotor`(
-	IN subreceptor	INT,
-	IN documento	BOOLEAN,
-	IN numero		VARCHAR(16),
-	IN pnombre 		VARCHAR(32),
-    IN snombre 		VARCHAR(32),
-	IN papellido	VARCHAR(32),
-    IN sapellido	VARCHAR(32),
-	IN direccion	VARCHAR(100),
-	IN telefono		VARCHAR(16),
-	IN email		VARCHAR(100),
-    IN codigo		VARCHAR(32),
-    IN usuario		VARCHAR(32),
-    IN rol			VARCHAR(16),
-    IN dias			INT
-    )
-BEGIN
-    DECLARE IdPersona INT DEFAULT 0;
-	DECLARE IdPromotor INT DEFAULT 0;
-    DECLARE IdUsuario INT DEFAULT 0;
-	DECLARE idPer INT DEFAULT	(SELECT COUNT(idPersona) FROM persona);
-	DECLARE idPro INT DEFAULT (SELECT COUNT(idPromotor) FROM promotor);
-	DECLARE idU INT DEFAULT (SELECT COUNT(idUsuario) FROM usuario);
-	IF(idPer <= 0) THEN SET IdPersona := 1;
-	ELSE SET IdPersona := idPer + 1;
-    END IF;
-	INSERT INTO persona VALUES(IdPersona, documento, numero, concat(pnombre,' ',snombre), concat(papellido,' ',sapellido), direccion, telefono, email);
-	IF(idPro <=0) THEN SET IdPromotor := 1;
-	ELSE SET IdPromotor := idPro + 1;
-    END IF;
-	INSERT INTO promotor VALUES(IdPromotor, codigo, IdPersona, dias, 1);
-    IF(idU <=0) THEN SET IdUsuario := 1;
-	ELSE SET IdUsuario := idU + 1;
-    END IF;
-    INSERT INTO usuario VALUES(IdUsuario, IdPersona, rol, usuario, SHA('Usuario01'), subreceptor, 1);
-END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.persona: ~23 rows (aproximadamente)
+/*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` (`idPersona`, `codigo`, `nombre`, `apellido`, `telefono`, `correo`) VALUES
+	(1, 'INCAP01', 'Faustino ', 'Lopez Ramos', '57619399', 'flopez@incap.int'),
+	(2, 'MTS5_OMES_PR12', 'Erika ', 'Funes -', '30673838', 'correodeprueba@incap.int'),
+	(3, 'MTS5_OMES_PR02', 'Salma ', 'Bautista Fajardo', '30776826', 'correodeprueba@incap.int'),
+	(4, 'MTS5_OMES_PR13', 'Jessica Analy', 'Castañeda Barahona', '30770482', 'correodeprueba@incap.int'),
+	(5, 'MTS5_OMES_SP01', 'Jose Luis', 'Velasquez Barrios', '30766349', 'correodeprueba@incap.int'),
+	(6, 'MTS5_OMES_SP02', 'Aura Virginia', 'Godinez Montoya', '31191485', 'correodeprueba@incap.int'),
+	(7, 'MTS5_OMES_MYE01', 'Nancy Elizabeth', 'Reinoso Lopez', '31192580', 'monitoreo.omes@gmail.com'),
+	(8, 'MTS5_OMES_SP03', 'Jessika ', 'Lopez Garrido', '30769964', 'correodeprueba@incap.int'),
+	(9, 'INCAP03', 'Sandra Maritza', 'Ramirez Santos', '57619531', 'sramirez@incap.int'),
+	(10, 'INCAP04', 'Patricia ', 'Rodriguez Peralta', '12345678', 'prodriguez@incap.int'),
+	(11, 'INCAP02', 'Osberto ', 'Juarez Vasquez', '57619344', 'ojuarez@incap.int'),
+	(12, 'INCAP1_PR01', 'Osberto ', 'Juarez vasquez', '56265431', 'ojuarez@incap.int'),
+	(13, 'HSH1_CAS_PR06', 'Joshua ', 'Ortega Kacacho', '40237613', 'joshua.ortega@casgt.org'),
+	(14, 'HSH1_CAS_PR05', 'Martis ', 'Flores Escobar', '542435ü8', 'martis.flores@casgt.org'),
+	(15, 'HSH1_CAS_SP01', 'Angel Eduardo', 'Avila Riera', '43944251', 'angel.avila@casgt.org'),
+	(16, 'HSH1_CAS_SP04', 'Jose  Alexander', 'Guzman Sarceño', '42208498', 'jose.guzman@casgt.org'),
+	(17, 'HSH1_CAS_SP05', 'Roxana Guadalupe', 'Mena Rodriguez', '42205038', 'roxy.mena@casgt.org'),
+	(18, 'HSH1_CAS_MYE01', 'Christopher Ariel', 'Cruz Pichardo', '51044749', 'mye@casgt.org'),
+	(19, 'INCAP05', 'Lesbia Leonarda', 'Palma Escalante', '31836277', 'lpalma@incap.int'),
+	(20, 'PPL6_INCAP_PR01', 'Maria Rosaura', 'Jajoy Rodriguez', '30050282', 'correodeprueba@incap.int'),
+	(21, 'PPL6_INCAP_PR03', 'Fred Henry', 'Axpuaca Marroquin', '30049835', 'correodeprueba@incap.int'),
+	(22, 'PPL6_INCAP_PR04', 'Jennifer ', 'Alburez Ruiz', '30049549', 'correodeprueba@incap.int'),
+	(23, 'PPL6_INCAP_SP01', 'Aura Esmeralda', 'Osuna Ortega', '30049346', 'aozuna@incap.int'),
+	(24, 'INCAP06', 'Gonzalo ', 'Ball Aju', '30048861', 'gball@incap.int');
+/*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarResumen
-DELIMITER //
-CREATE PROCEDURE `agregarResumen`(
-	IN cobertura	INT,
-    IN periodo		INT,
-    IN meses	 	INT,
-    IN nuevo		FLOAT,
-    IN recurrente	FLOAT )
-BEGIN
-	DECLARE id INT DEFAULT 0;
-    DECLARE idRe INT DEFAULT (SELECT COUNT(idResumen) FROM resumen);
-    IF (idRe <= 0) THEN SET id := 1;
-    ELSE SET id := idRe + 1;
-    END IF;
-	INSERT INTO resumen VALUES(id, cobertura, periodo, meses, nuevo, recurrente, 1);
-END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.poa: ~18 rows (aproximadamente)
+/*!40000 ALTER TABLE `poa` DISABLE KEYS */;
+INSERT INTO `poa` (`idPoa`, `anio`, `mes`, `departamento`, `municipio`, `nuevo`, `recurrente`, `subreceptor_id`, `observacion`, `periodo`, `estado`) VALUES
+	(1, 2021, 'MP31', '1', '101', 150, 200, 1, 'Cambio de prueba', 3, 'ES04'),
+	(2, 2021, 'MP32', '1', '101', 134.5, 0, 1, '', 3, 'ES02'),
+	(3, 2021, 'MP33', '1', '101', 134.5, 0, 1, '', 3, 'ES02'),
+	(4, 2021, 'MP34', '1', '101', 134.5, 0, 1, '', 3, 'ES02'),
+	(5, 2021, 'MP35', '1', '101', 134.5, 40.4, 1, '', 3, 'ES02'),
+	(6, 2021, 'MP36', '1', '101', 134.5, 40, 1, '', 3, 'ES02'),
+	(7, 2021, 'MP31', '1', '115', 63.17, 0, 1, '', 3, 'ES02'),
+	(8, 2021, 'MP32', '1', '115', 63.17, 0, 1, '', 3, 'ES02'),
+	(9, 2021, 'MP33', '1', '115', 63.17, 0, 1, '', 3, 'ES02'),
+	(10, 2021, 'MP34', '1', '115', 63.17, 0, 1, '', 3, 'ES02'),
+	(11, 2021, 'MP35', '1', '115', 63.17, 19, 1, '', 3, 'ES02'),
+	(12, 2021, 'MP36', '1', '115', 63.17, 19, 1, '', 3, 'ES02'),
+	(13, 2021, 'MP31', '1', '101', 805.6, 0, 2, '', 3, 'ES04'),
+	(14, 2021, 'MP32', '1', '101', 1048.52, 0, 2, '', 3, 'ES01'),
+	(15, 2021, 'MP31', '1', '108', 244, 0, 2, 'Que representa el 13% de la meta del periodo', 3, 'ES01'),
+	(16, 2021, 'MP31', '1', '120', 116.33, 0, 3, '', 3, 'ES01'),
+	(17, 2021, 'MP31', '1', '118', 45.67, 0, 3, '', 3, 'ES01'),
+	(18, 2021, 'MP31', '1', '119', 110.5, 0, 3, '', 3, 'ES01'),
+	(19, 2021, 'MP31', '5', '514', 83.83, 0, 3, '', 3, 'ES01'),
+	(20, 2021, 'MP31', '9', '925', 56.67, 0, 3, '', 3, 'ES01'),
+	(21, 2021, 'MP32', '5', '514', 83.83, 0, 3, 'Cambios de prueba', 3, 'ES01');
+/*!40000 ALTER TABLE `poa` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarSubreceptor
-DELIMITER //
-CREATE PROCEDURE `agregarSubreceptor`(
-	IN codigo 		VARCHAR(24),
-    IN nombre 		VARCHAR(100),
-    IN cnatural 	INT,
-    IN csabor 		INT,
-    IN cfemenino	INT,
-    IN lubricante	INT,
-    IN pruebavih 	FLOAT,
-    IN autoprueba	FLOAT )
-BEGIN
-	DECLARE id INT DEFAULT 0;
-	DECLARE idSub INT DEFAULT (SELECT COUNT(idSubreceptor) FROM subreceptor);
-	IF(idSub <= 0) THEN SET id := 1;
-	ELSE  SET id := idSub + 1;
-	END IF;
-	INSERT INTO subreceptor VALUES(id, codigo, nombre, cnatural, csabor, cfemenino, lubricante, pruebavih, autoprueba);
-	END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.pom: ~11 rows (aproximadamente)
+/*!40000 ALTER TABLE `pom` DISABLE KEYS */;
+INSERT INTO `pom` (`idPom`, `periodo`, `mes`, `municipio`, `fecha`, `horaInicio`, `horaFin`, `lugar`, `promotor_id`, `pNuevo`, `pRecurrente`, `cnatural`, `csabor`, `cfemenino`, `lubricante`, `pruebaVIH`, `autoprueba`, `reactivo`, `sifilis`, `observacion`, `poa_id`, `estado`, `subreceptor_id`, `movil`, `supervisado`, `supervisor`) VALUES
+	(1, 3, 'MP31', '101', '2022-01-05', '11:00:00', '16:00:00', 'La Pasadita 2-29 9na. avenida Quinta Samayoa, Zona 7', 1, 5, 0, 300, 50, 25, 40, 0, 1.5, 0, 5, 'Una mujer a demanda', 1, 'ES04', 1, 0, NULL, NULL),
+	(2, 3, 'MP31', '115', '2022-01-05', '11:00:00', '13:00:00', 'parque de villa nueva a un costado de la municipalidad', 1, 3, 0, 180, 30, 15, 24, 0, 0.9, 0, 3, '3 MTS a demanda ', 7, 'ES01', 1, 0, NULL, NULL),
+	(3, 3, 'MP31', '115', '2022-01-05', '14:00:00', '16:00:00', 'parque de villa nueva a un costado de la municipalidad', 1, 3, 0, 180, 30, 15, 24, 0, 0.9, 0, 3, '', 7, 'ES01', 1, 0, NULL, NULL),
+	(4, 3, 'MP31', '101', '2022-01-06', '10:00:00', '13:30:00', 'la linea ', 1, 6, 0, 360, 60, 30, 48, 0, 1.8, 0, 6, '', 1, 'ES01', 1, 0, NULL, NULL),
+	(5, 3, 'MP31', '101', '2022-01-04', '08:00:00', '12:00:00', 'Lorem ipsum data text dummy', 1, 4, 0, 192, 0, 0, 192, 3.6, 0.4, 0.2, 4, 'Lorem ipsum data text dummy', 13, 'ES01', 2, 0, NULL, NULL),
+	(6, 3, 'MP31', '101', '2022-01-07', '08:00:00', '12:00:00', 'Lorem ipsum data text dummy', 1, 3, 0, 144, 0, 0, 144, 2.7, 0.3, 0.15, 3, 'Lorem ipsum data text dummy', 13, 'ES01', 2, 0, NULL, NULL),
+	(7, 3, 'MP31', '118', '2022-01-06', '09:00:00', '16:00:00', 'Parque del Adulto Mayor  Pavoncito', 1, 15, 0, 720, 0, 0, 720, 15, 0, 0.07, 15, 'Trabajar en el área asignada', 17, 'ES02', 3, 0, NULL, NULL),
+	(8, 3, 'MP31', '118', '2022-01-06', '09:30:00', '16:00:00', 'Parque del Adulto Mayor  Pavoncito', 1, 15, 0, 720, 0, 0, 720, 15, 0, 0.07, 15, 'Trabajar en el área asignada', 17, 'ES02', 3, 0, NULL, NULL),
+	(9, 3, 'MP31', '119', '2021-12-08', '08:00:00', '12:00:00', 'Lorem ipsum data text dummy', 7, 10.05, 0, 482.4, 0, 0, 482.4, 10.05, 0, 0.05, 10.05, 'Que representa el 13% de la meta del periodo', 18, 'ES01', 3, 0, NULL, NULL),
+	(10, 3, 'MP31', '118', '2021-12-09', '08:00:00', '12:00:00', 'Lorem ipsum data text dummy', 9, 6, 0, 288, 0, 0, 288, 6, 0, 0.03, 6, 'Lorem ipsum data text dummy', 17, 'ES01', 3, 0, NULL, ''),
+	(11, 3, 'MP31', '118', '2021-12-09', '08:00:00', '12:00:00', 'Lorem ipsum data text dummy', 9, 6, 0, 288, 0, 0, 288, 6, 0, 0.03, 6, 'Lorem ipsum data text dummy', 17, 'ES01', 3, 0, NULL, ''),
+	(12, 3, 'MP32', '514', '2021-12-10', '07:00:00', '10:00:00', 'Lorem ipsu data text dummy', 8, 7, 0, 336, 0, 0, 336, 7, 0, 0.04, 7, 'Lorem ipsum data text dummy', 21, 'ES01', 3, 0, 1, 'Lorem ipsum');
+/*!40000 ALTER TABLE `pom` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.agregarUsuario
-DELIMITER //
-CREATE PROCEDURE `agregarUsuario`(
-	IN documento 	BOOLEAN,
-	IN numero		VARCHAR(16),
-	IN pnombre 		VARCHAR(32),
-    IN snombre		VARCHAR(32),
-	IN papellido	VARCHAR(32),
-    IN sapellido	VARCHAR(32),
-	IN direccion	VARCHAR(100),
-	IN telefono		VARCHAR(16),
-	IN email		VARCHAR(100),
-    IN rol			VARCHAR(24),
-    IN sub			INT
-    )
-BEGIN
-	DECLARE IdPersona INT DEFAULT 0;
-    DECLARE IdUsuario INT DEFAULT 0;
-	DECLARE idP INT DEFAULT (SELECT COUNT(idPersona) FROM persona);
-	DECLARE idU INT DEFAULT (SELECT COUNT(idUsuario) FROM usuario);
-	IF(idP <= 0) THEN SET IdPersona := 1;
-	ELSE SET IdPersona := idP + 1;
-    END IF;
-	INSERT INTO persona VALUES(IdPersona, documento, numero, CONCAT(pnombre,' ',snombre), CONCAT(papellido,' ',sapellido), direccion, telefono, email);
-	IF(idU <=0) THEN SET IdUsuario := 1;
-	ELSE SET IdUsuario := idU + 1;
-    END IF;
-	INSERT INTO usuario VALUES(IdUsuario, IdPersona, rol, lower(concat(left(pnombre,1),papellido,left(sapellido,1))), SHA('Usuario01'), sub, 1);
-END//
-DELIMITER ;
+-- Volcando datos para la tabla poam.promotor: ~8 rows (aproximadamente)
+/*!40000 ALTER TABLE `promotor` DISABLE KEYS */;
+INSERT INTO `promotor` (`idPromotor`, `persona_id`, `dias`, `estado`) VALUES
+	(1, 2, '18', 1),
+	(2, 3, '18', 1),
+	(3, 4, '18', 1),
+	(4, 12, '18', 1),
+	(5, 13, '18', 1),
+	(6, 14, '18', 1),
+	(7, 20, '1', 1),
+	(8, 21, '1', 1),
+	(9, 22, '1', 1);
+/*!40000 ALTER TABLE `promotor` ENABLE KEYS */;
 
--- Volcando estructura para tabla poam.asignacion
-CREATE TABLE IF NOT EXISTS `asignacion` (
-  `idAsignacion` int(11) NOT NULL AUTO_INCREMENT,
-  `promotor_id` int(11) NOT NULL,
-  `cobertura_id` int(11) NOT NULL,
-  PRIMARY KEY (`idAsignacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- Volcando datos para la tabla poam.resumen: ~6 rows (aproximadamente)
+/*!40000 ALTER TABLE `resumen` DISABLE KEYS */;
+INSERT INTO `resumen` (`idResumen`, `cobertura_id`, `periodo`, `meses`, `nuevo`, `recurrente`, `estado`) VALUES
+	(1, 1, 3, 6, 134.5, 0, 1),
+	(2, 2, 3, 6, 63.17, 0, 1),
+	(3, 19, 3, 6, 45.67, 0, 1),
+	(4, 20, 3, 6, 110.5, 0, 1),
+	(5, 21, 3, 6, 116.33, 0, 1),
+	(6, 22, 3, 6, 56.67, 0, 1),
+	(7, 23, 3, 6, 83.83, 0, 1);
+/*!40000 ALTER TABLE `resumen` ENABLE KEYS */;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla poam.subreceptor: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `subreceptor` DISABLE KEYS */;
+INSERT INTO `subreceptor` (`idSubreceptor`, `codigo`, `nombre`, `enatural`, `esabor`, `efemenino`, `elubricante`, `ppvih`, `pautoprueba`) VALUES
+	(1, 'INCAP', 'Instituto de Nutricion de Centroamerica y Panama', 0, 0, 0, 0, 0, 0),
+	(2, 'MTS5_OMES', 'Organizacion Mujeres En Superacion', 60, 10, 5, 8, 0, 0.3),
+	(3, 'HSH1_CAS', 'Colectivo Amigos contra el Sida', 48, 0, 0, 48, 0.9, 0.1),
+	(4, 'PPL6_INCAP', 'Incap / DGSP', 48, 0, 0, 48, 1, 0);
+/*!40000 ALTER TABLE `subreceptor` ENABLE KEYS */;
 
--- Volcando estructura para procedimiento poam.cambiarEstadoPoa
-DELIMITER //
-CREATE PROCEDURE `cambiarEstadoPoa`(
-	IN usuario		INT,
-    IN id_poa 		INT,
-    IN estados		VARCHAR(24),
-    IN descripcion	TEXT )
-BEGIN
-	DECLARE idE INT DEFAULT 0;
-    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
-    IF (idEs <= 0) THEN SET idE := 1;
-    ELSE SET idE := idEs + 1;
-    END IF;
-    INSERT INTO estado VALUES(idE, usuario, id_poa, NULL, estados, descripcion, now());
-    UPDATE poa SET estado = estados WHERE idPoa = id_poa;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.cambiarEstadoPom
-DELIMITER //
-CREATE PROCEDURE `cambiarEstadoPom`(
-	IN usuario		INT,
-    IN id_pom 		INT,
-    IN estados		VARCHAR(24),
-    IN descripcion	TEXT )
-BEGIN
-	DECLARE idE INT DEFAULT 0;
-    DECLARE idEs INT DEFAULT (SELECT COUNT(idEstado) FROM estado);
-    IF (idEs <= 0) THEN SET idE := 1;
-    ELSE SET idE := idEs + 1;
-    END IF;
-    INSERT INTO estado VALUES(idE, usuario, NULL, id_pom, estados, descripcion, now());
-    UPDATE pom SET estado = estados WHERE idPom = id_pom;
-END//
-DELIMITER ;
-
--- Volcando estructura para tabla poam.catalogo
-CREATE TABLE IF NOT EXISTS `catalogo` (
-  `codigo` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8_unicode_ci,
-  `categoria` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.cobertura
-CREATE TABLE IF NOT EXISTS `cobertura` (
-  `idCobertura` int(11) NOT NULL,
-  `subreceptor_id` int(11) NOT NULL,
-  `departamento` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
-  `municipio` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
-  `region` int(11) DEFAULT NULL,
-  `nuevo` float DEFAULT NULL,
-  `recurrente` float DEFAULT NULL,
-  `porcentaje` float DEFAULT NULL,
-  PRIMARY KEY (`idCobertura`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para procedimiento poam.editarCatalogo
-DELIMITER //
-CREATE PROCEDURE `editarCatalogo`(
-	IN ecodigo		VARCHAR(24),
-    IN enombre		VARCHAR(100),
-    IN edescripcion	TEXT,
-    IN ecategoria 	VARCHAR(32) )
-BEGIN
-	UPDATE  catalogo SET codigo = ecodigo, nombre = enombre, descripcion = edescripcion, categoria = ecategoria WHERE codigo = ecodigo;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarCobertura
-DELIMITER //
-CREATE PROCEDURE `editarCobertura`(
-	IN id			INT,
-	IN esubreceptor	INT,
-    IN edepartamento VARCHAR(24),
-    IN emunicipio 	VARCHAR(24),
-	IN eregion		INT,
-    IN enuevo		FLOAT,
-    IN erecurrente	FLOAT,
-	IN eporcentaje	FLOAT)
-BEGIN
-	UPDATE cobertura SET subreceptor_id=esubreceptor, departamento=edepartamento, municipio=emunicipio, region=eregion, nuevo=enuevo, recurrente=erecurrente, porcentaje=eporcentaje WHERE idCobertura = id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarInsumo
-DELIMITER //
-CREATE PROCEDURE `editarInsumo`(
-	IN id			INT,
-	IN ecnatural 	FLOAT,
-	IN ecsabor		FLOAT,
-    IN ecfemenino	FLOAT,
-	IN elubricante	FLOAT,
-	IN epruebaVIH	FLOAT,
-	IN eautoPrueba	FLOAT,
-	IN ereactivoE	FLOAT,
-	IN esifilis		FLOAT )
-BEGIN
-	UPDATE poa SET cnatural=ecnatural, csabor=ecsabor, cfemenino=ecfemenino, lubricante=elubricante, pruebaVIH=epruebaVIH, autoPrueba=eautoPrueba, reactivoE=ereactivoE, sifilis=esifilis WHERE idInsumo=id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarPersona
-DELIMITER //
-CREATE PROCEDURE `editarPersona`(
-	IN id			INT,
-	IN edocumento 	BOOLEAN,
-	IN enumero		VARCHAR(16),
-	IN enombre 		VARCHAR(50),
-	IN eapellido	VARCHAR(50),
-	IN edireccion	VARCHAR(100),
-	IN etelefono	VARCHAR(16),
-	IN eemail		VARCHAR(100) )
-BEGIN
-	UPDATE persona SET documento=edocumento, numero=enumero, nombre=enombre, apellido=eapellido, direccion=edireccion, telefono=etelefono, email=eemail WHERE idPersona=id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarPoa
-DELIMITER //
-CREATE PROCEDURE `editarPoa`(
-	IN id			INT,
-	IN eusuario		INT,
-	IN emes			VARCHAR(24),
-	IN edepartamento VARCHAR(24),
-	IN emunicipio	VARCHAR(24),
-	IN enuevo		FLOAT,
-	IN erecurrente	FLOAT,
-	IN esubreceptor	INT,
-    IN eobservacion	TEXT,
-    IN eperiodo		INT)
-BEGIN
-	UPDATE poa SET mes=emes,departamento=edepartamento,municipio=emunicipio,nuevo=enuevo,recurrente=erecurrente,subreceptor=esubreceptor,observacion=eobservacion,periodo=eperiodo,estado=estado WHERE idPoa=id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarPom
-DELIMITER //
-CREATE PROCEDURE `editarPom`(
-	IN id			INT,
-    IN eperiodo		INT,
-	IN emes			VARCHAR(16),
-	IN emunicipio	VARCHAR(16),
-    IN efecha		DATE,
-    IN einicio		TIME,
-    IN efin 		TIME,
-    IN elugar		TEXT,
-    IN epromotor	INT,
-	IN enuevo		FLOAT,
-	IN erecurrente	FLOAT,
-	IN ecnatural 	FLOAT,
-	IN ecsabor		FLOAT,
-    IN ecfemenino	FLOAT,
-	IN elubricante	FLOAT,
-	IN epruebaVIH	FLOAT,
-	IN eautoPrueba	FLOAT,
-	IN ereactivo	FLOAT,
-	IN esifilis		FLOAT,
-    IN eobservacion	TEXT)
-BEGIN
-	UPDATE pom SET periodo=eperiodo, mes=emes, municipio=emunicipio, fecha=efecha, horaInicio=einicio, horaFin=efin, lugar=elugar, promotor_id=epromotor, nuevo=enuevo, recurrente=erecurrente, cnatural=ecnatural, 
-    csabor=esabor, cfemenino=ecfemenino, lubricante=elubricante, pruebaVIH=epruebaVIH, autoPrueba=eautoPrueba, reactivo=ereactivo, sifilis=esifilis, observacion=eobservacion WHERE idPom =id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarPromotor
-DELIMITER //
-CREATE PROCEDURE `editarPromotor`(
-	IN id			INT,
-    IN ecodigo		VARCHAR(32),
-	IN ecobertura	INT,
-	IN eestado		BOOLEAN
-    )
-BEGIN
-	UPDATE promotor SET codigo = ecodigo, cobertura_id=ecobertura, estado=eestado WHERE idPromotor = id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarResumen
-DELIMITER //
-CREATE PROCEDURE `editarResumen`(
-	IN id			INT,
-	IN ecobertura	INT,
-    IN eperiodo		INT,
-    IN emeses	 	INT,
-    IN enuevo		FLOAT,
-    IN erecurrente	FLOAT,
-    IN eestado		BOOLEAN)
-BEGIN
-	UPDATE resumen SET cobertura_id=ecobertura, periodo=eperiodo, meses=emeses, nuevo=enuevo, recurrente=erecurrente, estado=eestado WHERE idResumen=id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarrResumen
-DELIMITER //
-CREATE PROCEDURE `editarrResumen`(
-	IN id			INT,
-	IN ecobertura	INT,
-    IN eperiodo		INT,
-    IN emeses	 	INT,
-    IN enuevo		FLOAT,
-    IN erecurrente	FLOAT,
-    IN eestado		BOOLEAN)
-BEGIN
-	UPDATE resumen SET cobertura_id=ecobertura, periodo=eperiodo, meses=emeses, nuevo=enuevo, recurrente=erecurrente, estado=eestado WHERE idResumen=id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarSubreceptor
-DELIMITER //
-CREATE PROCEDURE `editarSubreceptor`(
-	IN id			INT,
-	IN ecodigo 		VARCHAR(24),
-    IN enombre 		VARCHAR(100),
-    IN ecnatural 	INT,
-    IN ecsabor 		INT,
-    IN ecfemenino	INT,
-    IN lubricante	INT,
-    IN epruebavih 	FLOAT,
-    IN eautoprueba	FLOAT )
-BEGIN
-	UPDATE subreceptor SET codigo=ecodigo, nombre=enombre, enatural=ecnatural, esabor=ecsabor, efemenino=ecfemenino, elubricante=lubricante, ppvih=epruebavih, pautoprueba=eautoprueba WHERE idSubreceptor = id;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.editarUsuario
-DELIMITER //
-CREATE PROCEDURE `editarUsuario`(
-	IN id			INT,
-    IN erol			VARCHAR(24),
-    IN eusuario		VARCHAR(32),
-    IN epass		VARCHAR(32),
-	IN esubreceptor	INT,
-    IN eestado		BOOLEAN
-    )
-BEGIN
-	UPDATE usuario SET rol=erol, usuario=eusuario, pass=SHA(epass), subreceptor=esubreceptor, estado=eestado WHERE idUsuario = id;
-END//
-DELIMITER ;
-
--- Volcando estructura para tabla poam.estado
-CREATE TABLE IF NOT EXISTS `estado` (
-  `idEstado` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `poa_id` int(11) DEFAULT NULL,
-  `pom_id` int(11) DEFAULT NULL,
-  `estado` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8_unicode_ci,
-  `fecha` datetime DEFAULT NULL,
-  PRIMARY KEY (`idEstado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.insumo
-CREATE TABLE IF NOT EXISTS `insumo` (
-  `idInsumo` int(11) NOT NULL,
-  `poa_id` int(11) NOT NULL,
-  `cnatural` float DEFAULT NULL,
-  `csabor` float DEFAULT NULL,
-  `cfemenino` float DEFAULT NULL,
-  `lubricante` float DEFAULT NULL,
-  `pruebaVIH` float DEFAULT NULL,
-  `autoPrueba` float DEFAULT NULL,
-  `reactivoE` float DEFAULT NULL,
-  `sifilis` float DEFAULT NULL,
-  PRIMARY KEY (`idInsumo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para procedimiento poam.login
-DELIMITER //
-CREATE PROCEDURE `login`(
-	IN users		VARCHAR(32),
-    IN contra		VARCHAR(32))
-BEGIN
-	SELECT * FROM usuario WHERE usuario = users AND pass = SHA(contra) AND estado = 1;
-END//
-DELIMITER ;
-
--- Volcando estructura para procedimiento poam.modificarCatalogo
-DELIMITER //
-CREATE PROCEDURE `modificarCatalogo`(
-	IN codigo		VARCHAR(24),
-    IN nombre		VARCHAR(100),
-    IN descripcion	TEXT,
-    IN categoria 	VARCHAR(32) )
-BEGIN
-	INSERT INTO catalogo VALUES(codigo, nombre, descripcion, categoria);
-END//
-DELIMITER ;
-
--- Volcando estructura para tabla poam.permiso
-CREATE TABLE IF NOT EXISTS `permiso` (
-  `idPermiso` int(11) NOT NULL,
-  `poa` tinyint(4) DEFAULT NULL,
-  `pom` tinyint(4) DEFAULT NULL,
-  `rol_idRol` int(11) NOT NULL,
-  PRIMARY KEY (`idPermiso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.persona
-CREATE TABLE IF NOT EXISTS `persona` (
-  `idPersona` int(11) NOT NULL,
-  `documento` tinyint(4) DEFAULT NULL,
-  `numero` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `nombre` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `apellido` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `direccion` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `telefono` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.poa
-CREATE TABLE IF NOT EXISTS `poa` (
-  `idPoa` int(11) NOT NULL,
-  `anio` int(11) DEFAULT NULL,
-  `mes` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
-  `departamento` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
-  `municipio` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
-  `nuevo` float DEFAULT NULL,
-  `recurrente` float DEFAULT NULL,
-  `subreceptor_id` int(11) NOT NULL,
-  `observacion` text COLLATE utf8_unicode_ci,
-  `periodo` int(11) DEFAULT NULL,
-  `estado` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`idPoa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.pom
-CREATE TABLE IF NOT EXISTS `pom` (
-  `idPom` int(11) NOT NULL,
-  `periodo` int(11) DEFAULT NULL,
-  `mes` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `municipio` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `horaInicio` time DEFAULT NULL,
-  `horaFin` time DEFAULT NULL,
-  `lugar` text COLLATE utf8_unicode_ci,
-  `promotor_id` int(11) NOT NULL,
-  `pNuevo` float DEFAULT NULL,
-  `pRecurrente` float DEFAULT NULL,
-  `cnatural` float DEFAULT NULL,
-  `csabor` float DEFAULT NULL,
-  `cfemenino` float DEFAULT NULL,
-  `lubricante` float DEFAULT NULL,
-  `pruebaVIH` float DEFAULT NULL,
-  `autoprueba` float DEFAULT NULL,
-  `reactivo` float DEFAULT NULL,
-  `sifilis` float DEFAULT NULL,
-  `observacion` text COLLATE utf8_unicode_ci,
-  `poa_id` int(11) NOT NULL,
-  `estado` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `subreceptor_id` int(11) NOT NULL,
-  `movil` tinyint(4) DEFAULT '0',
-  PRIMARY KEY (`idPom`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.promotor
-CREATE TABLE IF NOT EXISTS `promotor` (
-  `idPromotor` int(11) NOT NULL,
-  `codigo` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `persona_id` int(11) NOT NULL,
-  `dias` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `estado` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`idPromotor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.resumen
-CREATE TABLE IF NOT EXISTS `resumen` (
-  `idResumen` int(11) NOT NULL,
-  `cobertura_id` int(11) NOT NULL,
-  `periodo` int(11) DEFAULT NULL,
-  `meses` int(11) DEFAULT NULL,
-  `nuevo` float DEFAULT NULL,
-  `recurrente` float DEFAULT NULL,
-  `estado` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`idResumen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para procedimiento poam.semestre
-DELIMITER //
-CREATE PROCEDURE `semestre`(
-	IN subreceptor	INT,
-    IN semestre		INT)
-BEGIN
-	SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total, 
-    t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis FROM poa t1 
-	LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
-	LEFT JOIN catalogo t3 ON t3.idCatalogo = t1.departamento
-	LEFT JOIN catalogo t4 ON t4.idCatalogo = t1.municipio 
-	LEFT JOIN catalogo t5 ON t5.idCatalogo = t1.mes
-	WHERE t1.subreceptor_id = subreceptor AND t1.anio = YEAR(NOW()) AND t1.semestre = semestre AND estado = 1;
-END//
-DELIMITER ;
-
--- Volcando estructura para tabla poam.subreceptor
-CREATE TABLE IF NOT EXISTS `subreceptor` (
-  `idSubreceptor` int(11) NOT NULL,
-  `codigo` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `nombre` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `enatural` int(11) DEFAULT NULL,
-  `esabor` int(11) DEFAULT NULL,
-  `efemenino` int(11) DEFAULT NULL,
-  `elubricante` int(11) DEFAULT NULL,
-  `ppvih` float DEFAULT NULL,
-  `pautoprueba` float DEFAULT NULL,
-  PRIMARY KEY (`idSubreceptor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla poam.usuario
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `idUsuario` int(11) NOT NULL,
-  `persona_id` int(11) NOT NULL,
-  `rol` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
-  `usuario` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `pass` longtext COLLATE utf8_unicode_ci,
-  `subreceptor_id` int(11) NOT NULL,
-  `estado` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla poam.usuario: ~23 rows (aproximadamente)
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` (`idUsuario`, `persona_id`, `rol`, `usuario`, `pass`, `subreceptor_id`, `estado`) VALUES
+	(1, 1, 'R001', 'flopezr', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(2, 2, 'R007', 'efunes', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(3, 3, 'R007', 'sbautista', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(4, 4, 'R007', 'jacastañeda', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(5, 5, 'R006', 'jvelasquezb', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(6, 6, 'R006', 'agodinezm', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(7, 7, 'R005', 'nreinosol', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(8, 8, 'R006', 'jlopezg', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(9, 9, 'R003', 'sramirezs', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(10, 10, 'R002', 'prodriguezp', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(11, 11, 'R001', 'ojuarezv', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(12, 12, 'R007', 'ojuarez', '014f43501bd9cc573256be4caf14026d65a4b39c', 1, 1),
+	(13, 13, 'R007', 'jortega', '014f43501bd9cc573256be4caf14026d65a4b39c', 2, 1),
+	(14, 14, 'R007', 'mflores', '014f43501bd9cc573256be4caf14026d65a4b39c', 2, 1),
+	(15, 15, 'R006', 'aavilar', '014f43501bd9cc573256be4caf14026d65a4b39c', 2, 1),
+	(16, 16, 'R006', 'jguzmans', '014f43501bd9cc573256be4caf14026d65a4b39c', 2, 1),
+	(17, 17, 'R006', 'rmenar', '014f43501bd9cc573256be4caf14026d65a4b39c', 2, 1),
+	(18, 18, 'R005', 'ccruzp', '014f43501bd9cc573256be4caf14026d65a4b39c', 2, 1),
+	(19, 19, 'R003', 'lpalmae', '014f43501bd9cc573256be4caf14026d65a4b39c', 2, 1),
+	(20, 20, 'R007', 'mrjajoy', '014f43501bd9cc573256be4caf14026d65a4b39c', 3, 1),
+	(21, 21, 'R007', 'fhaxpuaca', '014f43501bd9cc573256be4caf14026d65a4b39c', 3, 1),
+	(22, 22, 'R007', 'jalburez', '014f43501bd9cc573256be4caf14026d65a4b39c', 3, 1),
+	(23, 23, 'R005', 'aosunao', '014f43501bd9cc573256be4caf14026d65a4b39c', 3, 1),
+	(24, 24, 'R003', 'gballa', '014f43501bd9cc573256be4caf14026d65a4b39c', 3, 1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

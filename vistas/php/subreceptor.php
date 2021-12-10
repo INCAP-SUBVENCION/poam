@@ -67,16 +67,16 @@
         $subreceptor    = $_POST['subreceptor'];
         $departamento   = $_POST['departamento'];
         $municipio      = $_POST['municipio'];
-        $region         = $_POST['region'];
         $nuevo          = $_POST['nuevo'];
         $recurrente     = $_POST['recurrente'];
         $reactivo       = $_POST['reactivo'];
+        $periodo        = $_POST['periodo'];
 
         $_duplicado =$enlace->query("SELECT * FROM cobertura WHERE subreceptor_id = $subreceptor AND departamento = '$departamento'AND municipio = '$municipio'");
         if(mysqli_num_rows($_duplicado)){
             echo "Duplicado";
         } else {
-            $sql2 = "CALL agregarCobertura($subreceptor, $departamento, $municipio, $region, $nuevo, $recurrente, $reactivo)";
+            $sql2 = "CALL agregarCobertura($subreceptor, $departamento, $municipio, $nuevo, $recurrente, $reactivo, $periodo)";
             $resultado2 = mysqli_query($enlace, $sql2);
             $cobertura = mysqli_affected_rows($enlace);
             if ($cobertura > 0) {

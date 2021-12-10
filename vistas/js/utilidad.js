@@ -113,19 +113,21 @@ function periodo_mes() {
  * Funcio que permite obtener los datos de las metas nueva y recurrentes
  */
 function obtenerMeta() {
-
+    
     var municipio   = document.getElementById('municipio').value;
     var subreceptor = document.getElementById('subreceptor').value;
+    var periodo     = document.getElementById('periodo').value;
 
     var accion = "obtenerMeta";
-
+ 
     $.ajax({
         type: "POST",
         url: "../../php/utilidad.php",
         data: {
             accion: accion,
             municipio: municipio,
-            subreceptor: subreceptor
+            subreceptor: subreceptor,
+            periodo: periodo
         },
         success: function (datos) {
             var respuesta   = datos.split(',');
@@ -158,7 +160,7 @@ function obtenerResumen(){
             periodo: periodo,
             municipio: municipio,
             subreceptor: subreceptor
-        },
+        }, 
         success: function (datos) {
             var respuesta = datos.split(',')
             var nuevos = respuesta[0];

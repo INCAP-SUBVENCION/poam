@@ -3,7 +3,9 @@ include_once('../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
-    header('Location: ../error.php');
+    header('Location: salir.php');
+} else if (($_SESSION['rol'] != 'R006')) {
+    header('Location: ../../error.php');
 }
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
@@ -70,7 +72,21 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-md-4">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="../../assets/images/plann.png" width="125" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Plan Operativo Anual</h6>
+                                        <div class="d-grid gap-2">
+                                            <a href="poa/poa.php" class="btn btn-sm btn-primary btn-lg"> POA</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
             </div>

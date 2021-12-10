@@ -12,7 +12,7 @@ $ROL = $_SESSION['rol'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 ?>
 <!DOCTYPE html>
-<html lang="es"> 
+<html lang="es">
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

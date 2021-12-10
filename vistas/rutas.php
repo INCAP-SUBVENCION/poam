@@ -24,7 +24,7 @@ $ROL = $_SESSION['rol'];
         header('Location: rp/rp.php');
     } else if ($ROL == "R003" || $ROL == "R004") {
         header('Location: enlacerp/enlacerp.php');
-    } else if ($ROL == "R005") {
+    } else if ($ROL == "R005" || $ROL == "R009" ) {
         header('Location: cmesr/cmesr.php');
     } else if ($ROL == "R006") {
         header('Location: supervisor/supervisor.php');

@@ -3,7 +3,9 @@ include_once('../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
-    header('Location: ../error.php');
+    header('Location: salir.php');
+} else if (($_SESSION['rol'] != 'R002')) {
+    header('Location: ../../error.php');
 }
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];

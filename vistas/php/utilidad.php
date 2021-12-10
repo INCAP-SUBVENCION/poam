@@ -104,10 +104,11 @@ if ($accion == "obtenerResumen") {
  */
 if ($accion == "obtenerMeta") {
 
-    $municipio  = $_POST['municipio'];
+    $municipio   = $_POST['municipio'];
     $subreceptor = $_POST['subreceptor'];
+    $periodo     = $_POST['periodo'];
 
-    $sqlRecurrente = "SELECT idCobertura, nuevo, recurrente FROM cobertura WHERE subreceptor_id = $subreceptor AND municipio = $municipio";
+    $sqlRecurrente = "SELECT idCobertura, nuevo, recurrente FROM cobertura WHERE subreceptor_id = $subreceptor AND municipio = $municipio AND periodo = $periodo";
     $resultadoRecurrente = $enlace->query($sqlRecurrente);
     while ($recurrente = mysqli_fetch_assoc($resultadoRecurrente)) {
         echo $recurrente['nuevo'] . "," . $recurrente['recurrente'] . "," . $recurrente['idCobertura'];

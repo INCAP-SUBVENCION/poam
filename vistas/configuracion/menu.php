@@ -1,6 +1,6 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper">
-    <div class="sidebar-header">
+        <div class="sidebar-header">
             <div class="text-center">
 
                 <img src="../../assets/images/vihinvertido.png" alt="">
@@ -19,7 +19,7 @@
                             <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
                         </button>
                         <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item text-info" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
+                            <li><a class="dropdown-item text-info" href="perfil.php"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
                             <li><a class="dropdown-item text-danger" href="salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
                         </ul>
                     </div>
@@ -29,9 +29,9 @@
 
         <div class="sidebar-menu">
             <ul class="menu">
-            <li class="sidebar-item  ">
+                <li class="sidebar-item  ">
                     <a href="configuracion.php" class='sidebar-link'>
-                    <i class="bi bi-house-door-fill"></i><span>Inicio</span>
+                        <i class="bi bi-house-door-fill"></i><span>Inicio</span>
                     </a>
                 </li>
                 <li class="sidebar-item  ">

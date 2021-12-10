@@ -3,13 +3,13 @@ include_once('../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
-    header('Location: ../error.php');
-}
-$ID  = $_SESSION['idUsuario'];
-$ROL = $_SESSION['rol'];
-if ($ROL != 'R001') {
     header('Location: salir.php');
+} else if (($_SESSION['rol'] != 'R001')) {
+    header('Location: ../../error.php');
 }
+$ID = $_SESSION['idUsuario'];
+$ROL = $_SESSION['rol'];
+$SUBRECEPTOR = $_SESSION['subreceptor_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">

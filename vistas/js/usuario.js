@@ -45,12 +45,35 @@ function agregarUsuario() {
     });
 }
 
-function cambiarContraseña(){
+function cambiarPass(){
+    var id     = document.getElementById("idUsuario").value;
     var pass_1 = document.getElementById('pass_1').value;
     var pass_2 = document.getElementById('pass_2').value;
+    
+    var accion = "cambiarPass";
 
-    if(pass_1 != pass_2){
-     
+    if(pass_1 == pass_2){
+        $.ajax({
+            type: "POST",
+            url: "../php/usuario.php",
+            data: {
+                accion: accion,
+                id: id,
+                pass_2: pass_2
+            },
+            success: function (datos) {
+                if (datos == 'Exito') {
+                    alertify.success('¡GUARDADO!...');
+                    $('#perfil').trigger("reset");
+                    window.location.reload('vistas/configuracion/usuario.php');
+                } else {
+                    alertify.error('ERROR!... No se pudo guardar');
+                }
+            }
+        });
+        alert("LA CONTRASEÑA SE HA CAMBIADO")
+    } else {
+        alert("Las contraseñas no coinciden -INTENTE DE NUEVO-");
     }
 
 

@@ -30,7 +30,7 @@
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo = 4 AND t7.subreceptor_id = $SUBRECEPTOR ORDER BY municipio";
+        WHERE t2.periodo = 4 AND t7.subreceptor_id = $SUBRECEPTOR";
         if ($resp_1 = $enlace->query($sqlp_1)) {
             while ($periodo_1 = $resp_1->fetch_assoc()) { ?>
                 <tr>
