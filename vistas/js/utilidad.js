@@ -348,3 +348,40 @@ function calculos_editar() {
     obtenerResumen_editar()
     obtenerReactivo_editar();
 }
+
+/**
+ * Metodo para obtener el reactivo segun sea el municipio
+ */
+function obtenerReactivoEditar() {
+
+    var subreceptor = document.getElementById('esubreceptor').value;
+    var municipio = document.getElementById('emunicipio').value;
+
+    var accion = "obtenerReactivoEditar";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/utilidad.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            municipio: municipio
+        },
+        success: function (datos) {
+            var reactividad = datos * 100;
+            document.getElementById('ereactivo').value = datos;
+            $("#eporcentaje").html(reactividad + ' %');
+        }
+    });
+}
+/**
+ * Metodo que permite sumar los nuevos y recurrentes a editar
+ */
+function sumarPomEditar(){
+
+    var nuevo = parseFloat(document.getElementById('enuevo').value);
+    var recurrente = parseFloat(document.getElementById('erecurrente').value);
+    var suma = nuevo + recurrente;
+    parseFloat(document.getElementById('etotal').value = suma.toFixed(2));
+
+}

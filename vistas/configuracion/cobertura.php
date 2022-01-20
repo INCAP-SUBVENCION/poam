@@ -137,17 +137,20 @@ if ($ROL != 'R001') {
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="btn btn-sm" id="periodo-1-tab" data-bs-toggle="pill" data-bs-target="#periodo_1" type="button" role="tab" aria-controls="periodo_1" aria-selected="true">Periodo III</button>
+                            <button class="btn btn-sm" id="periodo-3-tab" data-bs-toggle="pill" data-bs-target="#periodo_3" type="button" role="tab" aria-controls="periodo_3" aria-selected="true">Periodo III</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="btn btn-sm" id="periodo-2-tab" data-bs-toggle="pill" data-bs-target="#periodo_2" type="button" role="tab" aria-controls="periodo_2" aria-selected="false">Periodo IV</button>
+                            <button class="btn btn-sm" id="periodo-4-tab" data-bs-toggle="pill" data-bs-target="#periodo_4" type="button" role="tab" aria-controls="periodo_4" aria-selected="false">Periodo IV</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="btn btn-sm" id="periodo-3-tab" data-bs-toggle="pill" data-bs-target="#periodo_3" type="button" role="tab" aria-controls="periodo_3" aria-selected="false">Periodo V</button>
+                            <button class="btn btn-sm" id="periodo-5-tab" data-bs-toggle="pill" data-bs-target="#periodo_5" type="button" role="tab" aria-controls="periodo_5" aria-selected="false">Periodo V</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="btn btn-sm" id="periodo-6-tab" data-bs-toggle="pill" data-bs-target="#periodo_6" type="button" role="tab" aria-controls="periodo_6" aria-selected="false">Periodo VI</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="periodo_1" role="tabpanel" aria-labelledby="periodo-1-tab">
+                        <div class="tab-pane fade show active" id="periodo_3" role="tabpanel" aria-labelledby="periodo-3-tab">
                             <table class="table table-hover table-bordered" id="listadoCobertura_p3">
                                 <thead class="text-center" style="font-size:12px;">
                                     <th>#</th>
@@ -199,8 +202,8 @@ if ($ROL != 'R001') {
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="periodo_2" role="tabpanel" aria-labelledby="periodo-2-tab">
-                        <table class="table table-hover table-bordered" id="listadoCobertura_p3">
+                        <div class="tab-pane fade" id="periodo_4" role="tabpanel" aria-labelledby="periodo-4-tab">
+                        <table class="table table-hover table-bordered" id="listadoCobertura_p4">
                                 <thead class="text-center" style="font-size:12px;">
                                     <th>#</th>
                                     <th>Subreceptor</th>
@@ -228,7 +231,7 @@ if ($ROL != 'R001') {
                                     FROM cobertura t1
                                     LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
                                     LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
-                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id WHERE t1.periodo=4";
+                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id WHERE t1.periodo = 4";
                                     $resultadoC = $enlace->query($sqlC);
                                     while ($cobertura = $resultadoC->fetch_assoc()) {
                                     ?>
@@ -251,7 +254,111 @@ if ($ROL != 'R001') {
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="periodo_3" role="tabpanel" aria-labelledby="periodo-3-tab">...</div>
+                        <div class="tab-pane fade" id="periodo_5" role="tabpanel" aria-labelledby="periodo-5-tab">
+                        <table class="table table-hover table-bordered" id="listadoCobertura_p5">
+                                <thead class="text-center" style="font-size:12px;">
+                                    <th>#</th>
+                                    <th>Subreceptor</th>
+                                    <th>Departamento</th>
+                                    <th>Municipio</th>
+                                    <th># Nuevos</th>
+                                    <th># Recurrentes</th>
+                                    <th>% Reactividad</th>
+                                    <th>Opciones</th>
+                                </thead>
+                                <tfoot>
+                                    <th>#</th>
+                                    <th>Subreceptor</th>
+                                    <th>Departamento</th>
+                                    <th>Municipio</th>
+                                    <th># Nuevos</th>
+                                    <th># Recurrentes</th>
+                                    <th>% Reactividad</th>
+                                </tfoot>
+                                <tbody class="text-center" style="font-size:12px;">
+                                    <?php
+                                    $contador = 1;
+                                    $sqlC = "SELECT t1.idCobertura, t4.nombre as subreceptor, t2.nombre as departamento,
+                                    t3.nombre as municipio, t1.nuevo, t1.recurrente, t1.porcentaje
+                                    FROM cobertura t1
+                                    LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
+                                    LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
+                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id WHERE t1.periodo = 5";
+                                    $resultadoC = $enlace->query($sqlC);
+                                    while ($cobertura = $resultadoC->fetch_assoc()) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $contador++; ?></td>
+                                            <td><?php echo $cobertura['subreceptor']; ?></td>
+                                            <td><?php echo $cobertura['departamento']; ?></td>
+                                            <td><?php echo $cobertura['municipio']; ?></td>
+                                            <td><?php echo $cobertura['nuevo']; ?></td>
+                                            <td><?php echo $cobertura['recurrente']; ?></td>
+                                            <td><?php echo $cobertura['porcentaje']; ?></td>
+                                            <td>
+                                                <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarCobertura<?php echo $cobertura['idCobertura']; ?>"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    $resultadoC->close();
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="periodo_6" role="tabpanel" aria-labelledby="periodo-6-tab">
+                        <table class="table table-hover table-bordered" id="listadoCobertura_p6">
+                                <thead class="text-center" style="font-size:12px;">
+                                    <th>#</th>
+                                    <th>Subreceptor</th>
+                                    <th>Departamento</th>
+                                    <th>Municipio</th>
+                                    <th># Nuevos</th>
+                                    <th># Recurrentes</th>
+                                    <th>% Reactividad</th>
+                                    <th>Opciones</th>
+                                </thead>
+                                <tfoot>
+                                    <th>#</th>
+                                    <th>Subreceptor</th>
+                                    <th>Departamento</th>
+                                    <th>Municipio</th>
+                                    <th># Nuevos</th>
+                                    <th># Recurrentes</th>
+                                    <th>% Reactividad</th>
+                                </tfoot>
+                                <tbody class="text-center" style="font-size:12px;">
+                                    <?php
+                                    $contador = 1;
+                                    $sqlC = "SELECT t1.idCobertura, t4.nombre as subreceptor, t2.nombre as departamento,
+                                    t3.nombre as municipio, t1.nuevo, t1.recurrente, t1.porcentaje
+                                    FROM cobertura t1
+                                    LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
+                                    LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
+                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id WHERE t1.periodo = 6";
+                                    $resultadoC = $enlace->query($sqlC);
+                                    while ($cobertura = $resultadoC->fetch_assoc()) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $contador++; ?></td>
+                                            <td><?php echo $cobertura['subreceptor']; ?></td>
+                                            <td><?php echo $cobertura['departamento']; ?></td>
+                                            <td><?php echo $cobertura['municipio']; ?></td>
+                                            <td><?php echo $cobertura['nuevo']; ?></td>
+                                            <td><?php echo $cobertura['recurrente']; ?></td>
+                                            <td><?php echo $cobertura['porcentaje']; ?></td>
+                                            <td>
+                                                <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarCobertura<?php echo $cobertura['idCobertura']; ?>"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    $resultadoC->close();
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        
                     </div>
 
 

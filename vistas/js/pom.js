@@ -79,7 +79,7 @@ function llenarReactivo() {
 
     var accion = "llenarReactivo";
 
-    $.ajax({
+    $.ajax({ 
         type: "POST",
         url: "../../php/pom.php",
         data: {
@@ -162,6 +162,7 @@ function agregarPOM() {
     var movil = document.getElementById('movil').value;
     var supervisado = document.getElementById('supervisado').value;
     var supervisor = document.getElementById('supervisor').value;
+    var estado  = document.getElementById('creado').value;
     
     var accion = "agregarPOM";
 
@@ -194,7 +195,8 @@ function agregarPOM() {
             subreceptor: subreceptor,
             movil: movil,
             supervisado: supervisado,
-            supervisor: supervisor
+            supervisor: supervisor,
+            estado: estado
         },
         success: function (datos) {
             if (datos == 'Exito') {
@@ -244,11 +246,13 @@ function obtenerCantidadPromotor() {
  * @param {*} es  identificador del estado
  */
 function enviarTodoPom(sub, per, es, actual) {
+    
     var subreceptor = sub;
     var periodo = per;
     var estado = es;
     var estadoActual = actual;
     var accion = "enviarTodoPom";
+
     if(confirm('Esta seguro que desea enviar todos a revision')){
         $.ajax({
             type: "POST",
@@ -266,6 +270,224 @@ function enviarTodoPom(sub, per, es, actual) {
                     window.location.reload('poa.php');
                 } else {
                     alertify.error("¡ERROR!... No se pudo enviar a REVISION");
+                }
+    
+            }
+        });
+    }
+}
+
+////////////////////// EDITAR ////////////////////////////////////
+/**
+ * Funcion que permite mostrar un modal con los datos del POM a editar
+ * @param {*} subreceptor identificador del subreceptor
+ * @param {*} periodo identificador del periodo
+ * @param {*} pom identificador del POM
+ */
+function modalEditarPom(subreceptor, periodo, pom) {
+    var accion = "consultaEditar";
+    $.ajax({
+        type: "POST",
+        url: "../../php/pom.php",
+        data: {
+            accion : accion,
+            subreceptor: subreceptor,
+            periodo: periodo,
+            pom: pom
+        }, 
+    success: function (datos, status){
+ 
+        var pom = JSON.parse(datos);
+        document.getElementById("epom").value = pom.idPom;
+        document.getElementById("epoa").value = pom.idPoa;
+        document.getElementById("eperiodo").value = pom.periodo;
+        document.getElementById("rmunicipio").value = pom.municipio;
+        document.getElementById("emunicipio").value = pom.cmunicipio;
+        document.getElementById("rmes").value = pom.mes;
+        document.getElementById("emes").value = pom.cmes;
+        document.getElementById("efecha").value = pom.fecha;
+        document.getElementById("einicio").value = pom.horaInicio;
+        document.getElementById("efin").value = pom.horaFin;
+        document.getElementById("elugar").value = pom.lugar;
+        document.getElementById("enuevo").value = pom.pNuevo;
+        document.getElementById("esupervisor").value = pom.supervisor;
+        document.getElementById("eobservacion").value = pom.observacion;
+        document.getElementById("esupervisado").value = pom.supervisado;
+        document.getElementById("esupervisor").value = pom.supervisor;
+    }
+});
+    $("#modalEditarPom").modal("show");
+}
+
+
+/**
+ * Funcion para calcular el POM
+ */
+ function calcularPomEditar() {
+    var total = parseFloat(document.getElementById('etotal').value);
+    var subreceptor = document.getElementById('esubreceptor').value;
+    var procentaje = parseFloat(document.getElementById('ereactivo').value);
+
+    var accion = "calcularPom";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/pom.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            total: total
+        },
+        success: function (datos) {
+            var resultado = datos.split(',');
+            var cnatural = parseFloat(resultado[0]);
+            var csabor = parseFloat(resultado[1]);
+            var cfemenino = parseFloat(resultado[2]);
+            var lubricante = parseFloat(resultado[3]);
+            var pruebaVIH = parseFloat(resultado[4]);
+            var autoPrueba = parseFloat(resultado[5]);
+            var reactivo = total * procentaje;
+
+            document.getElementById('ecnatural').value = cnatural.toFixed(2);
+            document.getElementById('ecsabor').value = csabor.toFixed(2);
+            document.getElementById('ecfemenino').value = cfemenino.toFixed(2);
+            document.getElementById('elubricante').value = lubricante.toFixed(2);
+            document.getElementById('epruebaVIH').value = pruebaVIH.toFixed(2);
+            document.getElementById('eautoPrueba').value = autoPrueba.toFixed(2);
+            document.getElementById('ereactivoEs').value = reactivo.toFixed(2);
+            document.getElementById('esifilis').value = total;
+            
+        }
+    });
+}
+
+/**
+ * Funcion que permite editar POM
+ */
+ function editarPOM() {
+
+    var pom = document.getElementById('epom').value;
+    var periodo = document.getElementById('eperiodo').value;
+    var mes = document.getElementById('emes').value;
+    var municipio = document.getElementById('emunicipio').value;
+    var fecha = document.getElementById('efecha').value;
+    var inicio = document.getElementById('einicio').value;
+    var fin = document.getElementById('efin').value;
+    var lugar = document.getElementById('elugar').value;
+    var promotores = document.getElementById('epromotores').value;
+    var nuevo = document.getElementById('enuevo').value;
+    var recurrente = document.getElementById('erecurrente').value;
+    var cnatural = document.getElementById('ecnatural').value;
+    var csabor = document.getElementById('ecsabor').value;
+    var cfemenino = document.getElementById('ecfemenino').value;
+    var lubricante = document.getElementById('elubricante').value;
+    var pruebaVIH = document.getElementById('epruebaVIH').value;
+    var autoPrueba = document.getElementById('eautoPrueba').value;
+    var reactivoEs = document.getElementById('ereactivoEs').value;
+    var sifilis = document.getElementById('esifilis').value;
+    var observacion = document.getElementById('eobservacion').value;
+    var subreceptor = document.getElementById('esubreceptor').value;
+    var movil = document.getElementById('emovil').value;
+    var supervisado = document.getElementById('esupervisado').value;
+    var supervisor = document.getElementById('esupervisor').value;
+    
+    var accion = "editarPOM";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/pom.php",
+        data: {
+            accion: accion,
+            pom: pom,
+            periodo: periodo,
+            mes: mes,
+            municipio: municipio,
+            fecha: fecha,
+            inicio: inicio,
+            fin: fin,
+            lugar: lugar,
+            promotores: promotores,
+            nuevo: nuevo,
+            recurrente: recurrente,
+            cnatural: cnatural,
+            csabor: csabor,
+            cfemenino: cfemenino,
+            lubricante: lubricante,
+            pruebaVIH: pruebaVIH,
+            autoPrueba: autoPrueba,
+            reactivoEs: reactivoEs,
+            sifilis: sifilis,
+            observacion: observacion,
+            subreceptor: subreceptor,
+            movil: movil,
+            supervisado: supervisado,
+            supervisor: supervisor
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡ACTUALIZADO!...');
+                $('#editarPom').trigger("reset");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo ACTUALIZAR...");
+            }
+        }
+    });
+}
+
+/**
+ * Funcion que permite mostrar los datos del POM para anular
+ */
+ function modalAnularPom(subreceptor, periodo, pom) {
+    var accion = "consultaEditar";
+    $.ajax({
+        type: "POST",
+        url: "../../php/pom.php",
+        data: {
+            accion : accion,
+            subreceptor: subreceptor,
+            periodo: periodo,
+            pom: pom
+        }, 
+    success: function (datos, status){
+ 
+        var pom = JSON.parse(datos);
+        document.getElementById('periodo_').value = pom.periodo;
+        document.getElementById('mes_').value = pom.mes;
+        document.getElementById('municipio_').value = pom.municipio;
+        document.getElementById('lugar_').value = pom.lugar;
+        document.getElementById('municipio_').value = pom.municipio;
+        document.getElementById('fecha_').value = pom.fecha;
+        document.getElementById('aPom').value = pom.idPom;
+    }
+});
+    $("#modalAnularPom").modal("show");
+}
+
+function anularPOM() {
+
+    var pom = document.getElementById('aPom').value;
+    var subreceptor = document.getElementById('subreceptor').value;
+
+    
+    var accion = "anularPOM";
+
+    if(confirm('Esta seguro que desea Anular el POM!')){
+        $.ajax({
+            type: "POST",
+            url: "../../php/pom.php",
+            data:{
+                accion: accion,
+                subreceptor: subreceptor,
+                pom: pom
+            },
+            success: function (datos) {
+                if (datos == 'Exito') {
+                    alertify.success('¡ANULADO!...');
+                    window.location.reload('poa.php');
+                } else {
+                    alertify.error("¡ERROR!... No se pudo enviar a ANULAR");
                 }
     
             }

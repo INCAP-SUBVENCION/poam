@@ -6,14 +6,15 @@ session_start();
 $PERIODO = $_GET['periodo'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 $CONTADOR = 1;
-$sql_p1 = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total,
-t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado
+$sql_p1 = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, 
+(t1.nuevo + t1.recurrente) AS total, t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, 
+t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado, t1.subreceptor_id
 FROM poa t1
 LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
 LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 3 ORDER BY mes";
+WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.periodo = $PERIODO";
 $resultado_p1 = $enlace->query($sql_p1);
 
 $html = '';

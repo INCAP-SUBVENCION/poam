@@ -33,7 +33,7 @@ if ($accion == "municipioCobertura") {
     $subreceptor    = $_POST['subreceptor'];
     $departamento   = $_POST['departamento'];
 
-    $sql2 = "SELECT t3.codigo as id, t3.nombre as municipio FROM cobertura t1
+    $sql2 = "SELECT DISTINCT t3.codigo as id, t3.nombre as municipio FROM cobertura t1
     LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
     LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
     LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id
@@ -56,7 +56,7 @@ if ($accion == "obtenerReactivo") {
     $departamento   = $_POST['departamento'];
     $municipio      = $_POST['municipio'];
 
-    $sql3 = "SELECT porcentaje FROM cobertura WHERE subreceptor_id = $subreceptor AND departamento = $departamento AND municipio = $municipio";
+    $sql3 = "SELECT DISTINCT porcentaje FROM cobertura WHERE subreceptor_id = $subreceptor AND departamento = $departamento AND municipio = $municipio";
     $resultador = $enlace->query($sql3);
     while ($cobertura = mysqli_fetch_assoc($resultador)) {
         echo $cobertura['porcentaje'];
@@ -121,7 +121,7 @@ if ($accion == "obtenerMeta") {
 if ($accion == "obtenerCobertura") {
 
   $subreceptor  = $_POST['subreceptor'];
-  $cCobertura   = "SELECT c.idCobertura as id, m.nombre as municipio FROM cobertura c LEFT JOIN catalogo m ON m.codigo = c.municipio WHERE c.subreceptor_id = $subreceptor";
+  $cCobertura   = "SELECT c.idCobertura as id, m.nombre as municipio FROM cobertura c LEFT JOIN catalogo m ON m.codigo = c.municipio WHERE c.subreceptor_id = $subreceptor AND c.periodo = 3";
   $rCobertura   = $enlace->query($cCobertura);
   while ($municipio = mysqli_fetch_assoc($rCobertura)) {
       echo '<option value="'.$municipio['id'].'">'.$municipio['municipio'].'</option>';
@@ -146,5 +146,20 @@ if ($accion == "obtenerMesPom") {
     }
     $resultadoMes->close();
   }
-////////////////////////////EDITAR POA/////////////////////////////
+////////////////////////////EDITAR POM/////////////////////////////
 
+/**
+ * Metodo que permite llenar reactivo en el combo segun sea el departamento y subreceptor
+ */
+if ($accion == "obtenerReactivoEditar") {
+
+    $subreceptor    = $_POST['subreceptor'];
+    $municipio      = $_POST['municipio'];
+
+    $sql3 = "SELECT DISTINCT porcentaje FROM cobertura WHERE subreceptor_id = $subreceptor AND municipio = $municipio";
+    $resultador = $enlace->query($sql3);
+    while ($cobertura = mysqli_fetch_assoc($resultador)) {
+        echo $cobertura['porcentaje'];
+    }
+    $resultador->close();
+}

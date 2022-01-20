@@ -17,7 +17,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Operativo Anual</title>
-
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
@@ -29,18 +28,15 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         body {
             font-family: 'Nunito', sans-serif;
             font-size: smaller;
-
         }
     </style>
 </head>
 
 <body>
 
-
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkblue;">
             <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
-
             <h2 class="text-white">PLAN OPERATIVO ANUAL -POA-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
@@ -54,7 +50,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 <div class="dropdown">
                     <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
                         <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
-
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../perfil.php"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
@@ -65,12 +60,9 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             $res1->close(); ?>
             <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
-
-
         <!-- Striped rows start -->
         <section class="section">
             <form name="agregarPoas_1" id="agregarPoas_1" action="javascript: agregarPoa();" method="POST">
-
                 <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
                 <input type="hidden" name="usuario" id="usuario" value="<?php echo $ID; ?>">
                 <div class="row">
@@ -159,11 +151,11 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <label class="form-label">Condon natural</label>
                                         <input type="text" name="cnatural" id="cnatural" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-2">
+                                    <div class="form-group input-group-sm col-sm-2" id="sabor">
                                         <label class="form-label">Condon sabor</label>
                                         <input type="text" name="csabor" id="csabor" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-3">
+                                    <div class="form-group input-group-sm col-sm-3" id="femenino">
                                         <label class="form-label">Condon femenino</label>
                                         <input type="text" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
@@ -171,15 +163,15 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <label class="form-label">Lubricante</label>
                                         <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-2">
+                                    <div class="form-group input-group-sm col-sm-2" id="oprueba">
                                         <label class="form-label">Prueba VIH</label>
                                         <input type="text" step="0.0000" name="pruebaVIH" id="pruebaVIH" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-3">
+                                    <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Autoprueba VIH</label>
                                         <input type="text" step="0.0000" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-3">
+                                    <div class="form-group input-group-sm col-sm-3" id="oreactivo">
                                         <label class="form-label">Reactivo esperado
                                         </label>
                                         <input type="hidden" name="reactivo" id="reactivo">
@@ -189,7 +181,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         </div>
                                         </span>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-2">
+                                    <div class="form-group input-group-sm col-sm-2" id="osifilis">
                                         <label class="form-label">Prueba sifilis</label>
                                         <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
@@ -208,9 +200,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     </div>
                 </div>
             </form>
-
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
-
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary active" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button">
                         <em class="bi bi-calendar-range-fill"></em> Periodo III</button>
@@ -229,8 +219,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-            <?php include '../modal/cambiarEstadoPoa.php'; ?>
-            <?php include '../modal/editarPoa.php'; ?>
+                <?php include '../modal/estadosPoa.php'; ?>
+                <?php include '../modal/cambiarEstadoPoa.php'; ?>
+                <?php include '../modal/cambiarTodoEstadoPoa.php'; ?>
+                <?php include '../modal/editarPoa.php'; ?>
                 <div class="tab-pane fade show active" id="pills-periodo_3">
                     <?php include 'periodo_3.php'; ?>
                 </div>
@@ -244,9 +236,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     <p>PERIODO 6 habilitado</p>
                 </div>
             </div>
-
         </section>
-
         <footer>
             <div class="footer clearfix mb-10 text-muted">
                 <div class="float-start">
@@ -254,7 +244,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </div>
             </div>
         </footer>
-
         <!------ JS ------>
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
@@ -264,7 +253,25 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
         <script src="../../js/tabla.js"></script>
+        <script>
+            $(document).ready(function() {
+                var subreceptor = document.getElementById('subreceptor').value;
+                if (subreceptor == '2') {
+                    $('#oprueba').hide();
+                    $('#oreactivo').hide();
+                    $('#osifilis').hide();
 
+                    $('.tprueba').hide();
+                    $('.treactivo').hide();
+                    $('.tsifilis').hide();
+                } else if(subreceptor == '3'){
+                    $('#femenino').hide();
+                    $('#sabor').hide();
+                    $('.tfemenino').hide();
+                    $('.tsabor').hide();
+                }
+            });
+        </script>
     </body>
 
 </html>

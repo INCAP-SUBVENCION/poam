@@ -48,14 +48,14 @@ function agregarSubreceptor() {
  */
 function editarSubreceptor() {
 
-    var id = document.getElementById('idSub').value;
+    var id = document.getElementById('eid').value;
     var codigo = document.getElementById('ecodigo').value;
     var nombre = document.getElementById('enombre').value;
-    var cnatural = document.getElementById('ecnatural').value;
-    var csabor = document.getElementById('ecsabor').value;
-    var cfemenino = document.getElementById('ecfemenino').value;
+    var cnatural = document.getElementById('enatural').value;
+    var csabor = document.getElementById('esabor').value;
+    var cfemenino = document.getElementById('efemenino').value;
     var lubricante = document.getElementById('elubricante').value;
-    var pruebavih = document.getElementById('epruebavih').value;
+    var pruebavih = document.getElementById('eppvih').value;
     var autoprueba = document.getElementById('eautoprueba').value;
 
     var accion = "editarSubreceptor";
@@ -77,13 +77,12 @@ function editarSubreceptor() {
         },
         success: function (datos) {
             if (datos == 'Exito') {
-                alertify.success('¡GUARDADO!...');
+                alertify.success('¡MODIFICADO!...');
                 $('#editarSub').trigger("reset");
-                $('#nuevoSub').modal('hide')
                 window.location.reload('vistas/configuracion/subreceptor.php');
             }
             else {
-                alertify.warning('¡El subreceptor ya existe!...');
+                alertify.warning('¡No fue posible modificar el subreceptor!...');
             }
 
         }
@@ -130,3 +129,32 @@ function agregarCobertura() {
         }
     });
 }
+
+////////////////////////////    EDITAR  /////////////////////////////
+function modalEditarPom(subreceptor) {
+    var accion = "consultaEditar";
+    $.ajax({
+        type: "POST",
+        url: "../php/subreceptor.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor
+        },
+        success: function (datos, status) {
+
+            var sub = JSON.parse(datos);
+            document.getElementById('eid').value = sub.idSubreceptor;
+            document.getElementById('ecodigo').value = sub.codigo;
+            document.getElementById('enombre').value = sub.nombre;
+            document.getElementById('enatural').value = sub.enatural;
+            document.getElementById('esabor').value = sub.esabor;
+            document.getElementById('efemenino').value = sub.efemenino;
+            document.getElementById('elubricante').value = sub.elubricante;
+            document.getElementById("eppvih").value = sub.ppvih;
+            document.getElementById("eautoprueba").value = sub.pautoprueba;
+
+        }
+    });
+    $("#modalEditarSub").modal("show");
+}
+

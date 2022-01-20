@@ -3,7 +3,7 @@ include_once('../../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 $ID = $_SESSION['idUsuario'];
-$SUBRECEPTOR = $_SESSION['subreceptor_id'];
+$SUBRECEPTOR = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">

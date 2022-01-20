@@ -97,7 +97,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <option value="">Seleccionar...</option>
                                     <?php
                                     $cm = "SELECT t1.municipio  as id, t2.nombre as municipio FROM cobertura t1
-                                            LEFT JOIN catalogo t2 ON t2.codigo = t1.municipio WHERE t1.subreceptor_id = $SUBRECEPTOR";
+                                            LEFT JOIN catalogo t2 ON t2.codigo = t1.municipio 
+                                            WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 3";
                                     $rm = $enlace->query($cm);
                                     while ($municipio = $rm->fetch_assoc()) { ?>
                                         <option value="<?php echo $municipio['id'] ?>"><?php echo $municipio['municipio'] ?></option>
@@ -155,7 +156,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-
+                <!--- PERIODO III--->
                 <div class="tab-pane fade show active" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
                     <table class="table table-hover table-bordered">
                         <thead class="text-center">
@@ -189,6 +190,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         </tbody>
                     </table>
                 </div>
+                <!--- PERIODO IV--->
                 <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
                     <table class="table table-hover table-bordered" aria-describedby="">
                         <thead class="text-center">
@@ -222,9 +224,11 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         </tbody>
                     </table>
                 </div>
+                <!--- PERIODO V--->
                 <div class="tab-pane fade" id="pills-semestre_5" role="tabpanel" aria-labelledby="pills-semestre_5-tab">
                     <p>Periodo 5 aun no habilitado</p>
                 </div>
+                <!--- PERIODO VI--->
                 <div class="tab-pane fade" id="pills-semestre_6" role="tabpanel" aria-labelledby="pills-semestre_6-tab">
                     <p>Periodo 6 aun no habilitado</p>
                 </div>

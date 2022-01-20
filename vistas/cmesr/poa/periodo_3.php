@@ -1,4 +1,3 @@
-
 <table class="table table-hover table-bordered" id="poa_periodo_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -8,13 +7,13 @@
         <th scope="">Recurrentes</th>
         <th scope="">Total</th>
         <th scope="">Condon natural</th>
-        <th scope="">Condon sabor</th>
-        <th scope="">Condon femenino</th>
+        <th class="tsabor">Condon sabor</th>
+        <th class="tfemenino">Condon femenino</th>
         <th scope="">Lubricantes</th>
-        <th scope="">Prueba VIH</th>
+        <th class="tprueba" scope="">Prueba VIH</th>
         <th scope="">Auto prueba VIH</th>
-        <th scope="">Reactivos esperados</th>
-        <th scope="">Prueba Sifilis</th>
+        <th class="treactivo" scope="">Reactivos esperados</th>
+        <th class="tsifilis" scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
         <th scope="">Opciones</th>
@@ -29,35 +28,34 @@
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 3";
+	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 3";
         if ($res = $enlace->query($consult)) {
-            while ($periodo_1 = $res->fetch_assoc()) {
+            while ($periodo_3 = $res->fetch_assoc()) {
         ?>
                 <tr>
                     <td><?php echo $cont++; ?></td>
-                    <td><?php echo $periodo_1['mes']; ?></td>
-                    <td><?php echo $periodo_1['municipio']; ?></td>
-                    <td><?php echo $periodo_1['nuevo']; ?></td>
-                    <td><?php echo $periodo_1['recurrente']; ?></td>
-                    <th scope=""><?php echo round($periodo_1['total'], 2); ?></th>
-                    <td><?php echo $periodo_1['cnatural']; ?></td>
-                    <td><?php echo $periodo_1['csabor']; ?></td>
-                    <td><?php echo $periodo_1['cfemenino']; ?></td>
-                    <td><?php echo $periodo_1['lubricante']; ?></td>
-                    <td><?php echo $periodo_1['pruebaVIH']; ?></td>
-                    <td><?php echo $periodo_1['autoPrueba']; ?></td>
-                    <td><?php echo $periodo_1['reactivoE']; ?></td>
-                    <td><?php echo $periodo_1['sifilis']; ?></td>
-                    <td><?php echo $periodo_1['observacion']; ?></td>
+                    <td><?php echo $periodo_3['mes']; ?></td>
+                    <td><?php echo $periodo_3['municipio']; ?></td>
+                    <td><?php echo $periodo_3['nuevo']; ?></td>
+                    <td><?php echo $periodo_3['recurrente']; ?></td>
+                    <th scope=""><?php echo round($periodo_3['total'], 2); ?></th>
+                    <td><?php echo $periodo_3['cnatural']; ?></td>
+                    <td class="tsabor"><?php echo $periodo_3['csabor']; ?></td>
+                    <td class="tfemenino"><?php echo $periodo_3['cfemenino']; ?></td>
+                    <td><?php echo $periodo_3['lubricante']; ?></td>
+                    <td class="tprueba"><?php echo $periodo_3['pruebaVIH']; ?></td>
+                    <td><?php echo $periodo_3['autoPrueba']; ?></td>
+                    <td class="treactivo"><?php echo $periodo_3['reactivoE']; ?></td>
+                    <td class="tsifilis"><?php echo $periodo_3['sifilis']; ?></td>
+                    <td><?php echo $periodo_3['observacion']; ?></td>
                     <th scope="">
-                        <?php if ($periodo_1['estado'] == 'ES01') {
+                        <?php if ($periodo_3['estado'] == 'ES01') {
                             echo '<p style="color: dodgerblue;">Creado</p>';
-                        } else if ($periodo_1['estado'] == 'ES02') {
+                        } else if ($periodo_3['estado'] == 'ES02') {
                             echo '<p style="color: orange;">Enviado al RP </p>';
-                        } else if ($periodo_1['estado'] == 'ES03') {
+                        } else if ($periodo_3['estado'] == 'ES03') {
                             echo '<p style="color: limegreen;">Revisado por el RP</p>';
-                        }
-                        else if ($periodo_1['estado'] == 'ES04') {
+                        } else if ($periodo_3['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
                         }
                         ?>
@@ -67,28 +65,35 @@
                             <a class="btn-sm btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" style="font-size: 11px;">
                                 <em class="bi bi-grid"></em>
                             </a>
+                            <ul class="dropdown-menu">
+                            <li>
+                                    <button class="dropdown-item" onclick="modalEstadoPoa(<?php echo $periodo_3['idPoa']; ?>)">
+                                        <em class="bi bi-stoplights-fill"></em> Estados </button>
+                                </li>
                             <?php
-                            if ($periodo_1['estado'] == 'ES01') {
+                            if ($periodo_3['estado'] == 'ES01') {
                             ?>
-                                <ul class="dropdown-menu">
+                                
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_1['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')">
-                                                <em class="bi bi-arrow-right-circle"></em> Enviar al RP</button>
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_3['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')">
+                                                <em class="bi bi-arrow-right-circle"></em> Enviar al Enlace</button>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="cambiarTodo(<?php echo $SUBRECEPTOR; ?>, 3, 'ES02', 'ES01')">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo al RP</button>
+                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPoa()">
+                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
                                         </div>
                                     </li>
-                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_1['idPoa']; ?>)">
-                                    <em class="bi bi-pencil-square"></em> Editar </button>
-                                </ul>
+
+                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPoa']; ?>)">
+                                        <em class="bi bi-pencil-square"></em> Editar </button>
+                               
                             <?php } ?>
+                            </ul>
                         </div>
-                    </td> 
+                    </td>
 
                 </tr>
         <?php }
@@ -103,16 +108,15 @@
         <td class="text-center"><strong id="trecurrentes3">0</strong></td>
         <td class="text-center"><strong id="total3">0</strong></td>
         <td class="text-center"><strong id="tnatural3">0</strong></td>
-        <td class="text-center"><strong id="tsabor3">0</strong></td>
-        <td class="text-center"><strong id="tfemenino3">0</strong></td>
+        <td class="text-center tsabor"><strong id="tsabor3">0</strong></td>
+        <td class="text-center tfemenino"><strong id="tfemenino3">0</strong></td>
         <td class="text-center"><strong id="tlubricantes3">0</strong></td>
-        <td class="text-center"><strong id="tpruebavih3">0</strong></td>
+        <td class="text-center tprueba"><strong id="tpruebavih3">0</strong></td>
         <td class="text-center"><strong id="tautoprueba3">0</strong></td>
-        <td class="text-center"><strong id="treactivos3">0</strong></td>
-        <td class="text-center"><strong id="tsifilis3">0</strong></td>
+        <td class="text-center treactivo"><strong id="treactivos3">0</strong></td>
+        <td class="text-center tsifilis"><strong id="tsifilis3">0</strong></td>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
     </tfoot>
 </table>
 <a class="btn btn-success" href="../../php/excel/generarExcelPoa.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-

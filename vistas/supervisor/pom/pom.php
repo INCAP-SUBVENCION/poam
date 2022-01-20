@@ -32,7 +32,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkgoldenrod;">
+        <nav class="navbar navbar-dark" style="background-color:orange;">
             <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
@@ -60,18 +60,18 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
         <!-- Striped rows start -->
         <section class="section">
-            <div class="row">
-                <?php
-                $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
-                $resultado = mysqli_query($enlace, $sql);
-                while ($subr = mysqli_fetch_assoc($resultado)) {
-                ?>
-                    <div class="text-center">
-                        <h6><?php echo $subr['nombre']; ?></h6>
-                    </div>
-                <?php
-                }
-                ?>
+            <?php
+            $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
+            $resultado = mysqli_query($enlace, $sql);
+            while ($subr = mysqli_fetch_assoc($resultado)) {
+            ?>
+                <div class="text-center">
+                    <h6><?php echo $subr['nombre']; ?></h6>
+                </div>
+            <?php
+            }
+            ?>
+            <div class="row" id="nuevoPom">
                 <div class="col-md-12">
                     <div class="row">
 
@@ -119,8 +119,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         </tbody>
                     </table>
                 </div>
-
-
                 <div class="col-md-4">
                     <form name="agregarPom" id="agregarPom" action="javascript: agregarPOM();" method="POST">
 
@@ -278,12 +276,9 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <em class="bi bi-check-square-fill"></em> Guardar</button>
                         <button type="reset" class="btn btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
                     </div>
+                    </form>
                 </div>
-
-                </form>
             </div>
-
-
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
                 <li class="nav-item" role="presentation">
@@ -319,7 +314,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </div>
 
         </section>
-
+        <?php include '../modal/estadosPom.php'; ?>
+        <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
+        <?php include '../modal/editarPom.php'; ?>
+        <?php include '../modal/anularPom.php'; ?>
         <footer>
             <div class="footer clearfix mb-10 text-muted">
                 <div class="float-start">
@@ -338,6 +336,15 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/estados.js"></script>
         <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
         <script src="../../js/tabla.js"></script>
+        <script>
+            $(document).ready(function() {
+                var subreceptor = document.getElementById('subreceptor').value;
+                if (subreceptor == '3') {
+                    $('#nuevoPom').hide();
+                }
+            });
+        </script>
+
     </body>
 
 </html>

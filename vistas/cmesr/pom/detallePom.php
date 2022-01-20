@@ -62,10 +62,8 @@ $POM = $_GET['id'];
         <!-- Striped rows start -->
         <section class="section">
             <?php include 'detalles/detalles.php'; ?>
-            <div id="editar" style="display: none;">
-                <?php include 'detalles/editarPom.php'; ?>
-            </div>
-
+            <?php include 'detalles/estados.php'; ?>
+            <input type="hidden" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
         </section>
 
         <footer>
@@ -83,6 +81,18 @@ $POM = $_GET['id'];
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/pom.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                var subreceptor = document.getElementById('subreceptor').value;
+                if(subreceptor == '2'){
+                    $('#tprueba').hide();
+                    $('#treactivo').hide();
+                    $('#tsifilis').hide();
+                }
+            });
+        </script>
+
     </body>
 
 </html>

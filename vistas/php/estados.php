@@ -76,3 +76,98 @@ if ($accion == "cambiarEstadoPom") {
         echo "Error";
     }
 }
+
+
+if ($accion == "estadoPom") {
+    
+    $id = $_POST['id'];
+
+    $sql = "SELECT DISTINCT t1.estado, t4.nombre as estados, t1.fecha, t3.nombre, t3.apellido, t5.nombre as roles, t1.descripcion FROM estado t1
+    LEFT JOIN usuario t2 ON t2.idUsuario = t1.usuario_id
+    LEFT JOIN persona t3 ON t3.idPersona = t2.persona_id
+    LEFT JOIN catalogo t4 ON t4.codigo = t1.estado
+    LEFT JOIN catalogo t5 ON t5.codigo = t2.rol
+    WHERE t1.pom_id = $id ORDER BY t1.fecha DESC";
+
+    $consulta = $enlace->query($sql);
+  
+    while ($pom = $consulta->fetch_assoc()) {
+        $estado  = $pom['estado'];
+        $estados = $pom['estados'];
+        $fecha   = $pom['fecha'];
+        $nombre  = $pom['nombre'];
+        $apellido= $pom['apellido'];
+        $descripcion = $pom['descripcion'];
+        $response[] = array(
+            "estado" => $estado,
+            "estados" => $estados,
+            "fecha" => $fecha,
+            "nombre" => $nombre,
+            "apellido" => $apellido,
+            "descripcion" => $descripcion
+        );
+    }
+    echo json_encode($response);
+}
+
+if ($accion == "cambiarTodoEstadoPom") {
+    $subreceptor = $_POST['subreceptor'];
+    $periodo = $_POST['periodo'];
+    $estadoA = $_POST['estadoA'];
+    $usuario = $_POST['usuario'];
+    $estadoN = $_POST['estadoN'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($enlace->query("CALL cambiarTodoPom($subreceptor, $periodo, '$estadoA', $usuario, '$estadoN', '$descripcion')") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+
+if ($accion == "cambiarTodoEstadoPoa") {
+    $subreceptor = $_POST['subreceptor'];
+    $periodo = $_POST['periodo'];
+    $estadoA = $_POST['estadoA'];
+    $usuario = $_POST['usuario'];
+    $estadoN = $_POST['estadoN'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($enlace->query("CALL cambiarTodoPoa($subreceptor, $periodo, '$estadoA', $usuario, '$estadoN', '$descripcion')") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+
+if ($accion == "estadoPoa") {
+    
+    $id = $_POST['id'];
+
+    $sql = "SELECT DISTINCT t1.estado, t4.nombre as estados, t1.fecha, t3.nombre, t3.apellido, t5.nombre as roles, t1.descripcion FROM estado t1
+    LEFT JOIN usuario t2 ON t2.idUsuario = t1.usuario_id
+    LEFT JOIN persona t3 ON t3.idPersona = t2.persona_id
+    LEFT JOIN catalogo t4 ON t4.codigo = t1.estado
+    LEFT JOIN catalogo t5 ON t5.codigo = t2.rol
+    WHERE t1.poa_id = $id ORDER BY t1.fecha DESC";
+
+    $consulta = $enlace->query($sql);
+  
+    while ($poa = $consulta->fetch_assoc()) {
+        $estado  = $poa['estado'];
+        $estados = $poa['estados'];
+        $fecha   = $poa['fecha'];
+        $nombre  = $poa['nombre'];
+        $apellido= $poa['apellido'];
+        $descripcion = $poa['descripcion'];
+        $response[] = array(
+            "estado" => $estado,
+            "estados" => $estados,
+            "fecha" => $fecha,
+            "nombre" => $nombre,
+            "apellido" => $apellido,
+            "descripcion" => $descripcion
+        );
+    }
+    echo json_encode($response);
+}

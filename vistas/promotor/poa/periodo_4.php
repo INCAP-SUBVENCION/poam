@@ -27,7 +27,7 @@
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.anio = YEAR(NOW()) AND t1.periodo = 4 AND t1.estado = 'ES04'";
+	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 4";
         if ($res = $enlace->query($consult)) {
             while ($periodo_1 = $res->fetch_assoc()) {
         ?>

@@ -216,7 +216,7 @@ if ($ROL != 'R001') {
          */
         $('#listadoUsuario').DataTable( {
         initComplete: function () {
-            this.api().columns([6]).every( function () {
+            this.api().columns([6,7]).every( function () {
                 var column = this;
                 var select = $('<select><option value="">Filtar</option></select>')
                     .appendTo( $(column.footer()).empty() )

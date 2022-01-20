@@ -55,14 +55,14 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 <section class="section">
                     <div class="row">
                         <?php
-                        $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor ORDER BY idSubreceptor";
+                        $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor ORDER BY nombre";
                         $resultado = mysqli_query($enlace, $sql);
                         while ($fila = mysqli_fetch_assoc($resultado)) {
                         ?>
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="text-center">
-                                        <img src="../../assets/images/p.png" width="200" alt="">
+                                        <img src="../../assets/images/vih.png" width="50" alt="">
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title text-center"><?php echo $fila['nombre']; ?></h5>

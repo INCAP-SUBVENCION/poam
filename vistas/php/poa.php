@@ -122,7 +122,7 @@ if ($accion == "consultaEditar") {
     LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
     LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
     LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-    WHERE t1.subreceptor_id = $subreceptor AND t1.anio = YEAR(NOW()) AND t1.periodo = $periodo AND t1.idPoa=$poa";
+    WHERE t1.subreceptor_id = $subreceptor AND t1.periodo = $periodo AND t1.idPoa=$poa";
 
     $consulta = $enlace->query($sql);
     $response = array();

@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 include_once('../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
     header('Location: salir.php');
-} else if (($_SESSION['rol'] != 'R007')) {
+} else if (($_SESSION['rol'] != 'R001')) {
     header('Location: ../../error.php');
 }
 $ID = $_SESSION['idUsuario'];

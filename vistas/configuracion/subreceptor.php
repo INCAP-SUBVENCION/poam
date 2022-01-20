@@ -142,15 +142,16 @@ if ($ROL != 'R001') {
                                     <td><?php echo $data['ppvih']; ?></td>
                                     <td><?php echo $data['pautoprueba']; ?></td>
                                     <td>
-                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $data['idSubreceptor']; ?>"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                        <a class="btn-sm btn-outline-warning" onclick="modalEditarPom(<?php echo $data['idSubreceptor']; ?>)"><i class="bi bi-pencil-square"></i></a>
                                     </td>
-                                    <?php include 'modal/editarSubreceptor.php'; ?>
+                                   
                                 </tr>
                             <?php
                             }
                             ?>
                         </tbody>
                     </table>
+                    <?php include 'modal/editarSubreceptor.php'; ?>
                 </section>
 
             </div>
@@ -160,7 +161,6 @@ if ($ROL != 'R001') {
     <!------ JS ------>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/js/main.js"></script>
     <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
     <script src="../js/subreceptor.js"></script>

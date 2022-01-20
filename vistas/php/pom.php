@@ -15,7 +15,7 @@ if (isset($_GET['accion'])) {
  */
 if ($accion == "consultaPoa") {
 
-    $subreceptor= $_POST['subreceptor'];
+    $subreceptor = $_POST['subreceptor'];
     $periodo    = $_POST['periodo'];
     $municipio  = $_POST['municipio'];
     $mes        = $_POST['mes'];
@@ -26,12 +26,12 @@ if ($accion == "consultaPoa") {
     }
     $contador = 1;
 
-    $sqlPoa ="SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.codigo, t4.nombre as municipio, t1.nuevo, t1.recurrente,
+    $sqlPoa = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.codigo, t4.nombre as municipio, t1.nuevo, t1.recurrente,
     (t1.nuevo + t1.recurrente) AS total, t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH,
     t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.subreceptor_id FROM poa t1
     LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	  LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
-    WHERE t1.subreceptor_id = $subreceptor AND t1.anio = YEAR(NOW()) AND t1.periodo = $periodo AND t1.municipio = $municipio AND t5.codigo = '$mes'";
+    WHERE t1.subreceptor_id = $subreceptor AND t1.periodo = $periodo AND t1.municipio = $municipio AND t5.codigo = '$mes'";
     $resultadoPoa = $enlace->query($sqlPoa);
     if (mysqli_num_rows($resultadoPoa) != 0) {
         echo                     "<table class='table table-bordered'>
@@ -135,7 +135,7 @@ if ($accion == "llenarReactivo") {
     $subreceptor    = $_POST['subreceptor'];
     $municipio      = $_POST['municipio'];
 
-    $sql3 = "SELECT porcentaje FROM cobertura WHERE subreceptor_id = $subreceptor AND municipio = $municipio";
+    $sql3 = "SELECT DISTINCT porcentaje FROM cobertura WHERE subreceptor_id = $subreceptor AND municipio = $municipio";
     $resultador = $enlace->query($sql3);
     while ($cobertura = mysqli_fetch_assoc($resultador)) {
         echo $cobertura['porcentaje'];
@@ -156,7 +156,9 @@ if ($accion == "obtenerCantidadPromotor") {
     WHERE t3.subreceptor_id = $subreceptor AND t3.municipio = '$municipio'
     GROUP BY t2.idPromotor";
     $resultadoPromotor = $enlace->query($consultaPromotor);
-    while ($promotor =  $resultadoPromotor->fetch_assoc()) { echo $promotor['nPromotor'] . "," . $promotor['dias']; }
+    while ($promotor =  $resultadoPromotor->fetch_assoc()) {
+        echo $promotor['nPromotor'] . "," . $promotor['dias'];
+    }
 }
 /**
  * Metodo que permite obtener los nuevos y recurrentes segun sea el subreceptor y municipio
@@ -172,6 +174,7 @@ if ($accion == "obtnerNuevoRecurrente") {
         echo $NR['nuevo'] . "," . $NR['recurrente'];
     }
 }
+
 /**
  * Metodo que permite agregar nuevo POM
  */
@@ -202,9 +205,9 @@ if ($accion == "agregarPOM") {
     $movil        = $_POST['movil'];
     $supervisado  = $_POST['supervisado'];
     $supervisor   = $_POST['supervisor'];
+    $estado       = $_POST['estado'];         
 
-        $sql = "CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, $nuevo, $recurrente, 
-        $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor, $movil,$supervisado,'$supervisor')";
+    $sql = "CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, $nuevo, $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor, $movil,$supervisado,'$supervisor', '$estado')";
         $resultado = mysqli_query($enlace, $sql);
         $pom = mysqli_affected_rows($enlace);
         if ($pom > 0) {
@@ -223,10 +226,98 @@ if ($accion == "enviarTodoPom") {
     $periodo      = $_POST['periodo'];
     $estado       = $_POST['estado'];
     $estadoActual = $_POST['estadoActual'];
-    if($enlace->query("UPDATE pom SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo AND estado = '$estadoActual'") === TRUE){
-      echo "Exito";
+    if ($enlace->query("UPDATE pom SET estado = '$estado' WHERE subreceptor_id = $subreceptor AND periodo = $periodo AND estado = '$estadoActual'") === TRUE) {
+        echo "Exito";
     } else {
-      echo "Error";
+        echo "Error";
     }
-  }
-  
+}
+
+
+
+
+
+
+
+
+/////////////// EDITAR ///////////////////
+if ($accion == "consultaEditar") {
+    
+    $subreceptor = $_POST['subreceptor'];
+    $periodo = $_POST['periodo'];
+    $pom = $_POST['pom'];
+
+    $sql = "SELECT DISTINCT t2.idPom, t7.idPoa, t2.periodo, t3.codigo as cmes, t3.nombre AS mes, t4.codigo as cmunicipio, t4.nombre AS municipio,
+    t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,t2.pNuevo, t2.pRecurrente, 
+    (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, 
+    t2.sifilis, t2.observacion, t2.supervisado, t2.supervisor, t2.estado FROM pom t2
+    LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
+    LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
+    LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
+    LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
+    LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
+    WHERE t7.subreceptor_id = $subreceptor AND t2.periodo =  $periodo AND t2.idPom= $pom";
+
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($pom = $consulta->fetch_assoc()) {
+        $response = $pom;
+    }
+    echo json_encode($response);
+}
+
+/**
+ * Metodo que permite editar POM
+ */
+if ($accion == "editarPOM") {
+
+    $pom          = $_POST['pom'];
+    $subreceptor  = $_POST['subreceptor'];
+    $periodo      = $_POST['periodo'];
+    $mes          = $_POST['mes'];
+    $municipio    = $_POST['municipio'];
+    $fecha        = $_POST['fecha'];
+    $inicio       = $_POST['inicio'];
+    $fin          = $_POST['fin'];
+    $lugar        = $_POST['lugar'];
+    $promotores   = $_POST['promotores'];
+    $nuevo        = $_POST['nuevo'];
+    $recurrente   = $_POST['recurrente'];
+    $cnatural     = $_POST['cnatural'];
+    $csabor       = $_POST['csabor'];
+    $cfemenino    = $_POST['cfemenino'];
+    $lubricante   = $_POST['lubricante'];
+    $pruebaVIH    = $_POST['pruebaVIH'];
+    $autoPrueba   = $_POST['autoPrueba'];
+    $reactivoEs   = $_POST['reactivoEs'];
+    $sifilis      = $_POST['sifilis'];
+    $observacion  = $_POST['observacion'];
+    $movil        = $_POST['movil'];
+    $supervisado  = $_POST['supervisado'];
+    $supervisor   = $_POST['supervisor'];
+
+    $sql = "CALL editarPom($pom, $subreceptor, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, 
+    $nuevo, $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion',
+    $movil, $supervisado,'$supervisor')";
+    $resultado = mysqli_query($enlace, $sql);
+    $pom = mysqli_affected_rows($enlace);
+    if ($pom > 0) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+/**
+ * Metodo que permite anular un POM
+ */
+if ($accion == "anularPOM") {
+
+    $subreceptor  = $_POST['subreceptor'];
+    $pom = $_POST['pom'];
+
+    if ($enlace->query("DELETE FROM pom WHERE idPom = $pom AND subreceptor_id = $subreceptor") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
