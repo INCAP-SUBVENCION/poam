@@ -57,6 +57,8 @@
                             echo '<p style="color: limegreen;">Revisado por el RP</p>';
                         } else if ($periodo_4['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
+                        } else if ($periodo_4['estado'] == 'ES05') {
+                            echo '<p style="color:red;">Editar</p>';
                         }
                         ?>
                     </th>
@@ -71,14 +73,8 @@
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
                                 <?php
-                                if ($periodo_4['estado'] == 'ES01') {
+                                if ($periodo_4['estado'] == 'ES01' || $periodo_4['estado'] == 'ES05') {
                                 ?>
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_4['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')">
-                                                <em class="bi bi-arrow-right-circle"></em> Enviar al Enlace</button>
-                                        </div>
-                                    </li>
                                     <li>
                                         <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPoa()">
@@ -87,6 +83,7 @@
                                     </li>
                                     <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPoa']; ?>)">
                                         <em class="bi bi-pencil-square"></em> Editar </button>
+
                                 <?php } ?>
                             </ul>
                         </div>

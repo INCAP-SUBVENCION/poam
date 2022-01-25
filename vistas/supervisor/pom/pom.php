@@ -32,8 +32,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:orange;">
-            <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
+        <nav class="navbar navbar-dark" style="background-color:dodgerblue;">
+            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
@@ -56,6 +56,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </div>
             <?php }
             $res1->close(); ?>
+            <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
 
         <!-- Striped rows start -->
@@ -72,30 +73,32 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             }
             ?>
             <div class="row" id="nuevoPom">
+
                 <div class="col-md-12">
                     <div class="row">
 
-                        <div class="form-group input-group-sm col-sm-2">
-                            <select name="cperiodo" id="cperiodo" class="form-select" style="font-size: 12px;">
-                                <option value="">Seleccionar periodo</option>
+                        <div class="form-group input-group-sm col-sm-1">
+                            <select name="cperiodo" id="cperiodo" class="form-select" style="font-size: 11px;">
+                                <option value="">Seleccionar...</option>
                                 <option value="3">Periodo III</option>
                                 <option value="4">Periodo IV</option>
                                 <option value="5">Periodo V</option>
                                 <option value="6">Periodo VI</option>
                             </select>
                         </div>
-                        <div class="form-group input-group-sm col-sm-2">
+                        <div class="form-group input-group-sm col-sm-3">
                             <select name="cmunicipio" id="cmunicipio" class="form-control" onchange="obtenerMesPom(); obtenerCantidadPromotor();" style="font-size: 11px;">
                                 <option value="">Seleccionar municipio</option>
                                 <?php
                                 $cd = "SELECT t1.municipio  as id, t2.nombre as municipio FROM cobertura t1
-                                        LEFT JOIN catalogo t2 ON t2.codigo = t1.municipio
-                                        WHERE t1.subreceptor_id =  $SUBRECEPTOR";
+                        LEFT JOIN catalogo t2 ON t2.codigo = t1.municipio
+                        WHERE t1.subreceptor_id =  $SUBRECEPTOR AND t1.periodo = 3";
                                 $rd = $enlace->query($cd);
                                 while ($municipio = $rd->fetch_assoc()) { ?>
-                                    <option value="<?php echo $municipio['id'] ?>"><?php echo $municipio['municipio'] ?></option>
+                                    <option value="<?php echo $municipio['id']; ?>"><?php echo $municipio['municipio']; ?></option>
                                 <?php }
-                                $rd->close(); ?>
+                                $rd->close();
+                                ?>
                             </select>
                         </div>
                         <!--Resultado de obtenerCantidadPromotor() -->
@@ -119,6 +122,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         </tbody>
                     </table>
                 </div>
+
+
                 <div class="col-md-4">
                     <form name="agregarPom" id="agregarPom" action="javascript: agregarPOM();" method="POST">
 
@@ -127,7 +132,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         <input type="hidden" name="poa" id="poa">
 
                         <div class="card text-dark">
-                            <div class="text-white text-center" style="background-color:navy;">DATOS PRINCIPALES</div>
+                            <div class="text-white text-center" style="background-color:dodgerblue; font-weight: bold">DATOS PRINCIPALES</div>
                             <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
                                     <div class="form-group input-group-sm col-sm-3">
@@ -164,27 +169,26 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             </div>
                         </div>
                 </div>
+
                 <div class="col-md-8">
                     <div class="card text-dark">
-                        <div class="text-white text-center" style="background-color:navy;">PROYECCIÓN DE INSUMOS</div>
+                        <div class="text-white text-center" style="background-color:dodgerblue; font-weight: bold">PROYECCIÓN DE INSUMOS</div>
                         <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                             <div class="row">
                                 <div class="form-group input-group-sm col-sm-3">
                                     <label class="form-label">Promotor responsable:</label>
-                                    <select name="promotor" id="promotor" class="form-control form-control-sm" style="font-size: 12px;" required>
+                                    <select name="promotores" id="promotores" class="form-control form-control-sm" style="font-size: 12px;" required>
                                         <option value="">Seleccionar..</option>
                                         <?php
                                         $resultado = $enlace->query("SELECT DISTINCT t3.idPromotor, t4.nombre, t4.apellido FROM asignacion t1 
-                                                LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
-                                                LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
-                                                LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
-                                                WHERE t2.subreceptor_id = $SUBRECEPTOR 
-                                                GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
-                                        while ($prom = $resultado->fetch_assoc()) {
-                                        ?>
-                                            <option value="<?php echo $prom['idPromotor'] ?>"><?php echo $prom['nombre'] . ' ' . $prom['apellido'] ?></option>
-                                        <?php
-                                        }
+                                LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
+                                LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
+                                LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
+                                WHERE t2.subreceptor_id = $SUBRECEPTOR 
+                                GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
+                                        while ($prom = $resultado->fetch_assoc()) { ?>
+                                            <option value="<?php echo $prom['idPromotor']; ?>"><?php echo $prom['nombre'] . ' ' . $prom['apellido']; ?></option>
+                                        <?php }
                                         $resultado->close();
                                         ?>
                                     </select>
@@ -198,9 +202,9 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <label class="form-label">Recurrentes</label>
                                     <input type="number" min="0.00" step="0.01" name="recurrente" id="recurrente" oninput="sumarPom();" class="form-control form-control-sm" style="font-size: 12px;" required>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-2">
+                                <div class="form-group input-group-sm col-sm-1">
                                     <label class="form-label">Total</label>
-                                    <input type="text" name="total" id="total" class="form-control form-control-sm" disabled style="color:orangered;">
+                                    <input type="text" name="total" id="total" class="form-control form-control-sm" disabled style="color:orangered; font-size: 12px; font-weight: bold;">
                                 </div>
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Proyeccion</label> <br>
@@ -219,18 +223,19 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <input type="text" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
                                 <div class="form-group input-group-sm col-sm-2">
-                                    <label class="form-label">Lubricante</label>
-                                    <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
+                                    <label class="form-label" id="llubricante">Lubricante</label>
+                                    <label class="form-label" id="tubo">Tubo de Lubricante</label>
+                                    <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue">
                                 </div>
-                                <div class="form-group input-group-sm col-sm-2">
+                                <div class="form-group input-group-sm col-sm-2" id="lpruebaVIH">
                                     <label class="form-label">Prueba VIH</label>
                                     <input type="text" name="pruebaVIH" id="pruebaVIH" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Autoprueba VIH</label>
-                                    <input type="text" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
+                                    <input type="text" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue">
                                 </div>
-                                <div class="form-group input-group-sm col-sm-2">
+                                <div id="reactivoOMES" class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Reactivo esperado
                                     </label>
                                     <input type="hidden" name="reactivo" id="reactivo">
@@ -240,11 +245,11 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </div>
                                     </span>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-2">
+                                <div class="form-group input-group-sm col-sm-2" id="lsifilis">
                                     <label class="form-label">Prueba sifilis</label>
                                     <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-3">
+                                <div class="form-group input-group-sm col-sm-4">
                                     <label class="form-label">Observaciones / otros</label>
                                     <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
                                 </div>
@@ -265,19 +270,20 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <option value="0">NO</option>
                                         <option value="1">SI</option>
                                     </select>
-
                                 </div>
+                                <div class="form-group input-group-sm col-sm-3">
+                                    <br>
+                                    <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
+                                        <em class="bi bi-check-square-fill"></em> Guardar</button>
+                                    <button type="reset" class="btn btn-sm btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
+                                </div>
+                                <input type="hidden" name="creado" id="creado" value="ES01">
                             </div>
                         </div>
                     </div>
-                    <div class="form-group input-group-sm col-sm-3">
-                        <br>
-                        <button type="submit" class="btn btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
-                            <em class="bi bi-check-square-fill"></em> Guardar</button>
-                        <button type="reset" class="btn btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
-                    </div>
-                    </form>
                 </div>
+
+                </form>
             </div>
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
@@ -315,6 +321,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
         </section>
         <?php include '../modal/estadosPom.php'; ?>
+        <?php include '../modal/cambiarEstadoPom.php'; ?>
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
         <?php include '../modal/editarPom.php'; ?>
         <?php include '../modal/anularPom.php'; ?>
@@ -341,6 +348,11 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 var subreceptor = document.getElementById('subreceptor').value;
                 if (subreceptor == '3') {
                     $('#nuevoPom').hide();
+                } else if (subreceptor == '2') {
+                    $('#lsifilis').hide();
+                    $('#lpruebaVIH').hide();
+                    $('#reactivoOMES').hide();
+                    $('#llubricante').hide();
                 }
             });
         </script>

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body bg-light-primary">
                 <div class="row">
-                <h5 class="text-center">Enviar a revision al RP </h5>
+                <h5 class="text-center">CORRECCION DEL POM</h5>
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text" style="font-size: 12px;">Mes:</span>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label>Observaciones / cometarios</label>
-                        <input type="text" class="form-control" id="estado_descripcion" style="font-size: 12px;">
+                        <textarea name="estado_descripcion" id="estado_descripcion"cols="2" rows="2" class="form-control"></textarea>
                     </div>
                     <!-- hidden -->
                     <input type="hidden" id="estado_id">
@@ -68,8 +68,8 @@
                     <input type="hidden" id="estado_estado">
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="cambiarEstadoPom()">Corregir POM</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="cambiarEstadoPom()">Enviar</button>
                 </div>
 
             </div>

@@ -103,7 +103,7 @@ $SUBRECEPTOR = $_GET['id'];
                     <p>Aun no habilitado</p>
                 </div>
             </div>
-
+            <?php include '../modal/estadosPoa.php'; ?>
             <?php include '../modal/cambiarEstadoPoa.php'; ?>
         </section>
 

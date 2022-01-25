@@ -58,25 +58,22 @@
                             <div class="text-white text-center" style="background-color:dodgerblue;">PROYECCIÓN DE INSUMOS</div>
                             <div class="card-body" style="font-size: 11px; background-color:aliceblue;">
                                 <div class="row">
-                                    <div class="form-group input-group-sm col-sm-4">
-                                        <label class="form-label">Promotor responsable:</label>
-                                        <select name="epromotores" id="epromotores" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                            <option value="">Seleccionar..</option>
-                                            <?php
-                                            $resultado = $enlace->query("SELECT DISTINCT t3.idPromotor, t4.nombre, t4.apellido FROM asignacion t1 
-                                                LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
-                                                LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
-                                                LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
-                                                WHERE t2.subreceptor_id = $SUBRECEPTOR 
-                                                GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
-                                            while ($prom = $resultado->fetch_assoc()) { ?>
-                                                <option value="<?php echo $prom['idPromotor']; ?>"><?php echo $prom['nombre'] . ' ' . $prom['apellido']; ?></option>
-                                            <?php }
-                                            $resultado->close();
-                                            ?>
-                                        </select>
-                                    </div>
 
+                                    <div class="form-group input-group-sm col-sm-4">
+                                        <label class="form-label" style="font-size: 12px;">Promotor responsable:</label>
+                                        <?php
+                                        $consultaPro = "SELECT DISTINCT t2.nombre AS nombres, t2.apellido AS apellidos, t3.idPromotor FROM usuario t1 
+                                        LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id 
+                                        LEFT JOIN promotor t3 ON t3.persona_id = t1.persona_id
+                                        WHERE t1.idUsuario = $ID";
+                                        $resultadoPro = $enlace->query($consultaPro);
+                                        while ($promotor = $resultadoPro->fetch_assoc()) {
+                                        ?>
+                                            <input type="hidden" name="epromotores" id="epromotores" value="<?php echo $promotor['idPromotor']; ?>">
+                                            <input type="text" value="<?php echo $promotor['nombres'] . ' ' . $promotor['apellidos']; ?>" class="form-control form-control-sm" disabled>
+                                        <?php }
+                                        $resultadoPro->close(); ?>
+                                    </div>
                                     <div class="form-group input-group-sm col-sm-2">
                                         <label class="form-label">Nuevos</label>
                                         <input type="number" min="0.00" step="0.01" name="enuevo" id="enuevo" oninput="sumarPomEditar();" class="form-control form-control-sm" style="font-size: 12px;" required>

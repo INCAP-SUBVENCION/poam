@@ -66,7 +66,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <div class="card-body">
                                         <h6 class="card-title">Plan Operativo Mensual</h6>
                                         <div class="d-grid gap-2">
-                                            <a href="pom/pom.php" class="btn btn-sm btn-warning btn-lg"> POM</a>
+                                            <a href="pom/pom.php" class="btn btn-sm btn-info btn-lg"> POM</a>
                                         </div>
                                     </div>
                                 </div>

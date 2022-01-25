@@ -23,20 +23,23 @@
     </thead>
     <tbody style="font-size: 12px;">
         <?php
-        $contap_1 = 1;
-        $sqlp_1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
-        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, 
+        $contap_3 = 1;
+        $sqlp_3 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, 
+        t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, t2.pNuevo, t2.pRecurrente,
+         (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, 
+         t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, 
         t2.supervisado, t2.supervisor, t2.estado FROM pom t2
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo=3 AND t7.subreceptor_id = $SUBRECEPTOR";
-        if ($resp_1 = $enlace->query($sqlp_1)) {
-            while ($periodo_3 = $resp_1->fetch_assoc()) { ?>
+        WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR  
+        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03'))";
+        if ($resp_3 = $enlace->query($sqlp_3)) {
+            while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $contap_1++; ?></td>
+                    <td><?php echo $contap_3++; ?></td>
                     <td><?php echo $periodo_3['periodo']; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
                     <td><?php echo $periodo_3['municipio']; ?></td>
@@ -63,9 +66,9 @@
                                                         } elseif ($periodo_3['estado'] == 'ES03') {
                                                             echo '<p class="text-info"> Revisado por RP </p>';
                                                         } elseif ($periodo_3['estado'] == 'ES04') {
-                                                            echo '<p class = "text-success"> Autorizado por RP</p>';
-                                                        } elseif ($periodo_3['estado'] == 'ES05') {
                                                             echo '<p class = "text-success"> Aprobado por RP</p>';
+                                                        } elseif ($periodo_3['estado'] == 'ES05') {
+                                                            echo '<p class = "text-danger"> Pendiente de correccion</p>';
                                                         } elseif ($periodo_3['estado'] == 'ES07') {
                                                             echo '<p class = "text-danger"> Cancelado </p>';
                                                         } ?>
@@ -82,30 +85,34 @@
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
                                 <?php
-                                if ($periodo_3['estado'] == 'ES01') {
+                                if ($SUBRECEPTOR == '3') {
+                                    if ($periodo_3['estado'] == 'ES01') {
                                 ?>
+                                        <li>
+                                            <div class="d-grid gap-2">
+                                                <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                                    <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-grid gap-2">
+                                                <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                                    <em class="bi bi-arrow-right-circle"></em> Correcciones al POM</button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
+                                                <em class="bi bi-pencil-square"></em> Editar </button>
+                                        </li>
 
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
-                                                <em class="bi bi-arrow-right-circle"></em> Enviar al Enlace</button>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
-                                            <em class="bi bi-pencil-square"></em> Editar </button>
-                                    </li>
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular POM </button>
                                     </li>
-
                                 <?php
                                 }
                                 ?>
@@ -117,7 +124,7 @@
                     </td>
                 </tr>
         <?php }
-            $resp_1->close();
+            $resp_3->close();
         }
         ?>
     </tbody>

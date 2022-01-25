@@ -29,24 +29,24 @@
 	    LEFT JOIN catalogo t5 ON t5.codigo = t1.mes
 	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 3";
         if ($res = $enlace->query($consult)) {
-            while ($periodo_1 = $res->fetch_assoc()) {
+            while ($periodo_3 = $res->fetch_assoc()) {
         ?>
                 <tr>
                     <td><?php echo $cont++; ?></td>
-                    <td><?php echo $periodo_1['mes']; ?></td>
-                    <td><?php echo $periodo_1['municipio']; ?></td>
-                    <td><?php echo $periodo_1['nuevo']; ?></td>
-                    <td><?php echo $periodo_1['recurrente']; ?></td>
-                    <th scope=""><?php echo round($periodo_1['total'], 2); ?></th>
-                    <td><?php echo $periodo_1['cnatural']; ?></td>
-                    <td><?php echo $periodo_1['csabor']; ?></td>
-                    <td><?php echo $periodo_1['cfemenino']; ?></td>
-                    <td><?php echo $periodo_1['lubricante']; ?></td>
-                    <td><?php echo $periodo_1['pruebaVIH']; ?></td>
-                    <td><?php echo $periodo_1['autoPrueba']; ?></td>
-                    <td><?php echo $periodo_1['reactivoE']; ?></td>
-                    <td><?php echo $periodo_1['sifilis']; ?></td>
-                    <td><?php echo $periodo_1['observacion']; ?></td>
+                    <td><?php echo $periodo_3['mes']; ?></td>
+                    <td><?php echo $periodo_3['municipio']; ?></td>
+                    <td><?php echo $periodo_3['nuevo']; ?></td>
+                    <td><?php echo $periodo_3['recurrente']; ?></td>
+                    <th scope=""><?php echo round($periodo_3['total'], 2); ?></th>
+                    <td><?php echo $periodo_3['cnatural']; ?></td>
+                    <td><?php echo $periodo_3['csabor']; ?></td>
+                    <td><?php echo $periodo_3['cfemenino']; ?></td>
+                    <td><?php echo $periodo_3['lubricante']; ?></td>
+                    <td><?php echo $periodo_3['pruebaVIH']; ?></td>
+                    <td><?php echo $periodo_3['autoPrueba']; ?></td>
+                    <td><?php echo $periodo_3['reactivoE']; ?></td>
+                    <td><?php echo $periodo_3['sifilis']; ?></td>
+                    <td><?php echo $periodo_3['observacion']; ?></td>
                 </tr>
         <?php }
             $res->close();

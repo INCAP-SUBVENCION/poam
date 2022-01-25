@@ -167,7 +167,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <label class="form-label">Prueba VIH</label>
                                         <input type="text" step="0.0000" name="pruebaVIH" id="pruebaVIH" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-2">
+                                    <div class="form-group input-group-sm col-sm-2" id="auto">
                                         <label class="form-label">Autoprueba VIH</label>
                                         <input type="text" step="0.0000" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
@@ -269,6 +269,14 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#sabor').hide();
                     $('.tfemenino').hide();
                     $('.tsabor').hide();
+                }
+                else if(subreceptor == '4'){
+                    $('#femenino').hide();
+                    $('#sabor').hide();
+                    $('#auto').hide()
+                    $('.tfemenino').hide();
+                    $('.tsabor').hide();
+                    $('.tauto').hide();
                 }
             });
         </script>

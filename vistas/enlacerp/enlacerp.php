@@ -6,7 +6,7 @@ if (!isset($_SESSION['idUsuario'])) {
     header('Location: salir.php');
 } else if (($_SESSION['rol'] != 'R003')) {
     header('Location: ../../error.php');
-} 
+}
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
@@ -55,25 +55,27 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 <section class="section">
                     <div class="row">
                         <?php
-                        $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor ORDER BY nombre";
+                        $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor NOT IN(SELECT idSubreceptor FROM subreceptor WHERE idSubreceptor=1)";
                         $resultado = mysqli_query($enlace, $sql);
                         while ($fila = mysqli_fetch_assoc($resultado)) {
                         ?>
-                            <div class="col-md-3">
-                                <div class="card">
+                            <div class="col-md-4">
+                                <div class="card text-dark bg-info mb-4" style="max-width: 20rem;">
                                     <div class="text-center">
-                                        <img src="../../assets/images/vih.png" width="50" alt="">
+                                        <img src="../../assets/images/vihinvertido.png" width="50" alt="...">
                                     </div>
+                                    <h5 class="card-title text-center text-white"><?php echo $fila['codigo']; ?></h5>
                                     <div class="card-body">
-                                        <h5 class="card-title text-center"><?php echo $fila['nombre']; ?></h5>
-                                        <div class="d-grid gap-2">
-                                            <a class="btn btn-dark" href="pom/pom.php?id=<?php echo $fila['idSubreceptor'] ?>"> Plan Operativo Mensual</a>
-                                            <a class="btn btn-info" href="poa/poa.php?id=<?php echo $fila['idSubreceptor'] ?>"> Plan Operativo Anual</a>
-                                            <a class="btn btn-warning" href="poa/meta.php?id=<?php echo $fila['idSubreceptor'] ?>"> METAS</a>
-                                        </div>
+                                        <h6 class="text-center"> <?php echo $fila['nombre']; ?> </h6>
+                                        <ul class="list-group list-group-flush">
+                                            <a class="list-group-item" href="pom/pom.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range"></i> Plan Operativo Mensual</a>
+                                            <a class="list-group-item" href="poa/poa.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range-fill"></i> Plan Operativo Anual</a>
+                                            <a class="list-group-item" href="poa/meta.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-bullseye"></i> METAS</a>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
+
                         <?php
                         }
                         ?>

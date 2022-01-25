@@ -11,7 +11,7 @@
         <th class="tfemenino">Condon femenino</th>
         <th scope="">Lubricantes</th>
         <th class="tprueba" scope="">Prueba VIH</th>
-        <th scope="">Auto prueba VIH</th>
+        <th class="tauto">Auto prueba VIH</th>
         <th class="treactivo" scope="">Reactivos esperados</th>
         <th class="tsifilis" scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
@@ -21,9 +21,9 @@
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
         $cont = 1;
-        $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total,
-        t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado
-        FROM poa t1
+        $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente,
+        (t1.nuevo + t1.recurrente) AS total, t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, 
+        t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado FROM poa t1
 	    LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
@@ -44,7 +44,7 @@
                     <td class="tfemenino"><?php echo $periodo_3['cfemenino']; ?></td>
                     <td><?php echo $periodo_3['lubricante']; ?></td>
                     <td class="tprueba"><?php echo $periodo_3['pruebaVIH']; ?></td>
-                    <td><?php echo $periodo_3['autoPrueba']; ?></td>
+                    <td class="tauto"><?php echo $periodo_3['autoPrueba']; ?></td>
                     <td class="treactivo"><?php echo $periodo_3['reactivoE']; ?></td>
                     <td class="tsifilis"><?php echo $periodo_3['sifilis']; ?></td>
                     <td><?php echo $periodo_3['observacion']; ?></td>
@@ -57,6 +57,8 @@
                             echo '<p style="color: limegreen;">Revisado por el RP</p>';
                         } else if ($periodo_3['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
+                        } else if ($periodo_3['estado'] == 'ES05') {
+                            echo '<p style="color:red;">Editar</p>';
                         }
                         ?>
                     </th>
@@ -66,20 +68,13 @@
                                 <em class="bi bi-grid"></em>
                             </a>
                             <ul class="dropdown-menu">
-                            <li>
+                                <li>
                                     <button class="dropdown-item" onclick="modalEstadoPoa(<?php echo $periodo_3['idPoa']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
-                            <?php
-                            if ($periodo_3['estado'] == 'ES01') {
-                            ?>
-                                
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_3['idPoa']; ?>,<?php echo $ID; ?>, 'ES02')">
-                                                <em class="bi bi-arrow-right-circle"></em> Enviar al Enlace</button>
-                                        </div>
-                                    </li>
+                                <?php
+                                if ($periodo_3['estado'] == 'ES01' || $periodo_3['estado'] == 'ES05') {
+                                ?>
                                     <li>
                                         <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPoa()">
@@ -89,8 +84,8 @@
 
                                     <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPoa']; ?>)">
                                         <em class="bi bi-pencil-square"></em> Editar </button>
-                               
-                            <?php } ?>
+
+                                <?php } ?>
                             </ul>
                         </div>
                     </td>
@@ -112,7 +107,7 @@
         <td class="text-center tfemenino"><strong id="tfemenino3">0</strong></td>
         <td class="text-center"><strong id="tlubricantes3">0</strong></td>
         <td class="text-center tprueba"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
+        <td class="text-center tauto"><strong id="tautoprueba3">0</strong></td>
         <td class="text-center treactivo"><strong id="treactivos3">0</strong></td>
         <td class="text-center tsifilis"><strong id="tsifilis3">0</strong></td>
         <th scope="">Observaciones</th>
