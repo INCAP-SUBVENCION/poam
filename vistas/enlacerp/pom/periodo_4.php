@@ -118,10 +118,3 @@
     </tr>
   </tfoot>
 </table>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-6">
-        <div class="input-group input-group-sm">
-            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=4" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-       </div>
-    </div>
-</div>

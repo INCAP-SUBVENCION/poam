@@ -68,7 +68,20 @@ $SUBRECEPTOR = $_GET['id'];
 
         <!-- Striped rows start -->
         <section class="section">
+        <div class="row">
+                <?php
+                $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
+                $resultado = mysqli_query($enlace, $sql);
+                while ($subr = mysqli_fetch_assoc($resultado)) {
+                ?>
+                    <div class="text-center">
+                        <h4><?php echo $subr['nombre']; ?></h4>
+                    </div>
+                <?php
+                }
+                ?>
 
+            </div>
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -104,6 +117,7 @@ $SUBRECEPTOR = $_GET['id'];
                 </div>
             </div>
             <?php include '../modal/estadosPoa.php'; ?>
+            <?php include '../modal/cambiarTodoEstadoPoa.php'; ?>
             <?php include '../modal/cambiarEstadoPoa.php'; ?>
         </section>
 

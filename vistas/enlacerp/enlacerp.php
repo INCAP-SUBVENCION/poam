@@ -62,7 +62,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <div class="col-md-4">
                                 <div class="card text-dark bg-info mb-4" style="max-width: 20rem;">
                                     <div class="text-center">
-                                        <img src="../../assets/images/vihinvertido.png" width="50" alt="...">
+                                        <img src="../../assets/images/vihinvertido.png" width="60" alt="...">
                                     </div>
                                     <h5 class="card-title text-center text-white"><?php echo $fila['codigo']; ?></h5>
                                     <div class="card-body">

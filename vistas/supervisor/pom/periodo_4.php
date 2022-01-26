@@ -55,16 +55,18 @@
                         <?php
                         if ($periodo_4['estado'] == 'PR02') {
                             echo '<p class="text-primary"> Revisar </p>';
+                        } elseif ($periodo_4['estado'] == 'PR03') {
+                            echo '<p class="text-danger"> En correccion </p>';
                         } elseif ($periodo_4['estado'] == 'ES01') {
-                            echo '<p class="text-warning"> En revision </p>';
+                            echo '<p class="text-info"> En revision </p>';
                         } elseif ($periodo_4['estado'] == 'ES02') {
-                            echo '<p class="text-warning"> En revision</p>';
+                            echo '<p class="text-primary"> Enviado al RP</p>';
                         } elseif ($periodo_4['estado'] == 'ES03') {
                             echo '<p class="text-info"> Revisado por RP </p>';
                         } elseif ($periodo_4['estado'] == 'ES04') {
-                            echo '<p class = "text-success"> Autorizado por RP</p>';
-                        } elseif ($periodo_4['estado'] == 'ES05') {
                             echo '<p class = "text-success"> Aprobado por RP</p>';
+                        } elseif ($periodo_4['estado'] == 'ES05') {
+                            echo '<p class = "text-danger"> Correccion </p>';
                         } ?>
                     </th>
                     <td>
@@ -78,19 +80,34 @@
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
                                 <?php
-                                if ($periodo_4['estado'] == 'PR02') {
+                                if ($SUBRECEPTOR == '3') {
+                                    if ($periodo_4['estado'] == 'PR02') {
                                 ?>
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar al M&E </button>
-                                        </div>
-                                    </li>
+                                        <li>
+                                            <div class="d-grid gap-2">
+                                                <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                                    <em class="bi bi-arrow-clockwise"></em> Enviar al M&E </button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-grid gap-2">
+                                                <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                                    <em class="bi bi-arrow-right-circle"></em> Corregir POM</button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
+                                                <em class="bi bi-pencil-square"></em> Editar </button>
+                                        </li>
+
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
-
                                 <?php
                                 }
                                 ?>

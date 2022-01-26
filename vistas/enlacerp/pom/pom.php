@@ -110,6 +110,8 @@ $SUBRECEPTOR = $_GET['id'];
 
         </section>
         <?php include '../modal/cambiarEstadoPom.php'; ?>
+        <?php include '../modal/estadosPom.php'; ?>
+        <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
 
         <footer>
             <div class="footer clearfix mb-10 text-muted">

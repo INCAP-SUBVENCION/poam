@@ -76,17 +76,16 @@
                                 ?>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_3['idPoa']; ?>,<?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Corregir POA</button>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPoa()">
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista</button>
                                         </div>
                                     </li>
-
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_3['idPoa']; ?>,<?php echo $ID; ?>, 'ES05')">
+                                                <em class="bi bi-arrow-right-circle"></em> Corregir POA</button>
+                                        </div>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>

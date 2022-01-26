@@ -60,7 +60,7 @@
                         } ?></td>
                     <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
-                        <?php if ($c['estado'] == 'ES01') {
+                        <?php if ($periodo_4['estado'] == 'ES01') {
                             echo '<p class="text-primary"> Creado</p>';
                         } elseif ($periodo_4['estado'] == 'ES02') {
                             echo '<p class="text-warning"> En revision </p>';

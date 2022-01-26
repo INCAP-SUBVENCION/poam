@@ -7,7 +7,7 @@
     LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
     LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
     LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-    WHERE t7.subreceptor_id = $SUBRECEPTOR AND t2.idPom = $POM";
+    WHERE t2.idPom = $POM";
     $detallar = $enlace->query($sqlD);
     while ($detalles = $detallar->fetch_assoc()) {
     ?>
@@ -62,15 +62,15 @@
                     <td><?php echo $detalles['cfemenino']; ?></td>
                     <th scope="" style="background-color:lightskyblue;">Lubricante</th>
                     <td><?php echo $detalles['lubricante']; ?></td>
-                    <th scope="" style="background-color:lightskyblue;">Prueba VIH</th>
+                    <th class="tprueba" scope="" style="background-color:lightskyblue;">Prueba VIH</th>
                     <td><?php echo $detalles['pruebaVIH']; ?></td>
                 </tr>
                 <tr>
                     <th scope="" style="background-color:lightskyblue;">Auto-prueba VIH</th>
                     <td><?php echo $detalles['autoprueba']; ?></td>
-                    <th scope="" style="background-color:lightskyblue;">Reactivo experado</th>
+                    <th class="treactivo" scope="" style="background-color:lightskyblue;">Reactivo experado</th>
                     <td><?php echo $detalles['reactivo']; ?></td>
-                    <th scope="" style="background-color:lightskyblue;">Sifilis</th>
+                    <th class="tsifilis" scope="" style="background-color:lightskyblue;">Sifilis</th>
                     <td><?php echo $detalles['sifilis']; ?></td>
                     <th scope="" style="background-color:lightskyblue;">Codigo promotor</th>
                     <td><?php echo $detalles['codigo']; ?></td>

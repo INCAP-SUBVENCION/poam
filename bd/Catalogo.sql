@@ -427,10 +427,10 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
 #ESTADOS 
 
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Pendiente de enviar al RP', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Enviado al RP', 'Enviado para revision', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado por el RP', 'POA o POM revisado por el enlace', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado por el RP', 'POA o POM aprobado por el especialista', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado y pendiente de enviar al Enlace', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Enviado al Enlace', 'Enviado para revision', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado por el Enlace y enviado al Especialista', 'POA o POM revisado por el enlace', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado por el Especialista', 'POA o POM aprobado por el especialista', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Correccion', 'Modificar POA o POM', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Rechazado', 'POA o POM rechazado', 'estado');
 
@@ -440,7 +440,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE03', 
 
 #ESTADO DEL PROMOTOR
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR01', 'POM creado', 'POM creado por el promotor', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR02', 'Enviado al supervisor para revision ', 'Enviado para revision', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR02', 'Enviado para revision al supervisor', 'Enviado para revision', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR03', 'Correccion del POM', 'Corregir POM', 'estado');
 
 

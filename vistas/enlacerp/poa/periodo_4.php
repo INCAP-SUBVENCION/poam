@@ -69,25 +69,24 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <button class="dropdown-item" onclick="modalEstadoPoa(<?php echo $periodo_3['idPoa']; ?>)">
+                                    <button class="dropdown-item" onclick="modalEstadoPoa(<?php echo $periodo_4['idPoa']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
                                 <?php
-                                if ($periodo_3['estado'] == 'ES02') {
+                                if ($periodo_4['estado'] == 'ES02') {
                                 ?>
-                                    <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_3['idPoa']; ?>,<?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Corregir POA</button>
-                                        </div>
-                                    </li>
                                     <li>
                                         <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPoa()">
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista</button>
                                         </div>
                                     </li>
-
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPoa(<?php echo $periodo_4['idPoa']; ?>,<?php echo $ID; ?>, 'ES05')">
+                                                <em class="bi bi-arrow-right-circle"></em> Corregir POA</button>
+                                        </div>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>

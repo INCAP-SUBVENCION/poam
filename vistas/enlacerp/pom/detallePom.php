@@ -33,8 +33,8 @@ $POM = $_GET['id'];
 
     <body>
         <nav class="navbar navbar-dark" style="background-color:darkorange;">
-            <img src="../../../assets/images/vihinvertido.png" width="35">
-            <h2 class="text-white"><i class="bi bi-calendar4-week"></i> PLAN OPERATIVO MENSUAL -POM-</h2>
+            <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
+            <h2 class="text-white"><em class="bi bi-calendar4-week"></em> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
             $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
@@ -43,16 +43,16 @@ $POM = $_GET['id'];
             $res1 = $enlace->query($consulta1);
             while ($usuario = mysqli_fetch_assoc($res1)) {
             ?>
-                <a class="navbar-brand" href="pom.php"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                <a class="navbar-brand" href="../../enlacerp/enlacerp.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
                 <div class="dropdown">
                     <button class="btn btn-sm btn-outline-secundary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 11px;">
-                        <i class="bi bi-person-fill"></i> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
 
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-size: 13px;">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-check2-square"></i> Permisos</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                        <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
+                        <li><a class="dropdown-item" href="#"><em class="bi bi-check2-square"></em> Permisos</a></li>
+                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
                     </ul>
                 </div>
             <?php }
@@ -62,7 +62,7 @@ $POM = $_GET['id'];
         <!-- Striped rows start -->
         <section class="section">
             <?php include 'detalles/detalles.php'; ?>
-            <?php include 'detalles/estados.php'; ?>
+            <input type="hidden" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
         </section>
 
         <footer>
@@ -78,6 +78,20 @@ $POM = $_GET['id'];
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
+        <script src="../../js/utilidad.js"></script>
+        <script src="../../js/pom.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                var subreceptor = document.getElementById('subreceptor').value;
+                if(subreceptor == '2'){
+                    $('#tprueba').hide();
+                    $('#treactivo').hide();
+                    $('#tsifilis').hide();
+                }
+            });
+        </script>
+
     </body>
 
 </html>

@@ -34,10 +34,10 @@
                             <input type="text" class="form-control" id="estado_total" style="font-size: 12px;" disabled>
                         </div>
                     </div>
-                    <h3>Revisar y Autorizar el POA</h3>
+                    <h3>Correcciones al POA</h3>
                     <div class="form-group">
                         <label>Observaciones / cometarios</label>
-                        <input type="text" class="form-control" id="estado_descripcion" style="font-size: 12px;">
+                        <textarea class="form-control" name="estado_descripcion" id="estado_descripcion" cols="2" rows="2"></textarea>
                     </div>
                     <!-- hidden -->
                     <input type="hidden" id="estado_id">
@@ -45,12 +45,12 @@
                     <input type="hidden" id="estado_estado">
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary btn-sm" onclick="cambiarEstadoPoa()">Enviar</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>
 
             </div>
 
         </div>
     </div>
-</div> 
+</div>

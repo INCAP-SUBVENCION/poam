@@ -59,19 +59,20 @@
                             echo 'No';
                         } ?></td>
                     <td><?php echo $periodo_3['supervisor']; ?></td>
-                    <th scope style="font-size: 11px;"><?php if ($periodo_3['estado'] == 'ES01') {
-                                                            echo '<p class="text-primary"> Creado</p>';
-                                                        } elseif ($periodo_3['estado'] == 'ES02') {
-                                                            echo '<p class="text-warning"> En revision </p>';
-                                                        } elseif ($periodo_3['estado'] == 'ES03') {
-                                                            echo '<p class="text-info"> Revisado por RP </p>';
-                                                        } elseif ($periodo_3['estado'] == 'ES04') {
-                                                            echo '<p class = "text-success"> Aprobado por RP</p>';
-                                                        } elseif ($periodo_3['estado'] == 'ES05') {
-                                                            echo '<p class = "text-danger"> Pendiente de correccion</p>';
-                                                        } elseif ($periodo_3['estado'] == 'ES07') {
-                                                            echo '<p class = "text-danger"> Cancelado </p>';
-                                                        } ?>
+                    <th scope style="font-size: 11px;">
+                        <?php if ($periodo_3['estado'] == 'ES01') {
+                            echo '<p class="text-primary"> Creado</p>';
+                        } elseif ($periodo_3['estado'] == 'ES02') {
+                            echo '<p class="text-warning"> En revision </p>';
+                        } elseif ($periodo_3['estado'] == 'ES03') {
+                            echo '<p class="text-info"> Revisado por RP </p>';
+                        } elseif ($periodo_3['estado'] == 'ES04') {
+                            echo '<p class = "text-success"> Aprobado por RP</p>';
+                        } elseif ($periodo_3['estado'] == 'ES05') {
+                            echo '<p class = "text-danger"> Pendiente de correccion</p>';
+                        } elseif ($periodo_3['estado'] == 'ES07') {
+                            echo '<p class = "text-danger"> Cancelado </p>';
+                        } ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -107,11 +108,13 @@
 
                                     <?php
                                     }
-                                } else {
+                                } else if($periodo_3['estado'] == 'ES01') {
                                     ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
-                                            <em class="bi bi-trash2-fill"></em> Anular POM </button>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
+                                        </div>
                                     </li>
                                 <?php
                                 }

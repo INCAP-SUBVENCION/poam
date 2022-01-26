@@ -3,7 +3,7 @@ include_once('../../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 session_start();
 $ID = $_SESSION['idUsuario'];
-$SUBRECEPTOR = $_SESSION['subreceptor_id'];
+$SUBRECEPTOR = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -110,6 +110,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
         </section>
         <?php include '../modal/cambiarEstadoPom.php'; ?>
+        <?php include '../modal/estadosPom.php'; ?>
+        <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
 
         <footer>
             <div class="footer clearfix mb-10 text-muted">

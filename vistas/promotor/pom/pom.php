@@ -216,7 +216,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label" id="llubricante">Lubricante</label>
-                                    <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue">
+                                    <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
                                 <div class="form-group input-group-sm col-sm-2" id="lpruebaVIH">
                                     <label class="form-label">Prueba VIH</label>
@@ -224,7 +224,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                 </div>
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Autoprueba VIH</label>
-                                    <input type="text" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue">
+                                    <input type="text" name="autoPrueba" id="autoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
                                 <div id="reactivoOMES" class="form-group input-group-sm col-sm-2">
                                     <label class="form-label">Reactivo esperado
@@ -247,15 +247,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
                                 <input type="hidden" name="supervisado" id="supervisado" value="0">
                                 <input type="hidden" name="supervisor" id="supervisor" value="">
-
-                                <div class="form-group input-group-sm col-sm-2 text-center">
-                                    <label class="form-label">Unidad Movil</label>
-                                    <select name="movil" id="movil" class="form-select" style="font-size: 12px;">
-                                        <option value="0">NO</option>
-                                        <option value="1">SI</option>
-                                    </select>
-
-                                </div>
+                                <input type="hidden" name="movil" id="movil" value="0">
 
                                 <div class="form-group input-group-sm col-sm-3">
                                     <br>
