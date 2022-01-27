@@ -1,5 +1,5 @@
 <div class="modal fade" id="modalCambiarTodoEstadoPom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h5 class="modal-title">Enviar todo el POM</h5>
@@ -13,7 +13,8 @@
                     <input type="hidden" id="cusuario" value="<?php echo $ID; ?>">
                     <input type="hidden" id="cestadoN" value="PR02">
                     <label for="cobservacion" class="form-label">Observaciones / Comentarios </label>
-                    <textarea class="form-control" id="cobservacion" rows="2"></textarea>
+                    <textarea class="form-control" id="cobservacion" rows="3" cols="3" ></textarea>
+                    
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-arrow-clockwise"></i> Enviar todo </button>
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>

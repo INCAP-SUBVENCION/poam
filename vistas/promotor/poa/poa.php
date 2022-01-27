@@ -69,7 +69,17 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
         <!-- Striped rows start -->
         <section class="section">
-
+        <?php
+                $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
+                $resultado = mysqli_query($enlace, $sql);
+                while ($subr = mysqli_fetch_assoc($resultado)) {
+                ?>
+                    <div class="text-center">
+                        <h6><?php echo $subr['nombre']; ?></h6>
+                    </div>
+                <?php
+                }
+                ?>
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
                 <li class="nav-item" role="presentation">

@@ -218,7 +218,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <label class="form-label">Condon sabor</label>
                                     <input type="text" name="csabor" id="csabor" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-2">
+                                <div class="form-group input-group-sm col-sm-2" id="femenino">
                                     <label class="form-label">Condon femenino</label>
                                     <input type="text" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
@@ -271,13 +271,13 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <option value="1">SI</option>
                                     </select>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-3">
+                                <input type="hidden" name="creado" id="creado" value="ES01">
+                                <div class="form-group input-group-sm col-sm-2">
                                     <br>
                                     <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
                                         <em class="bi bi-check-square-fill"></em> Guardar</button>
                                     <button type="reset" class="btn btn-sm btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
                                 </div>
-                                <input type="hidden" name="creado" id="creado" value="ES01">
                             </div>
                         </div>
                     </div>
@@ -346,7 +346,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script>
             $(document).ready(function() {
                 var subreceptor = document.getElementById('subreceptor').value;
-                if (subreceptor == '3') {
+                if (subreceptor == '3' || subreceptor == '6' || subreceptor == '7') {
                     $('#nuevoPom').hide();
                 } else if (subreceptor == '2') {
                     $('#lsifilis').hide();
@@ -354,8 +354,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#reactivoOMES').hide();
                     $('#llubricante').hide();
                     $('#unidad').hide();
-                }else if (subreceptor == '2') {
-                    $('#unidad').show();
+                } else if (subreceptor == '5') {
+                    $('#femenino').hide();
                 }
             });
         </script>

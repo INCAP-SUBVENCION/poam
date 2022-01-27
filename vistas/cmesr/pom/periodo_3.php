@@ -86,13 +86,13 @@
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
                                 <?php
-                                if ($SUBRECEPTOR == '3') {
+                                if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') {
                                     if ($periodo_3['estado'] == 'ES01') {
                                 ?>
                                         <li>
                                             <div class="d-grid gap-2">
                                                 <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                    <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
+                                                    <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
                                             </div>
                                         </li>
                                         <li>
@@ -108,13 +108,21 @@
 
                                     <?php
                                     }
-                                } else if($periodo_3['estado'] == 'ES01') {
+                                } else if ($periodo_3['estado'] == 'ES01') {
                                     ?>
                                     <li>
                                         <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
                                         </div>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-pencil-square"></em> Editar </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-trash2-fill"></em> Anular POM </button>
                                     </li>
                                 <?php
                                 }
@@ -153,8 +161,10 @@
 </table>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
-        <div class="input-group input-group-sm">
-            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-        </div>
+        <form action="../../php/excel/generarExcelPom.php" method="POST">
+            <input type="hidden" name="periodo" id="periodo" value="3">
+            <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+            <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+        </form>
     </div>
 </div>

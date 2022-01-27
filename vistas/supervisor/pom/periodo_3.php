@@ -80,7 +80,7 @@
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
                                 <?php
-                                if ($SUBRECEPTOR == '3') {
+                                if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') {
                                     if ($periodo_3['estado'] == 'PR02') {
                                 ?>
                                         <li>
@@ -145,8 +145,10 @@
 </table>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
-        <div class="input-group input-group-sm">
-            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-        </div>
+        <form action="../../php/excel/generarExcelPom.php" method="POST">
+            <input type="hidden" name="periodo" id="periodo" value="3">
+            <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+            <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+        </form>
     </div>
 </div>

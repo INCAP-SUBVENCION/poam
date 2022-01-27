@@ -264,7 +264,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <label class="form-label">Nombre del Supervisor:</label>
                                     <input type="text" name="supervisor" id="supervisor" style="font-size: 12px;" class="form-control form-control-sm">
                                 </div>
-                                <div class="form-group input-group-sm col-sm-1 text-center">
+                                <div class="form-group input-group-sm col-sm-1 text-center" id="unidad">
                                     <label class="form-label" style="font-size: 10px;">Unidad Movil</label>
                                     <select name="movil" id="movil" class="form-select" style="font-size: 12px;">
                                         <option value="0">NO</option>
@@ -352,7 +352,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#lpruebaVIH').hide();
                     $('#reactivoOMES').hide();
                     $('#llubricante').hide();
-                } else if(subreceptor == '3') {
+                    $('#unidad').hide();
+                } else if(subreceptor == '3' || subreceptor == '6' || subreceptor == '7') {
                     $('#nuevoPom').hide();
                 } else {
                     $('#tubo').hide();

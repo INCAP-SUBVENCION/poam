@@ -4,6 +4,7 @@ header("Content-Type: text/html;charset=utf-8");
 session_start();
 $ID = $_SESSION['idUsuario'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
+$PERSONA = $_SESSION['persona_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">

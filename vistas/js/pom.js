@@ -117,7 +117,7 @@ function calcularPom() {
             var cnatural = parseFloat(resultado[0]);
             var csabor = parseFloat(resultado[1]);
             var cfemenino = parseFloat(resultado[2]);
-            if(subreceptor='2'){
+            if(subreceptor == '2') {
                 var lubricante = total;
             } else {
                 var lubricante = parseFloat(resultado[3]);
@@ -158,27 +158,28 @@ function agregarPOM() {
     var cfemenino = document.getElementById('cfemenino').value;
     var lubricante = document.getElementById('lubricante').value;
     var autoPrueba = document.getElementById('autoPrueba').value;
-    if(subreceptor = '2') {
-        var pruebaVIH = 0;
-    } else {
-        var pruebaVIH = document.getElementById('pruebaVIH').value;
-        }
-    if(subreceptor = '2') {
-        var reactivoEs = 0;
-    } else {
-        var reactivoEs = document.getElementById('reactivoEs').value;
-        }
-    if(subreceptor ='2') {
-        var sifilis = 0;
-    } else {
-        var sifilis = document.getElementById('sifilis').value;
-        }
     var observacion = document.getElementById('observacion').value;
     var movil = document.getElementById('movil').value;
     var supervisado = document.getElementById('supervisado').value;
     var supervisor = document.getElementById('supervisor').value;
     var estado = document.getElementById('creado').value;
 
+    if(subreceptor == '2') {
+        var pruebaVIH = 0;
+    } else {
+        var pruebaVIH = document.getElementById('pruebaVIH').value;
+        }
+    if(subreceptor == '2') {
+        var reactivoEs = 0;
+    } else {
+        var reactivoEs = document.getElementById('reactivoEs').value;
+        }
+    if(subreceptor == '2') {
+        var sifilis = 0;
+    } else {
+        var sifilis = document.getElementById('sifilis').value;
+        }
+    
     var accion = "agregarPOM";
 
     $.ajax({
@@ -358,7 +359,7 @@ function calcularPomEditar() {
             var cnatural = parseFloat(resultado[0]);
             var csabor = parseFloat(resultado[1]);
             var cfemenino = parseFloat(resultado[2]);
-            if(subreceptor='2'){
+            if(subreceptor == '2'){
                 var lubricante = total;
             } else {
                 var lubricante = parseFloat(resultado[3]);

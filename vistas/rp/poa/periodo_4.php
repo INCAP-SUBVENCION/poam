@@ -112,3 +112,12 @@
         <th scope="">Estado</th>
     </tfoot>
 </table>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="col-sm-6">
+        <form action="../../php/excel/generarExcelPoa.php" method="POST">
+            <input type="hidden" name="periodo" id="periodo" value="4">
+            <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+            <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+        </form>
+    </div>
+</div>

@@ -22,15 +22,17 @@
     <tbody style="font-size: 12px;">
         <?php
         $contap_3 = 1;
-        $sqlp_3 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres,
-        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, 
-        t2.supervisado, t2.supervisor, t2.estado FROM pom t2
+        $sqlp_3 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, 
+        t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, 
+        t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, 
+        t2.lubricante, t2.pruebaVIH, t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.supervisado, 
+        t2.supervisor, t2.estado FROM pom t2
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR";
+        WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR AND t5.persona_id = $PERSONA";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
@@ -73,12 +75,10 @@
                                 <em class="bi bi-grid"></em>
                             </button>
                             <ul class="dropdown-menu">
-
                                 <li>
                                     <button class="dropdown-item" onclick="modalEstadoPom(<?php echo $periodo_3['idPom']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
-
                                 <?php
                                 if ($periodo_3['estado'] == 'PR03') {
                                 ?>
@@ -95,7 +95,6 @@
                                 <?php
                                 }
                                 ?>
-
                                 <?php
                                 if ($periodo_3['estado'] == 'PR01') {
                                 ?>
@@ -113,7 +112,6 @@
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular POM </button>
                                     </li>
-
                                 <?php
                                 }
                                 ?>
@@ -151,8 +149,11 @@
 </table>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
-        <div class="input-group input-group-sm">
-            <a class="btn btn-success" href="../../php/excel/generarExcelPom.php?periodo=3" role="button"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar</a>
-        </div>
+        <form action="../../php/excel/generarExcelPomSR.php" method="POST">
+            <input type="hidden" name="periodo" id="periodo" value="3">
+            <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+            <input type="hidden" name="persona" id="persona" value="<?php echo $PERSONA?>">
+            <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+        </form>
     </div>
 </div>
