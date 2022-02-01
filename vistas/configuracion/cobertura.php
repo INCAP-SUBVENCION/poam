@@ -60,9 +60,10 @@ if ($ROL != 'R001') {
                         </div>
                     </div>
                 </div>
+                </div>
                 <section class="section">
                     <form name="agregarCobertura" id="agregarCobertura" action="javascript: agregarCobertura();" method="GET">
-                        <div class="card border-primary mb-3" style="max-width: 85rem;">
+                        <div class="card border-primary mb-2" style="max-width: 85rem;">
                             <div class="text-white text-center" style="background-color:navy;">REGISTRO DE COBERTURA</div>
                             <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                 <div class="row">
@@ -130,9 +131,7 @@ if ($ROL != 'R001') {
                                 <button type="submit" class="btn btn-sm btn-success"><i class="bi bi-check"></i> Guardar</button>
                                 <button type="reset" class="btn btn-sm btn-danger"><i class="bi bi-x"></i> Cancelar</button>
                             </div>
-                            <div class="form-group input-group-sm col-sm-2 md-end">
-
-                            </div>
+                        </div>
                     </form>
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -203,7 +202,7 @@ if ($ROL != 'R001') {
                             </table>
                         </div>
                         <div class="tab-pane fade" id="periodo_4" role="tabpanel" aria-labelledby="periodo-4-tab">
-                        <table class="table table-hover table-bordered" id="listadoCobertura_p4">
+                            <table class="table table-hover table-bordered" id="listadoCobertura_p4">
                                 <thead class="text-center" style="font-size:12px;">
                                     <th>#</th>
                                     <th>Subreceptor</th>
@@ -255,7 +254,7 @@ if ($ROL != 'R001') {
                             </table>
                         </div>
                         <div class="tab-pane fade" id="periodo_5" role="tabpanel" aria-labelledby="periodo-5-tab">
-                        <table class="table table-hover table-bordered" id="listadoCobertura_p5">
+                            <table class="table table-hover table-bordered" id="listadoCobertura_p5">
                                 <thead class="text-center" style="font-size:12px;">
                                     <th>#</th>
                                     <th>Subreceptor</th>
@@ -307,7 +306,7 @@ if ($ROL != 'R001') {
                             </table>
                         </div>
                         <div class="tab-pane fade" id="periodo_6" role="tabpanel" aria-labelledby="periodo-6-tab">
-                        <table class="table table-hover table-bordered" id="listadoCobertura_p6">
+                            <table class="table table-hover table-bordered" id="listadoCobertura_p6">
                                 <thead class="text-center" style="font-size:12px;">
                                     <th>#</th>
                                     <th>Subreceptor</th>
@@ -358,10 +357,8 @@ if ($ROL != 'R001') {
                                 </tbody>
                             </table>
                         </div>
-                        
+
                     </div>
-
-
                 </section>
 
             </div>

@@ -160,7 +160,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <input type="text" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2">
-                                        <label class="form-label">Lubricante</label>
+                                        <label class="form-label" id="llubricante">Lubricante</label>
+                                        <label class="form-label" id="tubo">Tubo Lubricante</label>
                                         <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
                                     </div>
                                     <div class="form-group input-group-sm col-sm-2" id="oprueba">
@@ -260,23 +261,29 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#oprueba').hide();
                     $('#oreactivo').hide();
                     $('#osifilis').hide();
+                    $('#omes').show();
+                    $('#hsh').hide();
+                    $('#otrans').hide();
+                    $('#llubricante').hide();
+                    $('#tubo').show();
 
-                    $('.tprueba').hide();
-                    $('.treactivo').hide();
-                    $('.tsifilis').hide();
-                } else if(subreceptor == '3'){
+                } else if (subreceptor == '3' || subreceptor == '4' || subreceptor == '6' || subreceptor == '7') {
                     $('#femenino').hide();
                     $('#sabor').hide();
-                    $('.tfemenino').hide();
-                    $('.tsabor').hide();
-                }
-                else if(subreceptor == '4'){
+                    $('#omes').hide();
+                    $('#hsh').show();
+                    $('#otrans').hide();
+                    $('#llubricante').show();
+                    $('#tubo').hide();
+                } else if (subreceptor == '5') {
                     $('#femenino').hide();
                     $('#sabor').hide();
                     $('#auto').hide()
-                    $('.tfemenino').hide();
-                    $('.tsabor').hide();
-                    $('.tauto').hide();
+                    $('#omes').hide();
+                    $('#hsh').hide();
+                    $('#otrans').show();
+                    $('#llubricante').show();
+                    $('#tubo').hide();
                 }
             });
         </script>

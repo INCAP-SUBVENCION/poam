@@ -109,6 +109,7 @@ $SUBRECEPTOR = $_GET['id'];
             </div>
 
         </section>
+        <?php include '../modal/recalendarizacionPom.php'; ?>
         <?php include '../modal/cambiarEstadoPom.php'; ?>
         <?php include '../modal/estadosPom.php'; ?>
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>

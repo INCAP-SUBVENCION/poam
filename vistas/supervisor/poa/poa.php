@@ -66,6 +66,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
 
+                <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR ?>">
 
         <!-- Striped rows start -->
         <section class="section">
@@ -124,7 +125,33 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
         <script src="../../js/tabla.js"></script>
+        <script>
+            $(document).ready(function() {
+                var subreceptor = document.getElementById('subreceptor').value;
+                if (subreceptor == '2') {
+                    $('#oprueba').hide();
+                    $('#oreactivo').hide();
+                    $('#osifilis').hide();
 
+                    $('.tprueba').hide();
+                    $('.treactivo').hide();
+                    $('.tsifilis').hide();
+                } else if(subreceptor == '3'){
+                    $('#femenino').hide();
+                    $('#sabor').hide();
+                    $('.tfemenino').hide();
+                    $('.tsabor').hide();
+                }
+                else if(subreceptor == '4'){
+                    $('#femenino').hide();
+                    $('#sabor').hide();
+                    $('#auto').hide()
+                    $('.tfemenino').hide();
+                    $('.tsabor').hide();
+                    $('.tauto').hide();
+                }
+            });
+        </script>
     </body>
 
 </html>

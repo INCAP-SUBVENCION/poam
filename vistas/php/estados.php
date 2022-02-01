@@ -49,7 +49,8 @@ if ($accion == "cambiarEstadoPoa") {
 if ($accion == "consultaPoM") {
 
     $pom_id = $_POST['id'];
-    $sql = "SELECT DISTINCT t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, t1.pRecurrente, truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total 
+    $sql = "SELECT DISTINCT t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, t1.pRecurrente, 
+    truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total, t1.supervisor
     FROM pom t1 LEFT JOIN catalogo t2 ON t2.codigo = t1.mes LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio WHERE t1.idPom = $pom_id";
 
     $consulta = $enlace->query($sql);

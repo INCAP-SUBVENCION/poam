@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header" style="background-color:dodgerblue;">
-                <h5 class="modal-title">Editar POM</h5>
+                <h5 class="modal-title"> Editar Actividad </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

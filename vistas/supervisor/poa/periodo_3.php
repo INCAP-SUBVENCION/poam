@@ -1,5 +1,4 @@
-
-<table class="table table-hover table-bordered" id="poa_periodo_3" aria-describedby="">
+<table class="table table-hover table-bordered" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
         <th scope="">Mes</th>
@@ -8,21 +7,22 @@
         <th scope="">Recurrentes</th>
         <th scope="">Total</th>
         <th scope="">Condon natural</th>
-        <th scope="">Condon sabor</th>
-        <th scope="">Condon femenino</th>
+        <th class="tsabor">Condon sabor</th>
+        <th class="tfemenino">Condon femenino</th>
         <th scope="">Lubricantes</th>
-        <th scope="">Prueba VIH</th>
-        <th scope="">Auto prueba VIH</th>
-        <th scope="">Reactivos esperados</th>
-        <th scope="">Prueba Sifilis</th>
+        <th class="tprueba" scope="">Prueba VIH</th>
+        <th class="tauto">Auto prueba VIH</th>
+        <th class="treactivo" scope="">Reactivos esperados</th>
+        <th class="tsifilis" scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
+
     </thead>
     <tbody class="text-center bg-light" style="font-size: 12px;">
         <?php
         $cont = 1;
-        $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, (t1.nuevo + t1.recurrente) AS total,
-        t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado
-        FROM poa t1
+        $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente,
+        (t1.nuevo + t1.recurrente) AS total, t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, 
+        t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado FROM poa t1
 	    LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
 	    LEFT JOIN catalogo t3 ON t3.codigo = t1.departamento
 	    LEFT JOIN catalogo t4 ON t4.codigo = t1.municipio
@@ -39,13 +39,13 @@
                     <td><?php echo $periodo_3['recurrente']; ?></td>
                     <th scope=""><?php echo round($periodo_3['total'], 2); ?></th>
                     <td><?php echo $periodo_3['cnatural']; ?></td>
-                    <td><?php echo $periodo_3['csabor']; ?></td>
-                    <td><?php echo $periodo_3['cfemenino']; ?></td>
+                    <td class="tsabor"><?php echo $periodo_3['csabor']; ?></td>
+                    <td class="tfemenino"><?php echo $periodo_3['cfemenino']; ?></td>
                     <td><?php echo $periodo_3['lubricante']; ?></td>
-                    <td><?php echo $periodo_3['pruebaVIH']; ?></td>
-                    <td><?php echo $periodo_3['autoPrueba']; ?></td>
-                    <td><?php echo $periodo_3['reactivoE']; ?></td>
-                    <td><?php echo $periodo_3['sifilis']; ?></td>
+                    <td class="tprueba"><?php echo $periodo_3['pruebaVIH']; ?></td>
+                    <td class="tauto"><?php echo $periodo_3['autoPrueba']; ?></td>
+                    <td class="treactivo"><?php echo $periodo_3['reactivoE']; ?></td>
+                    <td class="tsifilis"><?php echo $periodo_3['sifilis']; ?></td>
                     <td><?php echo $periodo_3['observacion']; ?></td>
                 </tr>
         <?php }
@@ -60,22 +60,13 @@
         <td class="text-center"><strong id="trecurrentes3">0</strong></td>
         <td class="text-center"><strong id="total3">0</strong></td>
         <td class="text-center"><strong id="tnatural3">0</strong></td>
-        <td class="text-center"><strong id="tsabor3">0</strong></td>
-        <td class="text-center"><strong id="tfemenino3">0</strong></td>
+        <td class="text-center tsabor"><strong id="tsabor3">0</strong></td>
+        <td class="text-center tfemenino"><strong id="tfemenino3">0</strong></td>
         <td class="text-center"><strong id="tlubricantes3">0</strong></td>
-        <td class="text-center"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
-        <td class="text-center"><strong id="treactivos3">0</strong></td>
-        <td class="text-center"><strong id="tsifilis3">0</strong></td>
+        <td class="text-center tprueba"><strong id="tpruebavih3">0</strong></td>
+        <td class="text-center tauto"><strong id="tautoprueba3">0</strong></td>
+        <td class="text-center treactivo"><strong id="treactivos3">0</strong></td>
+        <td class="text-center tsifilis"><strong id="tsifilis3">0</strong></td>
         <th scope="">Observaciones</th>
     </tfoot>
 </table>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-6">
-        <form action="../../php/excel/generarExcelPoa.php" method="POST">
-            <input type="hidden" name="periodo" id="periodo" value="3">
-            <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
-            <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
-        </form>
-    </div>
-</div>

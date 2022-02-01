@@ -10,7 +10,7 @@
             <th scope>Inicio</th>
             <th scope>Fin</th>
             <th scope>Codigo</th>
-            <th scope>Subreceptor</th>
+            <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
             <th scope>Total</th>
@@ -58,16 +58,18 @@
                         } elseif ($periodo_4['estado'] == 'PR03') {
                             echo '<p class="text-danger"> En correccion </p>';
                         } elseif ($periodo_4['estado'] == 'ES01') {
-                            echo '<p class="text-info"> En revision </p>';
+                            echo '<p class="text-info"> Creado o revisado </p>';
                         } elseif ($periodo_4['estado'] == 'ES02') {
-                            echo '<p class="text-primary"> Enviado al RP</p>';
+                            echo '<p class="text-warning"> Enviado al RP </p>';
                         } elseif ($periodo_4['estado'] == 'ES03') {
-                            echo '<p class="text-info"> Revisado por RP </p>';
+                            echo '<p class="text-primary"> Revisado por RP </p>';
                         } elseif ($periodo_4['estado'] == 'ES04') {
                             echo '<p class = "text-success"> Aprobado por RP</p>';
                         } elseif ($periodo_4['estado'] == 'ES05') {
                             echo '<p class = "text-danger"> Correccion </p>';
-                        } ?>
+                        } elseif ($periodo_4['estado'] == 'ES06') {
+                            echo '<p class = "text-danger"> Actividad cancelada </p>';
+                        }?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -80,7 +82,7 @@
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
                                 <?php
-                                if ($SUBRECEPTOR == '3') {
+                                if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') {
                                     if ($periodo_4['estado'] == 'PR02') {
                                 ?>
                                         <li>
@@ -92,7 +94,7 @@
                                         <li>
                                             <div class="d-grid gap-2">
                                                 <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
-                                                    <em class="bi bi-arrow-right-circle"></em> Corregir POM</button>
+                                                    <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
                                             </div>
                                         </li>
                                         <li>

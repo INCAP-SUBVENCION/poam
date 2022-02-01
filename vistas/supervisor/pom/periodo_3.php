@@ -10,7 +10,7 @@
             <th scope>Inicio</th>
             <th scope>Fin</th>
             <th scope>Codigo</th>
-            <th scope>Subreceptor</th>
+            <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
             <th scope>Total</th>
@@ -22,11 +22,10 @@
     <tbody style="font-size: 12px;">
         <?php
         $contap_3 = 1;
-        $sqlp_3 = "SELECT DISTINCT t2.subreceptor_id, t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha,
-        t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, t2.pNuevo, t2.pRecurrente, 
-        (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, 
-        t2.reactivo, t2.sifilis, t2.observacion, 
-        t2.supervisado, t2.supervisor, t2.estado FROM pom t2
+        $sqlp_3 = "SELECT DISTINCT t2.subreceptor_id, t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, 
+        t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, t2.pNuevo, 
+        t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, 
+        t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.supervisado, t2.supervisor, t2.estado FROM pom t2
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
@@ -58,15 +57,17 @@
                         } elseif ($periodo_3['estado'] == 'PR03') {
                             echo '<p class="text-danger"> En correccion </p>';
                         } elseif ($periodo_3['estado'] == 'ES01') {
-                            echo '<p class="text-info"> En revision </p>';
+                            echo '<p class="text-info"> Creado o revisado </p>';
                         } elseif ($periodo_3['estado'] == 'ES02') {
-                            echo '<p class="text-warning"> Enviado al RP</p>';
+                            echo '<p class="text-warning"> Enviado al RP </p>';
                         } elseif ($periodo_3['estado'] == 'ES03') {
                             echo '<p class="text-primary"> Revisado por RP </p>';
                         } elseif ($periodo_3['estado'] == 'ES04') {
                             echo '<p class = "text-success"> Aprobado por RP</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
-                            echo '<p class = "text-success"> Correccion </p>';
+                            echo '<p class = "text-danger"> Correccion </p>';
+                        } elseif ($periodo_3['estado'] == 'ES06') {
+                            echo '<p class = "text-danger"> Actividad cancelada </p>';
                         } ?>
                     </th>
                     <td>
@@ -92,7 +93,7 @@
                                         <li>
                                             <div class="d-grid gap-2">
                                                 <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
-                                                    <em class="bi bi-arrow-right-circle"></em> Corregir POM</button>
+                                                    <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
                                             </div>
                                         </li>
                                         <li>

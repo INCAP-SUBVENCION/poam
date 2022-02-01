@@ -57,11 +57,15 @@
                     <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
                         <?php if ($periodo_3['estado'] == 'ES03') {
-                            echo '<p class="text-primary"> Revisar</p>';
+                            echo '<p class="text-primary text-center"> Revisar</p>';
                         } elseif ($periodo_3['estado'] == 'ES04') {
-                            echo '<p class="text-success"> Aprobado</p>';
+                            echo '<p class="text-success text-center"> Aprobado</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
-                            echo '<p class = "text-danger"> En correccion</p>';
+                            echo '<p class = "text-danger text-center"> En correccion</p>';
+                        } elseif ($periodo_3['estado'] == 'RE01') {
+                            echo '<p class = "text-info text-center"> Solicitud de Recalendarizacion</p>';
+                        } elseif ($periodo_3['estado'] == 'RE02') {
+                            echo '<p class = "text-success text-center"> Solicitud Aceptada</p>';
                         } ?>
                     </th>
                     <td>
@@ -76,26 +80,30 @@
                                         <em class="bi bi-stoplights-fill"></em> Estado </button>
                                 </li>
                                 <?php
-                                    if ($periodo_3['estado'] == 'ES03') {
+                                if ($periodo_3['estado'] == 'ES03') {
                                 ?>
-                                        <li>
-                                            <div class="d-grid gap-2">
-                                                <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                    <em class="bi bi-arrow-clockwise"></em> Aprobar POM </button>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-grid gap-2">
-                                                <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                                    <em class="bi bi-arrow-right-circle"></em> Correcciones al POM</button>
-                                            </div>
-                                        </li>
-                                <?php
-                                }
-                                ?>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                                <em class="bi bi-arrow-clockwise"></em> Aprobar POM </button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
+                                                <em class="bi bi-arrow-right-circle"></em> Correcciones al POM</button>
+                                        </div>
+                                    </li>
+                                <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
+                                <?php if ($periodo_3['estado'] == 'RE01') { ?>
+                                    <li>
+                                    <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
+                                        <em class="bi bi-shuffle"></em> Aceptar Recalendarización </button>
+                                </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </td>
@@ -127,7 +135,7 @@
 </table>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
-        <form action="../../php/excel/generarExcelPomRP.php" method="POST">
+        <form action="../../php/excel/generarExcelPom.php" method="POST">
             <input type="hidden" name="periodo" id="periodo" value="3">
             <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
             <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>

@@ -57,7 +57,7 @@ $PERSONA = $_SESSION['persona_id'];
                 </div>
             <?php }
             $res1->close(); ?>
-             <img src="../../../assets/images/incap.png" width="75" alt="">
+            <img src="../../../assets/images/incap.png" width="75" alt="">
         </nav>
 
         <!-- Striped rows start -->
@@ -209,12 +209,11 @@ $PERSONA = $_SESSION['persona_id'];
                                     <label class="form-label">Condon natural</label>
                                     <input type="text" name="cnatural" id="cnatural" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-2">
+                                <div class="form-group input-group-sm col-sm-2" id="condonsabor">
                                     <label class="form-label">Condon sabor</label>
                                     <input type="text" name="csabor" id="csabor" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                    <input type="hidden" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
-
+                                <input type="hidden" name="cfemenino" id="cfemenino" class="form-control form-control-sm" style="color:blue" disabled>
                                 <div class="form-group input-group-sm col-sm-2">
                                     <label class="form-label" id="llubricante">Lubricante</label>
                                     <input type="text" name="lubricante" id="lubricante" class="form-control form-control-sm" style="color:blue" disabled>
@@ -325,7 +324,11 @@ $PERSONA = $_SESSION['persona_id'];
         <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
         <script src="../../js/tabla.js"></script>
 
-
+        <script>
+            $(document).ready(function() {
+                $('#condonsabor').hide();
+            });
+        </script>
     </body>
 
 </html>

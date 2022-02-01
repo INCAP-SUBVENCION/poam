@@ -272,7 +272,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </select>
                                 </div>
                                 <input type="hidden" name="creado" id="creado" value="ES01">
-                                <div class="form-group input-group-sm col-sm-2">
+                                <div class="form-group input-group-sm col-sm-3">
                                     <br>
                                     <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
                                         <em class="bi bi-check-square-fill"></em> Guardar</button>

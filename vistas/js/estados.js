@@ -300,3 +300,71 @@ function modalEstadoPoa(id) {
         location.reload();
     })
 }
+
+
+function modalRecalendarizacionPom(id, usuario, estado) {
+
+    var accion = "consultaPoM";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            id: id
+        },
+        success: function (datos) {
+
+            var pom = JSON.parse(datos);
+            document.getElementById("aid").value = id;
+            document.getElementById("ames").value = pom.mes;
+            document.getElementById("amunicipio").value = pom.municipio;
+            document.getElementById("alugar").value = pom.lugar;
+            document.getElementById("afecha").value = pom.fecha;
+            document.getElementById("ainicia").value = pom.horaInicio;
+            document.getElementById("afinaliza").value = pom.horaFin;
+            document.getElementById("ausuario").value = usuario;
+            document.getElementById("aestado").value = estado;
+            document.getElementById("anuevo").value = pom.pNuevo;
+            document.getElementById("arecurrente").value = pom.pRecurrente;
+            document.getElementById("atotal").value = pom.total;
+            document.getElementById("asupervisor").value = pom.supervisor;
+        } 
+    });
+    $("#modalRecalendarizacionPom").modal("show");
+}
+
+function recalendarizacionPom() {
+    var usuario = document.getElementById('re_usuario').value;
+    var poa = document.getElementById('re_id').value;
+    var estado = document.getElementById('re_estado').value;
+    var descripcion = document.getElementById('re_descripcion').value;
+
+    var accion = "cambiarEstadoPom";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            usuario: usuario,
+            poa: poa,
+            estado: estado,
+            descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡SOLICITUD ENVIADA!...');
+                document.getElementById('re_usuario').value = "";
+                document.getElementById('re_id').value = "";
+                document.getElementById('re_estado').value = "";
+                document.getElementById('re_descripcion').value = "";
+                $("#modalRecalendarizacionPom").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo enviar");
+            }
+        }
+    });
+}

@@ -62,6 +62,12 @@
                             echo '<p class="text-success"> Aprobado</p>';
                         } elseif ($periodo_4['estado'] == 'ES05') {
                             echo '<p class = "text-danger"> En correccion</p>';
+                        } elseif ($periodo_4['estado'] == 'ES05') {
+                            echo '<p class = "text-danger"> En correccion</p>';
+                        } elseif ($periodo_4['estado'] == 'RE01') {
+                            echo '<p class = "text-info"> Solicitud de Recalendarizacion</p>';
+                        } elseif ($periodo_4['estado'] == 'RE02') {
+                            echo '<p class = "text-danger text-info"> Recalendarizado Aceptada</p>';
                         } ?>
                     </th>
                     <td>
@@ -96,6 +102,12 @@
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
+                                <?php if ($periodo_3['estado'] == 'RE01') { ?>
+                                    <li>
+                                    <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
+                                        <em class="bi bi-shuffle"></em> Aceptar Recalendarización </button>
+                                </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </td>
@@ -127,7 +139,7 @@
 </table>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
-        <form action="../../php/excel/generarExcelPomRP.php" method="POST">
+        <form action="../../php/excel/generarExcelPom.php" method="POST">
             <input type="hidden" name="periodo" id="periodo" value="4">
             <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
             <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>

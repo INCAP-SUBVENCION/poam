@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body bg-light-info">
             <div class="text-center">
-                <h5 style="color:crimson">.:. Anular POM .:.</h5>
+                <h5 style="color:crimson">.:. Anular actividad .:.</h5>
             <p>Esta accion no se puede deshacer</p>
             </div>
                 <div class="row">
@@ -41,7 +41,7 @@
                     <input type="hidden" name="aPom" id="aPom">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button class="btn btn-sm btn-danger" onclick="anularPOM()"> <em class="bi bi-trash2-fill"></em> Anular POM</button>
+                        <button class="btn btn-sm btn-danger" onclick="anularPOM()"> <em class="bi bi-trash2-fill"></em> Anular actividad</button>
                     </div>
 
                 </div>

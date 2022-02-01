@@ -73,7 +73,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             <?php }
             ?>
             <div class="row" id="nuevoPom">
-
                 <div class="col-md-12">
                     <div class="row">
 
@@ -110,7 +109,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             </select>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-md-12">
                     <table class="table table-bordered" aria-describedby="">
@@ -320,11 +318,13 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </div>
 
         </section>
+        <?php include '../modal/recalendarizacionPom.php'; ?>
         <?php include '../modal/estadosPom.php'; ?>
         <?php include '../modal/cambiarEstadoPom.php'; ?>
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
         <?php include '../modal/editarPom.php'; ?>
         <?php include '../modal/anularPom.php'; ?>
+       
 
         <div class="footer clearfix mb-10 text-muted">
             <div class="float-start">

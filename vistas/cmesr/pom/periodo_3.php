@@ -61,7 +61,7 @@
                     <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
                         <?php if ($periodo_3['estado'] == 'ES01') {
-                            echo '<p class="text-primary"> Creado</p>';
+                            echo '<p class="text-primary text-center"> Creado</p>';
                         } elseif ($periodo_3['estado'] == 'ES02') {
                             echo '<p class="text-warning"> En revision </p>';
                         } elseif ($periodo_3['estado'] == 'ES03') {
@@ -70,9 +70,14 @@
                             echo '<p class = "text-success"> Aprobado por RP</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
                             echo '<p class = "text-danger"> Pendiente de correccion</p>';
-                        } elseif ($periodo_3['estado'] == 'ES07') {
+                        } elseif ($periodo_3['estado'] == 'ES06') {
                             echo '<p class = "text-danger"> Cancelado </p>';
-                        } ?>
+                        } elseif ($periodo_3['estado'] == 'RE01') {
+                            echo '<p class = "text-info text-center"> Recalendarizacion solicitada </p>';
+                        } elseif ($periodo_3['estado'] == 'RE02') {
+                            echo '<p class = "text-success text-center"> Solcitud aceptada </p>';
+                        }
+                        ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -130,6 +135,14 @@
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
+                                <?php
+                                if ($periodo_3['estado'] == 'ES04') {
+                                ?>
+                                <li>
+                                    <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'RE01')">
+                                        <em class="bi bi-shuffle"></em> Recalendarización </button>
+                                </li>
+                                <?php }?>
                             </ul>
                         </div>
                     </td>

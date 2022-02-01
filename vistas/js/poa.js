@@ -72,7 +72,7 @@ function calcularProyeccionPOA() {
     var procentaje  = parseFloat(document.getElementById('reactivo').value);
 
     var accion = "calcularProyeccionPOA";
-
+ 
     $.ajax({
         type: "POST",
         url: "../../php/poa.php",
@@ -86,7 +86,8 @@ function calcularProyeccionPOA() {
             var cnatural    = parseFloat(resultado[0]);
             var csabor      = parseFloat(resultado[1]);
             var cfemenino   = parseFloat(resultado[2]);
-            var lubricante  = parseFloat(resultado[3]);
+            if(subreceptor == '2'){ lubricante = total;
+            } else { var lubricante  = parseFloat(resultado[3]); }
             var pruebaVIH   = parseFloat(resultado[4]);
             var autoPrueba  = parseFloat(resultado[5]);
             var reactivo = total * procentaje;
