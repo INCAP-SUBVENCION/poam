@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body bg-light-primary">
                 <div class="row">
-                <h5 class="text-center">Correcciones al POM</h5>
+                <h5 class="text-center">Correcciones a la actvidad</h5>
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text" style="font-size: 12px;">Mes:</span>

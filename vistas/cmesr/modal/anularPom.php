@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body bg-light-info">
             <div class="text-center">
-                <h5 style="color:crimson">.:. Anular POM .:.</h5>
+                <h5 style="color:crimson">.:. Anular actividad .:.</h5>
             <p>Esta accion no se puede deshacer</p>
             </div>
                 <div class="row">

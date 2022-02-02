@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header" style="background-color:dodgerblue;">
-                <h5 class="modal-title">Editar POM</h5>
+                <h5 class="modal-title">Editar Actividad</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -139,7 +139,7 @@
                                     <div class="form-group input-group-sm col-sm-5">
                                         <br>
                                         <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea editar el POM?')">
-                                            <em class="bi bi-arrow-clockwise"></em> Actualizar</button>
+                                            <em class="bi bi-arrow-clockwise"></em> Actualizar actividad</button>
                                         <button type="reset" class="btn btn-sm btn-outline-danger">
                                             <em class="bi bi-x-circle"></em> Cancelar</button>
                                         <button type="button" class="btn btn-sm btn-outline-info" data-bs-dismiss="modal">

@@ -10,7 +10,7 @@
             <th scope>Inicio</th>
             <th scope>Fin</th>
             <th scope>Codigo</th>
-            <th scope>Subreceptor</th>
+            <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
             <th scope>Total</th>
@@ -97,7 +97,7 @@
                                         <li>
                                             <div class="d-grid gap-2">
                                                 <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
-                                                    <em class="bi bi-arrow-right-circle"></em> Correcciones al POM</button>
+                                                    <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
                                             </div>
                                         </li>
                                         <li>
@@ -111,7 +111,7 @@
                                     ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
-                                            <em class="bi bi-trash2-fill"></em> Anular POM </button>
+                                            <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
                                 <?php
                                 }

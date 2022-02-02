@@ -110,7 +110,7 @@
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
-                                            <em class="bi bi-trash2-fill"></em> Anular POM </button>
+                                            <em class="bi bi-trash2-fill"></em> Anular Actividad </button>
                                     </li>
                                 <?php
                                 }
