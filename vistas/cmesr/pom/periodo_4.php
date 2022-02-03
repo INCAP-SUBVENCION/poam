@@ -84,39 +84,66 @@
                                     <button class="dropdown-item" onclick="modalEstadoPom(<?php echo $periodo_4['idPom']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
-                                <?php
-                                if ($SUBRECEPTOR == '3') {
-                                    if ($periodo_4['estado'] == 'ES01') {
-                                ?>
-                                        <li>
-                                            <div class="d-grid gap-2">
-                                                <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                    <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-grid gap-2">
-                                                <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
-                                                    <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
-                                                <em class="bi bi-pencil-square"></em> Editar </button>
-                                        </li>
 
-                                    <?php
-                                    }
-                                } else {
-                                    ?>
+                                <!----- HSH ---->
+                                <?php
+                                if ($periodo_4['estado'] == 'ES01' && ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7')) { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                            <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-pencil-square"></em> Editar </button>
+                                    </li>
+                                <?php } ?>
+
+                                <!---- OMES Y OTRANS  ---->
+                                <?php if ($periodo_4['estado'] == 'ES01' && ($SUBRECEPTOR == '2' || $SUBRECEPTOR == '5')) { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-pencil-square"></em> Editar </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                            <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
+                                    </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
-                                <?php
-                                }
-                                ?>
-                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>">
+                                <?php } ?>
+
+                                <!---- PPL  ---->
+                                <?php if ($periodo_4['estado'] == 'ES01' && $SUBRECEPTOR == '4') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-pencil-square"></em> Editar </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-trash2-fill"></em> Anular actividad </button>
+                                    </li>
+                                <?php } if($periodo_4['estado'] == 'ES04'){ ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>,'RE01')">
+                                            <em class="bi bi-shuffle"></em> Recalendarización </button>
+                                    </li>
+                                    <?php }?>
+                                <li>
+                                    <a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
                             </ul>

@@ -34,7 +34,7 @@
                             <input type="text" class="form-control" id="atotal" style="font-size: 12px; color:red; font-weight: bolder;" disabled>
                         </div>
                     </div>
-                    <h6 class="text-center text-info">Lugar y fecha actual de POM </h6>
+                    <h6 class="text-center text-info">Lugar y fecha actual de la actividad </h6>
                     <div class="col-sm-3">
                         <label for="">Fecha: </label>
                         <input type="date" class="form-control" id="afecha" style="font-size: 12px; color:darkblue; font-weight: bolder;" disabled>
@@ -51,7 +51,12 @@
                         <label for="">Fin: </label>
                         <input type="time" class="form-control" id="afinaliza" style="font-size: 12px; color:darkblue; font-weight: bolder;" disabled>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-2">
+                        <label for="">Supervisado: </label>
+                        <input type="text" class="form-control" id="_supervisado" style="font-size: 12px; color:darkblue; font-weight: bolder;" disabled>
+                        <input type="hidden" id="asupervisado">
+                    </div>
+                    <div class="col-sm-6">
                         <label for="">Supervisor: </label>
                         <input type="text" class="form-control" id="asupervisor" style="font-size: 12px; color:darkblue; font-weight: bolder;" disabled>
                     </div>
@@ -60,34 +65,41 @@
 
                     <div class="col-sm-3">
                         <label for="">Fecha:</label>
-                        <input type="date" class="form-control form-control-sm" name="n_fecha" id="n_fecha" style="font-size: 12px;">
+                        <input type="date" class="form-control form-control-sm" id="nfecha" style="font-size: 12px;">
                     </div>
                     <div class="col-sm-9">
                         <label for="">Lugar: </label>
-                        <input type="text" class="form-control form-control-sm" name="n_lugar" id="n_lugar" style="font-size: 12px;">
+                        <input type="text" class="form-control form-control-sm" id="nlugar" style="font-size: 12px;">
                     </div>
                     <div class="col-sm-2">
                         <label for="">Inicio: </label>
-                        <input type="time" class="form-control form-control-sm" name="n_inicio" id="n_inicio">
+                        <input type="time" class="form-control form-control-sm" id="ninicio">
                     </div>
                     <div class="col-sm-2">
                         <label for="">Fin:</label>
-                        <input type="time" class="form-control form-control-sm" name="n_inicio" id="n_inicio">
+                        <input type="time" class="form-control form-control-sm" id="nfin">
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-2">
+                        <label class="form-label" style="font-size: 10px;">Supervisado</label>
+                        <select id="nsupervisado" class="form-select" style="font-size: 12px;">
+                            <option value="0">NO</option>
+                            <option value="1">SI</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
                         <label for="">Supervisor: </label>
-                        <input type="text" class="form-control" id="n_supervisor" style="font-size: 12px; color:darkblue; font-weight: bolder;">
+                        <input type="text" class="form-control" id="nsupervisor" style="font-size: 12px; color:darkblue; font-weight: bolder;">
                     </div>
 
                     <div class="form-group">
                         <label>MOTIVO: </label>
-                        <textarea name="re_descripcion" id="descripcion" cols="2" rows="2" class="form-control"></textarea>
+                        <textarea id="descripcion" cols="2" rows="2" class="form-control"></textarea>
                     </div>
                 </div>
 
 
                 <!-- hidden -->
-                <input type="hidden" id="aid">
+                <input type="hidden" id="aid"> 
                 <input type="hidden" id="ausuario">
                 <input type="hidden" id="aestado">
 

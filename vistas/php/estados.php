@@ -9,7 +9,6 @@ if (isset($_POST['accion'])) {
 if (isset($_GET['accion'])) {
     $accion = $_GET['accion'];
 }
-
 /**
  * Metodo que permite consultar los datos del POA para cambiar el estado
  */
@@ -42,7 +41,6 @@ if ($accion == "cambiarEstadoPoa") {
         echo "Error";
     }
 }
-
 /**
  * Metodo que permite consultar los datos del POM para cambiar el estado
  */
@@ -50,7 +48,7 @@ if ($accion == "consultaPoM") {
 
     $pom_id = $_POST['id'];
     $sql = "SELECT DISTINCT t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, t1.pRecurrente, 
-    truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total, t1.supervisor
+    truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total, t1.supervisado, t1.supervisor
     FROM pom t1 LEFT JOIN catalogo t2 ON t2.codigo = t1.mes LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio WHERE t1.idPom = $pom_id";
 
     $consulta = $enlace->query($sql);
@@ -60,7 +58,6 @@ if ($accion == "consultaPoM") {
     }
     echo json_encode($response);
 }
-
 /**
  * Metodo que permite cambiar el estado de POM
  */
@@ -77,10 +74,11 @@ if ($accion == "cambiarEstadoPom") {
         echo "Error";
     }
 }
-
-
+/**
+ * Metodo que permite cambiar el estado de la actividad
+ */
 if ($accion == "estadoPom") {
-    
+
     $id = $_POST['id'];
 
     $sql = "SELECT DISTINCT t1.estado, t4.nombre as estados, t1.fecha, t3.nombre, t3.apellido, t5.nombre as roles, t1.descripcion FROM estado t1
@@ -91,13 +89,13 @@ if ($accion == "estadoPom") {
     WHERE t1.pom_id = $id ORDER BY t1.fecha DESC";
 
     $consulta = $enlace->query($sql);
-  
+
     while ($pom = $consulta->fetch_assoc()) {
         $estado  = $pom['estado'];
         $estados = $pom['estados'];
         $fecha   = $pom['fecha'];
         $nombre  = $pom['nombre'];
-        $apellido= $pom['apellido'];
+        $apellido = $pom['apellido'];
         $descripcion = $pom['descripcion'];
         $response[] = array(
             "estado" => $estado,
@@ -110,7 +108,9 @@ if ($accion == "estadoPom") {
     }
     echo json_encode($response);
 }
-
+/**
+ * Metodo que permite cabiar el estado de las actividades del POM
+ */
 if ($accion == "cambiarTodoEstadoPom") {
     $subreceptor = $_POST['subreceptor'];
     $periodo = $_POST['periodo'];
@@ -125,7 +125,9 @@ if ($accion == "cambiarTodoEstadoPom") {
         echo "Error";
     }
 }
-
+/**
+ * Metodo que permite cambiar todo los estados del POA
+ */
 if ($accion == "cambiarTodoEstadoPoa") {
     $subreceptor = $_POST['subreceptor'];
     $periodo = $_POST['periodo'];
@@ -140,9 +142,11 @@ if ($accion == "cambiarTodoEstadoPoa") {
         echo "Error";
     }
 }
-
+/**
+ * Metodo que permite cambiar el estado del POA
+ */
 if ($accion == "estadoPoa") {
-    
+
     $id = $_POST['id'];
 
     $sql = "SELECT DISTINCT t1.estado, t4.nombre as estados, t1.fecha, t3.nombre, t3.apellido, t5.nombre as roles, t1.descripcion FROM estado t1
@@ -153,13 +157,13 @@ if ($accion == "estadoPoa") {
     WHERE t1.poa_id = $id ORDER BY t1.fecha DESC";
 
     $consulta = $enlace->query($sql);
-  
+
     while ($poa = $consulta->fetch_assoc()) {
         $estado  = $poa['estado'];
         $estados = $poa['estados'];
         $fecha   = $poa['fecha'];
         $nombre  = $poa['nombre'];
-        $apellido= $poa['apellido'];
+        $apellido = $poa['apellido'];
         $descripcion = $poa['descripcion'];
         $response[] = array(
             "estado" => $estado,
@@ -169,6 +173,54 @@ if ($accion == "estadoPoa") {
             "apellido" => $apellido,
             "descripcion" => $descripcion
         );
+    }
+    echo json_encode($response);
+}
+/**
+ * Metodo que permite cambiar la fecha de la actividad 
+ */
+if ($accion == "recalendarizacionPom") {
+    $usuario    = $_POST['usuario'];
+    $pom        = $_POST['pom'];
+    $estado     = $_POST['estado'];
+    $afecha     = $_POST['afecha'];
+    $alugar     = $_POST['alugar'];
+    $ainicia    = $_POST['ainicia'];
+    $afinaliza  = $_POST['afinaliza'];
+    $asupervisado = $_POST['asupervisado'];
+    $asupervisor = $_POST['asupervisor'];
+    $nfecha     = $_POST['nfecha'];
+    $nlugar     = $_POST['nlugar'];
+    $ninicio    = $_POST['ninicio'];
+    $nfin       = $_POST['nfin'];
+    $nsupervisado = $_POST['nsupervisado'];
+    $nsupervisor = $_POST['nsupervisor'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($enlace->query("CALL reprogramacion($pom, $usuario, '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, '$asupervisor', '$nfecha', '$ninicio', '$nfin', '$nlugar', $nsupervisado, '$nsupervisor', '$estado', '$descripcion')") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+/**
+ * Metodo que permite consultar los datos de la actividad para recalendarizar
+ */
+if ($accion == "consultaCambio") {
+
+    $pom_id = $_POST['id'];
+    $sql = "SELECT t2.periodo, t3.nombre as mess, t4.nombre as municipios,
+    t1.fecha as fechaa, t1.lugar as lugara, t1.inicio as inicioa, t1.fin as fina, t1.supervisado as supervisadoa, t1.supervisor as supervisora,  
+    t2.fecha as fechan, t2.lugar as lugarn, t2.horaInicio as inicion, t2.horaFin as finn, t2.supervisado as supervisadon, t2.supervisor as supervisorn  
+    FROM historial t1 
+    LEFT JOIN pom t2 ON t1.pom_id = t2.idPom 
+    LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
+    LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
+    WHERE t2.idPom = $pom_id";
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($poa = $consulta->fetch_assoc()) {
+        $response = $poa;
     }
     echo json_encode($response);
 }

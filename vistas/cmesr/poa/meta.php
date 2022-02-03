@@ -33,7 +33,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:deepskyblue;">
+        <nav class="navbar navbar-dark" style="background-color:darkorange;">
             <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
             <h2 class="text-white"> METAS</h2>
             <?php
@@ -78,7 +78,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 <input type="hidden" id="subreceptor" name="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
                 <input type="hidden" name="cobertura" id="cobertura">
                 <div class="card border-success">
-                    <div class="text-white text-center" style="background-color:navy;">RESUMEN DE METAS</div>
+                    <div class="text-white text-center" style="background-color:darkorange;">RESUMEN DE METAS</div>
                     <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                         <div class="row">
                             <div class="form-group input-group-sm col-sm-1">

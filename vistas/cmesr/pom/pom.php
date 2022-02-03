@@ -35,7 +35,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:orange;">
+        <nav class="navbar navbar-dark" style="background-color:deepskyblue;">
             <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php

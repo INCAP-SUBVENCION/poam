@@ -4,7 +4,7 @@ header("Content-Type: text/html;charset=utf-8");
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
     header('Location: salir.php');
-} 
+}
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
@@ -50,7 +50,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <h3>BIENVENIDO AL SISTEMA POA & POM</h3>
                             <p class="text-subtitle text-muted">Pagina principal</p>
                         </div>
-
                     </div>
                 </div>
                 <section class="section">
@@ -64,7 +63,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <div class="card-body">
                                         <h6 class="card-title">Plan Operativo Mensual</h6>
                                         <div class="d-grid gap-2">
-                                            <a href="pom/pom.php" class="btn btn-sm btn-warning btn-lg"> POM</a>
+                                            <a href="pom/pom.php" class="btn btn-sm btn-info btn-lg"> POM</a>
                                         </div>
                                     </div>
                                 </div>
@@ -94,13 +93,12 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <div class="card-body">
                                         <h6 class="card-title">Metas</h6>
                                         <div class="d-grid gap-2">
-                                            <a href="poa/meta.php" class="btn btn-sm btn-info btn-lg"> METAS</a>
+                                            <a href="poa/meta.php" class="btn btn-sm btn-warning btn-lg"> METAS</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
             </div>
             </section>
