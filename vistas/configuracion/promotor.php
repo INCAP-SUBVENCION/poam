@@ -5,8 +5,8 @@ session_start();
 if (!isset($_SESSION['idUsuario'])) {
     header('Location: ../error.php');
 }
-$ID = $_SESSION['idUsuario'];
-$ROL = $_SESSION['rol'];
+    $ID = $_SESSION['idUsuario'];
+    $ROL = $_SESSION['rol'];
 if ($ROL != 'R001') {
     header('Location: salir.php');
 }
@@ -19,13 +19,13 @@ if ($ROL != 'R001') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promotor</title>
-
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../assets/css/multi-select/multi-select.css">
+    <link rel="stylesheet" href="../../assets/vendors/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
     <style>
         body {
@@ -36,7 +36,6 @@ if ($ROL != 'R001') {
 </head>
 
 <body>
-
     <div id="app">
         <div id="main">
             <header class="mb-1">
@@ -68,7 +67,7 @@ if ($ROL != 'R001') {
                                     <div class="text-white text-center" style="background-color:navy;">REGISTRO DE PROMOTORES</div>
                                     <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                         <div class="row">
-                                        <input type="hidden" name="rol" id="rol" value="R007">
+                                            <input type="hidden" name="rol" id="rol" value="R007">
                                             <div class="form-group input-group-sm col-sm-3">
                                                 <label class="form-label">Primer nombre:</label>
                                                 <input type="text" name="pnombre" id="pnombre" class="form-control form-control-sm" style="font-size: 12px;" required>
@@ -98,16 +97,15 @@ if ($ROL != 'R001') {
                                                 <select name="subreceptor" id="subreceptor" class="form-control" onchange="obtenerCobertura();" style="font-size: 12px;" required>
                                                     <option value="">Seleccionar...</option>
                                                     <?php
-                                                    $csub ='SELECT *FROM subreceptor';
+                                                    $csub = 'SELECT *FROM subreceptor';
                                                     $rsub = $enlace->query($csub);
-                                                    while ($sub = $rsub->fetch_assoc() ) { ?>
+                                                    while ($sub = $rsub->fetch_assoc()) { ?>
                                                         <option value="<?php echo $sub['idSubreceptor']; ?>"><?php echo $sub['nombre']; ?></option>
                                                     <?php }
                                                     $rsub->close();
                                                     ?>
                                                 </select>
                                             </div>
-
                                             <div class="form-group input-group-sm col-sm-3">
                                                 <label class="form-label">Telefono</label>
                                                 <input type="text" name="telefono" id="telefono" class="form-control form-control-sm" style="font-size: 12px;" required>
@@ -120,9 +118,6 @@ if ($ROL != 'R001') {
                                                 <label class="form-label"># Dias </label>
                                                 <input type="number" min="0" name="dias" id="dias" class="form-control form-control-sm" placeholder="Dias laborales" title="Numero de dias laborales" required>
                                             </div>
-                                           
-                                            
-
                                             <div class="form-group input-group-sm col-sm-4">
                                                 <br>
                                                 <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-save2-fill"></i> Guardar</button>
@@ -145,15 +140,7 @@ if ($ROL != 'R001') {
                             </div>
                         </div>
                     </form>
-
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
-                            <input class="form-control" type="text" id="buscador" placeholder="Buscar promotor" />
-                        </div>
-                    </div>
-
-                    <table class="table table-hover table-bordered" id="listadoPromotor">
+                    <table class="table table-hover" id="listadoPromotor">
                         <thead style="font-size: 12px;">
                             <th>#</th>
                             <th>Codigo</th>
@@ -172,7 +159,7 @@ if ($ROL != 'R001') {
                             t2.telefono, t2.correo, t3.estado, t3.dias FROM usuario t1
                             LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id
                             RIGHT JOIN promotor t3 ON t3.persona_id = t2.idPersona
-                            LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id";
+                            LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id ORDER BY subreceptor";
                             $consultaPromotor = $enlace->query($sqlPromotor);
                             while ($promotor = $consultaPromotor->fetch_assoc()) { ?>
                                 <tr>
@@ -191,23 +178,28 @@ if ($ROL != 'R001') {
                                     </td>
                                     <td><?php echo $promotor['dias']; ?></td>
                                     <td>
-                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $promotor[
-                                            'idSubreceptor'
-                                        ]; ?>" style="font-size: 12px;">
+                                        <a class="btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarSub<?php echo $promotor['idSubreceptor']; ?>" style="font-size: 12px;">
                                             <i class="bi bi-pencil-fill"></i></a>
                                     </td>
                                 </tr>
-
                             <?php }
                             $consultaPromotor->close();
                             ?>
                         </tbody>
-
+                        <tfoot>
+                            <th>#</th>
+                            <th>Codigo</th>
+                            <th>Subreceptor</th>
+                            <th>Nombre completo</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>Estado</th>
+                            <th>Horas laborales</th>
+                            <th>Opcion</th>
+                        </tfoot>
                     </table>
-
             </div>
             </section>
-
         </div>
     </div>
     </div>
@@ -218,23 +210,30 @@ if ($ROL != 'R001') {
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/js/multi-select/jquery.multi-select.js" charset="utf-8"></script>
+    <script src="../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
     <script src="../js/promotor.js"></script>
     <script src="../js/utilidad.js" charset="utf-8"></script>
 
     <?php include 'menu.php'; ?>
+
     <script type="text/javascript">
-        jQuery("#buscador").keyup(function() {
-            if (jQuery(this).val() != "") {
-                jQuery("#listadoPromotor tbody>tr").hide();
-                jQuery("#listadoPromotor td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-            } else {
-                jQuery("#listadoPromotor tbody>tr").show();
-            }
-        });
-        jQuery.extend(jQuery.expr[":"], {
-            "contiene-palabra": function(elem, i, match, array) {
-                return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-            }
+        $(document).ready(function() {
+            $('#listadoPromotor').DataTable({
+                initComplete: function() {
+                    this.api().columns([ 2, 3]).every(function() {
+                        var column = this;
+                        var select = $('<select><option value="">Filtar</option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function() {
+                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                                column.search(val ? '^' + val + '$' : '', true, false).draw();
+                            });
+                        column.data().unique().sort().each(function(d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
         });
     </script>
 </body>

@@ -66,10 +66,10 @@ if ($ROL != 'R001') {
                                 <div class="text-white text-center" style="background-color:navy;">REGISTRO DE USUARIOS</div>
                                 <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                                     <div class="row">
-                                    <div class="form-group input-group-sm col-sm-2">
+                                        <div class="form-group input-group-sm col-sm-2">
                                             <label class="form-label">Codigo:</label>
                                             <input type="text" name="codigo" id="codigo" class="form-control form-control-sm" style="font-size: 12px;" required>
-                                    </div>
+                                        </div>
                                         <div class="form-group input-group-sm col-sm-2">
                                             <label class="form-label">Primer nombre:</label>
                                             <input type="text" name="pnombre" id="pnombre" class="form-control form-control-sm" style="font-size: 12px;" required>
@@ -127,21 +127,18 @@ if ($ROL != 'R001') {
                                         </div>
                                         <div class="form-group input-group-sm col-sm-3">
                                             <br>
-                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-plus-circle-fill"></i> Guardar</button>
-                            <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-circle-fill"></i> Cancelar</button>
-                        </div>
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-plus-circle-fill"></i> Guardar</button>
+                                                <button type="reset" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-circle-fill"></i> Cancelar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </form>
 
-
-
-                    <table class="table table-hover table-bordered" id="listadoUsuario" aria-describedby="">
+                    <table class="table table-hover" id="listadoUsuario" aria-describedby="">
                         <thead class="text-center" style="font-size: 12px;">
                             <th scope="">#</th>
                             <th scope="">Nombres</th>
@@ -153,17 +150,6 @@ if ($ROL != 'R001') {
                             <th scope="">Subreceptor</th>
                             <th scope="">Estado</th>
                         </thead>
-                        <tfoot>
-                        <th scope="">#</th>
-                            <th scope="">Nombres</th>
-                            <th scope="">Apellidos</th>
-                            <th scope="">Usuario</th>
-                            <th scope="">Telefono</th>
-                            <th scope="">Correo</th>
-                            <th scope="">Rol</th>
-                            <th scope="">Subreceptor</th>
-                            <th scope="">Estado</th>
-                        </tfoot>
                         <tbody class="text-center" style="font-size: 12px;">
                             <?php
                             $cont = 1;
@@ -194,6 +180,17 @@ if ($ROL != 'R001') {
                             }
                             ?>
                         </tbody>
+                        <tfoot>
+                            <th scope="">#</th>
+                            <th scope="">Nombres</th>
+                            <th scope="">Apellidos</th>
+                            <th scope="">Usuario</th>
+                            <th scope="">Telefono</th>
+                            <th scope="">Correo</th>
+                            <th scope="">Rol</th>
+                            <th scope="">Subreceptor</th>
+                            <th scope="">Estado</th>
+                        </tfoot>
                     </table>
                 </section>
             </div>
@@ -210,28 +207,28 @@ if ($ROL != 'R001') {
     <?php include 'menu.php'; ?>
 
     <script type="text/javascript">
-                $(document).ready(function() {
-        /**
-         * Metodo que permite filtrar pom del periodo 3
-         */
-        $('#listadoUsuario').DataTable( {
-        initComplete: function () {
-            this.api().columns([6,7]).every( function () {
-                var column = this;
-                var select = $('<select><option value="">Filtar</option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                        column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                    } );
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-            }
-            } );
+        $(document).ready(function() {
+            /**
+             * Metodo que permite filtrar pom del periodo 3
+             */
+            $('#listadoUsuario').DataTable({
+                initComplete: function() {
+                    this.api().columns([6, 7]).every(function() {
+                        var column = this;
+                        var select = $('<select><option value="">Filtar</option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function() {
+                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                                column.search(val ? '^' + val + '$' : '', true, false).draw();
+                            });
+                        column.data().unique().sort().each(function(d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
 
-        } );
+        });
     </script>
 </body>
 

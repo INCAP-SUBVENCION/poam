@@ -161,15 +161,6 @@ if ($ROL != 'R001') {
                                     <th>% Reactividad</th>
                                     <th>Opciones</th>
                                 </thead>
-                                <tfoot>
-                                    <th>#</th>
-                                    <th>Subreceptor</th>
-                                    <th>Departamento</th>
-                                    <th>Municipio</th>
-                                    <th># Nuevos</th>
-                                    <th># Recurrentes</th>
-                                    <th>% Reactividad</th>
-                                </tfoot>
                                 <tbody class="text-center" style="font-size:12px;">
                                     <?php
                                     $contador = 1;
@@ -178,7 +169,7 @@ if ($ROL != 'R001') {
                                     FROM cobertura t1
                                     LEFT JOIN catalogo t2 ON t2.codigo = t1.departamento
                                     LEFT JOIN catalogo t3 ON t3.codigo = t1.municipio
-                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id WHERE t1.periodo=3";
+                                    LEFT JOIN subreceptor t4 ON t4.idSubreceptor = t1.subreceptor_id WHERE t1.periodo = 3 ORDER BY subreceptor";
                                     $resultadoC = $enlace->query($sqlC);
                                     while ($cobertura = $resultadoC->fetch_assoc()) {
                                     ?>
@@ -199,6 +190,15 @@ if ($ROL != 'R001') {
                                     $resultadoC->close();
                                     ?>
                                 </tbody>
+                                <tfoot>
+                                    <th>#</th>
+                                    <th>Subreceptor</th>
+                                    <th>Departamento</th>
+                                    <th>Municipio</th>
+                                    <th># Nuevos</th>
+                                    <th># Recurrentes</th>
+                                    <th>% Reactividad</th>
+                                </tfoot>
                             </table>
                         </div>
                         <div class="tab-pane fade" id="periodo_4" role="tabpanel" aria-labelledby="periodo-4-tab">
@@ -398,6 +398,7 @@ if ($ROL != 'R001') {
                     });
                 }
             });
+            
             $('#listadoCobertura_p4').DataTable({
                 initComplete: function() {
                     this.api().columns([1, 2, 3]).every(function() {
