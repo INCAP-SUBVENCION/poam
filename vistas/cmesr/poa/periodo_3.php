@@ -1,5 +1,5 @@
 <!--- POM OMES---->
-<div id="omes">
+<div id="omes3">
 <table class="table table-hover table-bordered" id="poa_omes_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -11,7 +11,7 @@
         <th scope="">Condon natural</th>
         <th scope="">Condon sabor</th>
         <th scope="">Condon femenino</th>
-        <th scope="">Lubricantes</th>
+        <th scope="">Tubo Lubricantes</th>
         <th scope="">Auto prueba VIH</th>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
@@ -30,7 +30,7 @@
 	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 3";
         if ($res = $enlace->query($consult)) {
             while ($periodo_3 = $res->fetch_assoc()) {
-        ?>
+        ?> 
                 <tr>
                     <td><?php echo $cont++; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
@@ -95,21 +95,21 @@
         <th scope="">#</th>
         <th scope="">Mes</th>
         <th scope="">Municipio</th>
-        <td class="text-center"><strong id="tnuevos3">0</strong></td>
-        <td class="text-center"><strong id="trecurrentes3">0</strong></td>
-        <td class="text-center"><strong id="total3">0</strong></td>
-        <td class="text-center"><strong id="tnatural3">0</strong></td>
-        <td class="text-center"><strong id="tsabor3">0</strong></td>
-        <td class="text-center"><strong id="tfemenino3">0</strong></td>
-        <td class="text-center"><strong id="tlubricantes3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
+        <td class="text-center"><strong id="omesnuevos3">0</strong></td>
+        <td class="text-center"><strong id="omesrecurrentes3">0</strong></td>
+        <td class="text-center"><strong id="omestotal3">0</strong></td>
+        <td class="text-center"><strong id="omesnatural3">0</strong></td>
+        <td class="text-center"><strong id="omessabor3">0</strong></td>
+        <td class="text-center"><strong id="omesfemenino3">0</strong></td>
+        <td class="text-center"><strong id="omeslubricantes3">0</strong></td>
+        <td class="text-center"><strong id="omesautoprueba3">0</strong></td>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
     </tfoot>
 </table>
 </div>
 <!--- POM HSH ---->
-<div id="hsh">
+<div id="hsh3">
 <table class="table table-hover table-bordered" id="poa_hsh_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -207,15 +207,15 @@
         <th scope="">#</th>
         <th scope="">Mes</th>
         <th scope="">Municipio</th>
-        <td class="text-center"><strong id="tnuevos3">0</strong></td>
-        <td class="text-center"><strong id="trecurrentes3">0</strong></td>
-        <td class="text-center"><strong id="total3">0</strong></td>
-        <td class="text-center"><strong id="tnatural3">0</strong></td>
-        <td class="text-center"><strong id="tlubricantes3">0</strong></td>
-        <td class="text-center"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
-        <td class="text-center"><strong id="treactivos3">0</strong></td>
-        <td class="text-center"><strong id="tsifilis3">0</strong></td>
+        <td class="text-center"><strong id="hshnuevos3">0</strong></td>
+        <td class="text-center"><strong id="hshrecurrentes3">0</strong></td>
+        <td class="text-center"><strong id="hshtotal3">0</strong></td>
+        <td class="text-center"><strong id="hshnatural3">0</strong></td>
+        <td class="text-center"><strong id="hshlubricantes3">0</strong></td>
+        <td class="text-center"><strong id="hshpruebavih3">0</strong></td>
+        <td class="text-center"><strong id="hshautoprueba3">0</strong></td>
+        <td class="text-center"><strong id="hshreactivos3">0</strong></td>
+        <td class="text-center"><strong id="hshsifilis3">0</strong></td>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
     </tfoot>
@@ -223,7 +223,7 @@
 </div>
 
 <!--- POM OTRANS ---->
-<div id="otrans">
+<div id="otrans3">
 <table class="table table-hover table-bordered" id="poa_otrans_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -323,16 +323,16 @@
         <th scope="">#</th>
         <th scope="">Mes</th>
         <th scope="">Municipio</th>
-        <td class="text-center"><strong id="tnuevos3">0</strong></td>
-        <td class="text-center"><strong id="trecurrentes3">0</strong></td>
-        <td class="text-center"><strong id="total3">0</strong></td>
-        <td class="text-center"><strong id="tnatural3">0</strong></td>
-        <td class="text-center"><strong id="tsabor3">0</strong></td>
-        <td class="text-center"><strong id="tlubricantes3">0</strong></td>
-        <td class="text-center"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
-        <td class="text-center"><strong id="treactivos3">0</strong></td>
-        <td class="text-center"><strong id="tsifilis3">0</strong></td>
+        <td class="text-center"><strong id="otransnuevos3">0</strong></td>
+        <td class="text-center"><strong id="otransrecurrentes3">0</strong></td>
+        <td class="text-center"><strong id="otranstotal3">0</strong></td>
+        <td class="text-center"><strong id="otransnatural3">0</strong></td>
+        <td class="text-center"><strong id="otranssabor3">0</strong></td>
+        <td class="text-center"><strong id="otranslubricantes3">0</strong></td>
+        <td class="text-center"><strong id="otranspruebavih3">0</strong></td>
+        <td class="text-center"><strong id="otransautoprueba3">0</strong></td>
+        <td class="text-center"><strong id="otransreactivos3">0</strong></td>
+        <td class="text-center"><strong id="otranssifilis3">0</strong></td>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
     </tfoot>

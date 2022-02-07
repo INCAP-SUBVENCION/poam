@@ -24,6 +24,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
     <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../../../assets/css/select2.min.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -161,7 +162,16 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-12">
                                         <label class="form-label">Lugar:</label>
-                                        <input type="text" name="lugar" id="lugar" class="form-control form-control-sm" style="font-size:12px;" required>
+                                        <select class="js-lugar form-control" id="lugar">
+                                            <option value=""></option>
+                                            <?php
+                                            $rlugar = $enlace->query("SELECT lugar FROM pom WHERE subreceptor_id = $SUBRECEPTOR GROUP BY lugar");
+                                            while ($lugar = $rlugar->fetch_assoc()) { ?>
+                                                <option value="<?php echo $lugar['lugar']; ?>"><?php echo $lugar['lugar']; ?></option>
+                                            <?php }
+                                            $rd->close();
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +334,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
         <?php include '../modal/editarPom.php'; ?>
         <?php include '../modal/anularPom.php'; ?>
-       
+
 
         <div class="footer clearfix mb-10 text-muted">
             <div class="float-start">
@@ -342,10 +352,18 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
         <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
+        <script src="../../../assets/js/select2.full.min.js"></script>
         <script src="../../js/tabla.js"></script>
 
         <script>
             $(document).ready(function() {
+                $(".js-lugar").select2({
+
+                    placeholder: "Buscar o escribir el lugar",
+                    allowClear: true,
+                    tags: true,
+                    newTag: true
+                });
                 var subreceptor = document.getElementById('subreceptor').value;
                 if (subreceptor == '2') {
                     $('#lsifilis').hide();
@@ -353,7 +371,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#reactivoOMES').hide();
                     $('#llubricante').hide();
                     $('#unidad').hide();
-                } else if(subreceptor == '3' || subreceptor == '6' || subreceptor == '7') {
+                } else if (subreceptor == '3' || subreceptor == '6' || subreceptor == '7') {
                     $('#nuevoPom').hide();
                 } else {
                     $('#tubo').hide();

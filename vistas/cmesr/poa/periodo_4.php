@@ -1,5 +1,5 @@
 <!--- POM OMES---->
-<div id="omes">
+<div id="omes4">
 <table class="table table-hover table-bordered" id="poa_omes_4" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -11,7 +11,7 @@
         <th scope="">Condon natural</th>
         <th scope="">Condon sabor</th>
         <th scope="">Condon femenino</th>
-        <th scope="">Lubricantes</th>
+        <th scope="">Tubo Lubricantes</th>
         <th scope="">Auto prueba VIH</th>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
@@ -30,7 +30,7 @@
 	    WHERE t1.subreceptor_id = $SUBRECEPTOR AND t1.periodo = 4";
         if ($res = $enlace->query($consult)) {
             while ($periodo_4 = $res->fetch_assoc()) {
-        ?>
+        ?> 
                 <tr>
                     <td><?php echo $cont++; ?></td>
                     <td><?php echo $periodo_4['mes']; ?></td>
@@ -78,7 +78,7 @@
                                         </div>
                                     </li>
 
-                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPoa']; ?>)">
+                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPoa']; ?>)">
                                         <em class="bi bi-pencil-square"></em> Editar </button>
 
                                 <?php } ?>
@@ -95,21 +95,21 @@
         <th scope="">#</th>
         <th scope="">Mes</th>
         <th scope="">Municipio</th>
-        <td class="text-center"><strong id="tnuevos4">0</strong></td>
-        <td class="text-center"><strong id="trecurrentes4">0</strong></td>
-        <td class="text-center"><strong id="total4">0</strong></td>
-        <td class="text-center"><strong id="tnatural4">0</strong></td>
-        <td class="text-center"><strong id="tsabor4">0</strong></td>
-        <td class="text-center"><strong id="tfemenino4">0</strong></td>
-        <td class="text-center"><strong id="tlubricantes4">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba4">0</strong></td>
+        <td class="text-center"><strong id="omesnuevos4">0</strong></td>
+        <td class="text-center"><strong id="omesrecurrentes4">0</strong></td>
+        <td class="text-center"><strong id="omestotal4">0</strong></td>
+        <td class="text-center"><strong id="omesnatural4">0</strong></td>
+        <td class="text-center"><strong id="omessabor4">0</strong></td>
+        <td class="text-center"><strong id="omesfemenino4">0</strong></td>
+        <td class="text-center"><strong id="omeslubricantes4">0</strong></td>
+        <td class="text-center"><strong id="omesautoprueba4">0</strong></td>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
     </tfoot>
 </table>
 </div>
 <!--- POM HSH ---->
-<div id="hsh">
+<div id="hsh4">
 <table class="table table-hover table-bordered" id="poa_hsh_4" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -190,7 +190,7 @@
                                         </div>
                                     </li>
 
-                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPoa']; ?>)">
+                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPoa']; ?>)">
                                         <em class="bi bi-pencil-square"></em> Editar </button>
 
                                 <?php } ?>
@@ -207,15 +207,15 @@
         <th scope="">#</th>
         <th scope="">Mes</th>
         <th scope="">Municipio</th>
-        <td class="text-center"><strong id="tnuevos3">0</strong></td>
-        <td class="text-center"><strong id="trecurrentes3">0</strong></td>
-        <td class="text-center"><strong id="total3">0</strong></td>
-        <td class="text-center"><strong id="tnatural3">0</strong></td>
-        <td class="text-center"><strong id="tlubricantes3">0</strong></td>
-        <td class="text-center"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
-        <td class="text-center"><strong id="treactivos3">0</strong></td>
-        <td class="text-center"><strong id="tsifilis3">0</strong></td>
+        <td class="text-center"><strong id="hshnuevos4">0</strong></td>
+        <td class="text-center"><strong id="hshrecurrentes4">0</strong></td>
+        <td class="text-center"><strong id="hshtotal4">0</strong></td>
+        <td class="text-center"><strong id="hshnatural4">0</strong></td>
+        <td class="text-center"><strong id="hshlubricantes4">0</strong></td>
+        <td class="text-center"><strong id="hshpruebavih4">0</strong></td>
+        <td class="text-center"><strong id="hshautoprueba4">0</strong></td>
+        <td class="text-center"><strong id="hshreactivos4">0</strong></td>
+        <td class="text-center"><strong id="hshsifilis4">0</strong></td>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
     </tfoot>
@@ -223,8 +223,8 @@
 </div>
 
 <!--- POM OTRANS ---->
-<div id="otrans">
-<table class="table table-hover table-bordered" id="poa_otrans_3" aria-describedby="">
+<div id="otrans4">
+<table class="table table-hover table-bordered" id="poa_otrans_4" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
         <th scope="">Mes</th>
@@ -305,13 +305,15 @@
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
                                         </div>
                                     </li>
-                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPoa']; ?>)">
+
+                                    <button class="dropdown-item" onclick="modalEditarPoa(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPoa']; ?>)">
                                         <em class="bi bi-pencil-square"></em> Editar </button>
 
                                 <?php } ?>
                             </ul>
                         </div>
                     </td>
+
                 </tr>
         <?php }
             $res->close();
@@ -321,16 +323,16 @@
         <th scope="">#</th>
         <th scope="">Mes</th>
         <th scope="">Municipio</th>
-        <td class="text-center"><strong id="tnuevos3">0</strong></td>
-        <td class="text-center"><strong id="trecurrentes3">0</strong></td>
-        <td class="text-center"><strong id="total3">0</strong></td>
-        <td class="text-center"><strong id="tnatural3">0</strong></td>
-        <td class="text-center"><strong id="tsabor3">0</strong></td>
-        <td class="text-center"><strong id="tlubricantes3">0</strong></td>
-        <td class="text-center"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
-        <td class="text-center"><strong id="treactivos3">0</strong></td>
-        <td class="text-center"><strong id="tsifilis3">0</strong></td>
+        <td class="text-center"><strong id="otransnuevos4">0</strong></td>
+        <td class="text-center"><strong id="otransrecurrentes4">0</strong></td>
+        <td class="text-center"><strong id="otranstotal4">0</strong></td>
+        <td class="text-center"><strong id="otransnatural4">0</strong></td>
+        <td class="text-center"><strong id="otranssabor4">0</strong></td>
+        <td class="text-center"><strong id="otranslubricantes4">0</strong></td>
+        <td class="text-center"><strong id="otranspruebavih4">0</strong></td>
+        <td class="text-center"><strong id="otransautoprueba4">0</strong></td>
+        <td class="text-center"><strong id="otransreactivos4">0</strong></td>
+        <td class="text-center"><strong id="otranssifilis4">0</strong></td>
         <th scope="">Observaciones</th>
         <th scope="">Estado</th>
     </tfoot>

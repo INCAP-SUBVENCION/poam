@@ -261,27 +261,35 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#oprueba').hide();
                     $('#oreactivo').hide();
                     $('#osifilis').hide();
-                    $('#omes').show();
-                    $('#hsh').hide();
-                    $('#otrans').hide();
                     $('#llubricante').hide();
                     $('#tubo').show();
-
+                    $('#omes3').show();
+                    $('#hsh3').hide();
+                    $('#otrans3').hide();
+                    $('#omes4').show();
+                    $('#hsh4').hide();
+                    $('#otrans4').hide();
                 } else if (subreceptor == '3' || subreceptor == '4' || subreceptor == '6' || subreceptor == '7') {
                     $('#femenino').hide();
                     $('#sabor').hide();
-                    $('#omes').hide();
-                    $('#hsh').show();
-                    $('#otrans').hide();
                     $('#llubricante').show();
                     $('#tubo').hide();
+                    $('#omes3').hide();
+                    $('#hsh3').show();
+                    $('#otrans3').hide();
+                    $('#omes4').hide();
+                    $('#hsh4').show();
+                    $('#otrans4').hide();
                 } else if (subreceptor == '5') {
                     $('#femenino').hide();
                     $('#sabor').hide();
                     $('#auto').hide()
-                    $('#omes').hide();
-                    $('#hsh').hide();
-                    $('#otrans').show();
+                    $('#omes3').hide();
+                    $('#hsh3').hide();
+                    $('#otrans3').show();
+                    $('#omes4').hide();
+                    $('#hsh4').hide();
+                    $('#otrans4').show();
                     $('#llubricante').show();
                     $('#tubo').hide();
                 }
