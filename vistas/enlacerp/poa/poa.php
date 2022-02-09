@@ -68,6 +68,7 @@ $SUBRECEPTOR = $_GET['id'];
 
         <!-- Striped rows start -->
         <section class="section">
+        <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
         <div class="row">
                 <?php
                 $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
@@ -82,7 +83,7 @@ $SUBRECEPTOR = $_GET['id'];
                 ?>
 
             </div>
-            <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
+            
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-sm btn-secundary active" id="pills-periodo_3-tab" data-bs-toggle="pill" data-bs-target="#pills-periodo_3" type="button" role="tab" aria-controls="pills-periodo_3" aria-selected="true">
@@ -161,8 +162,6 @@ $SUBRECEPTOR = $_GET['id'];
                     $('#omes4').hide();
                     $('#hsh4').hide();
                     $('#otrans4').show();
-                    $('#llubricante').show();
-                    $('#tubo').hide();
                 }
             });
             </script>

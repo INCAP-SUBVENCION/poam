@@ -28,7 +28,7 @@ $SUBRECEPTOR = $_GET['id'];
             font-size: smaller;
         }
     </style>
-</head>
+</head> 
 
 <body>
 

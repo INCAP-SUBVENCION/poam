@@ -65,9 +65,9 @@ $SUBRECEPTOR = $_GET['id'];
             $res1->close(); ?>
         </nav>
 
-
         <!-- Striped rows start -->
         <section class="section">
+        <input type="hidden" name="subreceptor" id="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
         <div class="row">
                 <?php
                 $sql = "SELECT idSubreceptor, codigo, nombre FROM subreceptor WHERE idSubreceptor = $SUBRECEPTOR";
@@ -138,6 +138,33 @@ $SUBRECEPTOR = $_GET['id'];
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
         <script src="../../js/tabla.js"></script>
+        <script>
+            $(document).ready(function() {
+                var subreceptor = document.getElementById('subreceptor').value;
+                if (subreceptor == '2') {
+                    $('#omes3').show();
+                    $('#hsh3').hide();
+                    $('#otrans3').hide();
+                    $('#omes4').show();
+                    $('#hsh4').hide();
+                    $('#otrans4').hide();
+                } else if (subreceptor == '3' || subreceptor == '4' || subreceptor == '6' || subreceptor == '7') {
+                    $('#omes3').hide();
+                    $('#hsh3').show();
+                    $('#otrans3').hide();
+                    $('#omes4').hide();
+                    $('#hsh4').show();
+                    $('#otrans4').hide();
+                } else if (subreceptor == '5') {
+                    $('#omes3').hide();
+                    $('#hsh3').hide();
+                    $('#otrans3').show();
+                    $('#omes4').hide();
+                    $('#hsh4').hide();
+                    $('#otrans4').show();
+                }
+            });
+            </script>
     </body>
 
 </html>

@@ -24,7 +24,7 @@
     <tbody style="font-size: 12px;">
         <?php
         $contap_4 = 1;
-        $sqlp_4 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, 
+        $sqlp_4 = "SELECT DISTINCT t2.subreceptor_id, t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, 
         t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, t2.pNuevo, t2.pRecurrente,
          (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, 
          t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, 
@@ -97,7 +97,7 @@
                                         </div>
                                     </li>
                                 <?php } ?>
-                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>">
+                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>&sub=<?php echo $periodo_4['subreceptor_id']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
                                 <?php if ($periodo_4['estado'] == 'RE01') { ?>
@@ -127,9 +127,9 @@
             <th>Fin</th>
             <th>Codigo</th>
             <th>Subreceptor</th>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="ttotal3">0</strong></td>
+            <td class="text-center"><strong id="tnuevo4">0</strong></td>
+            <td class="text-center"><strong id="tnuevo4">0</strong></td>
+            <td class="text-center"><strong id="ttotal4">0</strong></td>
             <th>Observacion</th>
             <th>Estado</th>
         </tr>
