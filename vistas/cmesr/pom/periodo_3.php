@@ -1,5 +1,5 @@
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
-    <thead style="font-size: 11px;">
+    <thead style="font-size: 12px;">
         <tr>
             <th scope>#</th>
             <th scope>Periodo</th>
@@ -9,7 +9,6 @@
             <th scope>Fecha</th>
             <th scope>Inicio</th>
             <th scope>Fin</th>
-            <th scope>Codigo</th>
             <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
@@ -47,7 +46,6 @@
                     <td><?php echo $periodo_3['fecha']; ?></td>
                     <td><?php echo $periodo_3['horaInicio']; ?></td>
                     <td><?php echo $periodo_3['horaFin']; ?></td>
-                    <td><?php echo $periodo_3['codigo']; ?></td>
                     <td><?php echo $periodo_3['nombres']; ?></td>
                     <td><?php echo $periodo_3['pNuevo']; ?></td>
                     <td><?php echo $periodo_3['pRecurrente']; ?></td>
@@ -59,30 +57,32 @@
                             echo 'No';
                         } ?></td>
                     <td><?php echo $periodo_3['supervisor']; ?></td>
-                    <th scope style="font-size: 11px;">
+                    <th scope style="font-size: 11px;" class="text-center">
                         <?php if ($periodo_3['estado'] == 'ES01') {
-                            echo '<p class="text-primary text-center"> Creado</p>';
+                            echo '<p class="text-white bg-primary"><i class="bi bi-plus-circle-fill"></i><br>Creado</p>';
                         } elseif ($periodo_3['estado'] == 'ES02') {
-                            echo '<p class="text-warning"> En revision </p>';
+                            echo '<p class="text-dark bg-warning"><i class="bi bi-hand-index-fill"></i><br> En revision </p>';
                         } elseif ($periodo_3['estado'] == 'ES03') {
                             echo '<p class="text-info"> Revisado por RP </p>';
                         } elseif ($periodo_3['estado'] == 'ES04') {
-                            echo '<p class = "text-success"> Aprobado por RP</p>';
+                            echo '<p class = "text-white bg-primary"><i class="bi bi-hand-thumbs-up-fill"></i><br>Actividad aprobada</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
-                            echo '<p class = "text-danger"> Pendiente de correccion</p>';
+                            echo '<p class = "text-dark bg-info"><i class="bi bi-pencil-square"></i><br>Pendiente de correccion</p>';
                         } elseif ($periodo_3['estado'] == 'ES06') {
                             echo '<p class = "text-danger"> Cancelado </p>';
                         } elseif ($periodo_3['estado'] == 'RE01') {
-                            echo '<p class = "text-info text-center"> Cambio solicitado </p>';
+                            echo '<p class = "text-dark bg-warning"><i class="bi bi-front"></i><br>Reprogramacion solicitado</p>';
                         } elseif ($periodo_3['estado'] == 'RE02') {
-                            echo '<p class = "text-success text-center"> Solcitud aceptada </p>';
+                            echo '<p class = "text-white bg-success"><i class="bi bi-hand-thumbs-up-fill"></i><br>Solcitud aceptada </p>';
+                        } elseif ($periodo_3['estado'] == 'RE03') {
+                            echo '<p class = "text-white bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i><br>Reprogramacion rechazada</p>';
                         }
                         ?>
                     </th>
                     <td>
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
-                                <em class="bi bi-grid"></em>
+                            <button class="btn btn-sm btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
+                                <em class="bi bi-menu-button-wide-fill"></em>
                             </button>
                             <ul class="dropdown-menu">
                                 <li>

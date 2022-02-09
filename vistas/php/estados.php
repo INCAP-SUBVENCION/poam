@@ -224,3 +224,56 @@ if ($accion == "consultaCambio") {
     }
     echo json_encode($response);
 }
+
+
+/**
+ * Metodo que permite consultar los datos del POM para aceptar la recalendarizacion
+ */
+if ($accion == "consultaAceptar") {
+
+    $pom_id = $_POST['id'];
+    $sql = "SELECT t5.descripcion, t2.periodo, t3.nombre as mess, t4.nombre as municipios, t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total,
+    t1.fecha as fechaa, t1.lugar as lugara, t1.inicio as inicioa, t1.fin as fina, t1.supervisado as supervisadoa, t1.supervisor as supervisora,  
+    t2.fecha as fechan, t2.lugar as lugarn, t2.horaInicio as inicion, t2.horaFin as finn, t2.supervisado as supervisadon, t2.supervisor as supervisorn  
+    FROM historial t1 
+    LEFT JOIN pom t2 ON t1.pom_id = t2.idPom 
+    LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
+    LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
+    LEFT JOIN estado t5 ON t5.pom_id= t2.idPom
+    WHERE t2.idPom = $pom_id AND t5.estado = 'RE01'";
+
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($poa = $consulta->fetch_assoc()) {
+        $response = $poa;
+    }
+    echo json_encode($response);
+}
+
+if ($accion == "rechazarRecalendarizacion") {
+    $usuario    = $_POST['usuario'];
+    $pom        = $_POST['pom'];
+    $estado     = $_POST['estado'];
+    $afecha     = $_POST['afecha'];
+    $alugar     = $_POST['alugar'];
+    $ainicia    = $_POST['ainicia'];
+    $afinaliza  = $_POST['afinaliza'];
+    $asupervisado = $_POST['asupervisado'];
+    $asupervisor = $_POST['asupervisor'];
+    $nfecha     = $_POST['nfecha'];
+    $nlugar     = $_POST['nlugar'];
+    $ninicio    = $_POST['ninicio'];
+    $nfin       = $_POST['nfin'];
+    $nsupervisado = $_POST['nsupervisado'];
+    $nsupervisor = $_POST['nsupervisor'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($enlace->query("CALL reprogramacion($pom, $usuario, 
+    '$nfecha', '$ninicio', '$nfin', '$nlugar', $nsupervisado, '$nsupervisor', 
+    '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, '$asupervisor', 
+    '$estado', '$descripcion')") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}

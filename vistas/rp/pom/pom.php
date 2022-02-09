@@ -33,7 +33,7 @@ $SUBRECEPTOR = $_GET['id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkorange;">
+        <nav class="navbar navbar-dark" style="background-color:dodgerblue;">
             <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
             <h2 class="text-white"> PLAN OPERATIVO MENSUAL -POM-</h2>
             <?php
@@ -113,7 +113,8 @@ $SUBRECEPTOR = $_GET['id'];
         <?php include '../modal/cambiarEstadoPom.php'; ?>
         <?php include '../modal/estadosPom.php'; ?>
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
-
+        <?php include '../modal/rechazarSolicitud.php'; ?>
+        
         <footer>
             <div class="footer clearfix mb-10 text-muted">
                 <div class="float-start">

@@ -57,18 +57,18 @@
                     <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
                         <?php if ($periodo_4['estado'] == 'ES03') {
-                            echo '<p class="text-primary"> Revisar</p>';
+                            echo '<p class="text-primary text-center"> Revisar</p>';
                         } elseif ($periodo_4['estado'] == 'ES04') {
-                            echo '<p class="text-success"> Aprobado</p>';
+                            echo '<p class="text-success text-center"> Aprobado</p>';
                         } elseif ($periodo_4['estado'] == 'ES05') {
-                            echo '<p class = "text-danger"> En correccion</p>';
-                        } elseif ($periodo_4['estado'] == 'ES05') {
-                            echo '<p class = "text-danger"> En correccion</p>';
+                            echo '<p class = "text-danger text-center"> En correccion</p>';
                         } elseif ($periodo_4['estado'] == 'RE01') {
-                            echo '<p class = "text-info"> Solicitud de Recalendarizacion</p>';
+                            echo '<p class = "text-info text-center"> Solicitud de Recalendarizacion</p>';
                         } elseif ($periodo_4['estado'] == 'RE02') {
-                            echo '<p class = "text-danger text-info"> Recalendarizado Aceptada</p>';
-                        } ?>
+                            echo '<p class = "text-success text-center"> Actividad recalendarizado</p>';
+                        } elseif ($periodo_4['estado'] == 'RE03') {
+                            echo '<p class = "text-danger text-center"> Recalendarizacion rechazada</p>';
+                        }?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -87,27 +87,25 @@
                                     <li>
                                         <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Aprobar POM </button>
+                                                <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-grid gap-2">
                                             <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Correcciones al POM</button>
+                                                <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
                                         </div>
                                     </li>
-                                <?php
-                                }
-                                ?>
+                                <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
-                                <?php if ($periodo_3['estado'] == 'RE01') { ?>
+                                <?php if ($periodo_4['estado'] == 'RE01') { ?>
                                     <li>
-                                    <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
-                                        <em class="bi bi-shuffle"></em> Aceptar Recalendarización </button>
+                                    <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
+                                        <em class="bi bi-shuffle"></em> Recalendarización </button>
                                 </li>
-                                <?php } ?>
+                                <?php } ?> 
                             </ul>
                         </div>
                     </td>

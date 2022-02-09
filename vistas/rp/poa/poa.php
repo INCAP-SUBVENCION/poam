@@ -119,6 +119,7 @@ $SUBRECEPTOR = $_GET['id'];
             <?php include '../modal/estadosPoa.php'; ?>
             <?php include '../modal/cambiarTodoEstadoPoa.php'; ?>
             <?php include '../modal/cambiarEstadoPoa.php'; ?>
+
         </section>
 
         <footer>

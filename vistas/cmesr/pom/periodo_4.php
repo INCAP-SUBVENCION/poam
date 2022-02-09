@@ -59,25 +59,32 @@
                             echo 'No';
                         } ?></td>
                     <td><?php echo $periodo_4['supervisor']; ?></td>
-                    <th scope style="font-size: 11px;">
+                    <th scope style="font-size: 11px;" class="text-center">
                         <?php if ($periodo_4['estado'] == 'ES01') {
-                            echo '<p class="text-primary"> Creado</p>';
+                            echo '<p class="text-white bg-primary"><i class="bi bi-plus-circle-fill"></i><br>Creado</p>';
                         } elseif ($periodo_4['estado'] == 'ES02') {
-                            echo '<p class="text-warning"> En revision </p>';
+                            echo '<p class="text-dark bg-warning"><i class="bi bi-hand-index-fill"></i><br> En revision </p>';
                         } elseif ($periodo_4['estado'] == 'ES03') {
                             echo '<p class="text-info"> Revisado por RP </p>';
                         } elseif ($periodo_4['estado'] == 'ES04') {
-                            echo '<p class = "text-success"> Aprobado por RP</p>';
+                            echo '<p class = "text-white bg-primary"><i class="bi bi-hand-thumbs-up-fill"></i><br>Actividad aprobada</p>';
                         } elseif ($periodo_4['estado'] == 'ES05') {
-                            echo '<p class = "text-danger"> Pendiente de correccion</p>';
-                        } elseif ($periodo_4['estado'] == 'ES07') {
+                            echo '<p class = "text-dark bg-info"><i class="bi bi-pencil-square"></i><br>Pendiente de correccion</p>';
+                        } elseif ($periodo_4['estado'] == 'ES06') {
                             echo '<p class = "text-danger"> Cancelado </p>';
-                        } ?>
+                        } elseif ($periodo_4['estado'] == 'RE01') {
+                            echo '<p class = "text-dark bg-warning"><i class="bi bi-front"></i><br>Reprogramacion solicitado</p>';
+                        } elseif ($periodo_4['estado'] == 'RE02') {
+                            echo '<p class = "text-white bg-success"><i class="bi bi-hand-thumbs-up-fill"></i><br>Solcitud aceptada </p>';
+                        } elseif ($periodo_4['estado'] == 'RE03') {
+                            echo '<p class = "text-white bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i><br>Reprogramacion rechazada</p>';
+                        }
+                        ?>
                     </th>
                     <td>
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
-                                <em class="bi bi-grid"></em>
+                            <button class="btn btn-sm btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
+                                <em class="bi bi-menu-button-wide-fill"></em>
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
