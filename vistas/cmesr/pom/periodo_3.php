@@ -1,6 +1,6 @@
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
     <thead style="font-size: 12px;">
-        <tr>
+        <tr> 
             <th scope>#</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
@@ -34,7 +34,7 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR  
-        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03'))";
+        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03')) ORDER BY t2.estado";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>

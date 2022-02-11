@@ -49,7 +49,7 @@
                         <?php if ($periodo_4['estado'] == 'ES02') {
                             echo '<p style="color: dodgerblue;">Revisar</p>';
                         } else if ($periodo_4['estado'] == 'ES03') {
-                            echo '<p style="color: orange;">Revisado y en revision</p>';
+                            echo '<p style="color: orange;">Enviado al especialista</p>';
                         } else if ($periodo_4['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
                         } else if ($periodo_4['estado'] == 'ES05') {
@@ -162,7 +162,7 @@
                         <?php if ($periodo_4['estado'] == 'ES02') {
                             echo '<p style="color: dodgerblue;">Revisar</p>';
                         } else if ($periodo_4['estado'] == 'ES03') {
-                            echo '<p style="color: orange;">Revisado y en revision</p>';
+                            echo '<p style="color: orange;">Enviado al especialista</p>';
                         } else if ($periodo_4['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
                         } else if ($periodo_4['estado'] == 'ES05') {
@@ -279,7 +279,7 @@
                         <?php if ($periodo_4['estado'] == 'ES02') {
                             echo '<p style="color: dodgerblue;">Revisar</p>';
                         } else if ($periodo_4['estado'] == 'ES03') {
-                            echo '<p style="color: orange;">Revisado y en revision</p>';
+                            echo '<p style="color: orange;">Enviado al especialista</p>';
                         } else if ($periodo_4['estado'] == 'ES04') {
                             echo '<p style="color: limegreen;"> Aprobado por el RP</p>';
                         } else if ($periodo_4['estado'] == 'ES05') {

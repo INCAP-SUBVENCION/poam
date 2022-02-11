@@ -269,7 +269,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#omes4').show();
                     $('#hsh4').hide();
                     $('#otrans4').hide();
-                } else if (subreceptor == '3' || subreceptor == '4' || subreceptor == '6' || subreceptor == '7') {
+                } else if (subreceptor == '3' || subreceptor == '6' || subreceptor == '7') {
                     $('#femenino').hide();
                     $('#sabor').hide();
                     $('#llubricante').show();
@@ -292,7 +292,20 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#otrans4').show();
                     $('#llubricante').show();
                     $('#tubo').hide();
-                }
+                } else if (subreceptor == '4') {
+                    $('#femenino').hide();
+                    $('#sabor').hide();
+                    $('#llubricante').show();
+                    $('#tubo').hide();
+                    $('#omes3').hide();
+                    $('#hsh3').hide();
+                    $('#otrans3').hide();
+                    $('#ppl3').show();
+                    $('#omes4').hide();
+                    $('#hsh4').hide();
+                    $('#otrans4').hide();
+                    $('#ppl4').show();
+                    }
             });
         </script>
     </body>

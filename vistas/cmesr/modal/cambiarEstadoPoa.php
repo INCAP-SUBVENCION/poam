@@ -35,7 +35,7 @@
                             <input type="text" class="form-control" id="estado_total" style="font-size: 12px;" disabled>
                         </div>
                     </div>
-                    <h3>Correccion del POA</h3>
+                    <h4>Enviar POA corregido</h4>
                     <div class="form-group">
                         <label>Observaciones / cometarios</label>
                         <textarea name="estado_descripcion" id="estado_descripcion" cols="2" rows="2" class="form-control"></textarea>

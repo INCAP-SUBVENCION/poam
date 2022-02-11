@@ -1,6 +1,6 @@
-<table class="table table-sm table-hover" id="pom_periodo_4" aria-describedby="pom del periodo 3">
-    <thead style="font-size: 11px;">
-        <tr>
+<table class="table table-sm table-hover" id="pom_periodo_4" aria-describedby="pom del periodo 4">
+    <thead style="font-size: 12px;">
+        <tr> 
             <th scope>#</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
@@ -9,7 +9,6 @@
             <th scope>Fecha</th>
             <th scope>Inicio</th>
             <th scope>Fin</th>
-            <th scope>Codigo</th>
             <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
@@ -35,7 +34,7 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo = 4 AND t7.subreceptor_id = $SUBRECEPTOR  
-        AND t2.estado NOT IN (SELECT estado FROM pom WHERE estado  BETWEEN 'PR01' AND 'PR02')";
+        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03')) ORDER BY t2.estado";
         if ($resp_4 = $enlace->query($sqlp_4)) {
             while ($periodo_4 = $resp_4->fetch_assoc()) { ?>
                 <tr>
@@ -47,7 +46,6 @@
                     <td><?php echo $periodo_4['fecha']; ?></td>
                     <td><?php echo $periodo_4['horaInicio']; ?></td>
                     <td><?php echo $periodo_4['horaFin']; ?></td>
-                    <td><?php echo $periodo_4['codigo']; ?></td>
                     <td><?php echo $periodo_4['nombres']; ?></td>
                     <td><?php echo $periodo_4['pNuevo']; ?></td>
                     <td><?php echo $periodo_4['pRecurrente']; ?></td>
@@ -104,7 +102,7 @@
                                             <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
                                 <?php } ?>
@@ -116,7 +114,7 @@
                                             <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
                                     <li>
@@ -124,7 +122,7 @@
                                             <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
                                 <?php } ?>
@@ -136,11 +134,11 @@
                                             <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_4['idPom']; ?>)">
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
                                 <?php } if($periodo_4['estado'] == 'ES04'){ ?>
@@ -158,7 +156,7 @@
                     </td>
                 </tr>
         <?php }
-            $resp_4->close();
+            $resp_3->close();
         }
         ?>
     </tbody>
@@ -185,7 +183,7 @@
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
         <form action="../../php/excel/generarExcelPom.php" method="POST">
-            <input type="hidden" name="periodo" id="periodo" value="4">
+            <input type="hidden" name="periodo" id="periodo" value="3">
             <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
             <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
         </form>

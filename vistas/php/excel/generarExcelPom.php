@@ -20,6 +20,7 @@ WHERE t2.periodo= '$PERIODO' AND t7.subreceptor_id = $SUBRECEPTOR";
 $resultado_p1 = $enlace->query($sql_p1);
 
 $html = '';
+$html = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
 $html .= '<table border=1>';
 $html .= '<th scope>#</th>';
 $html .= '<th scope>Periodo</th>';
