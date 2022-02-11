@@ -58,7 +58,7 @@ while ($periodo_1 = $resultado_p1->fetch_assoc()){
 }
 $html .= '</table>';
 header('Content-Type: application/xlsx');
-header('Content-Disposition: attachment; filename=poaHsh.xls');
+header('Content-Disposition: attachment; filename=poa.xls');
 echo $html;
 exit;
 ?>

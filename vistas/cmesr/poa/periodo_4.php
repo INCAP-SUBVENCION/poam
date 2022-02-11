@@ -1,26 +1,26 @@
 <!--- POM OMES---->
 <div id="omes4">
-<table class="table table-hover table-bordered" id="poa_omes_4" aria-describedby="">
-    <thead class="text-center" style="font-size: 11px;">
-        <th scope="">#</th>
-        <th scope="">Mes</th>
-        <th scope="">Municipio</th>
-        <th scope="">Nuevos</th>
-        <th scope="">Recurrentes</th>
-        <th scope="">Total</th>
-        <th scope="">Condon natural</th>
-        <th scope="">Condon sabor</th>
-        <th scope="">Condon femenino</th>
-        <th scope="">Tubo Lubricantes</th>
-        <th scope="">Auto prueba VIH</th>
-        <th scope="">Observaciones</th>
-        <th scope="">Estado</th>
-        <th scope="">Opciones</th>
-    </thead>
-    <tbody class="text-center bg-light" style="font-size: 12px;">
-        <?php
-        $cont = 1;
-        $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente,
+    <table class="table table-hover table-bordered" id="poa_omes_4" aria-describedby="">
+        <thead class="text-center" style="font-size: 11px;">
+            <th scope="">#</th>
+            <th scope="">Mes</th>
+            <th scope="">Municipio</th>
+            <th scope="">Nuevos</th>
+            <th scope="">Recurrentes</th>
+            <th scope="">Total</th>
+            <th scope="">Condon natural</th>
+            <th scope="">Condon sabor</th>
+            <th scope="">Condon femenino</th>
+            <th scope="">Tubo Lubricantes</th>
+            <th scope="">Auto prueba VIH</th>
+            <th scope="">Observaciones</th>
+            <th scope="">Estado</th>
+            <th scope="">Opciones</th>
+        </thead>
+        <tbody class="text-center bg-light" style="font-size: 12px;">
+            <?php
+            $cont = 1;
+            $consult = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente,
         (t1.nuevo + t1.recurrente) AS total, t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, 
         t2.pruebaVIH, t2.autoPrueba, t2.reactivoE, t2.sifilis, t1.estado FROM poa t1
 	    LEFT JOIN insumo t2 ON t2.poa_id = t1.idPoa
@@ -216,22 +216,22 @@
             }  ?>
         </tbody>
         <tfoot>
-        <th scope="">#</th>
-        <th scope="">Mes</th>
-        <th scope="">Municipio</th>
-        <td class="text-center"><strong id="hshnuevos4">0</strong></td>
-        <td class="text-center"><strong id="hshrecurrentes4">0</strong></td>
-        <td class="text-center"><strong id="hshtotal4">0</strong></td>
-        <td class="text-center"><strong id="hshnatural4">0</strong></td>
-        <td class="text-center"><strong id="hshlubricantes4">0</strong></td>
-        <td class="text-center"><strong id="hshpruebavih4">0</strong></td>
-        <td class="text-center"><strong id="hshautoprueba4">0</strong></td>
-        <td class="text-center"><strong id="hshreactivos4">0</strong></td>
-        <td class="text-center"><strong id="hshsifilis4">0</strong></td>
-        <th scope="">Observaciones</th>
-        <th scope="">Estado</th>
-    </tfoot>
-</table>
+            <th scope="">#</th>
+            <th scope="">Mes</th>
+            <th scope="">Municipio</th>
+            <td class="text-center"><strong id="hshnuevos4">0</strong></td>
+            <td class="text-center"><strong id="hshrecurrentes4">0</strong></td>
+            <td class="text-center"><strong id="hshtotal4">0</strong></td>
+            <td class="text-center"><strong id="hshnatural4">0</strong></td>
+            <td class="text-center"><strong id="hshlubricantes4">0</strong></td>
+            <td class="text-center"><strong id="hshpruebavih4">0</strong></td>
+            <td class="text-center"><strong id="hshautoprueba4">0</strong></td>
+            <td class="text-center"><strong id="hshreactivos4">0</strong></td>
+            <td class="text-center"><strong id="hshsifilis4">0</strong></td>
+            <th scope="">Observaciones</th>
+            <th scope="">Estado</th>
+        </tfoot>
+    </table>
 </div>
 
 <!--- POM OTRANS ---->
@@ -338,23 +338,23 @@
             }  ?>
         </tbody>
         <tfoot>
-        <th scope="">#</th>
-        <th scope="">Mes</th>
-        <th scope="">Municipio</th>
-        <td class="text-center"><strong id="otransnuevos4">0</strong></td>
-        <td class="text-center"><strong id="otransrecurrentes4">0</strong></td>
-        <td class="text-center"><strong id="otranstotal4">0</strong></td>
-        <td class="text-center"><strong id="otransnatural4">0</strong></td>
-        <td class="text-center"><strong id="otranssabor4">0</strong></td>
-        <td class="text-center"><strong id="otranslubricantes4">0</strong></td>
-        <td class="text-center"><strong id="otranspruebavih4">0</strong></td>
-        <td class="text-center"><strong id="otransautoprueba4">0</strong></td>
-        <td class="text-center"><strong id="otransreactivos4">0</strong></td>
-        <td class="text-center"><strong id="otranssifilis4">0</strong></td>
-        <th scope="">Observaciones</th>
-        <th scope="">Estado</th>
-    </tfoot>
-</table>
+            <th scope="">#</th>
+            <th scope="">Mes</th>
+            <th scope="">Municipio</th>
+            <td class="text-center"><strong id="otransnuevos4">0</strong></td>
+            <td class="text-center"><strong id="otransrecurrentes4">0</strong></td>
+            <td class="text-center"><strong id="otranstotal4">0</strong></td>
+            <td class="text-center"><strong id="otransnatural4">0</strong></td>
+            <td class="text-center"><strong id="otranssabor4">0</strong></td>
+            <td class="text-center"><strong id="otranslubricantes4">0</strong></td>
+            <td class="text-center"><strong id="otranspruebavih4">0</strong></td>
+            <td class="text-center"><strong id="otransautoprueba4">0</strong></td>
+            <td class="text-center"><strong id="otransreactivos4">0</strong></td>
+            <td class="text-center"><strong id="otranssifilis4">0</strong></td>
+            <th scope="">Observaciones</th>
+            <th scope="">Estado</th>
+        </tfoot>
+    </table>
 </div>
 
 <!--- POM PPL ---->
@@ -476,3 +476,35 @@
         </tfoot>
     </table>
 </div>
+
+<?php if ($SUBRECEPTOR == '2') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPoaOmes.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="4">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } elseif ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPoaHsh.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="4">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } elseif ($SUBRECEPTOR == '5') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPoaTrans.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="4">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } ?>

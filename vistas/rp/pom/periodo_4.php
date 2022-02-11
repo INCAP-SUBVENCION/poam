@@ -135,12 +135,37 @@
         </tr>
     </tfoot>
 </table>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-6">
-        <form action="../../php/excel/generarExcelPom.php" method="POST">
-            <input type="hidden" name="periodo" id="periodo" value="4">
-            <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
-            <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
-        </form>
+
+<?php if ($SUBRECEPTOR == '2') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPomOmes.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="4">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
     </div>
-</div>
+<?php }
+if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="4">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php }
+if ($SUBRECEPTOR == '5') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="4">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } ?>

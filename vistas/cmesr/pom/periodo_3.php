@@ -1,6 +1,6 @@
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
     <thead style="font-size: 12px;">
-        <tr> 
+        <tr>
             <th scope>#</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
@@ -141,12 +141,13 @@
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
-                                <?php } if($periodo_3['estado'] == 'ES04'){ ?>
+                                <?php }
+                                if ($periodo_3['estado'] == 'ES04') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>,'RE01')">
                                             <em class="bi bi-shuffle"></em> Recalendarización </button>
                                     </li>
-                                    <?php }?>
+                                <?php } ?>
                                 <li>
                                     <a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
@@ -180,12 +181,37 @@
         </tr>
     </tfoot>
 </table>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <div class="col-sm-6">
-        <form action="../../php/excel/generarExcelPom.php" method="POST">
-            <input type="hidden" name="periodo" id="periodo" value="3">
-            <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
-            <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
-        </form>
+
+<?php if ($SUBRECEPTOR == '2') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPomOmes.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="3">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
     </div>
-</div>
+<?php }
+if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="3">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php }
+if ($SUBRECEPTOR == '5') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="3">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } ?>

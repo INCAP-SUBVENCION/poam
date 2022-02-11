@@ -335,3 +335,35 @@
     </tfoot>
 </table>
 </div>
+
+<?php if ($SUBRECEPTOR == '2') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPoaOmes.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="3">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } elseif ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPoaHsh.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="3">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } elseif ($SUBRECEPTOR == '5') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPoaTrans.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="3">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
+        </div>
+    </div>
+<?php } ?>

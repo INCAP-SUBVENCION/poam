@@ -63,7 +63,6 @@ while ($periodo_1 = $resultado_p1->fetch_assoc()){
     $html .= '<td>'.round($periodo_1['total'],2).'</td>';
     $html .= '<td>'.round($periodo_1['cnatural'],2).'</td>';
     $html .= '<td>'.round($periodo_1['csabor'],2).'</td>';
-    $html .= '<td>'.round($periodo_1['cfemenino'],2).'</td>';
     $html .= '<td>'.round($periodo_1['lubricante'],2).'</td>';
     $html .= '<td>'.round($periodo_1['pruebaVIH'],2).'</td>';
     $html .= '<td>'.round($periodo_1['autoprueba'],2).'</td>';
@@ -76,7 +75,7 @@ while ($periodo_1 = $resultado_p1->fetch_assoc()){
 }
 $html .= '</table>';
 header('Content-Type: application/xlsx');
-header('Content-Disposition: attachment; filename=pomHsh.xls');
+header('Content-Disposition: attachment; filename=pom.xls');
 echo $html;
 exit;
 ?>
