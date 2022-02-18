@@ -188,6 +188,17 @@
             <form action="../../php/excel/generarExcelPomOmes.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="3">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="meses" id="meses">
+                    <?php
+                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
+                    WHERE t1.periodo= 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                    $rd = $enlace->query($cd);
+                    while ($mes = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
+                    <?php }
+                    $rd->close();
+                    ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
@@ -199,6 +210,17 @@ if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBREC
             <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="3">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="meses" id="meses">
+                    <?php
+                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
+                    WHERE t1.periodo= 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                    $rd = $enlace->query($cd);
+                    while ($mes = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
+                    <?php }
+                    $rd->close();
+                    ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
@@ -210,6 +232,17 @@ if ($SUBRECEPTOR == '5') { ?>
             <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="3">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="meses" id="meses">
+                    <?php
+                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
+                    WHERE t1.periodo= 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                    $rd = $enlace->query($cd);
+                    while ($mes = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
+                    <?php }
+                    $rd->close();
+                    ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>

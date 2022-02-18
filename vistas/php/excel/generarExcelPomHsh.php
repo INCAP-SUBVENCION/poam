@@ -5,6 +5,7 @@ date_default_timezone_set("America/Guatemala");
 session_start();
 $PERIODO = $_POST['periodo'];
 $SUBRECEPTOR = $_POST['sub'];
+$MES = $_POST['meses'];
 $CONTADOR = 1;
 $sql_p1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, 
 t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, t2.pNuevo, t2.pRecurrente,
@@ -16,7 +17,7 @@ LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
 LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
 LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
 LEFT JOIN catalogo t8 ON t8.codigo = t2.estado
-WHERE t2.periodo= '$PERIODO' AND t7.subreceptor_id = $SUBRECEPTOR";
+WHERE t2.periodo= '$PERIODO' AND t7.subreceptor_id = $SUBRECEPTOR AND t2.mes = '$MES'";
 $resultado_p1 = $enlace->query($sql_p1);
 
 $html = '';
