@@ -1,3 +1,4 @@
+<div class="table-responsive">
 <table class="table table-hover table-bordered" id="poa_periodo_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -69,6 +70,8 @@
         <th scope="">Observaciones</th>
     </tfoot>
 </table>
+</div>
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
         <form action="../../php/excel/generarExcelPoa.php" method="POST">

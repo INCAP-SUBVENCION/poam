@@ -1,7 +1,9 @@
+<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
     <thead style="font-size: 11px;">
         <tr>
             <th scope>#</th>
+            <th scope>Actividad</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
             <th scope>Municipio</th>
@@ -9,7 +11,6 @@
             <th scope>Fecha</th>
             <th scope>Inicio</th>
             <th scope>Fin</th>
-            <th scope>Codigo</th>
             <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
@@ -21,7 +22,7 @@
             <th scope>Opcion</th>
         </tr>
     </thead>
-    <tbody style="font-size: 12px;">
+    <tbody style="font-size: 12px;" class="text-center">
         <?php
         $contap_3 = 1;
         $sqlp_3 = "SELECT DISTINCT t2.subreceptor_id, t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, 
@@ -35,11 +36,12 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR  
-        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01','ES02'))";
+        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01','ES02')) ORDER BY t2.estado";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
                     <td><?php echo $contap_3++; ?></td>
+                    <td style="font-size: 14px; color:brown; font-weight: bold;"><?php echo $periodo_3['idPom']; ?></td>
                     <td><?php echo $periodo_3['periodo']; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
                     <td><?php echo $periodo_3['municipio']; ?></td>
@@ -47,7 +49,6 @@
                     <td><?php echo $periodo_3['fecha']; ?></td>
                     <td><?php echo $periodo_3['horaInicio']; ?></td>
                     <td><?php echo $periodo_3['horaFin']; ?></td>
-                    <td><?php echo $periodo_3['codigo']; ?></td>
                     <td><?php echo $periodo_3['nombres']; ?></td>
                     <td><?php echo $periodo_3['pNuevo']; ?></td>
                     <td><?php echo $periodo_3['pRecurrente']; ?></td>
@@ -57,18 +58,24 @@
                     <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
                         <?php if ($periodo_3['estado'] == 'ES03') {
-                            echo '<p class="text-primary text-center"> Revisar</p>';
+                            echo '<p class="text-white bg-primary"> Revisar</p>';
                         } elseif ($periodo_3['estado'] == 'ES04') {
-                            echo '<p class="text-success text-center"> Aprobado</p>';
+                            echo '<p class="text-white bg-success"> Aprobado</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
-                            echo '<p class = "text-danger text-center"> En correccion</p>';
+                            echo '<p class = "text-white bg-danger"> En correccion</p>';
                         } elseif ($periodo_3['estado'] == 'RE01') {
-                            echo '<p class = "text-info text-center"> Solicitud de Recalendarizacion</p>';
+                            echo '<p class = "text-dark bg-info"> Solicitud de Recalendarizacion</p>';
                         } elseif ($periodo_3['estado'] == 'RE02') {
-                            echo '<p class = "text-success text-center"> Actividad recalendarizado</p>';
+                            echo '<p class = "text-white bg-success"> Actividad recalendarizado</p>';
                         } elseif ($periodo_3['estado'] == 'RE03') {
-                            echo '<p class = "text-danger text-center"> Recalendarizacion rechazada</p>';
-                        }?>
+                            echo '<p class = "text-dark bg-success"> Recalendarizacion rechazada</p>';
+                        } elseif ($periodo_3['estado'] == 'CA01') {
+                            echo '<p class = "text-info"><i class="bi bi-x-circle"></i><br>Solicitud de candelacion</p>';
+                        } elseif ($periodo_3['estado'] == 'CA02') {
+                            echo '<p class = "text-danger"> Cancelacion rechazada </p>';
+                        } elseif ($periodo_3['estado'] == 'ES06') {
+                            echo '<p class = "text-danger"> Actividad cancelada </p>';
+                        }  ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -85,35 +92,35 @@
                                 if ($periodo_3['estado'] == 'ES03') {
                                 ?>
                                     <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
-                                        </div>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
                                     </li>
                                     <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
-                                        </div>
+                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
+                                            <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
                                     </li>
                                 <?php } ?>
-                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom'];?>&sub=<?php echo $periodo_3['subreceptor_id'];?>">
-                                        <em class="bi bi-card-list"></em> Detalles</a>
-                                </li>
+
                                 <?php if ($periodo_3['estado'] == 'RE01') { ?>
                                     <li>
-                                    <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
-                                        <em class="bi bi-shuffle"></em> Recalendarización </button>
+                                        <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
+                                            <em class="bi bi-shuffle"></em> Recalendarización </button>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($periodo_3['estado'] == 'CA01') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAceptarCancelacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES06')">
+                                            <em class="bi bi-back"></em> Cancelar actividad </button>
+                                    </li>
+                                <?php } ?>
+                                <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>&sub=<?php echo $periodo_3['subreceptor_id']; ?>">
+                                        <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
-                                <?php } ?> 
                             </ul>
                         </div>
                     </td>
                 </tr>
-        <?php }
-            $resp_3->close();
-        }
-        ?>
+        <?php } $resp_3->close(); } ?>
     </tbody>
     <tfoot>
         <tr>
@@ -135,6 +142,8 @@
         </tr>
     </tfoot>
 </table>
+</div>
+
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -149,16 +158,13 @@
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                    <?php }
-                    $rd->close();
-                    ?>
+                    <?php } $rd->close(); ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
     </div>
-<?php }
-if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+<?php } if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
@@ -171,16 +177,13 @@ if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBREC
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                    <?php }
-                    $rd->close();
-                    ?>
+                    <?php } $rd->close(); ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
     </div>
-<?php }
-if ($SUBRECEPTOR == '5') { ?>
+<?php } if ($SUBRECEPTOR == '5') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
@@ -193,9 +196,7 @@ if ($SUBRECEPTOR == '5') { ?>
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                    <?php }
-                    $rd->close();
-                    ?>
+                    <?php } $rd->close(); ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>

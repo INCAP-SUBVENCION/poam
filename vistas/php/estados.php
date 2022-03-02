@@ -277,3 +277,23 @@ if ($accion == "rechazarRecalendarizacion") {
         echo "Error";
     }
 }
+
+
+if ($accion == "consultaCancelar") {
+
+    $pom_id = $_POST['id'];
+    $sql = "SELECT DISTINCT t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, 
+    t1.horaFin, t1.pNuevo, t1.pRecurrente, truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total, 
+    t1.supervisado, t1.supervisor, t4.descripcion FROM pom t1 
+    LEFT JOIN catalogo t2 ON t2.codigo = t1.mes 
+    LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio 
+    LEFT JOIN estado t4 ON t4.estado = t1.estado
+    WHERE t1.idPom = $pom_id AND t4.estado='CA01' GROUP BY t4.descripcion";
+
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($poa = $consulta->fetch_assoc()) {
+        $response = $poa;
+    }
+    echo json_encode($response);
+}

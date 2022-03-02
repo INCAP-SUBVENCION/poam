@@ -514,3 +514,50 @@ function anularPOM() {
         });
     }
 }
+/**
+ * Funcion que permite mostrar el historial del modal
+ * @param {*} pom 
+ */
+function modalHistorialPom(pom) {
+    var accion = "historial";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/pom.php",
+        data: {
+            accion: accion,
+            pom: pom
+        },
+        success: function (datos, status) {
+            var pom = JSON.parse(datos);
+            $("#_aactividad").html(pom.actividad);
+            $("#_alugar").html(pom.alugar);
+            $("#_afecha").html(pom.afecha);
+            $("#_ainicia").html(pom.ainicia);
+            $("#_afinaliza").html(pom.afinaliza);
+            var asup = pom.asupervisado;
+            if(asup == 1){
+                $("#_asupervisado").html("Si");
+            } else {
+                $("#_asupervisado").html("No");
+            }
+            $("#_asupervisor").html(pom.asupervisor);
+            $("#_dlugar").html(pom.dlugar);
+            $("#_dfecha").html(pom.dfecha);
+            $("#_dinicia").html(pom.dinicia);
+            $("#_dfinaliza").html(pom.dfinaliza);
+            var dsup = pom.dsupervisado;
+            if(dsup == 1){
+                $("#_dsupervisado").html("Si");
+            } else {
+                $("#_dsupervisado").html("No");
+            }
+            $("#_dsupervisor").html(pom.dsupervisor);
+            $("#_resposable").html(pom.usuarios);
+            $("#_motivos").html(pom.motivo);
+            
+           
+        }
+    });
+    $("#modalHistorialPom").modal("show");
+}

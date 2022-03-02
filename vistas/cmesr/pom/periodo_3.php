@@ -1,7 +1,9 @@
-<table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
+<div class="table-responsive">
+<table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3" style="width:100%">
     <thead style="font-size: 12px;">
         <tr>
             <th scope>#</th>
+            <th scope>Actividad</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
             <th scope>Municipio</th>
@@ -39,6 +41,7 @@
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
                     <td><?php echo $contap_3++; ?></td>
+                    <td style="font-size: 14px; color:brown; font-weight: bold;"><?php echo $periodo_3['idPom']; ?></td>
                     <td><?php echo $periodo_3['periodo']; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
                     <td><?php echo $periodo_3['municipio']; ?></td>
@@ -59,7 +62,7 @@
                     <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php if ($periodo_3['estado'] == 'ES01') {
-                            echo '<p class="text-white bg-primary"><i class="bi bi-plus-circle-fill"></i><br>Creado</p>';
+                            echo '<p class="text-white bg-info"><i class="bi bi-plus-circle-fill"></i><br>Creado</p>';
                         } elseif ($periodo_3['estado'] == 'ES02') {
                             echo '<p class="text-dark bg-warning"><i class="bi bi-hand-index-fill"></i><br> En revision </p>';
                         } elseif ($periodo_3['estado'] == 'ES03') {
@@ -68,14 +71,18 @@
                             echo '<p class = "text-white bg-primary"><i class="bi bi-hand-thumbs-up-fill"></i><br>Actividad aprobada</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
                             echo '<p class = "text-dark bg-info"><i class="bi bi-pencil-square"></i><br>Pendiente de correccion</p>';
-                        } elseif ($periodo_3['estado'] == 'ES06') {
-                            echo '<p class = "text-danger"> Cancelado </p>';
                         } elseif ($periodo_3['estado'] == 'RE01') {
                             echo '<p class = "text-dark bg-warning"><i class="bi bi-front"></i><br>Reprogramacion solicitado</p>';
                         } elseif ($periodo_3['estado'] == 'RE02') {
                             echo '<p class = "text-white bg-success"><i class="bi bi-hand-thumbs-up-fill"></i><br>Solcitud aceptada </p>';
                         } elseif ($periodo_3['estado'] == 'RE03') {
                             echo '<p class = "text-white bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i><br>Reprogramacion rechazada</p>';
+                        } elseif ($periodo_3['estado'] == 'CA01') {
+                            echo '<p class = "text-dark bg-info"><i class="bi bi-x-circle"></i><br>Cancelacion solicitado</p>';
+                        } elseif ($periodo_3['estado'] == 'CA02') {
+                            echo '<p class = "text-dark bg-warning"><i class="bi bi-x-circle"></i><br>Cancelacion rechzada</p>';
+                        } elseif ($periodo_3['estado'] == 'ES06') {
+                            echo '<p class = "text-dark bg-danger"><i class="bi bi-x-circle"></i><br>Actividad cancelada</p>';
                         }
                         ?>
                     </th>
@@ -91,8 +98,7 @@
                                 </li>
 
                                 <!----- HSH ---->
-                                <?php
-                                if ($periodo_3['estado'] == 'ES01' && ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7')) { ?>
+                                <?php if ($periodo_3['estado'] == 'ES01' && ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7')) { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
                                             <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
@@ -141,11 +147,29 @@
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
-                                <?php }
-                                if ($periodo_3['estado'] == 'ES04') { ?>
+                                    
+                                <?php } if ($periodo_3['estado'] == 'ES04') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>,'RE01')">
                                             <em class="bi bi-shuffle"></em> Recalendarización </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalCancelarActividad(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'CA01')">
+                                            <em class="bi bi-back"></em> Cancelar actividad </button>
+                                    </li>
+                                <?php } if ($periodo_3['estado'] == 'ES05') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-pencil-square"></em> Editar </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
+                                            <em class="bi bi-arrow-right-circle"></em> Enviar correcciones </button>
+                                    </li>
+                                <?php } if ($periodo_3['estado'] == 'RE02') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalHistorialPom(<?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-clock-history"></em> Historial </button>
                                     </li>
                                 <?php } ?>
                                 <li>
@@ -156,10 +180,7 @@
                         </div>
                     </td>
                 </tr>
-        <?php }
-            $resp_3->close();
-        }
-        ?>
+        <?php } $resp_3->close(); } ?>
     </tbody>
     <tfoot>
         <tr>
@@ -181,6 +202,9 @@
         </tr>
     </tfoot>
 </table>
+</div>
+
+
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -203,8 +227,8 @@
             </form>
         </div>
     </div>
-<?php }
-if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+
+<?php } if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
@@ -225,8 +249,8 @@ if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBREC
             </form>
         </div>
     </div>
-<?php }
-if ($SUBRECEPTOR == '5') { ?>
+
+<?php } if ($SUBRECEPTOR == '5') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomTrans.php" method="POST">

@@ -16,7 +16,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Operativo Anual</title>
+    <title> .:. POA .:. </title>
     <!-------------  CSS  ---------------->
     <link rel="stylesheet" href="../../../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../../../assets/vendors/bootstrap-icons/bootstrap-icons.css">
@@ -35,30 +35,39 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 <body>
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkblue;">
-            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
-            <h2 class="text-white">PLAN OPERATIVO ANUAL -POA-</h2>
-            <?php
-            $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
+                <a class="navbar-brand" href="#">.:. POA .:.</a>
+                <button class="navbar-toggler btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <?php
+                    $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
                 LEFT JOIN catalogo r ON u.rol=r.codigo
-                LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario = $ID";
-            $res1 = $enlace->query($consulta1);
-            while ($usuario = mysqli_fetch_assoc($res1)) {
-            ?>
-                <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
-                <div class="dropdown">
-                    <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
-                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../perfil.php"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
-                    </ul>
+                LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
+                    $res1 = $enlace->query($consulta1);
+                    while ($usuario = mysqli_fetch_assoc($res1)) {
+                    ?>
+                        
+                            <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
+                            <div class="dropdown">
+                                <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
+                                    <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="../perfil.php"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
+                                    <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php }
+                    $res1->close(); ?>
                 </div>
-            <?php }
-            $res1->close(); ?>
-            <img src="../../../assets/images/incap.png" width="75" alt="">
+            </div>
         </nav>
         <!-- Striped rows start -->
         <section class="section">
@@ -311,7 +320,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     $('#hsh4').hide();
                     $('#otrans4').hide();
                     $('#ppl4').show();
-                    }
+                }
             });
         </script>
     </body>

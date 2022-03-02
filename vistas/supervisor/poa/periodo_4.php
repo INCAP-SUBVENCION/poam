@@ -1,3 +1,4 @@
+<div class="table-responsive">
 <table class="table table-hover table-bordered" id="poa_periodo_4" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -69,6 +70,8 @@
         <th scope="">Observaciones</th>
     </tfoot>
 </table>
+</div>
+
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

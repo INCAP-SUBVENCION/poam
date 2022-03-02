@@ -425,7 +425,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP63', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP64', 'Octubre', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 'Noviembre', 6, 'mes');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
-#ESTADOS 
+#ESTADOS
 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado o revisado por M & E', '', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Enviado al Enlace Programatico', 'Enviado para revision', 'estado');
@@ -439,16 +439,12 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE02', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE03', 'Solicitud Rechazada', 'Cambio rechazado', 'estado');
 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA01', 'Solicitud de cancelacion', 'Cancelacion de la actividad', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA02', 'Solicitud Aceptada', 'Cambio Autorizado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA03', 'Solicitud Rechazada', 'Cambio rechazado', 'estado');
-
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA02', 'Solicitud Rechazada', 'Cancelacion de actividad rechazada', 'estado');
 
 #ESTADO DEL PROMOTOR
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR01', 'POM creado', 'POM creado por el promotor', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR02', 'Enviado para revision al supervisor', 'Enviado para revision', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR03', 'Correccion del POM', 'Corregir POM', 'estado');
-
-
 
 CALL agregarUsuario("INCAP01","Faustino","", "Lopez", "Ramos", "57619399", "flopez@incap.int", "R001", 1);
 CALL agregarUsuario("INCAP02","Osberto","", "Juarez", "Vasquez", "57619344", "ojuarez@incap.int", "R001", 1);

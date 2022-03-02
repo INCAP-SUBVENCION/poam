@@ -31,35 +31,41 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
 
 <body>
 
-
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkorange;">
-            <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
-            <h2 class="text-white"> METAS</h2>
-            <?php
-            $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+            <div class="container-fluid">
+                <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
+                <a class="navbar-brand" href="#">.:. METAS .:.</a>
+                <button class="navbar-toggler btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <?php
+                    $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
                 LEFT JOIN catalogo r ON u.rol=r.codigo
                 LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
-            $res1 = $enlace->query($consulta1);
-            while ($usuario = mysqli_fetch_assoc($res1)) {
-            ?>
-                <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
-                <div class="dropdown">
-                    <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
-                        <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
-
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../perfil.php"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
-                    </ul>
+                    $res1 = $enlace->query($consulta1);
+                    while ($usuario = mysqli_fetch_assoc($res1)) {
+                    ?>
+                        
+                            <a class="navbar-brand" href="../cmesr.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
+                            <div class="dropdown">
+                                <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
+                                    <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="../perfil.php"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
+                                    <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php }
+                    $res1->close(); ?>
                 </div>
-            <?php }
-            $res1->close(); ?>
-            <img src="../../../assets/images/incap.png" width="75" alt="">
+            </div>
         </nav>
-
 
         <!-- Striped rows start -->
         <section class="section">
@@ -78,7 +84,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 <input type="hidden" id="subreceptor" name="subreceptor" value="<?php echo $SUBRECEPTOR; ?>">
                 <input type="hidden" name="cobertura" id="cobertura">
                 <div class="card border-success">
-                    <div class="text-white text-center" style="background-color:darkorange;">RESUMEN DE METAS</div>
+                    <div class="text-white text-center bg-warning">RESUMEN DE METAS</div>
                     <div class="card-body" style="font-size: 12px; background-color:aliceblue;">
                         <div class="row">
                             <div class="form-group input-group-sm col-sm-1">
@@ -135,7 +141,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         </div>
                     </div>
             </form>
-
 
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -234,8 +239,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </div>
             </div>
 
-
-
         </section>
 
         <footer>
@@ -245,7 +248,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </div>
             </div>
         </footer>
-
 
         <!------ JS ------>
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>

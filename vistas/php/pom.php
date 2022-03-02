@@ -315,9 +315,28 @@ if ($accion == "anularPOM") {
     $subreceptor  = $_POST['subreceptor'];
     $pom = $_POST['pom'];
 
-    if ($enlace->query("DELETE FROM pom WHERE idPom = $pom AND subreceptor_id = $subreceptor") === TRUE) {
+    if ($enlace->query("DELETE pom, estado FROM pom JOIN estado ON estado.pom_id = pom.idPom WHERE pom.idPom = $pom AND pom.subreceptor_id = $subreceptor") === TRUE) {
         echo "Exito";
     } else {
         echo "Error";
     }
+}
+
+if ($accion == "historial") {
+    
+    $pom = $_POST['pom'];
+
+    $sql = "SELECT h.pom_id as actividad, h.lugar as alugar, h.fecha as afecha, h.inicio as ainicia, 
+    h.fin as afinaliza, h.supervisado as asupervisado, h.supervisor as asupervisor, p.lugar as dlugar, 
+    p.fecha as dfecha, p.horaInicio as dinicia, p.horaFin as dfinaliza, p.supervisado as dsupervisado, 
+    p.supervisor as dsupervisor, concat(ps.nombre, ' ', ps.apellido) as usuarios, h.motivo FROM historial h  
+    LEFT JOIN pom p ON h.pom_id = p.idPom LEFT JOIN usuario u ON u.idUsuario = h.usuario_id 
+    LEFT JOIN persona ps ON ps.idPersona = u.persona_id WHERE pom_id = $pom";
+
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($pom = $consulta->fetch_assoc()) {
+        $response = $pom;
+    }
+    echo json_encode($response);
 }

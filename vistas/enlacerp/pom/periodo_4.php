@@ -1,3 +1,4 @@
+<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_4" aria-describedby="pom del periodo 4">
     <thead style="font-size: 11px;">
         <tr>
@@ -59,7 +60,7 @@
                             echo 'No';
                         } ?></td>
                     <td><?php echo $periodo_4['supervisor']; ?></td>
-                    <th scope style="font-size: 11px;">
+                    <th scope style="font-size: 11px;" class="text-center">
                         <?php if ($periodo_4['estado'] == 'ES02') {
                             echo '<p class="text-primary"> Revisar</p>';
                         } elseif ($periodo_4['estado'] == 'ES03') {
@@ -74,6 +75,12 @@
                             echo '<p class = "text-success"> Actividad recalendarizado </p>';
                         } elseif ($periodo_4['estado'] == 'RE03') {
                             echo '<p class = "text-danger"> Recalendarizacion rechazada </p>';
+                        } elseif ($periodo_4['estado'] == 'CA01') {
+                            echo '<p class = "text-warning"> Solicitud de cancelacion </p>';
+                        } elseif ($periodo_4['estado'] == 'CA02') {
+                            echo '<p class = "text-danger"> Cancelacion rechazada </p>';
+                        } elseif ($periodo_4['estado'] == 'ES06') {
+                            echo '<p class = "text-danger"> Actividad cancelada </p>';
                         } ?>
                     </th>
                     <td>
@@ -137,6 +144,8 @@
         </tr>
     </tfoot>
 </table>
+</div>
+
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

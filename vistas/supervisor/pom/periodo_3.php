@@ -1,3 +1,4 @@
+<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
     <thead style="font-size: 11px;">
         <tr>
@@ -32,7 +33,7 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo=3 AND t2.subreceptor_id = $SUBRECEPTOR
-        AND t2.estado NOT IN(SELECT estado FROM pom WHERE estado = 'PR01')";
+        AND t2.estado NOT IN(SELECT estado FROM pom WHERE estado = 'PR01') ORDER BY t2.estado";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
@@ -50,25 +51,32 @@
                     <td><?php echo $periodo_3['pRecurrente']; ?></td>
                     <th scope><?php echo round($periodo_3['total'], 2); ?></th>
                     <td><?php echo $periodo_3['observacion']; ?></td>
-                    <th scope style="font-size: 11px;">
+                    <th scope style="font-size: 11px;" class="text-center">
                         <?php
                         if ($periodo_3['estado'] == 'PR02') {
                             echo '<p class="text-primary"> Revisar </p>';
                         } elseif ($periodo_3['estado'] == 'PR03') {
                             echo '<p class="text-danger"> En correccion </p>';
                         } elseif ($periodo_3['estado'] == 'ES01') {
-                            echo '<p class="text-info"> Creado </p>';
+                            echo '<p class="text-white bg-info"><i class="bi bi-plus-circle-fill"></i><br>Creado</p>';
                         } elseif ($periodo_3['estado'] == 'ES02') {
-                            echo '<p class="text-warning"> Enviado al RP </p>';
+                            echo '<p class="text-dark bg-warning"><i class="bi bi-hand-index-fill"></i><br> En revision </p>';
                         } elseif ($periodo_3['estado'] == 'ES03') {
-                            echo '<p class="text-primary"> Revisado por RP </p>';
+                            echo '<p class="text-info"> Revisado por RP </p>';
                         } elseif ($periodo_3['estado'] == 'ES04') {
-                            echo '<p class = "text-success"> Aprobado por RP</p>';
+                            echo '<p class = "text-white bg-primary"><i class="bi bi-hand-thumbs-up-fill"></i><br>Actividad aprobada</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
-                            echo '<p class = "text-danger"> Correccion </p>';
+                            echo '<p class = "text-dark bg-info"><i class="bi bi-pencil-square"></i><br>Pendiente de correccion</p>';
                         } elseif ($periodo_3['estado'] == 'ES06') {
-                            echo '<p class = "text-danger"> Actividad cancelada </p>';
-                        } ?>
+                            echo '<p class = "text-danger"> Cancelado </p>';
+                        } elseif ($periodo_3['estado'] == 'RE01') {
+                            echo '<p class = "text-dark bg-warning"><i class="bi bi-front"></i><br>Reprogramacion solicitado</p>';
+                        } elseif ($periodo_3['estado'] == 'RE02') {
+                            echo '<p class = "text-white bg-success"><i class="bi bi-hand-thumbs-up-fill"></i><br>Solcitud aceptada </p>';
+                        } elseif ($periodo_3['estado'] == 'RE03') {
+                            echo '<p class = "text-white bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i><br>Reprogramacion rechazada</p>';
+                        }
+                        ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -151,6 +159,8 @@
         </tr>
     </tfoot>
 </table>
+</div>
+
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

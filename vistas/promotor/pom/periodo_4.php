@@ -1,3 +1,4 @@
+<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_4" aria-describedby="pom del periodo 4">
     <thead style="font-size: 11px;">
         <tr>
@@ -131,6 +132,8 @@
         </tr>
     </tfoot>
 </table>
+</div>
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="col-sm-6">
         <form action="../../php/excel/generarExcelPomSR.php" method="POST">

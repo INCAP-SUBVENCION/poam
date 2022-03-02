@@ -118,7 +118,7 @@ function cambiarEstadoPom() {
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
-        data: {
+        data: { 
             accion: accion,
             usuario: usuario,
             poa: poa,
@@ -479,7 +479,9 @@ function recalendarizacionPom() {
 function modalRechazarSolicitud() {
     $("#modalRechazarSolicitud").modal("show");
 }
-
+function modalRechazarCancelacion() {
+    $("#modalRechazarCancelacion").modal("show");
+}
 function aceptarSolicitud() {
     var usuario = document.getElementById('ausuario').value;
     var poa = document.getElementById('aid').value;
@@ -566,4 +568,106 @@ function rechazarRecalendarizacion() {
         }
     });
    
+}
+
+
+
+function modalCancelarActividad(id, usuario, estado) {
+
+    var accion = "consultaPoM";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            id: id
+        },
+        success: function (datos) {
+
+            var pom = JSON.parse(datos);
+            document.getElementById("estado_id").value = id;
+            document.getElementById("estado_mes").value = pom.mes;
+            document.getElementById("estado_municipio").value = pom.municipio;
+            document.getElementById("estado_lugar").value = pom.lugar;
+            document.getElementById("estado_fecha").value = pom.fecha;
+            document.getElementById("estado_inicia").value = pom.horaInicio;
+            document.getElementById("estado_finaliza").value = pom.horaFin;
+            document.getElementById("estado_usuario").value = usuario;
+            document.getElementById("estado_estado").value = estado;
+            document.getElementById("estado_nuevo").value = pom.pNuevo;
+            document.getElementById("estado_recurrente").value = pom.pRecurrente;
+            document.getElementById("estado_total").value = pom.total;
+        }
+    });
+    $("#modalCancelarActividad").modal("show");
+}
+
+
+
+function modalAceptarCancelacion(id, usuario, estado) {
+
+    var accion = "consultaCancelar";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            id: id
+        },
+        success: function (datos) {
+
+            var pom = JSON.parse(datos);
+            document.getElementById("estado_id").value = id;
+            document.getElementById("estado_mes").value = pom.mes;
+            document.getElementById("estado_municipio").value = pom.municipio;
+            document.getElementById("estado_lugar").value = pom.lugar;
+            document.getElementById("estado_fecha").value = pom.fecha;
+            document.getElementById("estado_inicia").value = pom.horaInicio;
+            document.getElementById("estado_finaliza").value = pom.horaFin;
+            document.getElementById("estado_usuario").value = usuario;
+            document.getElementById("estado_estado").value = estado;
+            document.getElementById("estado_nuevo").value = pom.pNuevo;
+            document.getElementById("estado_recurrente").value = pom.pRecurrente;
+            document.getElementById("estado_total").value = pom.total;
+            document.getElementById("estado_descripcion").value = pom.descripcion;
+        }
+    });
+    $("#modalAceptarCancelacion").modal("show");
+}
+
+function rechazarCancelacion(estado) {
+    var usuario = document.getElementById('estado_usuario').value;
+    var poa = document.getElementById('estado_id').value;
+    var estado = estado;
+    var descripcion = document.getElementById('razon').value; 
+
+    var accion = "cambiarEstadoPom";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: { 
+            accion: accion,
+            usuario: usuario,
+            poa: poa,
+            estado: estado,
+            descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡GUARDADO!...');
+                document.getElementById('estado_usuario').value = "";
+                document.getElementById('estado_id').value = "";
+                document.getElementById('estado_estado').value = "";
+                document.getElementById('estado_descripcion').value = "";
+                $("#modalCambiarEstado").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo guardar");
+            }
+        }
+    });
 }

@@ -33,33 +33,40 @@ $SUBRECEPTOR = $_GET['id'];
 
 
     <body>
-        <nav class="navbar navbar-dark" style="background-color:darkblue;">
-            <img src="../../../assets/images/vihinvertido.png" width="35" alt="">
-            <h1 class="text-white"><em class="bi bi-fullscreen"></em> METAS</h1>
-            <?php
-            $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+            <div class="container-fluid">
+                <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
+                <a class="navbar-brand" href="#">.:. METAS .:.</a>
+                <button class="navbar-toggler btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <?php
+                    $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
                 LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
                 LEFT JOIN catalogo r ON u.rol=r.codigo
                 LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
-            $res1 = $enlace->query($consulta1);
-            while ($usuario = mysqli_fetch_assoc($res1)) {
-            ?>
-                <a class="navbar-brand" href="../rp.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
-                <div class="dropdown">
-                    <a class="btn-outline-secundary" type="button" data-bs-toggle="dropdown" style="font-size: 11px;">
-                        <em class="bi bi-person-fill text-white"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
-
-                    </a>
-                    <ul class="dropdown-menu" style="font-size: 13px;">
-                        <li><a class="dropdown-item" href="#"><em class="bi bi-file-earmark-person"></em> Perfil</a></li>
-                        <li><a class="dropdown-item" href="#"><em class="bi bi-check2-square"></em> Permisos</a></li>
-                        <li><a class="dropdown-item" href="../salir.php"><em class="bi bi-x-circle-fill"></em> Cerrar sesion</a></li>
-                    </ul>
+                    $res1 = $enlace->query($consulta1);
+                    while ($usuario = mysqli_fetch_assoc($res1)) {
+                    ?>
+                        
+                            <a class="navbar-brand" href="../rp.php"><em class="bi bi-house-door-fill"></em> Inicio</a>
+                            <div class="dropdown">
+                                <a class="btn-outline-secundary text-white" type="button" data-bs-toggle="dropdown">
+                                    <em class="bi bi-person-fill"></em> <?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="../perfil.php"><i class="bi bi-file-earmark-person"></i> Perfil</a></li>
+                                    <li><a class="dropdown-item" href="../salir.php"><i class="bi bi-x-circle-fill"></i> Cerrar sesion</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php }
+                    $res1->close(); ?>
                 </div>
-            <?php }
-            $res1->close(); ?>
+            </div>
         </nav>
-
 
         <!-- Striped rows start -->
         <section class="section">
@@ -95,7 +102,7 @@ $SUBRECEPTOR = $_GET['id'];
             </ul>
             <div class="tab-content" id="pills-tabContent">
 
-                <div class="tab-pane fade show active" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
+                <div class="tab-pane fade show active table-responsive" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
                     <table class="table table-hover table-bordered">
                         <thead class="text-center">
                             <th>#</th>
@@ -128,7 +135,7 @@ $SUBRECEPTOR = $_GET['id'];
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
+                <div class="tab-pane fade table-responsive" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
                     <table class="table table-hover table-bordered" aria-describedby="">
                         <thead class="text-center">
                             <th>#</th>
