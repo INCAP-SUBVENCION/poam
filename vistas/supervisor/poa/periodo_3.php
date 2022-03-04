@@ -12,7 +12,6 @@
         <th class="tfemenino">Condon femenino</th>
         <th scope="">Lubricantes</th>
         <th class="tprueba" scope="">Prueba VIH</th>
-        <th class="tauto">Auto prueba VIH</th>
         <th class="treactivo" scope="">Reactivos esperados</th>
         <th class="tsifilis" scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
@@ -44,7 +43,6 @@
                     <td class="tfemenino"><?php echo $periodo_3['cfemenino']; ?></td>
                     <td><?php echo $periodo_3['lubricante']; ?></td>
                     <td class="tprueba"><?php echo $periodo_3['pruebaVIH']; ?></td>
-                    <td class="tauto"><?php echo $periodo_3['autoPrueba']; ?></td>
                     <td class="treactivo"><?php echo $periodo_3['reactivoE']; ?></td>
                     <td class="tsifilis"><?php echo $periodo_3['sifilis']; ?></td>
                     <td><?php echo $periodo_3['observacion']; ?></td>
@@ -65,7 +63,6 @@
         <td class="text-center tfemenino"><strong id="tfemenino3">0</strong></td>
         <td class="text-center"><strong id="tlubricantes3">0</strong></td>
         <td class="text-center tprueba"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center tauto"><strong id="tautoprueba3">0</strong></td>
         <td class="text-center treactivo"><strong id="treactivos3">0</strong></td>
         <td class="text-center tsifilis"><strong id="tsifilis3">0</strong></td>
         <th scope="">Observaciones</th>
@@ -80,6 +77,24 @@
             <form action="../../php/excel/generarExcelPoaOmes.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="3">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="muni" id="muni">
+                    <option value="">Todo los municipios ...</option>
+                    <?php
+                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $rmunicipio = $enlace->query($municipioSql);
+                    while ($municipio = $rmunicipio->fetch_assoc()) { ?>
+                        <option value="<?php echo $municipio['municipio'] ?>"><?php echo $municipio['nombre'] ?></option>
+                    <?php } $rmunicipio->close(); ?>
+                </select>
+                <select name="me" id="me">
+                    <option value="">Todo los meses ...</option>
+                    <?php
+                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $rmes = $enlace->query($mesSql);
+                    while ($mes = $rmes->fetch_assoc()) { ?>
+                        <option value="<?php echo $mes['mes'] ?>"><?php echo $mes['nombre'] ?></option>
+                    <?php } $rmes->close(); ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
@@ -90,6 +105,24 @@
             <form action="../../php/excel/generarExcelPoaHsh.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="3">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="muni" id="muni">
+                    <option value="">Todo los municipios ...</option>
+                    <?php
+                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $rmunicipio = $enlace->query($municipioSql);
+                    while ($municipio = $rmunicipio->fetch_assoc()) { ?>
+                        <option value="<?php echo $municipio['municipio'] ?>"><?php echo $municipio['nombre'] ?></option>
+                    <?php } $rmunicipio->close(); ?>
+                </select>
+                <select name="me" id="me">
+                    <option value="">Todo los meses ...</option>
+                    <?php
+                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $rmes = $enlace->query($mesSql);
+                    while ($mes = $rmes->fetch_assoc()) { ?>
+                        <option value="<?php echo $mes['mes'] ?>"><?php echo $mes['nombre'] ?></option>
+                    <?php } $rmes->close(); ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
@@ -100,6 +133,24 @@
             <form action="../../php/excel/generarExcelPoaTrans.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="3">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="muni" id="muni">
+                    <option value="">Todo los municipios ...</option>
+                    <?php
+                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $rmunicipio = $enlace->query($municipioSql);
+                    while ($municipio = $rmunicipio->fetch_assoc()) { ?>
+                        <option value="<?php echo $municipio['municipio'] ?>"><?php echo $municipio['nombre'] ?></option>
+                    <?php } $rmunicipio->close(); ?>
+                </select>
+                <select name="me" id="me">
+                    <option value="">Todo los meses ...</option>
+                    <?php
+                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $rmes = $enlace->query($mesSql);
+                    while ($mes = $rmes->fetch_assoc()) { ?>
+                        <option value="<?php echo $mes['mes'] ?>"><?php echo $mes['nombre'] ?></option>
+                    <?php } $rmes->close(); ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>

@@ -22,12 +22,12 @@ if ($accion == "calcularProyeccionPOA") {
     $sqlp1 = "SELECT * FROM subreceptor WHERE idSubreceptor = '$subreceptor'";
     $resultadop1 = $enlace->query($sqlp1);
     while ($calculo = mysqli_fetch_assoc($resultadop1)) {
-        echo    $calculo['enatural'] * $total      . "," .
+        echo    $calculo['enatural'] * $total  . "," .
             $calculo['esabor'] * $total        . "," .
             $calculo['efemenino'] * $total     . "," .
             $calculo['elubricante'] * $total   . "," .
-            $calculo['ppvih'] * $total         . "," .
-            $calculo['pautoprueba'] * $total;
+            $calculo['ppvih']                  . "," .
+            $calculo['pautoprueba'];
     }
     $resultadop1->close();
 }

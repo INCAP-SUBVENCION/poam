@@ -56,6 +56,8 @@
                             echo '<p class="text-primary"> Creado </p>';
                         } elseif ($periodo_4['estado'] == 'PR02') {
                             echo '<p class="text-warning"> En revision </p>';
+                        } elseif ($periodo_4['estado'] == 'PR03') {
+                            echo '<p class="text-danger"> Corregir </p>';
                         } elseif ($periodo_4['estado'] == 'ES01') {
                             echo '<p class="text-info"> Revisado </p>';
                         } elseif ($periodo_4['estado'] == 'ES02') {
@@ -66,6 +68,12 @@
                             echo '<p class = "text-success"> Autorizado por RP</p>';
                         } elseif ($periodo_4['estado'] == 'ES05') {
                             echo '<p class = "text-success"> Aprobado por RP</p>';
+                        } elseif ($periodo_4['estado'] == 'CA01') {
+                            echo '<p class="text-info"> Cancelacion solicitado </p>';
+                        } elseif ($periodo_4['estado'] == 'CA02') {
+                            echo '<p class = "text-danger"> Cancelacion rechazada</p>';
+                        } elseif ($periodo_4['estado'] == 'ES06') {
+                            echo '<p class = "text-warning"> Actividad cancelada </p>';
                         } ?>
                     </th>
                     <td>

@@ -110,7 +110,7 @@
                                 <?php if ($periodo_3['estado'] == 'CA01') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAceptarCancelacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES06')">
-                                            <em class="bi bi-back"></em> Cancelar actividad </button>
+                                            <em class="bi bi-back"></em> Solicitud de cancelacion </button>
                                     </li>
                                 <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>&sub=<?php echo $periodo_3['subreceptor_id']; ?>">

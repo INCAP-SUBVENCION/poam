@@ -71,7 +71,7 @@
                     <input type="hidden" id="estado_estado">
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="cambiarEstadoPom()">Aceptar cancelacion</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="cambiarEstadoPom()"> Aceptar solicitud </button>
                     <button type="button" class="btn btn-danger btn-sm"  onclick="modalRechazarCancelacion()"> <i class="bi bi-x-circle-fill"></i> Rechazar solicitud </button>   
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>

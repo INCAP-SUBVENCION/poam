@@ -68,6 +68,12 @@
                             echo '<p class = "text-success"> Autorizado por RP</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
                             echo '<p class = "text-success"> Aprobado por RP</p>';
+                        } elseif ($periodo_3['estado'] == 'CA01') {
+                            echo '<p class="text-info"> Cancelacion solicitado </p>';
+                        } elseif ($periodo_3['estado'] == 'CA02') {
+                            echo '<p class = "text-danger"> Cancelacion rechazada</p>';
+                        } elseif ($periodo_3['estado'] == 'ES06') {
+                            echo '<p class = "text-warning"> Actividad cancelada </p>';
                         } ?>
                     </th>
                     <td>

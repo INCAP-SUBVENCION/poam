@@ -71,7 +71,7 @@ function calcularProyeccionPOA() {
     var subreceptor = document.getElementById('subreceptor').value;
     var procentaje  = parseFloat(document.getElementById('reactivo').value);
 
-    var accion = "calcularProyeccionPOA";
+    var accion = "calcularProyeccionPOA"; 
  
     $.ajax({
         type: "POST",
@@ -88,8 +88,8 @@ function calcularProyeccionPOA() {
             var cfemenino   = parseFloat(resultado[2]);
             if(subreceptor == '2'){ lubricante = total;
             } else { var lubricante  = parseFloat(resultado[3]); }
-            var pruebaVIH   = parseFloat(resultado[4]);
-            var autoPrueba  = parseFloat(resultado[5]);
+            var pruebaVIH = total * 0.95;
+            var autoPrueba = 0;
             var reactivo = total * procentaje;
             document.getElementById('cnatural').value   = cnatural.toFixed(2);
             document.getElementById('csabor').value     = csabor.toFixed(2);

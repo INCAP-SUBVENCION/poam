@@ -76,6 +76,12 @@
                             echo '<p class = "text-white bg-success"><i class="bi bi-hand-thumbs-up-fill"></i><br>Solcitud aceptada </p>';
                         } elseif ($periodo_4['estado'] == 'RE03') {
                             echo '<p class = "text-white bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i><br>Reprogramacion rechazada</p>';
+                        } elseif ($periodo_4['estado'] == 'CA01') {
+                            echo '<p class = "text-dark bg-info"><i class="bi bi-front"></i><br>Cancelacion solicitado</p>';
+                        } elseif ($periodo_4['estado'] == 'CA02') {
+                            echo '<p class = "text-white bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i><br>Solcitud rechazada</p>';
+                        } elseif ($periodo_4['estado'] == 'ES06') {
+                            echo '<p class = "text-white bg-warning"><i class="bi bi-hand-thumbs-up-fill"></i><br>Actividad cancelada</p>';
                         }
                         ?>
                     </th>

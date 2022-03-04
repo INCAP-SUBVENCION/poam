@@ -12,7 +12,6 @@
         <th scope="">Condon femenino</th>
         <th scope="">Lubricantes</th>
         <th scope="">Prueba VIH</th>
-        <th scope="">Auto prueba VIH</th>
         <th scope="">Reactivos esperados</th>
         <th scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
@@ -43,7 +42,6 @@
                     <td><?php echo $periodo_1['cfemenino']; ?></td>
                     <td><?php echo $periodo_1['lubricante']; ?></td>
                     <td><?php echo $periodo_1['pruebaVIH']; ?></td>
-                    <td><?php echo $periodo_1['autoPrueba']; ?></td>
                     <td><?php echo $periodo_1['reactivoE']; ?></td>
                     <td><?php echo $periodo_1['sifilis']; ?></td>
                     <td><?php echo $periodo_1['observacion']; ?></td>
@@ -64,7 +62,6 @@
         <td class="text-center"><strong id="tfemenino3">0</strong></td>
         <td class="text-center"><strong id="tlubricantes3">0</strong></td>
         <td class="text-center"><strong id="tpruebavih3">0</strong></td>
-        <td class="text-center"><strong id="tautoprueba3">0</strong></td>
         <td class="text-center"><strong id="treactivos3">0</strong></td>
         <td class="text-center"><strong id="tsifilis3">0</strong></td>
         <th scope="">Observaciones</th>

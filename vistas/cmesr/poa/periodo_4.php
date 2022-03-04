@@ -12,7 +12,6 @@
             <th scope="">Condon sabor</th>
             <th scope="">Condon femenino</th>
             <th scope="">Tubo Lubricantes</th>
-            <th scope="">Auto prueba VIH</th>
             <th scope="">Observaciones</th>
             <th scope="">Estado</th>
             <th scope="">Opciones</th>
@@ -42,7 +41,6 @@
                         <td><?php echo $periodo_4['csabor']; ?></td>
                         <td><?php echo $periodo_4['cfemenino']; ?></td>
                         <td><?php echo $periodo_4['lubricante']; ?></td>
-                        <td><?php echo $periodo_4['autoPrueba']; ?></td>
                         <td><?php echo $periodo_4['observacion']; ?></td>
                         <th scope="">
                             <?php if ($periodo_4['estado'] == 'ES01') {
@@ -108,7 +106,6 @@
             <td class="text-center"><strong id="omessabor4">0</strong></td>
             <td class="text-center"><strong id="omesfemenino4">0</strong></td>
             <td class="text-center"><strong id="omeslubricantes4">0</strong></td>
-            <td class="text-center"><strong id="omesautoprueba4">0</strong></td>
             <th scope="">Observaciones</th>
             <th scope="">Estado</th>
         </tfoot>
@@ -127,7 +124,6 @@
             <th scope="">Condon natural</th>
             <th scope="">Lubricantes</th>
             <th scope="">Prueba VIH</th>
-            <th scope="">Auto prueba VIH</th>
             <th scope="">Reactivos esperados</th>
             <th scope="">Prueba Sifilis</th>
             <th scope="">Observaciones</th>
@@ -158,7 +154,6 @@
                         <td><?php echo $periodo_4['cnatural']; ?></td>
                         <td><?php echo $periodo_4['lubricante']; ?></td>
                         <td><?php echo $periodo_4['pruebaVIH']; ?></td>
-                        <td><?php echo $periodo_4['autoPrueba']; ?></td>
                         <td><?php echo $periodo_4['reactivoE']; ?></td>
                         <td><?php echo $periodo_4['sifilis']; ?></td>
                         <td><?php echo $periodo_4['observacion']; ?></td>
@@ -225,7 +220,6 @@
             <td class="text-center"><strong id="hshnatural4">0</strong></td>
             <td class="text-center"><strong id="hshlubricantes4">0</strong></td>
             <td class="text-center"><strong id="hshpruebavih4">0</strong></td>
-            <td class="text-center"><strong id="hshautoprueba4">0</strong></td>
             <td class="text-center"><strong id="hshreactivos4">0</strong></td>
             <td class="text-center"><strong id="hshsifilis4">0</strong></td>
             <th scope="">Observaciones</th>
@@ -248,7 +242,6 @@
             <th scope="">Condon sabor</th>
             <th scope="">Lubricantes</th>
             <th scope="">Prueba VIH</th>
-            <th scope="">Auto prueba VIH</th>
             <th scope="">Reactivos esperados</th>
             <th scope="">Prueba Sifilis</th>
             <th scope="">Observaciones</th>
@@ -280,7 +273,6 @@
                         <td><?php echo $periodo_4['csabor']; ?></td>
                         <td><?php echo $periodo_4['lubricante']; ?></td>
                         <td><?php echo $periodo_4['pruebaVIH']; ?></td>
-                        <td><?php echo $periodo_4['autoPrueba']; ?></td>
                         <td><?php echo $periodo_4['reactivoE']; ?></td>
                         <td><?php echo $periodo_4['sifilis']; ?></td>
                         <td><?php echo $periodo_4['observacion']; ?></td>
@@ -348,7 +340,6 @@
             <td class="text-center"><strong id="otranssabor4">0</strong></td>
             <td class="text-center"><strong id="otranslubricantes4">0</strong></td>
             <td class="text-center"><strong id="otranspruebavih4">0</strong></td>
-            <td class="text-center"><strong id="otransautoprueba4">0</strong></td>
             <td class="text-center"><strong id="otransreactivos4">0</strong></td>
             <td class="text-center"><strong id="otranssifilis4">0</strong></td>
             <th scope="">Observaciones</th>
@@ -370,7 +361,6 @@
             <th scope="">Condon natural</th>
             <th scope="">Lubricantes</th>
             <th scope="">Prueba VIH</th>
-            <th scope="">Auto prueba VIH</th>
             <th scope="">Reactivos esperados</th>
             <th scope="">Prueba Sifilis</th>
             <th scope="">Observaciones</th>
@@ -401,7 +391,6 @@
                         <td><?php echo $periodo_4['cnatural']; ?></td>
                         <td><?php echo $periodo_4['lubricante']; ?></td>
                         <td><?php echo $periodo_4['pruebaVIH']; ?></td>
-                        <td><?php echo $periodo_4['autoPrueba']; ?></td>
                         <td><?php echo $periodo_4['reactivoE']; ?></td>
                         <td><?php echo $periodo_4['sifilis']; ?></td>
                         <td><?php echo $periodo_4['observacion']; ?></td>
@@ -468,7 +457,6 @@
             <td class="text-center"><strong id="pplnatural4">0</strong></td>
             <td class="text-center"><strong id="ppllubricantes4">0</strong></td>
             <td class="text-center"><strong id="pplpruebavih4">0</strong></td>
-            <td class="text-center"><strong id="pplautoprueba4">0</strong></td>
             <td class="text-center"><strong id="pplreactivos4">0</strong></td>
             <td class="text-center"><strong id="pplsifilis4">0</strong></td>
             <th scope="">Observaciones</th>
@@ -483,6 +471,24 @@
             <form action="../../php/excel/generarExcelPoaOmes.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="4">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="muni" id="muni">
+                    <option value="">Todo los municipios ...</option>
+                    <?php
+                    $sql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 4;";
+                    $rd = $enlace->query($sql);
+                    while ($departamento = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $departamento['municipio'] ?>"><?php echo $departamento['nombre'] ?></option>
+                    <?php } $rd->close(); ?>
+                </select>
+                <select name="me" id="me">
+                    <option value="">Todo los meses ...</option>
+                    <?php
+                    $sql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 4;";
+                    $rd = $enlace->query($sql);
+                    while ($departamento = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $departamento['mes'] ?>"><?php echo $departamento['nombre'] ?></option>
+                    <?php } $rd->close(); ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
@@ -493,6 +499,24 @@
             <form action="../../php/excel/generarExcelPoaHsh.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="4">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="muni" id="muni">
+                    <option value="">Todo los municipios ...</option>
+                    <?php
+                    $sql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 4;";
+                    $rd = $enlace->query($sql);
+                    while ($departamento = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $departamento['municipio'] ?>"><?php echo $departamento['nombre'] ?></option>
+                    <?php } $rd->close(); ?>
+                </select>
+                <select name="me" id="me">
+                    <option value="">Todo los meses ...</option>
+                    <?php
+                    $sql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 4;";
+                    $rd = $enlace->query($sql);
+                    while ($departamento = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $departamento['mes'] ?>"><?php echo $departamento['nombre'] ?></option>
+                    <?php } $rd->close(); ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
@@ -503,6 +527,24 @@
             <form action="../../php/excel/generarExcelPoaTrans.php" method="POST">
                 <input type="hidden" name="periodo" id="periodo" value="4">
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="muni" id="muni">
+                    <option value="">Todo los municipios ...</option>
+                    <?php
+                    $sql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 4;";
+                    $rd = $enlace->query($sql);
+                    while ($departamento = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $departamento['municipio'] ?>"><?php echo $departamento['nombre'] ?></option>
+                    <?php } $rd->close(); ?>
+                </select>
+                <select name="me" id="me">
+                    <option value="">Todo los meses ...</option>
+                    <?php
+                    $sql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 4;";
+                    $rd = $enlace->query($sql);
+                    while ($departamento = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $departamento['mes'] ?>"><?php echo $departamento['nombre'] ?></option>
+                    <?php } $rd->close(); ?>
+                </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
