@@ -14,8 +14,7 @@
                         <th scope="">Condon sabor</th>
                         <th scope="">Condon femenino</th>
                         <th scope="">Lubricantes</th>
-                        <th scope="">Prueba VIH</th>
-                        <th scope="">Auto prueba VIH</th>
+                        <th scope="">Tamizaje</th>
                         <th scope="">Reactivos esperados</th>
                         <th scope="">Prueba Sifilis</th>
                     </thead>
@@ -30,7 +29,6 @@
                         <td><strong id="_femenino"></strong></td>
                         <td><strong id="_lubricante"></strong></td>
                         <td><strong id="_prueba"></strong></td>
-                        <td><strong id="_autoprueba"></strong></td>
                         <td><strong id="_reactivo"></strong></td>
                         <td><strong id="_sifilis"></strong></td>
                     </tbody>
@@ -133,13 +131,10 @@
                                                 <input type="text" name="elubricante" id="elubricante" class="form-control form-control-sm" style="color:blue" disabled>
                                             </div>
                                             <div class="form-group input-group-sm col-sm-2">
-                                                <label class="form-label">Prueba VIH</label>
+                                                <label class="form-label">Tamizaje</label>
                                                 <input type="text" step="0.0000" name="epruebaVIH" id="epruebaVIH" class="form-control form-control-sm" style="color:blue" disabled>
                                             </div>
-                                            <div class="form-group input-group-sm col-sm-3">
-                                                <label class="form-label">Autoprueba VIH</label>
-                                                <input type="text" step="0.0000" name="eautoPrueba" id="eautoPrueba" class="form-control form-control-sm" style="color:blue" disabled>
-                                            </div>
+                                                <input type="hidden" step="0.0000" name="eautoPrueba" id="eautoPrueba">
                                             <div class="form-group input-group-sm col-sm-3">
                                                 <label class="form-label">Reactivo esperado
                                                 </label>

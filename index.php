@@ -56,8 +56,15 @@ header("Content-Type: text/html;charset=utf-8");
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right">
-                    <img src="assets/images/logo.png" width="400" alt="">
-                    <img src="assets/images/sica.png" width="400" alt="">
+                
+                <div class="text-center">
+                    <img src="assets/images/p.png" width="500" alt="">
+                    <h3 class="auth-title text-center">Sistema de Planificación Operativo Anual y Mensual </h3>
+                    <br>
+                    <img src="assets/images/logo.png" width="250" alt="">
+                    <img src="assets/images/sica.png" width="250" alt="">
+                </div>
+                    
                 </div>
             </div>
         </div>

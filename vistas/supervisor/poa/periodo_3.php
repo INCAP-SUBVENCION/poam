@@ -11,7 +11,7 @@
         <th class="tsabor">Condon sabor</th>
         <th class="tfemenino">Condon femenino</th>
         <th scope="">Lubricantes</th>
-        <th class="tprueba" scope="">Prueba VIH</th>
+        <th class="tprueba" scope="">Tamizaje</th>
         <th class="treactivo" scope="">Reactivos esperados</th>
         <th class="tsifilis" scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>

@@ -118,7 +118,7 @@
         <th scope="">Total</th>
         <th scope="">Condon natural</th>
         <th scope="">Lubricantes</th>
-        <th scope="">Prueba VIH</th>
+        <th scope="">Tamizaje</th>
         <th scope="">Reactivos esperados</th>
         <th scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
@@ -231,7 +231,7 @@
         <th scope="">Condon natural</th>
         <th scope="">Condon sabor</th>
         <th scope="">Lubricantes</th>
-        <th scope="">Prueba VIH</th>
+        <th scope="">Tamizaje</th>
         <th scope="">Reactivos esperados</th>
         <th scope="">Prueba Sifilis</th>
         <th scope="">Observaciones</th>
