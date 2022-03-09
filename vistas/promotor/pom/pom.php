@@ -22,6 +22,7 @@ $PERSONA = $_SESSION['persona_id'];
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
     <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../../../assets/css/select2.min.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -33,7 +34,7 @@ $PERSONA = $_SESSION['persona_id'];
 <body>
 
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
             <div class="container-fluid">
                 <img src="../../../assets/images/vihinvertido.png" width="45" alt="">
                 <a class="navbar-brand" href="#">.:. POM .:.</a>
@@ -44,9 +45,9 @@ $PERSONA = $_SESSION['persona_id'];
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <?php
                         $consulta1 = "SELECT p.nombre, p.apellido,u.usuario,r.nombre as rol,s.nombre as subreceptor FROM usuario u
-                LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
-                LEFT JOIN catalogo r ON u.rol=r.codigo
-                LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
+                                    LEFT JOIN subreceptor s ON u.subreceptor_id = s.idSubreceptor
+                                    LEFT JOIN catalogo r ON u.rol=r.codigo
+                                    LEFT JOIN persona p ON p.idPersona=u.Persona_id WHERE u.idUsuario =$ID";
                         $res1 = $enlace->query($consulta1);
                         while ($usuario = mysqli_fetch_assoc($res1)) {
                         ?>
@@ -61,8 +62,7 @@ $PERSONA = $_SESSION['persona_id'];
                                 </ul>
                             </div>
                     </div>
-                <?php }
-                        $res1->close(); ?>
+                <?php } $res1->close(); ?>
                 </div>
             </div>
         </nav>
@@ -78,9 +78,7 @@ $PERSONA = $_SESSION['persona_id'];
                     <div class="text-center">
                         <h6><?php echo $subr['nombre']; ?></h6>
                     </div>
-                <?php
-                }
-                ?>
+                <?php } ?>
                 <div class="col-md-12">
                     <div class="row">
 
@@ -103,8 +101,7 @@ $PERSONA = $_SESSION['persona_id'];
                                 $rd = $enlace->query($cd);
                                 while ($municipio = $rd->fetch_assoc()) { ?>
                                     <option value="<?php echo $municipio['id'] ?>"><?php echo $municipio['municipio'] ?></option>
-                                <?php }
-                                $rd->close(); ?>
+                                <?php } $rd->close(); ?>
                             </select>
                         </div>
                         <!--Resultado de obtenerCantidadPromotor() -->
@@ -168,7 +165,15 @@ $PERSONA = $_SESSION['persona_id'];
                                     </div>
                                     <div class="form-group input-group-sm col-sm-12">
                                         <label class="form-label">Lugar:</label>
-                                        <input type="text" name="lugar" id="lugar" class="form-control form-control-sm" style="font-size:12px;" required>
+                                        <select class="js-lugar form-control" id="lugar">
+                                            <option value=""></option>
+                                            <?php
+                                            $rlugar = $enlace->query("SELECT DISTINCT lugar FROM estado t1  LEFT JOIN pom t2 ON t2.idPom = t1.pom_id 
+                                                WHERE t1.usuario_id = $ID AND t2.subreceptor_id = $SUBRECEPTOR GROUP BY lugar");
+                                            while ($lugar = $rlugar->fetch_assoc()) { ?>
+                                                <option value="<?php echo $lugar['lugar']; ?>"><?php echo $lugar['lugar']; ?></option>
+                                            <?php } $rd->close(); ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -329,10 +334,20 @@ $PERSONA = $_SESSION['persona_id'];
         <script src="../../js/utilidad.js"></script>
         <script src="../../js/estados.js"></script>
         <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
+        <script src="../../../assets/js/select2.full.min.js"></script>
         <script src="../../js/tabla.js"></script>
 
         <script>
             $(document).ready(function() {
+                $(".js-lugar").select2({
+
+                    placeholder: "Buscar o escribir el lugar",
+                    allowClear: true,
+                    tags: true,
+                    newTag: true
+                });
+
+
                 $('#condonsabor').hide();
             });
         </script>

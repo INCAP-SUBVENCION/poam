@@ -31,7 +31,7 @@ $ROL = $_SESSION['rol'];
     } else if ($ROL == "R007") {
         header('Location: promotor/promotor.php');
     } else if ($ROL == "R008") {
-        header('Location: finaciero/financiero.php');
+        header('Location: otros/otros.php');
     }
     ?>
 

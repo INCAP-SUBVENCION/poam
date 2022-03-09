@@ -166,7 +166,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Fin:</label>
                                         <input type="time" name="fin" id="fin" class="form-control form-control-sm" required>
-                                    </div>
+                                    </div> 
                                     <div class="form-group input-group-sm col-sm-12">
                                         <label class="form-label">Lugar:</label>
                                         <select class="js-lugar form-control" id="lugar">

@@ -4,7 +4,7 @@ header("Content-Type: text/html;charset=utf-8");
 session_start();
 if (!isset($_SESSION['idUsuario'])) {
     header('Location: salir.php');
-} else if (($_SESSION['rol'] != 'R002')) {
+} else if (($_SESSION['rol'] != 'R008')) {
     header('Location: ../../error.php');
 }
 $ID = $_SESSION['idUsuario'];
@@ -70,7 +70,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <ul class="list-group list-group-flush">
                                             <a class="list-group-item" href="pom/pom.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range"></i> Plan Operativo Mensual</a>
                                             <a class="list-group-item" href="poa/poa.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range-fill"></i> Plan Operativo Anual</a>
-                                            <a class="list-group-item" href="poa/meta.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-bullseye"></i> METAS</a>
                                         </ul> 
                                     </div>
                                 </div>

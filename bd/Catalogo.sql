@@ -381,7 +381,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Coordinador de Monitoreo y Evaluacion de SR', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R006',  'Supervisor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R007',  'Promotor', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Financiero', ' ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Usuario INCAP', 'Financiero, Logistica y Monitoreo ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R009',  'Coordinador de proyectos', ' ', 'rol');
 #PERIODO 1
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP11', 'Enero', 1, 'mes');
@@ -432,14 +432,18 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado por Enlace Programatico', 'POA o POM revisado por el enlace', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado por el Especialista', 'POA o POM aprobado por el especialista', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Correccion', 'Modificar activadad', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Actividad cancelada', 'Actividad cancelada', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Actividad Cancelada', 'Actividad cancelada', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Actividad Recalendarizado', 'Recalendarizacion', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES08', 'Actividad Reprogramado', 'Reprogramacion', 'estado');
 
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE01', 'Solicitud de Recalendarizacion', 'Cambio de fecha del POM', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE02', 'Solicitud Aceptada', 'Cambio Autorizado', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RE03', 'Solicitud Rechazada', 'Cambio rechazado', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA01', 'Solicitud de cancelacion', 'Cancelacion', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA02', 'Solicitud Rechazada', 'Cancelacion', 'estado');
 
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA01', 'Solicitud de cancelacion', 'Cancelacion de la actividad', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('CA02', 'Solicitud Rechazada', 'Cancelacion de actividad rechazada', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RC01', 'Solicitud de Recalendarizacion', 'Recalendarizacion', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RC02', 'Solicitud Rechazada', 'Recalendarizacion', 'estado');
+
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RP01', 'Solicitud de Reprogramacion', 'Reprogramacion', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RP02', 'Solicitud Rechazada', 'Reprogramacion', 'estado');
 
 #ESTADO DEL PROMOTOR
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR01', 'POM creado', 'POM creado por el promotor', 'estado');
