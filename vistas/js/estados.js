@@ -1,8 +1,8 @@
 /**
  * Funcion que permite establecer y obetner los datos basicos para el cambio de estado del POA
- * @param {*} id identificador del poa
+ * @param {*} id identificador del POA
  * @param {*} usuario identificador del usuario quien lo crea o cambia el estado del POA
- * @param {*} estado estado a cambiar
+ * @param {*} estado identificador del estado a cambiar
  */
 function modalCambiarEstadoPoa(id, usuario, estado) {
 
@@ -69,10 +69,10 @@ function cambiarEstadoPoa() {
     });
 }
 /**
- * Funcion que permite establecer y obetner los datos basicos para el cambio de estado del POM
- * @param {*} id identificador del POM 
- * @param {*} usuario identificador de usuario quien lo creo o cambia el estado del POM
- * @param {*} estado estado a cambiar
+ * Funcion que permite establecer y obetner los datos basicos para el cambio de estado de la actividad
+ * @param {*} id identificador de la actividad
+ * @param {*} usuario identificador de usuario quien lo creo o cambia el estado de la actividad
+ * @param {*} estado identificador del estado a cambiar
  */
 function modalCambiarEstadoPom(id, usuario, estado) {
 
@@ -105,7 +105,7 @@ function modalCambiarEstadoPom(id, usuario, estado) {
     $("#modalCambiarEstado").modal("show");
 }
 /**
- * Funcion que permite cambiar el estado de POM
+ * Funcion que permite cambiar el estado de la actividad
  */
 function cambiarEstadoPom() {
     var usuario = document.getElementById('estado_usuario').value;
@@ -118,7 +118,7 @@ function cambiarEstadoPom() {
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
-        data: { 
+        data: {
             accion: accion,
             usuario: usuario,
             poa: poa,
@@ -143,7 +143,7 @@ function cambiarEstadoPom() {
 }
 /**
  * Funcion que permite mostar modal para ver el estado de la actividad del POM
- * @param {*} id Identificador de la actividad del pom
+ * @param {*} id identificador de la actividad del pom
  */
 function modalEstadoPom(id) {
 
@@ -155,7 +155,7 @@ function modalEstadoPom(id) {
         dataType: 'JSON',
         data: {
             accion: accion,
-            id: id 
+            id: id
         },
         success: function (response) {
             var len = response.length;
@@ -184,13 +184,12 @@ function modalEstadoPom(id) {
 }
 /**
  * Funcion que permite mostrar un modal para cambiar todos los estados de las actividades del POM
- * @param {*} id 
  */
 function modalCambiarTodoEstadoPom() {
     $("#modalCambiarTodoEstadoPom").modal("show");
 }
 /**
- * Funcion que permite cambiar el estado de todas las actividades del POM
+ * Funcion que permite cambiar el estado de todas la actividad del POM
  */
 function cambiarTodoEstadoPom() {
     var subreceptor = document.getElementById('csubreceptor').value;
@@ -226,9 +225,8 @@ function cambiarTodoEstadoPom() {
 }
 /**
  * Funcion que permite mostrar un modal para cabiar todo el estado del POA
- * @param {*} id 
  */
-function modalCambiarTodoEstadoPoa(id) {
+function modalCambiarTodoEstadoPoa() {
     $("#modalCambiarTodoEstadoPoa").modal("show");
 }
 /**
@@ -243,7 +241,7 @@ function cambiarTodoEstadoPoa() {
     var descripcion = document.getElementById('cobservacion').value;
 
     var accion = "cambiarTodoEstadoPoa";
- 
+
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
@@ -269,8 +267,8 @@ function cambiarTodoEstadoPoa() {
     });
 }
 /**
- * Funcion que permite mostar el estado del POA
- * @param {*} id identificador del POA
+ * Funcion que permite mostar el estado del la actividad
+ * @param {*} id identificador de la actividad
  */
 function modalEstadoPoa(id) {
 
@@ -282,7 +280,7 @@ function modalEstadoPoa(id) {
         dataType: 'JSON',
         data: {
             accion: accion,
-            id: id 
+            id: id
         },
         success: function (response) {
             var len = response.length;
@@ -309,16 +307,17 @@ function modalEstadoPoa(id) {
         location.reload();
     })
 }
+
 /**
  * Metodo que permite mostar un modal para recalendarizar la actividad del POM
  * @param {*} id identificador de la actividad
  * @param {*} usuario identificador del usuario que cambia el estado de la actividad
- * @param {*} estado estado a cambiar
+ * @param {*} estado identificador del estado a cambiar
  */
-function modalRecalendarizacionPom(id, usuario, estado) {
-    
+function modalReprogramacionPom(id, usuario, estado) {
+
     var accion = "consultaPoM";
-    
+
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
@@ -343,21 +342,21 @@ function modalRecalendarizacionPom(id, usuario, estado) {
             document.getElementById("atotal").value = pom.total;
             document.getElementById("asupervisado").value = pom.supervisado;
             var s = pom.supervisado;
-            if(s == '0') {
-            document.getElementById("_supervisado").value = "No";
+            if (s == '0') {
+                document.getElementById("_supervisado").value = "No";
             } else {
-            document.getElementById("_supervisado").value = "Si";
+                document.getElementById("_supervisado").value = "Si";
             }
             document.getElementById("asupervisor").value = pom.supervisor;
-        } 
+        }
     });
-    $("#modalRecalendarizacionPom").modal("show");
+    $("#modalReprogramacionPom").modal("show");
 }
 /**
- * Funcion que permite recalecalendarizar una actividad del POM
+ * Funcion que permite reprogramacion una actividad del POM
  */
-function recalendarizacionPom() {
- 
+function reprogramacionPom() {
+
     var pom = document.getElementById('aid').value;
     var usuario = document.getElementById('ausuario').value;
     var estado = document.getElementById('aestado').value;
@@ -374,7 +373,7 @@ function recalendarizacionPom() {
     var nsupervisado = document.getElementById('nsupervisado').value;
     var nsupervisor = document.getElementById('nsupervisor').value;
     var descripcion = document.getElementById('descripcion').value;
-    var accion = "recalendarizacionPom";
+    var accion = "reprogramacionPom";
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
@@ -406,7 +405,7 @@ function recalendarizacionPom() {
                 document.getElementById('nfin').value = "";
                 document.getElementById('nsupervisado').value = "";
                 document.getElementById('nsupervisor').value = "";
-                $("#modalRecalendarizacionPom").modal("hide");
+                $("#modalReprogramacionPom").modal("hide");
                 window.location.reload('pom.php');
             }
             else {
@@ -414,19 +413,17 @@ function recalendarizacionPom() {
             }
         }
     });
-   
-}
 
+}
 /**
  * Metodo que permite mostar un modal para aceptar recalendarizar la actividad del POM
  * @param {*} id identificador de la actividad
  * @param {*} usuario identificador del usuario que cambia el estado de la actividad
- * @param {*} estado estado a cambiar
  */
- function modalAceptarRecalendarizacion(id, usuario, estado) {
-    
-    var accion = "consultaAceptar";
-    
+function modalAceptarReprogramacion(id, usuario) {
+
+    var accion = "consultaReprogramacion";
+
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
@@ -451,10 +448,10 @@ function recalendarizacionPom() {
             document.getElementById("afinaliza").value = pom.fina;
             document.getElementById("asupervisado").value = pom.supervisadoa;
             var s = pom.supervisadoa;
-            if(s == '0') {
-            document.getElementById("_supervisado").value = "No";
+            if (s == '0') {
+                document.getElementById("_supervisado").value = "No";
             } else {
-            document.getElementById("_supervisado").value = "Si";
+                document.getElementById("_supervisado").value = "Si";
             }
             document.getElementById("asupervisor").value = pom.supervisora;
             document.getElementById("nlugar").value = pom.lugarn;
@@ -463,28 +460,23 @@ function recalendarizacionPom() {
             document.getElementById("nfinaliza").value = pom.finn;
             document.getElementById("nsupervisado").value = pom.supervisadon;
             var s = pom.supervisadon;
-            if(s == '0') {
-            document.getElementById("nsuper").value = "No";
+            if (s == '0') {
+                document.getElementById("nsuper").value = "No";
             } else {
-            document.getElementById("nsuper").value = "Si";
+                document.getElementById("nsuper").value = "Si";
             }
             document.getElementById("nsupervisor").value = pom.supervisorn;
             document.getElementById("motivo").value = pom.descripcion;
-        } 
+        }
     });
-    $("#modalRecalendarizacionPom").modal("show");
+    $("#modalAceptarReprogramacion").modal("show");
 }
-
-
-function modalRechazarSolicitud() {
-    $("#modalRechazarSolicitud").modal("show");
-}
-function modalRechazarCancelacion() {
-    $("#modalRechazarCancelacion").modal("show");
-}
-function aceptarSolicitud() {
+/**
+ * Funcion que permite aceptar la solcitud de cambio de estado
+ */
+ function aceptarReprogramacion() {
     var usuario = document.getElementById('ausuario').value;
-    var poa = document.getElementById('aid').value;
+    var pom = document.getElementById('aid').value;
     var estado = document.getElementById('aestado').value;
     var descripcion = document.getElementById('dess').value;
 
@@ -496,14 +488,14 @@ function aceptarSolicitud() {
         data: {
             accion: accion,
             usuario: usuario,
-            poa: poa,
+            pom: pom,
             estado: estado,
             descripcion: descripcion
         },
         success: function (datos) {
             if (datos == 'Exito') {
                 alertify.success('¡SOLICITUD ACEPTADA!...');
-                $("#modalRecalendarizacionPom").modal("hide");
+                $("#modalReprogramacionPom").modal("hide");
                 window.location.reload('pom.php');
             }
             else {
@@ -512,10 +504,18 @@ function aceptarSolicitud() {
         }
     });
 }
+function modalRechazarReprogramacion() {
+    $("#modalRechazarReprogramacion").modal("show");
+}
 
+function modalRechazarCancelacion() {
+    $("#modalRechazarCancelacion").modal("show");
+}
+/**
+ * Funcion que permite rechazar la solicitud de reprogramacion
+ */
+function rechazarReprogramacion() {
 
-function rechazarRecalendarizacion() {
- 
     var pom = document.getElementById('aid').value;
     var usuario = document.getElementById('ausuario').value;
     var estado = document.getElementById('restado').value;
@@ -532,7 +532,7 @@ function rechazarRecalendarizacion() {
     var nsupervisado = document.getElementById('nsupervisado').value;
     var nsupervisor = document.getElementById('nsupervisor').value;
     var descripcion = document.getElementById('razon').value;
-    var accion = "rechazarRecalendarizacion";
+    var accion = "rechazarReprogramacion";
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
@@ -558,7 +558,7 @@ function rechazarRecalendarizacion() {
         success: function (datos) {
             if (datos == 'Exito') {
                 alertify.success('¡SOLICITUD RECHAZADA!...');
-                $("#modalRecalendarizacionPom").modal("hide");
+                $("#modalReprogramacionPom").modal("hide");
                 $("#modalRechazarSolicitud").modal("hide");
                 window.location.reload('pom.php');
             }
@@ -567,11 +567,179 @@ function rechazarRecalendarizacion() {
             }
         }
     });
-   
+
+}
+/**
+ * Funcion que permite mostar un modal para reprogramar una actividad
+ * @param {*} id identificador de la actividad
+ * @param {*} usuario identificador del usuario que realiza la actividad
+ * @param {*} estado identificador del estado a cambiar
+ */
+function modalRecalendarizacionPom(id, usuario, estado) {
+
+    var accion = "consultaPoM";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            id: id
+        },
+        success: function (datos) {
+            var pom = JSON.parse(datos);
+            document.getElementById("_ida").value = id;
+            document.getElementById("mesa").value = pom.mes;
+            document.getElementById("municipioa").value = pom.municipio;
+            document.getElementById("fechaa").value = pom.fecha;
+            document.getElementById("lugara").value = pom.lugar;
+            document.getElementById("iniciaa").value = pom.horaInicio;
+            document.getElementById("finalizaa").value = pom.horaFin;
+            document.getElementById("usuarioa").value = usuario;
+            document.getElementById("estadoa").value = estado;
+            document.getElementById("nuevoa").value = pom.pNuevo;
+            document.getElementById("recurrentea").value = pom.pRecurrente;
+            document.getElementById("totala").value = pom.total;
+            document.getElementById("supervisadoa").value = pom.supervisado;
+            var s = pom.supervisado;
+            if (s == '0') {
+                document.getElementById("_super").value = "No";
+            } else {
+                document.getElementById("_super").value = "Si";
+            }
+            document.getElementById("supervisora").value = pom.supervisor;
+        }
+    });
+    $("#modalRecalendarizacionPom").modal("show");
+}
+/**
+ * Funcion que permite reprogramacion una actividad del POM
+ */
+function recalendarizacionPom() {
+
+    var pom = document.getElementById('_ida').value;
+    var usuario = document.getElementById('usuarioa').value;
+    var estado = document.getElementById('estadoa').value;
+    var afecha = document.getElementById('fechaa').value;
+    var alugar = document.getElementById('lugara').value;
+    var ainicia = document.getElementById('iniciaa').value;
+    var afinaliza = document.getElementById('finalizaa').value;
+    var asupervisado = document.getElementById('supervisadoa').value;
+    var asupervisor = document.getElementById('supervisora').value;
+    var nfecha = document.getElementById('_nfecha').value;
+    var ninicio = document.getElementById('_ninicio').value;
+    var nfin = document.getElementById('_nfin').value;
+    var descripcion = document.getElementById('_descripcion').value;
+    var accion = "recalendarizacionPom";
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            usuario: usuario,
+            pom: pom,
+            estado: estado,
+            afecha: afecha,
+            alugar: alugar,
+            ainicia: ainicia,
+            afinaliza: afinaliza,
+            asupervisado: asupervisado,
+            asupervisor: asupervisor,
+            nfecha: nfecha,
+            ninicio: ninicio,
+            nfin: nfin,
+            descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡SOLICITUD ENVIADA!...');
+                document.getElementById('nfecha').value = "";
+                document.getElementById('ninicio').value = "";
+                document.getElementById('nfin').value = "";
+                $("#modalRecalendarizacionPom").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo enviar");
+            }
+        }
+    });
+}
+/**
+ * Metodo que permite mostar un modal para aceptar recalendarizar la actividad del POM
+ * @param {*} id identificador de la actividad
+ * @param {*} usuario identificador del usuario que cambia el estado de la actividad
+ */
+ function modalAceptarRecalendarizacion(id, usuario) {
+
+    var accion = "consultaRecalendarizacion";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            id: id
+        },
+        success: function (datos) {
+            var pom = JSON.parse(datos);
+            document.getElementById("pomid").value = id;
+            document.getElementById("mesa").value = pom.mess;
+            document.getElementById("municipioa").value = pom.municipios;
+            document.getElementById("usuarioa").value = usuario;
+            document.getElementById("nuevoa").value = pom.pNuevo;
+            document.getElementById("recurrentea").value = pom.pRecurrente;
+            document.getElementById("totala").value = pom.total;
+            document.getElementById("fechaa").value = pom.fechaa;
+            document.getElementById("iniciaa").value = pom.inicioa;
+            document.getElementById("finalizaa").value = pom.fina;
+            document.getElementById("_fechan").value = pom.fechan;
+            document.getElementById("_inician").value = pom.inicion;
+            document.getElementById("_finalizan").value = pom.finn;
+        }
+    });
+    $("#modalAceptarRecalendarizacion").modal("show");
+}
+/**
+ * Funcion que permite aceptar la solcitud de cambio de estado
+ */
+ function aceptarRecalendarizacion() {
+    var usuario = document.getElementById('usuarioa').value;
+    var pom = document.getElementById('pomid').value;
+    var estado = document.getElementById('estadoa').value;
+    var descripcion = document.getElementById('descrip').value;
+
+    var accion = "cambiarEstadoPom";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            usuario: usuario,
+            pom: pom,
+            estado: estado,
+            descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡SOLICITUD ACEPTADA!...');
+                $("#modalReprogramacionPom").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo guardar");
+            }
+        }
+    });
 }
 
-
-
+/**
+ * Funcion que permite mostrar modal para cancelar la actividad
+ * @param {*} id identificador de la actividad
+ * @param {*} usuario identificador el usuario que realiza la accion
+ * @param {*} estado identificador del estado a cambiar
+ */
 function modalCancelarActividad(id, usuario, estado) {
 
     var accion = "consultaPoM";
@@ -602,9 +770,12 @@ function modalCancelarActividad(id, usuario, estado) {
     });
     $("#modalCancelarActividad").modal("show");
 }
-
-
-
+/**
+ * Funcion que permite aceptar la cancelacion de la actividad
+ * @param {*} id identificador del la actividad
+ * @param {*} usuario identificador del usuario que realiza la accion
+ * @param {*} estado identificador del estado a cambiar
+ */
 function modalAceptarCancelacion(id, usuario, estado) {
 
     var accion = "consultaCancelar";
@@ -636,19 +807,22 @@ function modalAceptarCancelacion(id, usuario, estado) {
     });
     $("#modalAceptarCancelacion").modal("show");
 }
-
+/**
+ * Funcion que permite rechazar la cancelacion
+ * @param {*} estado estado a cambiar
+ */
 function rechazarCancelacion(estado) {
     var usuario = document.getElementById('estado_usuario').value;
     var poa = document.getElementById('estado_id').value;
     var estado = estado;
-    var descripcion = document.getElementById('razon').value; 
+    var descripcion = document.getElementById('razon').value;
 
     var accion = "cambiarEstadoPom";
 
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
-        data: { 
+        data: {
             accion: accion,
             usuario: usuario,
             poa: poa,

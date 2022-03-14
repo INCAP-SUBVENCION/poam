@@ -119,11 +119,12 @@ $SUBRECEPTOR = $_GET['id'];
         
         <?php include '../modal/cancelarActividad.php'; ?>
         <?php include '../modal/rechazarCancelacion.php'; ?>
-        <?php include '../modal/recalendarizacionPom.php'; ?>
+        <?php include '../modal/reprogramacion.php'; ?>
+        <?php include '../modal/recalendarizacion.php'; ?>
         <?php include '../modal/cambiarEstadoPom.php'; ?>
         <?php include '../modal/estadosPom.php'; ?>
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>
-        <?php include '../modal/rechazarSolicitud.php'; ?>
+        <?php include '../modal/rechazarReprogramacion.php'; ?>
         
         <footer>
             <div class="footer clearfix mb-10 text-muted">

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalRecalendarizacionPom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAceptarRecalendarizacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-success">
@@ -59,33 +59,32 @@
                     </div>
                     <div class="col-sm-2">
                         <label for="">Fecha:</label>
-                        <input type="date" class="form-control form-control-sm" id="_nfecha" style="font-size: 12px;">
+                        <input type="date" class="form-control form-control-sm" id="_fechan" style="font-size: 12px;" disabled>
                     </div>
                     <div class="col-sm-2">
                         <label for="">Inicio: </label>
-                        <input type="time" class="form-control form-control-sm" id="_ninicio">
+                        <input type="time" class="form-control form-control-sm" id="_inician" disabled>
                     </div>
                     <div class="col-sm-2">
                         <label for="">Fin:</label>
-                        <input type="time" class="form-control form-control-sm" id="_nfin">
+                        <input type="time" class="form-control form-control-sm" id="_finalizan" disabled>
                     </div>
                 </div>
-                <input type="hidden" id="lugara">
-                <input type="hidden" id="supervisadoa">
-                <input type="hidden" id="supervisora">
+
                 <div class="form-group">
                     <label>MOTIVO: </label>
                     <textarea id="_descripcion" cols="2" rows="2" class="form-control"></textarea>
                 </div>
-                <!--- hidden --->
-                <input type="hidden" id="_ida">
-                <input type="hidden" id="usuarioa">
-                <input type="hidden" id="estadoa">
+                <input type="text" id="pomid">
+                <input type="text" id="usuarioa">
+                <input type="hidden" id="estadoa" value="ES07">
+                <input type="text" id="restado" value="RC02">
+                <input type="hidden" id="descrip" value="Solicitud de recalendarizacion aceptada con exito">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="recalendarizacionPom()">Solicitar reprogramacion</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success btn-sm" onclick="aceptarRecalendarizacion()"> <i class="bi bi-check-circle-fill"></i> Aceptar solicitud</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> <i class="bi bi-x"></i> Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 

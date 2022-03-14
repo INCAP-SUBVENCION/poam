@@ -3,7 +3,6 @@
     <thead style="font-size: 11px;">
         <tr>
             <th scope>#</th>
-            <th scope>Actividad</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
             <th scope>Municipio</th>
@@ -41,7 +40,6 @@
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
                     <td><?php echo $contap_3++; ?></td>
-                    <td style="font-size: 14px; color:brown; font-weight: bold;"><?php echo $periodo_3['idPom']; ?></td>
                     <td><?php echo $periodo_3['periodo']; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
                     <td><?php echo $periodo_3['municipio']; ?></td>
@@ -75,7 +73,20 @@
                             echo '<p class = "text-danger"> Cancelacion rechazada </p>';
                         } elseif ($periodo_3['estado'] == 'ES06') {
                             echo '<p class = "text-danger"> Actividad cancelada </p>';
-                        }  ?>
+                        } elseif ($periodo_3['estado'] == 'RP01') {
+                            echo '<p class = "text-info"><i class="bi bi-reply-all-fill"></i><br>Solcitud de Reprogramacion</p>';
+                        } elseif ($periodo_3['estado'] == 'RP02') {
+                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Reprogramacion Rechazado </p>';
+                        } elseif ($periodo_3['estado'] == 'ES08') {
+                            echo '<p class = "text-primary"><i class="bi bi-reply-all-fill"></i><br>Actividad Reprogramada</p>';
+                        } elseif ($periodo_3['estado'] == 'RC01') {
+                            echo '<p class = "text-info"><i class="bi bi-reply-all-fill"></i><br>Solicitud de Recalendarizacion</p>';
+                        } elseif ($periodo_3['estado'] == 'RC02') {
+                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Recalendarizacion Rechazado</p>';
+                        } elseif ($periodo_3['estado'] == 'ES07') {
+                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Actividad Recalendarizado</p>';
+                        }
+                         ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -97,7 +108,7 @@
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                            <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
+                                            <em class="bi bi-arrow-right-circle"></em> Correcciones a la Actividad</button>
                                     </li>
                                 <?php } ?>
 
@@ -110,7 +121,19 @@
                                 <?php if ($periodo_3['estado'] == 'CA01') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAceptarCancelacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES06')">
-                                            <em class="bi bi-back"></em> Solicitud de cancelacion </button>
+                                            <em class="bi bi-back"></em> Solicitud de Cancelacion </button>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($periodo_3['estado'] == 'RC01') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES07')">
+                                            <em class="bi bi-shuffle"></em> Recalendarización </button>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($periodo_3['estado'] == 'RP01') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAceptarReprogramacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES08')">
+                                            <em class="bi bi-shuffle"></em> Reprogramacion </button>
                                     </li>
                                 <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>&sub=<?php echo $periodo_3['subreceptor_id']; ?>">

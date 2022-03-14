@@ -47,7 +47,7 @@ if ($accion == "cambiarEstadoPoa") {
 if ($accion == "consultaPoM") {
 
     $pom_id = $_POST['id'];
-    $sql = "SELECT DISTINCT t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, t1.pRecurrente, 
+    $sql = "SELECT DISTINCT t1.idPom, t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, t1.pRecurrente, 
     truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total, t1.supervisado, t1.supervisor
     FROM pom t1 LEFT JOIN catalogo t2 ON t2.codigo = t1.mes LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio WHERE t1.idPom = $pom_id";
 
@@ -64,11 +64,11 @@ if ($accion == "consultaPoM") {
 if ($accion == "cambiarEstadoPom") {
 
     $usuario = $_POST['usuario'];
-    $poa = $_POST['poa'];
-    $estado = $_POST['estado'];
+    $pom     = $_POST['pom'];
+    $estado  = $_POST['estado'];
     $descripcion = $_POST['descripcion'];
 
-    if ($enlace->query("CALL cambiarEstadoPom($usuario, $poa, '$estado', '$descripcion')") === TRUE) {
+    if ($enlace->query("CALL cambiarEstadoPom($usuario, $pom, '$estado', '$descripcion')") === TRUE) {
         echo "Exito";
     } else {
         echo "Error";
@@ -179,7 +179,7 @@ if ($accion == "estadoPoa") {
 /**
  * Metodo que permite cambiar la fecha de la actividad 
  */
-if ($accion == "recalendarizacionPom") {
+if ($accion == "reprogramacionPom") {
     $usuario    = $_POST['usuario'];
     $pom        = $_POST['pom'];
     $estado     = $_POST['estado'];
@@ -198,6 +198,30 @@ if ($accion == "recalendarizacionPom") {
     $descripcion = $_POST['descripcion'];
 
     if ($enlace->query("CALL reprogramacion($pom, $usuario, '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, '$asupervisor', '$nfecha', '$ninicio', '$nfin', '$nlugar', $nsupervisado, '$nsupervisor', '$estado', '$descripcion')") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+/**
+ * Metodo que permite cambiar la fecha de la actividad 
+ */
+if ($accion == "recalendarizacionPom") {
+    $usuario    = $_POST['usuario'];
+    $pom        = $_POST['pom'];
+    $estado     = $_POST['estado'];
+    $afecha     = $_POST['afecha'];
+    $alugar     = $_POST['alugar'];
+    $ainicia    = $_POST['ainicia'];
+    $afinaliza  = $_POST['afinaliza'];
+    $asupervisado = $_POST['asupervisado'];
+    $asupervisor = $_POST['asupervisor'];
+    $nfecha     = $_POST['nfecha'];
+    $ninicio    = $_POST['ninicio'];
+    $nfin       = $_POST['nfin'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($enlace->query("CALL recalendarizacion($pom, $usuario, '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, '$asupervisor', '$nfecha', '$ninicio', '$nfin', '$estado', '$descripcion')") === TRUE) {
         echo "Exito";
     } else {
         echo "Error";
@@ -227,9 +251,9 @@ if ($accion == "consultaCambio") {
 
 
 /**
- * Metodo que permite consultar los datos del POM para aceptar la recalendarizacion
+ * Metodo que permite consultar los datos del POM para aceptar la reprogramacion
  */
-if ($accion == "consultaAceptar") {
+if ($accion == "consultaReprogramacion") {
 
     $pom_id = $_POST['id'];
     $sql = "SELECT t5.descripcion, t2.periodo, t3.nombre as mess, t4.nombre as municipios, t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total,
@@ -240,7 +264,7 @@ if ($accion == "consultaAceptar") {
     LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
     LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
     LEFT JOIN estado t5 ON t5.pom_id= t2.idPom
-    WHERE t2.idPom = $pom_id AND t5.estado = 'RE01'";
+    WHERE t2.idPom = $pom_id AND t5.estado = 'RP01'";
 
     $consulta = $enlace->query($sql);
     $response = array();
@@ -250,7 +274,31 @@ if ($accion == "consultaAceptar") {
     echo json_encode($response);
 }
 
-if ($accion == "rechazarRecalendarizacion") {
+/**
+ * Metodo que permite consultar los datos del POM para aceptar la recalendarizacion
+ */
+if ($accion == "consultaRecalendarizacion") {
+
+    $pom_id = $_POST['id'];
+    $sql = "SELECT t5.descripcion, t2.periodo, t3.nombre as mess, t4.nombre as municipios, t2.pNuevo, t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total,
+    t1.fecha as fechaa, t1.lugar as lugara, t1.inicio as inicioa, t1.fin as fina, t1.supervisado as supervisadoa, t1.supervisor as supervisora,  
+    t2.fecha as fechan, t2.lugar as lugarn, t2.horaInicio as inicion, t2.horaFin as finn, t2.supervisado as supervisadon, t2.supervisor as supervisorn  
+    FROM historial t1 
+    LEFT JOIN pom t2 ON t1.pom_id = t2.idPom 
+    LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
+    LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
+    LEFT JOIN estado t5 ON t5.pom_id= t2.idPom
+    WHERE t2.idPom = $pom_id AND t5.estado = 'RC01'";
+
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($poa = $consulta->fetch_assoc()) {
+        $response = $poa;
+    }
+    echo json_encode($response);
+}
+
+if ($accion == "rechazarReprogramacion") {
     $usuario    = $_POST['usuario'];
     $pom        = $_POST['pom'];
     $estado     = $_POST['estado'];
@@ -271,6 +319,28 @@ if ($accion == "rechazarRecalendarizacion") {
     if ($enlace->query("CALL reprogramacion($pom, $usuario, 
     '$nfecha', '$ninicio', '$nfin', '$nlugar', $nsupervisado, '$nsupervisor', 
     '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, '$asupervisor', 
+    '$estado', '$descripcion')") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+
+if ($accion == "rechazarRecalendarizacion") {
+    $usuario    = $_POST['usuario'];
+    $pom        = $_POST['pom'];
+    $estado     = $_POST['estado'];
+    $afecha     = $_POST['afecha'];
+    $ainicia    = $_POST['ainicia'];
+    $afinaliza  = $_POST['afinaliza'];
+    $nfecha     = $_POST['nfecha'];
+    $ninicio    = $_POST['ninicio'];
+    $nfin       = $_POST['nfin'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($enlace->query("CALL recalendarizacion($pom, $usuario, 
+    '$nfecha', '$ninicio', '$nfin', 
+    '$afecha', '$ainicia', '$afinaliza',
     '$estado', '$descripcion')") === TRUE) {
         echo "Exito";
     } else {

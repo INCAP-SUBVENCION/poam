@@ -1,8 +1,8 @@
-<div class="modal fade" id="modalRecalendarizacionPom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAceptarReprogramacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <div class="modal-header bg-dark text-center">
-                <h5 class="modal-title text-white">Solicitud de recalendarizacion de actividad</h5>
+            <div class="modal-header bg-dark text-center">
+                <h5 class="modal-title text-white">Solicitud de reprogramacion</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body bg-light-primary">
@@ -37,10 +37,10 @@
                             <input type="text" class="form-control" id="atotal" style="font-size: 12px; color:red; font-weight: bolder;" disabled>
                         </div>
                     </div>
-                    <div class="card text-dark bg-info mb-3" style="max-width: 60rem;">
-                        <div class="text-center">
-                            <h6>Actividad anterior </h6>
-                        </div>
+                    <div class="text-center">
+                        <h6>Actividad: </h6>
+                    </div>
+                    <div class="card text-dark bg-light-info mb-3" style="max-width: 60rem;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -71,10 +71,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card text-dark bg-warning mb-3" style="max-width: 60rem;">
-                        <div class="text-center">
-                            <h6>Actividad cambiada </h6>
-                        </div>
+                    <div class="text-center">
+                        <h6>Reprogramada:</h6>
+                    </div>
+                    <div class="card text-dark bg-light-warning mb-3" style="max-width: 60rem;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -113,13 +113,12 @@
                 <!-- hidden -->
                 <input type="hidden" id="aid">
                 <input type="hidden" id="ausuario">
-                <input type="hidden" id="aestado" value="RE02">
-                <input type="hidden" id="restado" value="RE03">
+                <input type="hidden" id="aestado" value="ES08">
+                <input type="hidden" id="restado" value="RP02">
                 <input type="hidden" id="dess" value="Solicitud de recalendarizacion aceptada con exito">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    
-                    <button type="button" class="btn btn-success btn-sm" onclick="aceptarSolicitud()"> <i class="bi bi-check-circle-fill"></i> Aceptar solicitud</button>
-                    <button type="button" class="btn btn-danger btn-sm"  onclick="modalRechazarSolicitud()"> <i class="bi bi-x-circle-fill"></i> Rechazar solicitud </button>               
+                    <button type="button" class="btn btn-success btn-sm" onclick="aceptarReprogramacion()"> <i class="bi bi-check-circle-fill"></i> Aceptar solicitud</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="modalRechazarReprogramacion()"> <i class="bi bi-x-circle-fill"></i> Rechazar solicitud </button>
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> <i class="bi bi-x"></i> Cerrar</button>
                 </div>
             </div>

@@ -40,8 +40,7 @@
         if ($resp_4 = $enlace->query($sqlp_4)) {
             while ($periodo_4 = $resp_4->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $contap_3++; ?></td>
-                    <td style="font-size: 14px; color:brown; font-weight: bold;"><?php echo $periodo_4['idPom']; ?></td>
+                    <td><?php echo $contap_4++; ?></td>
                     <td><?php echo $periodo_4['periodo']; ?></td>
                     <td><?php echo $periodo_4['mes']; ?></td>
                     <td><?php echo $periodo_4['municipio']; ?></td>
@@ -54,11 +53,7 @@
                     <td><?php echo $periodo_4['pRecurrente']; ?></td>
                     <th scope><?php echo round($periodo_4['total'], 2); ?></th>
                     <td><?php echo $periodo_4['observacion']; ?></td>
-                    <td><?php if ($periodo_4['supervisado'] == 1) {
-                            echo 'Si';
-                        } else {
-                            echo 'No';
-                        } ?></td>
+                    <td><?php if ($periodo_4['supervisado'] == 1) { echo 'Si'; } else { echo 'No'; } ?></td>
                     <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
                         <?php if ($periodo_4['estado'] == 'ES03') {
@@ -75,11 +70,24 @@
                             echo '<p class = "text-dark bg-success"> Recalendarizacion rechazada</p>';
                         } elseif ($periodo_4['estado'] == 'CA01') {
                             echo '<p class = "text-info"><i class="bi bi-x-circle"></i><br>Solicitud de candelacion</p>';
-                        } elseif ($periodo_4['estado'] == 'CA01') {
+                        } elseif ($periodo_4['estado'] == 'CA02') {
                             echo '<p class = "text-danger"> Cancelacion rechazada </p>';
                         } elseif ($periodo_4['estado'] == 'ES06') {
                             echo '<p class = "text-danger"> Actividad cancelada </p>';
-                        }  ?>
+                        } elseif ($periodo_4['estado'] == 'RP01') {
+                            echo '<p class = "text-info"><i class="bi bi-reply-all-fill"></i><br>Solcitud de Reprogramacion</p>';
+                        } elseif ($periodo_4['estado'] == 'RP02') {
+                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Reprogramacion Rechazado </p>';
+                        } elseif ($periodo_4['estado'] == 'ES08') {
+                            echo '<p class = "text-primary"><i class="bi bi-reply-all-fill"></i><br>Actividad Reprogramada</p>';
+                        } elseif ($periodo_4['estado'] == 'RC01') {
+                            echo '<p class = "text-info"><i class="bi bi-reply-all-fill"></i><br>Solicitud de Recalendarizacion</p>';
+                        } elseif ($periodo_4['estado'] == 'RC02') {
+                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Recalendarizacion Rechazado</p>';
+                        } elseif ($periodo_4['estado'] == 'ES07') {
+                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Actividad Recalendarizado</p>';
+                        }
+                         ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -101,7 +109,7 @@
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                            <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
+                                            <em class="bi bi-arrow-right-circle"></em> Correcciones a la Actividad</button>
                                     </li>
                                 <?php } ?>
 
@@ -113,8 +121,20 @@
                                 <?php } ?>
                                 <?php if ($periodo_4['estado'] == 'CA01') { ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalAceptarCancelacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES06')">
-                                            <em class="bi bi-back"></em> Solicitud de cancelacion </button>
+                                        <button class="dropdown-item" onclick="modalAceptarCancelacion(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES06')">
+                                            <em class="bi bi-back"></em> Solicitud de Cancelacion </button>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($periodo_4['estado'] == 'RC01') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES07')">
+                                            <em class="bi bi-shuffle"></em> Recalendarización </button>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($periodo_4['estado'] == 'RP01') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAceptarReprogramacion(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES08')">
+                                            <em class="bi bi-shuffle"></em> Reprogramacion </button>
                                     </li>
                                 <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>&sub=<?php echo $periodo_4['subreceptor_id']; ?>">
@@ -124,9 +144,7 @@
                         </div>
                     </td>
                 </tr>
-        <?php }
-            $resp_4->close();
-        } ?>
+        <?php } $resp_4->close(); } ?>
     </tbody>
     <tfoot>
         <tr>

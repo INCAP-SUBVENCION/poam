@@ -36,7 +36,7 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR  
-        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01'))";
+        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01')) ORDER BY t2.estado";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
@@ -81,7 +81,20 @@
                             echo '<p class = "text-danger"> Cancelacion rechazada </p>';
                         } elseif ($periodo_3['estado'] == 'ES06') {
                             echo '<p class = "text-danger"> Actividad cancelada </p>';
-                        } ?>
+                        } elseif ($periodo_3['estado'] == 'RP01') {
+                            echo '<p class = "text-info"> Solicitud de reprogramacion </p>';
+                        } elseif ($periodo_3['estado'] == 'RP02') {
+                            echo '<p class = "text-danger"> Reprogramacion rechazada </p>';
+                        } elseif ($periodo_3['estado'] == 'ES08') {
+                            echo '<p class = "text-warning"> Actividad reprogramada </p>';
+                        } elseif ($periodo_3['estado'] == 'RC01') {
+                            echo '<p class = "text-info"> Solicitud de recalendarizacion </p>';
+                        } elseif ($periodo_3['estado'] == 'RC02') {
+                            echo '<p class = "text-danger"> Recalendarizacion rechazada </p>';
+                        } elseif ($periodo_3['estado'] == 'ES07') {
+                            echo '<p class = "text-primary"> Actividad recalendarizada </p>';
+                        }
+                        ?>
                     </th>
                     <td>
                         <div class="dropdown">

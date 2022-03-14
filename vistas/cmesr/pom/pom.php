@@ -338,6 +338,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <?php include '../modal/cancelarActividad.php'; ?>
         <?php include '../modal/historial.php'; ?>
         <?php include '../modal/recalendarizacionPom.php'; ?>
+        <?php include '../modal/reprogramacionPom.php'; ?>
         <?php include '../modal/estadosPom.php'; ?>
         <?php include '../modal/cambiarEstadoPom.php'; ?>
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>

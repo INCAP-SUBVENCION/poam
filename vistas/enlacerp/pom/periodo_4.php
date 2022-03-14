@@ -81,7 +81,20 @@
                             echo '<p class = "text-danger"> Cancelacion rechazada </p>';
                         } elseif ($periodo_4['estado'] == 'ES06') {
                             echo '<p class = "text-danger"> Actividad cancelada </p>';
-                        } ?>
+                        } elseif ($periodo_4['estado'] == 'RP01') {
+                            echo '<p class = "text-info"> Solicitud de reprogramacion </p>';
+                        } elseif ($periodo_4['estado'] == 'RP02') {
+                            echo '<p class = "text-danger"> Reprogramacion rechazada </p>';
+                        } elseif ($periodo_4['estado'] == 'ES08') {
+                            echo '<p class = "text-warning"> Actividad reprogramada </p>';
+                        } elseif ($periodo_4['estado'] == 'RC01') {
+                            echo '<p class = "text-info"> Solicitud de recalendarizacion </p>';
+                        } elseif ($periodo_4['estado'] == 'RC02') {
+                            echo '<p class = "text-danger"> Recalendarizacion rechazada </p>';
+                        } elseif ($periodo_4['estado'] == 'ES07') {
+                            echo '<p class = "text-primary"> Actividad recalendarizada </p>';
+                        }
+                        ?>
                     </th>
                     <td>
                         <div class="dropdown">

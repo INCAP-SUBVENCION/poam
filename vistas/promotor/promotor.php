@@ -70,6 +70,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="col-sm-12">
                                 <div class="row g-0">
                                     <div class="col-md-4">
