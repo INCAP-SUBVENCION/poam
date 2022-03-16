@@ -343,7 +343,9 @@
                 <select name="muni" id="muni">
                     <option value="">Todo los municipios ...</option>
                     <?php
-                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p 
+                    LEFT JOIN catalogo c ON c.codigo = p.municipio 
+                    WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
                     $rmunicipio = $enlace->query($municipioSql);
                     while ($municipio = $rmunicipio->fetch_assoc()) { ?>
                         <option value="<?php echo $municipio['municipio'] ?>"><?php echo $municipio['nombre'] ?></option>
@@ -352,7 +354,9 @@
                 <select name="me" id="me">
                     <option value="">Todo los meses ...</option>
                     <?php
-                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p 
+                    LEFT JOIN catalogo c ON c.codigo = p.mes 
+                    WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
                     $rmes = $enlace->query($mesSql);
                     while ($mes = $rmes->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['mes'] ?>"><?php echo $mes['nombre'] ?></option>
@@ -371,7 +375,9 @@
                 <select name="muni" id="muni">
                     <option value="">Todo los municipios ...</option>
                     <?php
-                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p 
+                    LEFT JOIN catalogo c ON c.codigo = p.municipio 
+                    WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
                     $rmunicipio = $enlace->query($municipioSql);
                     while ($municipio = $rmunicipio->fetch_assoc()) { ?>
                         <option value="<?php echo $municipio['municipio'] ?>"><?php echo $municipio['nombre'] ?></option>
@@ -380,7 +386,9 @@
                 <select name="me" id="me">
                     <option value="">Todo los meses ...</option>
                     <?php
-                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p 
+                    LEFT JOIN catalogo c ON c.codigo = p.mes 
+                    WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
                     $rmes = $enlace->query($mesSql);
                     while ($mes = $rmes->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['mes'] ?>"><?php echo $mes['nombre'] ?></option>
@@ -399,7 +407,9 @@
                 <select name="muni" id="muni">
                     <option value="">Todo los municipios ...</option>
                     <?php
-                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.municipio WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $municipioSql = "SELECT DISTINCT p.municipio, c.nombre FROM poa p 
+                    LEFT JOIN catalogo c ON c.codigo = p.municipio 
+                    WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
                     $rmunicipio = $enlace->query($municipioSql);
                     while ($municipio = $rmunicipio->fetch_assoc()) { ?>
                         <option value="<?php echo $municipio['municipio'] ?>"><?php echo $municipio['nombre'] ?></option>
@@ -408,7 +418,9 @@
                 <select name="me" id="me">
                     <option value="">Todo los meses ...</option>
                     <?php
-                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p LEFT JOIN catalogo c ON c.codigo = p.mes WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
+                    $mesSql = "SELECT DISTINCT p.mes, c.nombre FROM poa p 
+                    LEFT JOIN catalogo c ON c.codigo = p.mes 
+                    WHERE p.subreceptor_id = $SUBRECEPTOR AND p.periodo = 3";
                     $rmes = $enlace->query($mesSql);
                     while ($mes = $rmes->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['mes'] ?>"><?php echo $mes['nombre'] ?></option>

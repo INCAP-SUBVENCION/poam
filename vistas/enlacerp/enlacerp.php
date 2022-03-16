@@ -45,11 +45,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <div class="col-12 order-last">
-                            <h3>Sistema de Planificación Operativo Anual y Mensual</h3>
+                        <div class="col-12 order-md-1 order-last">
+                            <h3>Sistema de Planificación Operativa Anual y Mensual</h3>
                             <p class="text-subtitle text-muted">Pagina principal</p>
                         </div>
-
                     </div>
                 </div>
                 <section class="section">

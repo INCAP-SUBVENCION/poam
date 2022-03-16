@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body bg-light-primary">
                 <div class="row">
-                <h5 class="text-center">CORRECCION DE LA ACTIVIDAD</h5>
+                <h5 class="text-center">Solicitar correccion de actividad</h5>
                     <div class="col-sm-4">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text" style="font-size: 12px;">Mes:</span>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Observaciones / cometarios</label>
+                        <label>Observaciones</label>
                         <textarea name="estado_descripcion" id="estado_descripcion"cols="2" rows="2" class="form-control"></textarea>
                     </div>
                     <!-- hidden -->
@@ -68,7 +68,7 @@
                     <input type="hidden" id="estado_estado">
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="cambiarEstadoPom()"> Corregir actividad</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="cambiarEstadoPom()"> Solicitar correccion</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> Cerrar </button>
                 </div>
 

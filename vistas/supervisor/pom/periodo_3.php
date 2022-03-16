@@ -1,25 +1,23 @@
-<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
-    <thead style="font-size: 11px;">
-        <tr>
-            <th scope>#</th>
-            <th scope>Periodo</th>
-            <th scope>Mes</th>
-            <th scope>Municipio</th>
-            <th scope>Lugar</th>
-            <th scope>Fecha</th>
-            <th scope>Inicio</th>
-            <th scope>Fin</th>
-            <th scope>Codigo</th>
-            <th scope>Promotor</th>
-            <th scope>Nuevos</th>
-            <th scope>Recurrentes</th>
-            <th scope>Total</th>
-            <th scope>Observacion</th>
-            <th scope>Estado</th>
-            <th scope>Opcion</th>
-        </tr>
-    </thead>
+  <thead style="font-size: 12px;" class="table-light">
+          <th scope>#</th>
+          <th scope>Periodo</th>
+          <th scope>Mes</th>
+          <th scope>Municipio</th>
+          <th scope>Lugar</th>
+          <th scope>Fecha</th>
+          <th scope>Inicio</th>
+          <th scope>Fin</th>
+          <th scope>Promotor</th> 
+          <th class="text-center text-primary" scope>Nuevos</th>
+          <th class="text-center text-primary" scope>Recurrentes</th>
+          <th class="text-center text-danger" scope>Total</th>
+          <th scope>Observacion</th>
+          <th scope>Supervisado</th>
+          <th scope>Supervisor</th>
+          <th scope>Estado</th>
+          <th scope>Opcion</th>
+  </thead>
     <tbody style="font-size: 12px;">
         <?php
         $contap_3 = 1;
@@ -37,20 +35,25 @@
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $contap_3++; ?></td>
+                <td><?php echo $contap_3++; ?></td>
                     <td><?php echo $periodo_3['periodo']; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
-                    <td><?php echo $periodo_3['municipio']; ?></td>
+                    <td><?php echo $periodo_3['municipio'];?></td>
                     <td><?php echo $periodo_3['lugar']; ?></td>
                     <td><?php echo $periodo_3['fecha']; ?></td>
                     <td><?php echo $periodo_3['horaInicio']; ?></td>
                     <td><?php echo $periodo_3['horaFin']; ?></td>
-                    <td><?php echo $periodo_3['codigo']; ?></td>
                     <td><?php echo $periodo_3['nombres']; ?></td>
-                    <td><?php echo $periodo_3['pNuevo']; ?></td>
-                    <td><?php echo $periodo_3['pRecurrente']; ?></td>
-                    <th scope><?php echo round($periodo_3['total'], 2); ?></th>
+                    <td class="text-center text-primary"><?php echo $periodo_3['pNuevo']; ?></td>
+                    <td class="text-center text-primary"><?php echo $periodo_3['pRecurrente']; ?></td>
+                    <th class="text-center text-danger" scope><?php echo round($periodo_3['total'], 2); ?></th>
                     <td><?php echo $periodo_3['observacion']; ?></td>
+                    <td><?php if ($periodo_3['supervisado'] == 1) {
+                            echo 'Si';
+                        } else {
+                            echo 'No';
+                        } ?></td>
+                    <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php
                         if ($periodo_3['estado'] == 'PR02') {
@@ -114,13 +117,13 @@
                                         </li>
                                         <li>
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar al M&E </button>
+                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo actividad a M&E </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
-                                                <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
+                                                <em class="bi bi-arrow-right-circle"></em> Solicitar correccion</button>
                                         </li>
-                                    <?php }?>
+                                    <?php } ?>
                                 </div>
 
                                 <div id="general">
@@ -133,16 +136,16 @@
                                             <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                                 <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                         </li>
-                                    <?php } else if( $periodo_3['estado'] == 'ES05') { ?>
+                                    <?php } else if ($periodo_3['estado'] == 'ES05') { ?>
                                         <li>
                                             <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                                 <em class="bi bi-pencil-square"></em> Editar </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES01')">
-                                                <em class="bi bi-arrow-right-circle"></em> Enviar correcciones al M & E</button>
+                                                <em class="bi bi-arrow-right-circle"></em> Enviar actvidad corregida</button>
                                         </li>
-                                        <?php }?>
+                                    <?php } ?>
                                 </div>
 
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>">
@@ -158,26 +161,25 @@
         ?>
     </tbody>
     <tfoot>
-        <tr>
-            <th>#</th>
-            <th>Periodo</th>
-            <th>Mes</th>
-            <th>Municipio</th>
-            <th>Lugar</th>
-            <th>Fecha</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Codigo</th>
-            <th>Subreceptor</th>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="ttotal3">0</strong></td>
-            <th>Observacion</th>
-            <th>Estado</th>
-        </tr>
+        <th>#</th>
+        <th>Periodo</th>
+        <th>Mes</th>
+        <th>Municipio</th>
+        <th>Lugar</th>
+        <th>Fecha</th>
+        <th>Inicio</th>
+        <th>Fin</th>
+        <th>Promotor</th>
+        <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
+        <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
+        <td class="text-center text-danger"><strong id="ttotal3">0</strong></td>
+        <th>Observacion</th>
+        <th>Supervisado</th>
+        <th>Supervisor</th>
+        <th>Estado</th>
     </tfoot>
 </table>
-</div>
+
 
 
 <?php if ($SUBRECEPTOR == '2') { ?>

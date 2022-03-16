@@ -31,7 +31,7 @@
             <ul class="menu">
 
                 <li class="sidebar-item  ">
-                    <a href="rp.php" class='sidebar-link'>
+                    <a href="otros.php" class='sidebar-link'>
                         <i class="bi bi-calendar4-week"></i><span>Principal</span>
                     </a>
                 </li>

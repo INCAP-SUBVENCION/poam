@@ -381,7 +381,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R004', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R005',  'Coordinador de Monitoreo y Evaluacion de SR', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R006',  'Supervisor', ' ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R007',  'Promotor', ' ', 'rol');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Usuario INCAP', 'Financiero, Logistica y Monitoreo ', 'rol');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R008',  'Usuario RP', 'Financiero, Logistica y Monitoreo ', 'rol');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('R009',  'Coordinador de proyectos', ' ', 'rol');
 #PERIODO 1
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP11', 'Enero', 1, 'mes');
@@ -427,7 +427,7 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
 #ESTADOS
 
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado o revisado por M & E', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado y revisado por M&E', '', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Enviado al Enlace Programatico', 'Enviado para revision', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado por Enlace Programatico', 'POA o POM revisado por el enlace', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado por el Especialista', 'POA o POM aprobado por el especialista', 'estado');
@@ -446,9 +446,6 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RP01', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('RP02', 'Solicitud Rechazada', 'Reprogramacion', 'estado');
 
 #ESTADO DEL PROMOTOR
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR01', 'POM creado', 'POM creado por el promotor', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR01', 'Actividad creada', 'Actividad creada por el promotor', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR02', 'Enviado para revision al supervisor', 'Enviado para revision', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR03', 'Correccion del POM', 'Corregir POM', 'estado');
-
-CALL agregarUsuario("INCAP01","Faustino","", "Lopez", "Ramos", "57619399", "flopez@incap.int", "R001", 1);
-CALL agregarUsuario("INCAP02","Osberto","", "Juarez", "Vasquez", "57619344", "ojuarez@incap.int", "R001", 1);
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('PR03', 'Correccion de la actividad', 'Corregir actividad', 'estado');

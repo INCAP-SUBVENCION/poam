@@ -1,4 +1,3 @@
-<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
     <thead style="font-size: 12px;">
         <tr>
@@ -11,9 +10,10 @@
             <th scope>Inicio</th>
             <th scope>Fin</th>
             <th scope>Promotor</th>
-            <th scope>Nuevos</th>
-            <th scope>Recurrentes</th>
-            <th scope>Total</th>
+            <th class="text-center text-primary" scope>Nuevos</th>
+            <th class="text-center text-primary" scope>Recurrentes</th>
+            <th class="text-center text-danger" scope>Total</th>
+            <th class="text-center text-info" scope>Reactivo</th>
             <th scope>Observacion</th>
             <th scope>Supervisado</th>
             <th scope>Supervisor</th>
@@ -48,9 +48,10 @@
                     <td><?php echo $periodo_3['horaInicio']; ?></td>
                     <td><?php echo $periodo_3['horaFin']; ?></td>
                     <td><?php echo $periodo_3['nombres']; ?></td>
-                    <td><?php echo $periodo_3['pNuevo']; ?></td>
-                    <td><?php echo $periodo_3['pRecurrente']; ?></td>
-                    <th scope><?php echo round($periodo_3['total'], 2); ?></th>
+                    <td class="text-center text-primary"><?php echo $periodo_3['pNuevo']; ?></td>
+                    <td class="text-center text-primary"><?php echo $periodo_3['pRecurrente']; ?></td>
+                    <th class="text-center text-danger" scope><?php echo round($periodo_3['total'], 2); ?></th>
+                    <th class="text-center text-info" scope><?php echo round($periodo_3['reactivo'], 2); ?></th>
                     <td><?php echo $periodo_3['observacion']; ?></td>
                     <td><?php if ($periodo_3['supervisado'] == 1) {
                             echo 'Si';
@@ -157,8 +158,9 @@
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
-                                    
-                                <?php } if ($periodo_3['estado'] == 'ES04') { ?>
+
+                                <?php }
+                                if ($periodo_3['estado'] == 'ES04') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>,'RC01')">
                                             <em class="bi bi-shuffle"></em> Recalendarización </button>
@@ -171,7 +173,8 @@
                                         <button class="dropdown-item" onclick="modalCancelarActividad(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'CA01')">
                                             <em class="bi bi-back"></em> Cancelar actividad </button>
                                     </li>
-                                <?php } if ($periodo_3['estado'] == 'ES05') { ?>
+                                <?php }
+                                if ($periodo_3['estado'] == 'ES05') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-pencil-square"></em> Editar </button>
@@ -180,7 +183,8 @@
                                         <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
                                             <em class="bi bi-arrow-right-circle"></em> Enviar correcciones </button>
                                     </li>
-                                <?php } if ($periodo_3['estado'] == 'RE02') { ?>
+                                <?php }
+                                if ($periodo_3['estado'] == 'RE02') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalHistorialPom(<?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-clock-history"></em> Historial </button>
@@ -194,7 +198,9 @@
                         </div>
                     </td>
                 </tr>
-        <?php } $resp_3->close(); } ?>
+        <?php }
+            $resp_3->close();
+        } ?>
     </tbody>
     <tfoot>
         <tr>
@@ -206,19 +212,18 @@
             <th>Fecha</th>
             <th>Inicio</th>
             <th>Fin</th>
-            <th>Codigo</th>
-            <th>Subreceptor</th>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="ttotal3">0</strong></td>
+            <th>Promotor</th>
+            <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
+            <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
+            <td class="text-center text-danger"><strong id="ttotal3">0</strong></td>
+            <td class="text-center text-info"><strong id="treactivo3">0</strong></td>
             <th>Observacion</th>
+            <th>Supervisado</th>
+            <th>Supervisor</th>
             <th>Estado</th>
         </tr>
     </tfoot>
 </table>
-</div>
-
-
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -242,7 +247,8 @@
         </div>
     </div>
 
-<?php } if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+<?php }
+if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
@@ -264,25 +270,26 @@
         </div>
     </div>
 
-<?php } if ($SUBRECEPTOR == '5') { ?>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <div class="col-sm-6">
-            <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
-                <input type="hidden" name="periodo" id="periodo" value="3">
-                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
-                <select name="meses" id="meses">
-                    <?php
-                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
+    <?php }
+if ($SUBRECEPTOR == '5') { ?>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div class="col-sm-6">
+                <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
+                    <input type="hidden" name="periodo" id="periodo" value="3">
+                    <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                    <select name="meses" id="meses">
+                        <?php
+                        $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
                     WHERE t1.periodo= 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
-                    $rd = $enlace->query($cd);
-                    while ($mes = $rd->fetch_assoc()) { ?>
-                        <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                    <?php }
-                    $rd->close();
-                    ?>
-                </select>
-                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
-            </form>
+                        $rd = $enlace->query($cd);
+                        while ($mes = $rd->fetch_assoc()) { ?>
+                            <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
+                        <?php }
+                        $rd->close();
+                        ?>
+                    </select>
+                    <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+                </form>
+            </div>
         </div>
-    </div>
-<?php } ?>
+    <?php } ?>

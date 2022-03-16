@@ -45,9 +45,9 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </header>
             <div class="page-heading">
                 <div class="page-title">
-                    <div class="row">
+                <div class="row">
                         <div class="col-12 order-md-1 order-last">
-                            <h3>Sistema de Planificación Operativo Anual y Mensual</h3>
+                            <h3>Sistema de Planificación Operativa Anual y Mensual</h3>
                             <p class="text-subtitle text-muted">Pagina principal</p>
                         </div>
                     </div>

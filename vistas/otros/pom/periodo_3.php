@@ -1,9 +1,6 @@
-<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
     <thead style="font-size: 11px;">
-        <tr>
             <th scope>#</th>
-            <th scope>Actividad</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
             <th scope>Municipio</th>
@@ -20,7 +17,6 @@
             <th scope>Supervisor</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
-        </tr>
     </thead>
     <tbody style="font-size: 12px;" class="text-center">
         <?php
@@ -36,12 +32,11 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR  
-        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01','ES02','ES03')) ORDER BY t2.estado";
+        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01','ES02','ES03','ES05','CA01','CA02','RC01','RC02','RP01','RP02')) ORDER BY t2.estado";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
                     <td><?php echo $contap_3++; ?></td>
-                    <td style="font-size: 14px; color:brown; font-weight: bold;"><?php echo $periodo_3['idPom']; ?></td>
                     <td><?php echo $periodo_3['periodo']; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
                     <td><?php echo $periodo_3['municipio']; ?></td>
@@ -57,24 +52,16 @@
                     <td><?php if ($periodo_3['supervisado'] == 1) { echo 'Si'; } else { echo 'No'; } ?></td>
                     <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
-                        <?php if ($periodo_3['estado'] == 'ES03') {
-                            echo '<p class="text-white bg-primary"> Revisar</p>';
-                        } elseif ($periodo_3['estado'] == 'ES04') {
+                        <?php if ($periodo_3['estado'] == 'ES04') {
                             echo '<p class="text-white bg-success"> Aprobado</p>';
                         } elseif ($periodo_3['estado'] == 'ES05') {
                             echo '<p class = "text-white bg-danger"> En correccion</p>';
-                        } elseif ($periodo_3['estado'] == 'RE01') {
-                            echo '<p class = "text-dark bg-info"> Solicitud de Recalendarizacion</p>';
-                        } elseif ($periodo_3['estado'] == 'RE02') {
-                            echo '<p class = "text-white bg-success"> Actividad recalendarizado</p>';
-                        } elseif ($periodo_3['estado'] == 'RE03') {
-                            echo '<p class = "text-dark bg-success"> Recalendarizacion rechazada</p>';
-                        } elseif ($periodo_3['estado'] == 'CA01') {
-                            echo '<p class = "text-info"><i class="bi bi-x-circle"></i><br>Solicitud de candelacion</p>';
-                        } elseif ($periodo_3['estado'] == 'CA02') {
-                            echo '<p class = "text-danger"> Cancelacion rechazada </p>';
                         } elseif ($periodo_3['estado'] == 'ES06') {
-                            echo '<p class = "text-danger"> Actividad cancelada </p>';
+                            echo '<p class = "text-danger"> Actividad Cancelada </p>';
+                        } elseif ($periodo_3['estado'] == 'ES07') {
+                            echo '<p class = "text-danger"> Actividad Recalendarizada </p>';
+                        } elseif ($periodo_3['estado'] == 'ES08') {
+                            echo '<p class = "text-danger"> Actividad Reprogramada </p>';
                         }  ?>
                     </th>
                     <td>
@@ -93,7 +80,6 @@
         <?php } $resp_3->close(); } ?>
     </tbody>
     <tfoot>
-        <tr>
             <th>#</th>
             <th>Periodo</th>
             <th>Mes</th>
@@ -102,18 +88,14 @@
             <th>Fecha</th>
             <th>Inicio</th>
             <th>Fin</th>
-            <th>Codigo</th>
-            <th>Subreceptor</th>
+            <th>Promotor</th>
             <td class="text-center"><strong id="tnuevo3">0</strong></td>
             <td class="text-center"><strong id="tnuevo3">0</strong></td>
             <td class="text-center"><strong id="ttotal3">0</strong></td>
             <th>Observacion</th>
             <th>Estado</th>
-        </tr>
     </tfoot>
 </table>
-</div>
-
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

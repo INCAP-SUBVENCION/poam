@@ -45,11 +45,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Sistema de Planificación Operativo Anual y Mensual</h3>
+                        <div class="col-12 order-md-1 order-last">
+                            <h3>Sistema de Planificación Operativa Anual y Mensual</h3>
                             <p class="text-subtitle text-muted">Pagina principal</p>
                         </div>
-
                     </div>
                 </div>
                 <section class="section">
@@ -70,7 +69,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                         <ul class="list-group list-group-flush">
                                             <a class="list-group-item" href="pom/pom.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range"></i> Plan Operativo Mensual</a>
                                             <a class="list-group-item" href="poa/poa.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range-fill"></i> Plan Operativo Anual</a>
-                                        </ul> 
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

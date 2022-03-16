@@ -1,25 +1,23 @@
-<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
-    <thead style="font-size: 11px;">
-        <tr>
-            <th scope>#</th>
-            <th scope>Periodo</th>
-            <th scope>Mes</th>
-            <th scope>Municipio</th>
-            <th scope>Lugar</th>
-            <th scope>Fecha</th>
-            <th scope>Inicio</th>
-            <th scope>Fin</th>
-            <th scope>Promotor</th>
-            <th scope>Nuevos</th>
-            <th scope>Recurrentes</th>
-            <th scope>Total</th>
-            <th scope>Observacion</th>
-            <th scope>Supervisado</th>
-            <th scope>Supervisor</th>
-            <th scope>Estado</th>
-            <th scope>Opcion</th>
-        </tr>
+    <thead style="font-size: 12px;" class="table-light">
+        <th scope>#</th>
+        <th scope>Periodo</th>
+        <th scope>Mes</th>
+        <th scope>Municipio</th>
+        <th scope>Lugar</th>
+        <th scope>Fecha</th>
+        <th scope>Inicio</th>
+        <th scope>Fin</th>
+        <th scope>Promotor</th>
+        <th class="text-center text-primary" scope>Nuevos</th>
+        <th class="text-center text-primary" scope>Recurrentes</th>
+        <th class="text-center text-danger" scope>Total</th>
+        <th class="text-center text-info" scope>Reactivo</th>
+        <th scope>Observacion</th>
+        <th scope>Supervisado</th>
+        <th scope>Supervisor</th>
+        <th scope>Estado</th>
+        <th scope>Opcion</th>
     </thead>
     <tbody style="font-size: 12px;" class="text-center">
         <?php
@@ -48,11 +46,16 @@
                     <td><?php echo $periodo_3['horaInicio']; ?></td>
                     <td><?php echo $periodo_3['horaFin']; ?></td>
                     <td><?php echo $periodo_3['nombres']; ?></td>
-                    <td><?php echo $periodo_3['pNuevo']; ?></td>
-                    <td><?php echo $periodo_3['pRecurrente']; ?></td>
-                    <th scope><?php echo round($periodo_3['total'], 2); ?></th>
+                    <td class="text-center text-primary"><?php echo $periodo_3['pNuevo']; ?></td>
+                    <td class="text-center text-primary"><?php echo $periodo_3['pRecurrente']; ?></td>
+                    <th class="text-center text-danger" scope><?php echo round($periodo_3['total'], 2); ?></th>
+                    <th class="text-center text-info" scope><?php echo round($periodo_3['reactivo'], 2); ?></th>
                     <td><?php echo $periodo_3['observacion']; ?></td>
-                    <td><?php if ($periodo_3['supervisado'] == 1) { echo 'Si'; } else { echo 'No'; } ?></td>
+                    <td><?php if ($periodo_3['supervisado'] == 1) {
+                            echo 'Si';
+                        } else {
+                            echo 'No';
+                        } ?></td>
                     <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
                         <?php if ($periodo_3['estado'] == 'ES03') {
@@ -86,7 +89,7 @@
                         } elseif ($periodo_3['estado'] == 'ES07') {
                             echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Actividad Recalendarizado</p>';
                         }
-                         ?>
+                        ?>
                     </th>
                     <td>
                         <div class="dropdown">
@@ -143,30 +146,30 @@
                         </div>
                     </td>
                 </tr>
-        <?php } $resp_3->close(); } ?>
+        <?php }
+            $resp_3->close();
+        } ?>
     </tbody>
     <tfoot>
-        <tr>
-            <th>#</th>
-            <th>Periodo</th>
-            <th>Mes</th>
-            <th>Municipio</th>
-            <th>Lugar</th>
-            <th>Fecha</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Codigo</th>
-            <th>Subreceptor</th>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="ttotal3">0</strong></td>
-            <th>Observacion</th>
-            <th>Estado</th>
-        </tr>
+        <th>#</th>
+        <th>Periodo</th>
+        <th>Mes</th>
+        <th>Municipio</th>
+        <th>Lugar</th>
+        <th>Fecha</th>
+        <th>Inicio</th>
+        <th>Fin</th>
+        <th>Promotor</th>
+        <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
+        <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
+        <td class="text-center text-danger"><strong id="ttotal3">0</strong></td>
+        <td class="text-center text-info"><strong id="treactivo3">0</strong></td>
+        <th>Observacion</th>
+        <th>Supervisado</th>
+        <th>Supervisor</th>
+        <th>Estado</th>
     </tfoot>
 </table>
-</div>
-
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -181,13 +184,15 @@
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                    <?php } $rd->close(); ?>
+                    <?php }
+                    $rd->close(); ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
     </div>
-<?php } if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+<?php }
+if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
@@ -200,13 +205,15 @@
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                    <?php } $rd->close(); ?>
+                    <?php }
+                    $rd->close(); ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
         </div>
     </div>
-<?php } if ($SUBRECEPTOR == '5') { ?>
+<?php }
+if ($SUBRECEPTOR == '5') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
@@ -219,7 +226,8 @@
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                    <?php } $rd->close(); ?>
+                    <?php }
+                    $rd->close(); ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>

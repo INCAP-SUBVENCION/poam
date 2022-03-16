@@ -11,7 +11,7 @@
             <th scope>Inicio</th>
             <th scope>Fin</th>
             <th scope>Codigo</th>
-            <th scope>Subreceptor</th>
+            <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
             <th scope>Total</th>

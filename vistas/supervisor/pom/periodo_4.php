@@ -10,11 +10,10 @@
             <th scope>Fecha</th>
             <th scope>Inicio</th>
             <th scope>Fin</th>
-            <th scope>Codigo</th>
             <th scope>Promotor</th>
-            <th scope>Nuevos</th>
-            <th scope>Recurrentes</th>
-            <th scope>Total</th>
+            <th class="text-center text-primary" scope>Nuevos</th>
+            <th class="text-center text-primary" scope>Recurrentes</th>
+            <th class="text-center text-danger" scope>Total</th>
             <th scope>Observacion</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
@@ -46,11 +45,10 @@
                     <td><?php echo $periodo_4['fecha']; ?></td>
                     <td><?php echo $periodo_4['horaInicio']; ?></td>
                     <td><?php echo $periodo_4['horaFin']; ?></td>
-                    <td><?php echo $periodo_4['codigo']; ?></td>
                     <td><?php echo $periodo_4['nombres']; ?></td>
-                    <td><?php echo $periodo_4['pNuevo']; ?></td>
-                    <td><?php echo $periodo_4['pRecurrente']; ?></td>
-                    <th scope><?php echo round($periodo_4['total'], 2); ?></th>
+                    <td class="text-center text-primary"><?php echo $periodo_4['pNuevo']; ?></td>
+                    <td class="text-center text-primary"><?php echo $periodo_4['pRecurrente']; ?></td>
+                    <th class="text-center text-danger" scope><?php echo round($periodo_4['total'], 2); ?></th>
                     <td><?php echo $periodo_4['observacion']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php
@@ -168,11 +166,10 @@
             <th>Fecha</th>
             <th>Inicio</th>
             <th>Fin</th>
-            <th>Codigo</th>
-            <th>Subreceptor</th>
-            <td class="text-center"><strong id="tnuevo4">0</strong></td>
-            <td class="text-center"><strong id="tnuevo4">0</strong></td>
-            <td class="text-center"><strong id="ttotal4">0</strong></td>
+            <th>Promotor</th>
+            <td class="text-center text-primary"><strong id="tnuevo4">0</strong></td>
+            <td class="text-center text-primary"><strong id="tnuevo4">0</strong></td>
+            <td class="text-center text-danger"><strong id="ttotal4">0</strong></td>
             <th>Observacion</th>
             <th>Estado</th>
         </tr>

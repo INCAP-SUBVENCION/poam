@@ -115,7 +115,7 @@ $(document).ready(function () {
     });
   /**
    * Metodo que permite filtrar poa del periodo 3
-   */
+   */ 
          $('#poa_ppl_3').DataTable({
             initComplete: function () {
                 this.api().columns([1, 2]).every(function () {
@@ -285,7 +285,7 @@ $(document).ready(function () {
     $('#pom_periodo_3').DataTable({
 
         initComplete: function () {
-            this.api().columns([2, 3]).every(function () {
+            this.api().columns([2, 3, 8]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Filtar</option></select>')
                     .appendTo($(column.footer()).empty())
@@ -300,9 +300,10 @@ $(document).ready(function () {
         },
         drawCallback: function () {
             var api = this.api();
-            $('#tnuevo3').html(api.column(10, { "filter": "applied" }).data().sumar());
-            $('#trecurrente3').html(api.column(11, { "filter": "applied" }).data().sumar());
-            $('#ttotal3').html(api.column(12, { "filter": "applied" }).data().sumar());
+            $('#tnuevo3').html(api.column(9, { "filter": "applied" }).data().sumar());
+            $('#trecurrente3').html(api.column(10, { "filter": "applied" }).data().sumar());
+            $('#ttotal3').html(api.column(11, { "filter": "applied" }).data().sumar());
+            $('#treactivo3').html(api.column(12, { "filter": "applied" }).data().sumar());
         }
     });
 
@@ -312,7 +313,7 @@ $(document).ready(function () {
     $('#pom_periodo_4').DataTable({
 
         initComplete: function () {
-            this.api().columns([2, 3]).every(function () {
+            this.api().columns([2, 3 ,8]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Filtar</option></select>')
                     .appendTo($(column.footer()).empty())
@@ -327,9 +328,10 @@ $(document).ready(function () {
         },
         drawCallback: function () {
             var api = this.api();
-            $('#tnuevo4').html(api.column(10, { "filter": "applied" }).data().sumar());
-            $('#trecurrente4').html(api.column(11, { "filter": "applied" }).data().sumar());
-            $('#ttotal4').html(api.column(12, { "filter": "applied" }).data().sumar());
+            $('#tnuevo4').html(api.column(9, { "filter": "applied" }).data().sumar());
+            $('#trecurrente4').html(api.column(10, { "filter": "applied" }).data().sumar());
+            $('#ttotal4').html(api.column(11, { "filter": "applied" }).data().sumar());
+            $('#treactivo4').html(api.column(12, { "filter": "applied" }).data().sumar());
         }
     });
 

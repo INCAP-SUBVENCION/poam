@@ -1,9 +1,6 @@
-<div class="table-responsive">
 <table class="table table-sm table-hover" id="pom_periodo_4" aria-describedby="pom del periodo 4">
     <thead style="font-size: 11px;">
-        <tr>
             <th scope>#</th>
-            <th scope>Actividad</th>
             <th scope>Periodo</th>
             <th scope>Mes</th>
             <th scope>Municipio</th>
@@ -20,7 +17,6 @@
             <th scope>Supervisor</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
-        </tr>
     </thead>
     <tbody style="font-size: 12px;" class="text-center">
         <?php
@@ -36,12 +32,11 @@
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
         WHERE t2.periodo = 4 AND t7.subreceptor_id = $SUBRECEPTOR  
-        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01','ES02')) ORDER BY t2.estado";
+        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01','ES02','ES03','CA01','CA02','RC01','RC02','RP01','RP02')) ORDER BY t2.estado";
         if ($resp_4 = $enlace->query($sqlp_4)) {
             while ($periodo_4 = $resp_4->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $contap_3++; ?></td>
-                    <td style="font-size: 14px; color:brown; font-weight: bold;"><?php echo $periodo_4['idPom']; ?></td>
+                    <td><?php echo $contap_4++; ?></td>
                     <td><?php echo $periodo_4['periodo']; ?></td>
                     <td><?php echo $periodo_4['mes']; ?></td>
                     <td><?php echo $periodo_4['municipio']; ?></td>
@@ -54,31 +49,19 @@
                     <td><?php echo $periodo_4['pRecurrente']; ?></td>
                     <th scope><?php echo round($periodo_4['total'], 2); ?></th>
                     <td><?php echo $periodo_4['observacion']; ?></td>
-                    <td><?php if ($periodo_4['supervisado'] == 1) {
-                            echo 'Si';
-                        } else {
-                            echo 'No';
-                        } ?></td>
+                    <td><?php if ($periodo_4['supervisado'] == 1) { echo 'Si'; } else { echo 'No'; } ?></td>
                     <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;">
-                        <?php if ($periodo_4['estado'] == 'ES03') {
-                            echo '<p class="text-white bg-primary"> Revisar</p>';
-                        } elseif ($periodo_4['estado'] == 'ES04') {
+                        <?php if ($periodo_4['estado'] == 'ES04') {
                             echo '<p class="text-white bg-success"> Aprobado</p>';
                         } elseif ($periodo_4['estado'] == 'ES05') {
                             echo '<p class = "text-white bg-danger"> En correccion</p>';
-                        } elseif ($periodo_4['estado'] == 'RE01') {
-                            echo '<p class = "text-dark bg-info"> Solicitud de Recalendarizacion</p>';
-                        } elseif ($periodo_4['estado'] == 'RE02') {
-                            echo '<p class = "text-white bg-success"> Actividad recalendarizado</p>';
-                        } elseif ($periodo_4['estado'] == 'RE03') {
-                            echo '<p class = "text-dark bg-success"> Recalendarizacion rechazada</p>';
-                        } elseif ($periodo_4['estado'] == 'CA01') {
-                            echo '<p class = "text-info"><i class="bi bi-x-circle"></i><br>Solicitud de candelacion</p>';
-                        } elseif ($periodo_4['estado'] == 'CA01') {
-                            echo '<p class = "text-danger"> Cancelacion rechazada </p>';
                         } elseif ($periodo_4['estado'] == 'ES06') {
-                            echo '<p class = "text-danger"> Actividad cancelada </p>';
+                            echo '<p class = "text-danger"> Actividad Cancelada </p>';
+                        } elseif ($periodo_4['estado'] == 'ES07') {
+                            echo '<p class = "text-danger"> Actividad Recalendarizada </p>';
+                        } elseif ($periodo_4['estado'] == 'ES08') {
+                            echo '<p class = "text-danger"> Actividad Reprogramada </p>';
                         }  ?>
                     </th>
                     <td>
@@ -87,36 +70,6 @@
                                 <em class="bi bi-grid"></em>
                             </button>
                             <ul class="dropdown-menu">
-
-                                <li>
-                                    <button class="dropdown-item" onclick="modalEstadoPom(<?php echo $periodo_4['idPom']; ?>)">
-                                        <em class="bi bi-stoplights-fill"></em> Estado </button>
-                                </li>
-                                <?php
-                                if ($periodo_4['estado'] == 'ES03') {
-                                ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                            <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                            <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
-                                    </li>
-                                <?php } ?>
-
-                                <?php if ($periodo_4['estado'] == 'RE01') { ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
-                                            <em class="bi bi-shuffle"></em> Recalendarización </button>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($periodo_4['estado'] == 'CA01') { ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalAceptarCancelacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES06')">
-                                            <em class="bi bi-back"></em> Solicitud de cancelacion </button>
-                                    </li>
-                                <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>&sub=<?php echo $periodo_4['subreceptor_id']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
@@ -124,12 +77,9 @@
                         </div>
                     </td>
                 </tr>
-        <?php }
-            $resp_4->close();
-        } ?>
+        <?php } $resp_4->close(); } ?>
     </tbody>
     <tfoot>
-        <tr>
             <th>#</th>
             <th>Periodo</th>
             <th>Mes</th>
@@ -138,18 +88,14 @@
             <th>Fecha</th>
             <th>Inicio</th>
             <th>Fin</th>
-            <th>Codigo</th>
-            <th>Subreceptor</th>
+            <th>Promotor</th>
             <td class="text-center"><strong id="tnuevo4">0</strong></td>
             <td class="text-center"><strong id="tnuevo4">0</strong></td>
             <td class="text-center"><strong id="ttotal4">0</strong></td>
             <th>Observacion</th>
             <th>Estado</th>
-        </tr>
     </tfoot>
 </table>
-</div>
-
 
 <?php if ($SUBRECEPTOR == '2') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -170,8 +116,7 @@
             </form>
         </div>
     </div>
-<?php }
-if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
+<?php } if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomHsh.php" method="POST">
@@ -190,8 +135,7 @@ if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBREC
             </form>
         </div>
     </div>
-<?php }
-if ($SUBRECEPTOR == '5') { ?>
+<?php } if ($SUBRECEPTOR == '5') { ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-sm-6">
             <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
