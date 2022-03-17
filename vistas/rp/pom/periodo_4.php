@@ -111,8 +111,8 @@
                                                 <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
                                         </li>
                                         <li>
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Correcciones a la Actividad</button>
+                                            <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
+                                                <em class="bi bi-arrow-right-circle"></em> Solicitar correccion </button>
                                         </li>
                                     <?php } ?>
 

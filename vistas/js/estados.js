@@ -104,12 +104,80 @@ function modalCambiarEstadoPom(id, usuario, estado) {
     });
     $("#modalCambiarEstado").modal("show");
 }
+
+function modalEnviarCambioPom(id, usuario, estado) {
+
+    var accion = "consultaPoM";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            id: id
+        },
+        success: function (datos) {
+
+            var pom = JSON.parse(datos);
+            document.getElementById("cambio_id").value = id;
+            document.getElementById("cambio_mes").value = pom.mes;
+            document.getElementById("cambio_municipio").value = pom.municipio;
+            document.getElementById("cambio_lugar").value = pom.lugar;
+            document.getElementById("cambio_fecha").value = pom.fecha;
+            document.getElementById("cambio_inicia").value = pom.horaInicio;
+            document.getElementById("cambio_finaliza").value = pom.horaFin;
+            document.getElementById("cambio_usuario").value = usuario;
+            document.getElementById("cambio_estado").value = estado;
+            document.getElementById("cambio_nuevo").value = pom.pNuevo;
+            document.getElementById("cambio_recurrente").value = pom.pRecurrente;
+            document.getElementById("cambio_total").value = pom.total;
+        }
+    });
+    $("#modalEnviarCambioPom").modal("show");
+}
+
+/**
+ * Funcion que permite mostrar un modal para solicitar correccion de la actividad
+ * @param {*} id identificador de la actividadd
+ * @param {*} usuario identificador del usuario que realiza la accion
+ * @param {*} estado identificador del estado a cambiar
+ */
+function modalCorreccionPom(id, usuario, estado) {
+
+    var accion = "consultaPoM";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            id: id
+        },
+        success: function (datos) {
+
+            var pom = JSON.parse(datos);
+            document.getElementById("correccion_id").value = id;
+            document.getElementById("correccion_mes").value = pom.mes;
+            document.getElementById("correccion_municipio").value = pom.municipio;
+            document.getElementById("correccion_lugar").value = pom.lugar;
+            document.getElementById("correccion_fecha").value = pom.fecha;
+            document.getElementById("correccion_inicia").value = pom.horaInicio;
+            document.getElementById("correccion_finaliza").value = pom.horaFin;
+            document.getElementById("correccion_usuario").value = usuario;
+            document.getElementById("correccion_estado").value = estado;
+            document.getElementById("correccion_nuevo").value = pom.pNuevo;
+            document.getElementById("correccion_recurrente").value = pom.pRecurrente;
+            document.getElementById("correccion_total").value = pom.total;
+        }
+    });
+    $("#modalCorreccionPom").modal("show");
+}
 /**
  * Funcion que permite cambiar el estado de la actividad
  */
 function cambiarEstadoPom() {
     var usuario = document.getElementById('estado_usuario').value;
-    var poa = document.getElementById('estado_id').value;
+    var pom = document.getElementById('estado_id').value;
     var estado = document.getElementById('estado_estado').value;
     var descripcion = document.getElementById('estado_descripcion').value;
 
@@ -121,7 +189,7 @@ function cambiarEstadoPom() {
         data: {
             accion: accion,
             usuario: usuario,
-            poa: poa,
+            pom: pom,
             estado: estado,
             descripcion: descripcion
         },
@@ -141,6 +209,78 @@ function cambiarEstadoPom() {
         }
     });
 }
+function enviarCambiosPom() {
+    var usuario = document.getElementById('cambio_usuario').value;
+    var pom = document.getElementById('cambio_id').value;
+    var estado = document.getElementById('cambio_estado').value;
+    var descripcion = document.getElementById('cambio_descripcion').value;
+
+    var accion = "cambiarEstadoPom";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            usuario: usuario,
+            pom: pom,
+            estado: estado,
+            descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡GUARDADO!...');
+                document.getElementById('cambio_usuario').value = "";
+                document.getElementById('cambio_id').value = "";
+                document.getElementById('cambio_estado').value = "";
+                document.getElementById('cambio_descripcion').value = "";
+                $("#modalEnviarCambioPom").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo guardar");
+            }
+        }
+    });
+}
+/**
+ * Funcion que permite solicitar correcciones a la actividad
+ */
+function correccionPom() {
+    var usuario = document.getElementById('correccion_usuario').value;
+    var pom = document.getElementById('correccion_id').value;
+    var estado = document.getElementById('correccion_estado').value;
+    var descripcion = document.getElementById('correccion_descripcion').value;
+
+    var accion = "cambiarEstadoPom";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            usuario: usuario,
+            pom: pom,
+            estado: estado,
+            descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡GUARDADO!...');
+                document.getElementById('correccion_usuario').value = "";
+                document.getElementById('correccion_id').value = "";
+                document.getElementById('correccion_estado').value = "";
+                document.getElementById('correccion_descripcion').value = "";
+                $("#modalCorreccionPom").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo guardar");
+            }
+        }
+    });
+}
+
 /**
  * Funcion que permite mostar modal para ver el estado de la actividad del POM
  * @param {*} id identificador de la actividad del pom
@@ -474,7 +614,7 @@ function modalAceptarReprogramacion(id, usuario) {
 /**
  * Funcion que permite aceptar la solcitud de cambio de estado
  */
- function aceptarReprogramacion() {
+function aceptarReprogramacion() {
     var usuario = document.getElementById('ausuario').value;
     var pom = document.getElementById('aid').value;
     var estado = document.getElementById('aestado').value;
@@ -616,7 +756,7 @@ function modalRecalendarizacionPom(id, usuario, estado) {
  * Funcion que permite reprogramacion una actividad del POM
  */
 function recalendarizacionPom() {
-
+ 
     var pom = document.getElementById('_ida').value;
     var usuario = document.getElementById('usuarioa').value;
     var estado = document.getElementById('estadoa').value;
@@ -670,7 +810,7 @@ function recalendarizacionPom() {
  * @param {*} id identificador de la actividad
  * @param {*} usuario identificador del usuario que cambia el estado de la actividad
  */
- function modalAceptarRecalendarizacion(id, usuario) {
+function modalAceptarRecalendarizacion(id, usuario) {
 
     var accion = "consultaRecalendarizacion";
 
@@ -703,7 +843,7 @@ function recalendarizacionPom() {
 /**
  * Funcion que permite aceptar la solcitud de cambio de estado
  */
- function aceptarRecalendarizacion() {
+function aceptarRecalendarizacion() {
     var usuario = document.getElementById('usuarioa').value;
     var pom = document.getElementById('pomid').value;
     var estado = document.getElementById('estadoa').value;

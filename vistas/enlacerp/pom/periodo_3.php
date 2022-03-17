@@ -7,7 +7,7 @@
         <th scope>Lugar</th>
         <th scope>Fecha</th>
         <th scope>Inicio</th>
-        <th scope>Fin</th> 
+        <th scope>Fin</th>
         <th scope>Promotor</th>
         <th class="text-center text-primary" scope>Nuevos</th>
         <th class="text-center text-primary" scope>Recurrentes</th>
@@ -54,8 +54,9 @@
                     <td><?php if ($periodo_3['supervisado'] == 1) {
                             echo 'Si';
                         } else {
-                            echo 'No'; 
-                        } ?></td>
+                            echo 'No';
+                        } ?>
+                    </td>
                     <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php if ($periodo_3['estado'] == 'ES02') {
@@ -104,24 +105,16 @@
                                     <button class="dropdown-item" onclick="modalEstadoPom(<?php echo $periodo_3['idPom']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
-                                <?php
-                                if ($periodo_3['estado'] == 'ES02') {
-                                ?>
+                                <?php if ($periodo_3['estado'] == 'ES02') { ?>
                                     <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista </button>
-                                        </div>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista </button>
                                     </li>
                                     <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
-                                        </div>
+                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
+                                            <em class="bi bi-arrow-right-circle"></em> Solicitar correccion </button>
                                     </li>
-                                <?php
-                                }
-                                ?>
+                                <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>&sub=<?php echo $periodo_3['subreceptor_id']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>

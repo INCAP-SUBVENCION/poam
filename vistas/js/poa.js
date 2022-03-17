@@ -191,6 +191,7 @@ function modalEditarPoa(subreceptor, periodo, poa) {
     success: function (datos, status){
  
         var poa = JSON.parse(datos);
+        $("#_p").html(periodo);
         $("#_mes").html(poa.mes);
         $("#_municipio").html(poa.municipio);
         $("#_nuevo").html(poa.nuevo);

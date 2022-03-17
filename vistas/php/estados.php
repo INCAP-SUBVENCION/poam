@@ -221,7 +221,7 @@ if ($accion == "recalendarizacionPom") {
     $nfin       = $_POST['nfin'];
     $descripcion = $_POST['descripcion'];
 
-    if ($enlace->query("CALL recalendarizacion($pom, $usuario, '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, '$asupervisor', '$nfecha', '$ninicio', '$nfin', '$estado', '$descripcion')") === TRUE) {
+    if ($enlace->query("CALL recalendarizacion($pom, $usuario, '$afecha', '$ainicia', '$afinaliza', '$nfecha', '$ninicio', '$nfin', '$estado', '$descripcion')") === TRUE) {
         echo "Exito";
     } else {
         echo "Error";

@@ -5,6 +5,7 @@
                 <h5 class="text-center">Editar POA</h5>
                 <table class="table table-hover table-bordered" aria-describedby="">
                     <thead class="text-center" style="font-size: 10px;">
+                        <th scope="">Periodo</th>
                         <th scope="">Mes</th>
                         <th scope="">Municipio</th>
                         <th scope="">Nuevos</th>
@@ -19,6 +20,7 @@
                         <th scope="">Prueba Sifilis</th>
                     </thead>
                     <tbody class="text-center bg-light" style="font-size: 12px; color:brown;">
+                        <td><strong id="_p"></strong></td>
                         <td><strong id="_mes"></strong></td>
                         <td><strong id="_municipio"></strong></td>
                         <td><strong id="_nuevo"></strong></td>
@@ -32,7 +34,7 @@
                         <td><strong id="_reactivo"></strong></td>
                         <td><strong id="_sifilis"></strong></td>
                     </tbody>
-
+ 
                 </table>
                 <div class="row">
                     <form name="agregarPoas_1" id="agregarPoas_1" action="javascript: editarPoa();" method="POST">

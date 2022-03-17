@@ -82,7 +82,7 @@
                 <input type="hidden" id="usuarioa">
                 <input type="hidden" id="estadoa">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="recalendarizacionPom()">Solicitar reprogramacion</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="recalendarizacionPom()">Solicitar recalendarizacion</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>

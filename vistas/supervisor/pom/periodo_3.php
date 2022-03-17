@@ -117,7 +117,7 @@
                                         </li>
                                         <li>
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar todo actividad a M&E </button>
+                                                <em class="bi bi-arrow-clockwise"></em> Enviar toda actividad a M&E </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">

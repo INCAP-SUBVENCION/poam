@@ -104,24 +104,16 @@
                                     <button class="dropdown-item" onclick="modalEstadoPom(<?php echo $periodo_4['idPom']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
-                                <?php
-                                if ($periodo_4['estado'] == 'ES02') {
-                                ?>
+                                <?php if ($periodo_4['estado'] == 'ES02') { ?>
                                     <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                                <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista </button>
-                                        </div>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista </button>
                                     </li>
                                     <li>
-                                        <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                                <em class="bi bi-arrow-right-circle"></em> Correcciones a la actividad</button>
-                                        </div>
+                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
+                                            <em class="bi bi-arrow-right-circle"></em> Solicitar correccion </button>
                                     </li>
-                                <?php
-                                }
-                                ?>
+                                <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>&sub=<?php echo $periodo_4['subreceptor_id']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
@@ -129,10 +121,7 @@
                         </div>
                     </td>
                 </tr>
-        <?php }
-            $resp_4->close();
-        }
-        ?>
+        <?php } $resp_4->close(); } ?>
     </tbody>
     <tfoot>
         <th>#</th>

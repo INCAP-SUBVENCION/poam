@@ -115,8 +115,8 @@
                                             <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
-                                            <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
+                                        <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                            <em class="bi bi-arrow-right-circle"></em> Solicitar correccion</button>
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
@@ -135,8 +135,8 @@
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
-                                            <em class="bi bi-arrow-right-circle"></em> Corregir actividad</button>
+                                        <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                            <em class="bi bi-arrow-right-circle"></em> Solicitar correccion</button>
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
@@ -178,10 +178,10 @@
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
-                                            <em class="bi bi-arrow-right-circle"></em> Enviar correcciones </button>
+                                        <button class="dropdown-item" onclick="modalEnviarCambioPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
+                                            <em class="bi bi-arrow-right-circle"></em> Enviar cambios solicitados </button>
                                     </li>
-                                <?php } if ($periodo_4['estado'] == 'RE02') { ?>
+                                <?php } if ($periodo_4['estado'] == 'RE02') { ?> 
                                     <li>
                                         <button class="dropdown-item" onclick="modalHistorialPom(<?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-clock-history"></em> Historial </button>
