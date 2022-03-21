@@ -64,11 +64,11 @@
                                             <option value="">Seleccionar..</option>
                                             <?php
                                             $resultado = $enlace->query("SELECT DISTINCT t3.idPromotor, t4.nombre, t4.apellido FROM asignacion t1 
-                                                LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
-                                                LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
-                                                LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
-                                                WHERE t2.subreceptor_id = $SUBRECEPTOR 
-                                                GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
+                    LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
+                    LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
+                    LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
+                    WHERE t2.subreceptor_id = $SUBRECEPTOR 
+                    GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
                                             while ($prom = $resultado->fetch_assoc()) { ?>
                                                 <option value="<?php echo $prom['idPromotor']; ?>"><?php echo $prom['nombre'] . ' ' . $prom['apellido']; ?></option>
                                             <?php }
@@ -158,13 +158,13 @@
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea editar el POM?')">
-                                    <em class="bi bi-arrow-clockwise"></em> Actualizar </button>
-                                <button type="reset" class="btn btn-sm btn-outline-danger">
-                                    <em class="bi bi-x-circle"></em> Cancelar</button>
-                                <button type="button" class="btn btn-sm btn-outline-info" data-bs-dismiss="modal">
-                                    <em class="bi bi-x"></em> Cerrar</button>
-                            </div>
+                            <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea editar el POM?')">
+                                <em class="bi bi-arrow-clockwise"></em> Actualizar </button>
+                            <button type="reset" class="btn btn-sm btn-outline-danger">
+                                <em class="bi bi-x-circle"></em> Cancelar</button>
+                            <button type="button" class="btn btn-sm btn-outline-info" data-bs-dismiss="modal">
+                                <em class="bi bi-x"></em> Cerrar</button>
+                        </div>
                     </div>
                     </form>
                 </div>

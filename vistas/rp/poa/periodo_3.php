@@ -1,5 +1,5 @@
 <!--- POM OMES---->
-<div id="omes3" class="table-responsive">
+<div id="omes3">
 <table class="table table-hover table-bordered" id="poa_omes_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -106,7 +106,7 @@
 </div>
 
 <!--- POM HSH ---->
-<div id="hsh3" class="table-responsive">
+<div id="hsh3">
 <table class="table table-hover table-bordered" id="poa_hsh_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>
@@ -216,7 +216,7 @@
 </div>
 
 <!--- POM OTRANS ---->
-<div id="otrans3" class="table-responsive">
+<div id="otrans3">
 <table class="table table-hover table-bordered" id="poa_otrans_3" aria-describedby="">
     <thead class="text-center" style="font-size: 11px;">
         <th scope="">#</th>

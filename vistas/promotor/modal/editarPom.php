@@ -139,7 +139,7 @@
                                     <div class="form-group input-group-sm col-sm-5">
                                         <br>
                                         <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea editar el POM?')">
-                                            <em class="bi bi-arrow-clockwise"></em> Actualizar actividad</button>
+                                            <em class="bi bi-arrow-clockwise"></em> Actualizar</button>
                                         <button type="reset" class="btn btn-sm btn-outline-danger">
                                             <em class="bi bi-x-circle"></em> Cancelar</button>
                                         <button type="button" class="btn btn-sm btn-outline-info" data-bs-dismiss="modal">

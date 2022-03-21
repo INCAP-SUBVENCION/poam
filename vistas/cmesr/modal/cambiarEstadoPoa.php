@@ -46,11 +46,10 @@
                     <input type="hidden" id="estado_estado">
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit">Enviar</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Enviar correcciones</button>
                 </div>
                 </form>
-
             </div>
 
         </div>

@@ -75,10 +75,10 @@
                     <label>MOTIVO: </label>
                     <textarea id="_descripcion" cols="2" rows="2" class="form-control"></textarea>
                 </div>
-                <input type="text" id="pomid">
-                <input type="text" id="usuarioa">
+                <input type="hidden" id="pomid">
+                <input type="hidden" id="usuarioa">
                 <input type="hidden" id="estadoa" value="ES07">
-                <input type="text" id="restado" value="RC02">
+                <input type="hidden" id="restado" value="RC02">
                 <input type="hidden" id="descrip" value="Solicitud de recalendarizacion aceptada con exito">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button type="button" class="btn btn-success btn-sm" onclick="aceptarRecalendarizacion()"> <i class="bi bi-check-circle-fill"></i> Aceptar solicitud</button>
