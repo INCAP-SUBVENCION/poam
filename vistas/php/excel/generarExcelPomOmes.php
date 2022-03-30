@@ -10,7 +10,7 @@ $CONTADOR = 1;
 $sql_p1 = "SELECT DISTINCT t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, 
 t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, t2.pNuevo, t2.pRecurrente,
 (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, t2.autoprueba, 
-t2.observacion, t8.nombre as estados, supervisor FROM pom t2
+t2.observacion, t2.supervisado, t2.supervisor, t8.nombre as estados FROM pom t2
 LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
 LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
 LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
@@ -32,7 +32,7 @@ $html .= '<th scope>Fecha</th>';
 $html .= '<th scope>Inicio</th>';
 $html .= '<th scope>Fin</th>';
 $html .= '<th scope>Codigo</th>';
-$html .= '<th scope>Subreceptor</th>';
+$html .= '<th scope>Promotor</th>';
 $html .= '<th scope>Nuevos</th>';
 $html .= '<th scope>Recurrentes</th>';
 $html .= '<th scope>Total</th>';
@@ -42,6 +42,7 @@ $html .= '<th scope>Condon femenino</th>';
 $html .= '<th scope>Tubo Lubricante</th>';
 $html .= '<th scope>Auto-prueba VIH</th>';
 $html .= '<th scope>Observaciones</th>';
+$html .= '<th scope>Supervisado</th>';
 $html .= '<th scope>Supervisor</th>';
 $html .= '<th scope>Estado</th>';
 while ($periodo_1 = $resultado_p1->fetch_assoc()){ 
@@ -66,6 +67,11 @@ while ($periodo_1 = $resultado_p1->fetch_assoc()){
     $html .= '<td>'.round($periodo_1['lubricante'],2).'</td>';
     $html .= '<td>'.round($periodo_1['autoprueba'],2).'</td>';
     $html .= '<td>'.$periodo_1['observacion'].'</td>';
+    if($periodo_1['supervisado'] == 1){
+        $html .= '<td>Si</td>';
+    } else {
+        $html .= '<td>No</td>'; 
+    }
     $html .= '<td>'.$periodo_1['supervisor'].'</td>';
     $html .= '<td>'.$periodo_1['estados'].'</td>';
     $html .= '</tr>';

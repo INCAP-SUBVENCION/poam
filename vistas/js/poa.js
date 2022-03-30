@@ -90,7 +90,7 @@ function calcularProyeccionPOA() {
             } else { var lubricante  = parseFloat(resultado[3]); }
             var pruebaVIH = total * 0.95;
             var autoPrueba = 0;
-            var reactivo = total * procentaje;
+            var reactivo = pruebaVIH * procentaje;
             document.getElementById('cnatural').value   = cnatural.toFixed(2);
             document.getElementById('csabor').value     = csabor.toFixed(2);
             document.getElementById('cfemenino').value  = cfemenino.toFixed(2);

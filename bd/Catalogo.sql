@@ -427,11 +427,11 @@ INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP65', 
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('MP66', 'Diciembre', 6, 'mes');
 #ESTADOS
 
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado y revisado por M&E', '', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Enviado al Enlace Programatico', 'Enviado para revision', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado por Enlace Programatico', 'POA o POM revisado por el enlace', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado por el Especialista', 'POA o POM aprobado por el especialista', 'estado');
-INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Correccion', 'Modificar activadad', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES01', 'Creado o Revisado por M&E', '', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES02', 'Enviado al RP', 'Enviado para revision', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES03', 'Revisado y Enviado al Especialista', 'POA o POM revisado por el enlace', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES04', 'Aprobado por el RP', 'POA o POM aprobado por el especialista', 'estado');
+INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES05', 'Actividad en Correccion', 'Modificar activadad', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES06', 'Actividad Cancelada', 'Actividad cancelada', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES07', 'Actividad Recalendarizado', 'Recalendarizacion', 'estado');
 INSERT INTO poam.catalogo (codigo,nombre,descripcion,categoria) VALUES ('ES08', 'Actividad Reprogramado', 'Reprogramacion', 'estado');

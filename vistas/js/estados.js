@@ -331,7 +331,7 @@ function modalCambiarTodoEstadoPom() {
 /**
  * Funcion que permite cambiar el estado de todas la actividad del POM
  */
-function cambiarTodoEstadoPom() {
+function cambiarTodoEstadoPom() { 
     var subreceptor = document.getElementById('csubreceptor').value;
     var periodo = document.getElementById('_periodo').value;
     var estadoA = document.getElementById('cestadoA').value;
@@ -350,6 +350,42 @@ function cambiarTodoEstadoPom() {
             usuario: usuario,
             estadoN: estadoN,
             descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡SE ENVIO TODO!...');
+                $("#modalCambiarTodoEstadoPom").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo enviar ");
+            }
+        }
+    });
+}
+
+
+function cambiarEstadoPomPromotor() { 
+    var subreceptor = document.getElementById('csubreceptor').value;
+    var periodo = document.getElementById('_periodo').value;
+    var estadoA = document.getElementById('cestadoA').value;
+    var usuario = document.getElementById('cusuario').value;
+    var estadoN = document.getElementById('cestadoN').value;
+    var descripcion = document.getElementById('cobservacion').value;
+    var promotores = document.getElementById('promotores').value;
+    var accion = "cambiarEstadoPomPromotor";
+    $.ajax({
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            periodo: periodo,
+            estadoA: estadoA,
+            usuario: usuario,
+            estadoN: estadoN,
+            descripcion: descripcion,
+            promotores: promotores
         },
         success: function (datos) {
             if (datos == 'Exito') {

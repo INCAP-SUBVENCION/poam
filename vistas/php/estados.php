@@ -125,6 +125,22 @@ if ($accion == "cambiarTodoEstadoPom") {
         echo "Error";
     }
 }
+
+if ($accion == "cambiarEstadoPomPromotor") {
+    $subreceptor = $_POST['subreceptor'];
+    $periodo = $_POST['periodo'];
+    $estadoA = $_POST['estadoA'];
+    $usuario = $_POST['usuario'];
+    $estadoN = $_POST['estadoN'];
+    $descripcion = $_POST['descripcion'];
+    $promotores  = $_POST['promotores'];
+
+    if ($enlace->query("CALL cambiarPomPromotor($subreceptor, $periodo, '$estadoA', $usuario, '$estadoN', '$descripcion',$promotores)") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
 /**
  * Metodo que permite cambiar todo los estados del POA
  */

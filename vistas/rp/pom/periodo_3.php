@@ -19,7 +19,7 @@
         <th scope>Estado</th>
         <th scope>Opcion</th>
     </thead>
-    <tbody style="font-size: 12px;" class="text-center">
+    <tbody style="font-size: 12px;">
         <?php
         $contap_3 = 1;
         $sqlp_3 = "SELECT DISTINCT t2.subreceptor_id, t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, t2.lugar, t2.fecha, 
@@ -51,44 +51,42 @@
                     <th class="text-center text-danger" scope><?php echo round($periodo_3['total'], 2); ?></th>
                     <th class="text-center text-info" scope><?php echo round($periodo_3['reactivo'], 2); ?></th>
                     <td><?php echo $periodo_3['observacion']; ?></td>
-                    <td><?php if ($periodo_3['supervisado'] == 1) {
-                            echo 'Si';
-                        } else {
-                            echo 'No';
-                        } ?></td>
+                    <td><?php if ($periodo_3['supervisado'] == 1) { echo 'Si'; } else { echo 'No'; } ?> </td>
                     <td><?php echo $periodo_3['supervisor']; ?></td>
-                    <th scope style="font-size: 11px;">
-                        <?php if ($periodo_3['estado'] == 'ES03') {
-                            echo '<p class="text-white bg-primary"> Revisar</p>';
-                        } elseif ($periodo_3['estado'] == 'ES04') {
-                            echo '<p class="text-white bg-success"> Aprobado</p>';
-                        } elseif ($periodo_3['estado'] == 'ES05') {
-                            echo '<p class = "text-white bg-danger"> En correccion</p>';
-                        } elseif ($periodo_3['estado'] == 'RE01') {
-                            echo '<p class = "text-dark bg-info"> Solicitud de Recalendarizacion</p>';
-                        } elseif ($periodo_3['estado'] == 'RE02') {
-                            echo '<p class = "text-white bg-success"> Actividad recalendarizado</p>';
-                        } elseif ($periodo_3['estado'] == 'RE03') {
-                            echo '<p class = "text-dark bg-success"> Recalendarizacion rechazada</p>';
-                        } elseif ($periodo_3['estado'] == 'CA01') {
-                            echo '<p class = "text-info"><i class="bi bi-x-circle"></i><br>Solicitud de candelacion</p>';
-                        } elseif ($periodo_3['estado'] == 'CA02') {
-                            echo '<p class = "text-danger"> Cancelacion rechazada </p>';
-                        } elseif ($periodo_3['estado'] == 'ES06') {
-                            echo '<p class = "text-danger"> Actividad cancelada </p>';
-                        } elseif ($periodo_3['estado'] == 'RP01') {
-                            echo '<p class = "text-info"><i class="bi bi-reply-all-fill"></i><br>Solcitud de Reprogramacion</p>';
-                        } elseif ($periodo_3['estado'] == 'RP02') {
-                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Reprogramacion Rechazado </p>';
-                        } elseif ($periodo_3['estado'] == 'ES08') {
-                            echo '<p class = "text-primary"><i class="bi bi-reply-all-fill"></i><br>Actividad Reprogramada</p>';
-                        } elseif ($periodo_3['estado'] == 'RC01') {
-                            echo '<p class = "text-info"><i class="bi bi-reply-all-fill"></i><br>Solicitud de Recalendarizacion</p>';
-                        } elseif ($periodo_3['estado'] == 'RC02') {
-                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Recalendarizacion Rechazado</p>';
-                        } elseif ($periodo_3['estado'] == 'ES07') {
-                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Actividad Recalendarizado</p>';
-                        }
+                    <th scope style="font-size: 11px;" class="text-center">
+                        <?php switch ($periodo_3['estado']) {
+                                // Estados principales
+                            case 'ES03':
+                                echo '<p class="text-info"> Revisar Actividad </p>';
+                                break;
+                            case 'ES04':
+                                echo '<p class = "text-success"> Actividad Aprobada</p>';
+                                break;
+                            case 'ES05':
+                                echo '<p class = "text-danger"> Actividad en Correccion</p>';
+                                break;
+                            case 'ES06':
+                                echo '<p class = "text-warning"> Actividad Cancelada </p>';
+                                break;
+                            case 'ES07':
+                                echo '<p class = "text-info"> Actividad Recalendarizada </p>';
+                                break;
+                            case 'ES08':
+                                echo '<p class = "text-warning"> Actividad Reprogramada </p>';
+                                break;
+                                // Estados de Cancelacion
+                            case 'CA02':
+                                echo '<p class="text-info"> Solicitud de Cancelacion </p>';
+                                break;
+                                // Estados de Recalendarizacion
+                            case 'RC02':
+                                echo '<p class = "text-info"> Solicitud de Recalendarizacion </p>';
+                                break;
+                                // Estados de Reprogramacion
+                            case 'RP02':
+                                echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
+                                break;
+                        } 
                         ?>
                     </th>
                     <td>
@@ -146,9 +144,7 @@
                         </div>
                     </td>
                 </tr>
-        <?php }
-            $resp_3->close();
-        } ?>
+        <?php } $resp_3->close(); } ?>
     </tbody>
     <tfoot>
         <th>#</th>
@@ -161,7 +157,7 @@
         <th>Fin</th>
         <th>Promotor</th>
         <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
-        <td class="text-center text-primary"><strong id="tnuevo3">0</strong></td>
+        <td class="text-center text-primary"><strong id="trecurrente3">0</strong></td>
         <td class="text-center text-danger"><strong id="ttotal3">0</strong></td>
         <td class="text-center text-info"><strong id="treactivo3">0</strong></td>
         <th>Observacion</th>
@@ -179,13 +175,14 @@
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
                 <select name="meses" id="meses">
                     <?php
-                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
-                    WHERE t1.periodo = 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes
+                    WHERE t1.periodo= 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
                     <?php }
-                    $rd->close(); ?>
+                    $rd->close();
+                    ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
@@ -200,13 +197,14 @@ if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBREC
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
                 <select name="meses" id="meses">
                     <?php
-                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
-                    WHERE t1.periodo = 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes
+                    WHERE t1.periodo= 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
                     <?php }
-                    $rd->close(); ?>
+                    $rd->close();
+                    ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>
@@ -221,13 +219,14 @@ if ($SUBRECEPTOR == '5') { ?>
                 <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
                 <select name="meses" id="meses">
                     <?php
-                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
-                    WHERE t1.periodo = 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes
+                    WHERE t1.periodo= 3 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
                     <?php }
-                    $rd->close(); ?>
+                    $rd->close();
+                    ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
             </form>

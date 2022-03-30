@@ -60,42 +60,55 @@
                         } ?></td>
                     <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
-                        <?php if ($periodo_4['estado'] == 'ES01') {
-                            echo '<p class="text-white bg-info"><i class="bi bi-plus-circle-fill"></i><br>Creado</p>';
-                        } elseif ($periodo_4['estado'] == 'ES02') {
-                            echo '<p class="text-dark bg-warning"><i class="bi bi-hand-index-fill"></i><br> En revision </p>';
-                        } elseif ($periodo_4['estado'] == 'ES03') {
-                            echo '<p class="text-info"> Revisado por RP </p>';
-                        } elseif ($periodo_4['estado'] == 'ES04') {
-                            echo '<p class = "text-white bg-primary"><i class="bi bi-hand-thumbs-up-fill"></i><br>Actividad aprobada</p>';
-                        } elseif ($periodo_4['estado'] == 'ES05') {
-                            echo '<p class = "text-dark bg-info"><i class="bi bi-pencil-square"></i><br>Pendiente de correccion</p>';
-                        } elseif ($periodo_4['estado'] == 'RE01') {
-                            echo '<p class = "text-dark bg-warning"><i class="bi bi-front"></i><br>Reprogramacion solicitado</p>';
-                        } elseif ($periodo_4['estado'] == 'RE02') {
-                            echo '<p class = "text-white bg-success"><i class="bi bi-hand-thumbs-up-fill"></i><br>Solcitud aceptada </p>';
-                        } elseif ($periodo_4['estado'] == 'RE03') {
-                            echo '<p class = "text-white bg-danger"><i class="bi bi-hand-thumbs-down-fill"></i><br>Reprogramacion rechazada</p>';
-                        } elseif ($periodo_4['estado'] == 'CA01') {
-                            echo '<p class = "text-dark bg-info"><i class="bi bi-x-circle"></i><br>Cancelacion solicitado</p>';
-                        } elseif ($periodo_4['estado'] == 'CA02') {
-                            echo '<p class = "text-dark bg-warning"><i class="bi bi-x-circle"></i><br>Cancelacion rechzada</p>';
-                        } elseif ($periodo_4['estado'] == 'ES06') {
-                            echo '<p class = "text-dark bg-danger"><i class="bi bi-x-circle"></i><br>Actividad cancelada</p>';
-                        } elseif ($periodo_4['estado'] == 'RP01') {
-                            echo '<p class = "text-info"><i class="bi bi-reply-all-fill"></i><br>Reprogramacion Solicitado </p>';
-                        } elseif ($periodo_4['estado'] == 'RP02') {
-                            echo '<p class = "text-danger"><i class="bi bi-reply-all-fill"></i><br>Reprogramacion Rechazado </p>';
-                        } elseif ($periodo_4['estado'] == 'ES08') {
-                            echo '<p class = "text-primary"><i class="bi bi-reply-all-fill"></i><br>Actividad Reprogramada</p>';
-                        } elseif ($periodo_4['estado'] == 'RC01') {
-                            echo '<p class = "text-info"><i class="bi bi-calendar-fill"></i><br>Recalendarizacion Solicitado</p>';
-                        } elseif ($periodo_4['estado'] == 'RC02') {
-                            echo '<p class = "text-danger"><i class="bi bi-calendar-fill"></i><br>Recalendarizacion Rechazado</p>';
-                        } elseif ($periodo_4['estado'] == 'ES07') {
-                            echo '<p class = "text-warning"><i class="bi bi-calendar-fill"></i><br>Actividad Recalendarizado</p>';
-                        }
-                        ?>
+                        <?php
+                        switch ($periodo_4['estado']) {
+                                // Estados principales
+                            case 'ES01':
+                                echo '<p class="text-info"> Revisar </p>';
+                                break;
+                            case 'ES02':
+                                echo '<p class="text-warning"> Enviado al RP </p>';
+                                break;
+                            case 'ES03':
+                                echo '<p class="text-info"> Revisado por el RP </p>';
+                                break;
+                            case 'ES04':
+                                echo '<p class = "text-success"> Actividad Aprobada</p>';
+                                break;
+                            case 'ES05':
+                                echo '<p class = "text-danger"> Corregir actividad </p>';
+                                break;
+                            case 'ES06':
+                                echo '<p class = "text-warning"> Actividad Cancelada </p>';
+                                break;
+                            case 'ES07':
+                                echo '<p class = "text-info"> Actividad Recalendarizada </p>';
+                                break;
+                            case 'ES08':
+                                echo '<p class = "text-warning"> Actividad Reprogramada </p>';
+                                break;
+                                // Estados de Cancelacion
+                            case 'CA01':
+                                echo '<p class="text-info"> Solicitud de Cancelacion </p>';
+                                break;
+                            case 'CA02':
+                                echo '<p class = "text-danger"> Cancelacion Rechazada</p>';
+                                break;
+                                // Estados de Recalendarizacion
+                            case 'RC01':
+                                echo '<p class = "text-info"> Solicitud de Recalendarizacion </p>';
+                                break;
+                            case 'RC02':
+                                echo '<p class = "text-danger"> Recalendarizacion Rechazada </p>';
+                                break;
+                                // Estados de Reprogramacion
+                            case 'RP01':
+                                echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
+                                break;
+                            case 'RP02':
+                                echo '<p class = "text-danger"> Reprogramacion rechazada </p>';
+                                break;
+                        } ?>
                     </th>
                     <td>
                         <div class="dropdown">

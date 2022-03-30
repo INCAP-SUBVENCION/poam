@@ -10,7 +10,6 @@
             <th scope>Fecha</th>
             <th scope>Inicio</th>
             <th scope>Fin</th>
-            <th scope>Codigo</th>
             <th scope>Promotor</th>
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
@@ -45,47 +44,69 @@
                     <td><?php echo $periodo_4['fecha']; ?></td>
                     <td><?php echo $periodo_4['horaInicio']; ?></td>
                     <td><?php echo $periodo_4['horaFin']; ?></td>
-                    <td><?php echo $periodo_4['codigo']; ?></td>
                     <td><?php echo $periodo_4['nombres']; ?></td>
-                    <td><?php echo $periodo_4['pNuevo']; ?></td>
-                    <td><?php echo $periodo_4['pRecurrente']; ?></td>
-                    <th scope><?php echo round($periodo_4['total'], 2); ?></th>
+                    <td class="text-center"><?php echo $periodo_4['pNuevo']; ?></td>
+                    <td class="text-center"><?php echo $periodo_4['pRecurrente']; ?></td>
+                    <th class="text-center"><?php echo round($periodo_4['total'], 2); ?></th>
                     <td><?php echo $periodo_4['observacion']; ?></td>
                     <th scope style="font-size: 11px;">
-                        <?php if ($periodo_4['estado'] == 'PR01') {
-                            echo '<p class="text-primary"> Creado </p>';
-                        } elseif ($periodo_4['estado'] == 'PR02') {
-                            echo '<p class="text-warning"> En revision </p>';
-                        } elseif ($periodo_4['estado'] == 'PR03') {
-                            echo '<p class="text-danger"> Corregir </p>';
-                        } elseif ($periodo_4['estado'] == 'ES01') {
-                            echo '<p class="text-info"> Revisado </p>';
-                        } elseif ($periodo_4['estado'] == 'ES02') {
-                            echo '<p class="text-warning"> En revision </p>';
-                        } elseif ($periodo_4['estado'] == 'ES03') {
-                            echo '<p class="text-info"> Revisado por RP </p>';
-                        } elseif ($periodo_4['estado'] == 'ES04') {
-                            echo '<p class = "text-success"> Autorizado por RP</p>';
-                        } elseif ($periodo_4['estado'] == 'ES05') {
-                            echo '<p class = "text-success"> Aprobado por RP</p>';
-                        } elseif ($periodo_4['estado'] == 'CA01') {
-                            echo '<p class="text-info"> Cancelacion solicitado </p>';
-                        } elseif ($periodo_4['estado'] == 'CA02') {
-                            echo '<p class = "text-danger"> Cancelacion rechazada</p>';
-                        } elseif ($periodo_4['estado'] == 'ES06') {
-                            echo '<p class = "text-warning"> Actividad cancelada </p>';
-                        } elseif ($periodo_4['estado'] == 'RP01') {
-                            echo '<p class = "text-info"> Solicitud de reprogramacion </p>';
-                        } elseif ($periodo_4['estado'] == 'RP02') {
-                            echo '<p class = "text-danger"> Reprogramacion rechazada </p>';
-                        } elseif ($periodo_4['estado'] == 'ES08') {
-                            echo '<p class = "text-warning"> Actividad reprogramada </p>';
-                        } elseif ($periodo_4['estado'] == 'RC01') {
-                            echo '<p class = "text-info"> Solicitud de recalendarizacion </p>';
-                        } elseif ($periodo_4['estado'] == 'RC02') {
-                            echo '<p class = "text-danger"> Recalendarizacion rechazada </p>';
-                        } elseif ($periodo_4['estado'] == 'ES07') {
-                            echo '<p class = "text-primary"> Actividad recalendarizada </p>';
+                        <?php switch ($periodo_4['estado']) {
+                            // Estados principales
+                            case 'ES01':
+                                echo '<p class="text-info"> En Revision por el M&E </p>';
+                                break;
+                            case 'ES02':
+                                echo '<p class="text-warning"> Enviado al RP </p>';
+                                break;
+                            case 'ES03':
+                                echo '<p class="text-info"> Revisado por el RP </p>';
+                                break;
+                            case 'ES04':
+                                echo '<p class = "text-success"> Actividad Aprobada</p>';
+                                break;
+                            case 'ES05':
+                                echo '<p class = "text-danger"> Corregir actividad </p>';
+                                break;
+                            case 'ES06':
+                                echo '<p class = "text-warning"> Actividad Cancelada </p>';
+                                break;
+                            case 'ES07':
+                                echo '<p class = "text-info"> Actividad Recalendarizada </p>';
+                                break;
+                            case 'ES08':
+                                echo '<p class = "text-warning"> Actividad Reprogramada </p>';
+                                break;
+                            // Estados de Cancelacion
+                            case 'CA01':
+                                echo '<p class="text-info"> Solicitud de Cancelacion </p>';
+                                break;
+                            case 'CA02':
+                                echo '<p class = "text-danger"> Cancelacion Rechazada</p>';
+                                break;
+                            // Estados de Recalendarizacion
+                            case 'RC01':
+                                echo '<p class = "text-info"> Solicitud de Recalendarizacion </p>';
+                                break;
+                            case 'RC02':
+                                echo '<p class = "text-danger"> Recalendarizacion Rechazada </p>';
+                                break;
+                            // Estados de Reprogramacion
+                            case 'RP01':
+                                echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
+                                break;
+                            case 'RP02':
+                                echo '<p class = "text-danger"> Reprogramacion rechazada </p>';
+                                break;
+                            // Estados del promotor
+                            case 'PR01':
+                                echo '<p class="text-primary"> Creado </p>';
+                                break;
+                            case 'PR02':
+                                echo '<p class="text-warning"> Enviado al Supervisor </p>';
+                                break;
+                            case 'PR03':
+                                echo '<p class="text-danger"> Corregir Actividad </p>';
+                                break;
                         } ?>
                     </th>
                     <td>
@@ -142,11 +163,10 @@
             <th>Fecha</th>
             <th>Inicio</th>
             <th>Fin</th>
-            <th>Codigo</th>
             <th>Subreceptor</th>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="tnuevo3">0</strong></td>
-            <td class="text-center"><strong id="ttotal3">0</strong></td>
+            <td class="text-center"><strong id="tnuevo4">0</strong></td>
+            <td class="text-center"><strong id="trecurrente4">0</strong></td>
+            <td class="text-center"><strong id="ttotal4">0</strong></td>
             <th>Observacion</th>
             <th>Estado</th>
         </tr>
