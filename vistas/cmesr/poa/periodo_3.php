@@ -222,7 +222,7 @@
             <td class="text-center"><strong id="hshlubricantes3">0</strong></td>
             <td class="text-center"><strong id="hshpruebavih3">0</strong></td>
             <td class="text-center"><strong id="hshreactivos3">0</strong></td>
-            <td class="text-center"><strong id="hshsifilis3">0</strong></td>
+            <td class="text-center"><strong id="hshsifilis3">0</strong></td> 
             <th scope="">Observaciones</th>
             <th scope="">Estado</th>
         </tfoot>

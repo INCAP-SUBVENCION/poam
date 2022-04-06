@@ -45,9 +45,9 @@ $(document).ready(function () {
         }
     });
 
-  /**
-   * Metodo que permite filtrar poa del periodo 3
-   */
+    /**
+     * Metodo que permite filtrar poa del periodo 3
+     */
     $('#poa_hsh_3').DataTable({
 
         initComplete: function () {
@@ -73,15 +73,14 @@ $(document).ready(function () {
             $('#hshnatural3').html(api.column(6, { "filter": "applied" }).data().sumar());
             $('#hshlubricantes3').html(api.column(7, { "filter": "applied" }).data().sumar());
             $('#hshpruebavih3').html(api.column(8, { "filter": "applied" }).data().sumar());
-            $('#hshautoprueba3').html(api.column(9, { "filter": "applied" }).data().sumar());
-            $('#hshreactivos3').html(api.column(10, { "filter": "applied" }).data().sumar());
-            $('#hshsifilis3').html(api.column(11, { "filter": "applied" }).data().sumar());
+            $('#hshreactivos3').html(api.column(9, { "filter": "applied" }).data().sumar());
+            $('#hshsifilis3').html(api.column(10, { "filter": "applied" }).data().sumar());
         }
     });
 
-  /**
-   * Metodo que permite filtrar poa del periodo 3
-   */
+    /**
+     * Metodo que permite filtrar poa del periodo 3
+     */
     $('#poa_otrans_3').DataTable({
 
         initComplete: function () {
@@ -108,46 +107,44 @@ $(document).ready(function () {
             $('#otranssabor3').html(api.column(7, { "filter": "applied" }).data().sumar());
             $('#otranslubricantes3').html(api.column(8, { "filter": "applied" }).data().sumar());
             $('#otranspruebavih3').html(api.column(9, { "filter": "applied" }).data().sumar());
-            $('#otransautoprueba3').html(api.column(10, { "filter": "applied" }).data().sumar());
-            $('#otransreactivos3').html(api.column(11, { "filter": "applied" }).data().sumar());
-            $('#otranssifilis3').html(api.column(12, { "filter": "applied" }).data().sumar());
+            $('#otransreactivos3').html(api.column(10, { "filter": "applied" }).data().sumar());
+            $('#otranssifilis3').html(api.column(11, { "filter": "applied" }).data().sumar());
         }
     });
-  /**
-   * Metodo que permite filtrar poa del periodo 3
-   */ 
-         $('#poa_ppl_3').DataTable({
-            initComplete: function () {
-                this.api().columns([1, 2]).every(function () {
-                    var column = this;
-                    var select = $('<select><option value="">Filtar</option></select>')
-                        .appendTo($(column.footer()).empty())
-                        .on('change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                            column.search(val ? '^' + val + '$' : '', true, false).draw();
-                        });
-                    column.data().unique().sort().each(function (d, j) {
-                        select.append('<option value="' + d + '">' + d + '</option>')
+    /**
+     * Metodo que permite filtrar poa del periodo 3
+     */
+    $('#poa_ppl_3').DataTable({
+        initComplete: function () {
+            this.api().columns([1, 2]).every(function () {
+                var column = this;
+                var select = $('<select><option value="">Filtar</option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val ? '^' + val + '$' : '', true, false).draw();
                     });
+                column.data().unique().sort().each(function (d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
                 });
-            },
-            drawCallback: function () {
-                var api = this.api();
-                $('#pplnuevos3').html(api.column(3, { "filter": "applied" }).data().sumar());
-                $('#pplrecurrentes3').html(api.column(4, { "filter": "applied" }).data().sumar());
-                $('#ppltotal3').html(api.column(5, { "filter": "applied" }).data().sumar());
-                $('#pplnatural3').html(api.column(6, { "filter": "applied" }).data().sumar());
-                $('#ppllubricantes3').html(api.column(7, { "filter": "applied" }).data().sumar());
-                $('#pplpruebavih3').html(api.column(8, { "filter": "applied" }).data().sumar());
-                $('#pplautoprueba3').html(api.column(9, { "filter": "applied" }).data().sumar());
-                $('#pplreactivos3').html(api.column(10, { "filter": "applied" }).data().sumar());
-                $('#pplsifilis3').html(api.column(11, { "filter": "applied" }).data().sumar());
-            }
-        });
+            });
+        },
+        drawCallback: function () {
+            var api = this.api();
+            $('#pplnuevos3').html(api.column(3, { "filter": "applied" }).data().sumar());
+            $('#pplrecurrentes3').html(api.column(4, { "filter": "applied" }).data().sumar());
+            $('#ppltotal3').html(api.column(5, { "filter": "applied" }).data().sumar());
+            $('#pplnatural3').html(api.column(6, { "filter": "applied" }).data().sumar());
+            $('#ppllubricantes3').html(api.column(7, { "filter": "applied" }).data().sumar());
+            $('#pplpruebavih3').html(api.column(8, { "filter": "applied" }).data().sumar());
+            $('#pplreactivos3').html(api.column(9, { "filter": "applied" }).data().sumar());
+            $('#pplsifilis3').html(api.column(10, { "filter": "applied" }).data().sumar());
+        }
+    });
     /**
      * Metodo que permite filtrar poa del periodo 4
      */
-     $('#poa_omes_4').DataTable({
+    $('#poa_omes_4').DataTable({
 
         initComplete: function () {
             this.api().columns([1, 2]).every(function () {
@@ -177,9 +174,9 @@ $(document).ready(function () {
         }
     });
 
-  /**
-   * Metodo que permite filtrar poa del periodo 4
-   */
+    /**
+     * Metodo que permite filtrar poa del periodo 4
+     */
     $('#poa_hsh_4').DataTable({
 
         initComplete: function () {
@@ -205,15 +202,14 @@ $(document).ready(function () {
             $('#hshnatural4').html(api.column(6, { "filter": "applied" }).data().sumar());
             $('#hshlubricantes4').html(api.column(7, { "filter": "applied" }).data().sumar());
             $('#hshpruebavih4').html(api.column(8, { "filter": "applied" }).data().sumar());
-            $('#hshautoprueba4').html(api.column(9, { "filter": "applied" }).data().sumar());
-            $('#hshreactivos4').html(api.column(10, { "filter": "applied" }).data().sumar());
-            $('#hshsifilis4').html(api.column(11, { "filter": "applied" }).data().sumar());
+            $('#hshreactivos4').html(api.column(9, { "filter": "applied" }).data().sumar());
+            $('#hshsifilis4').html(api.column(10, { "filter": "applied" }).data().sumar());
         }
     });
 
-  /**
-   * Metodo que permite filtrar poa del periodo 4
-   */
+    /**
+     * Metodo que permite filtrar poa del periodo 4
+     */
     $('#poa_otrans_4').DataTable({
 
         initComplete: function () {
@@ -240,44 +236,42 @@ $(document).ready(function () {
             $('#otranssabor4').html(api.column(7, { "filter": "applied" }).data().sumar());
             $('#otranslubricantes4').html(api.column(8, { "filter": "applied" }).data().sumar());
             $('#otranspruebavih4').html(api.column(9, { "filter": "applied" }).data().sumar());
-            $('#otransautoprueba4').html(api.column(10, { "filter": "applied" }).data().sumar());
-            $('#otransreactivos4').html(api.column(11, { "filter": "applied" }).data().sumar());
-            $('#otranssifilis4').html(api.column(12, { "filter": "applied" }).data().sumar());
+            $('#otransreactivos4').html(api.column(10, { "filter": "applied" }).data().sumar());
+            $('#otranssifilis4').html(api.column(11, { "filter": "applied" }).data().sumar());
         }
     });
 
-  /**
-   * Metodo que permite filtrar poa del periodo 3
-   */
-   $('#poa_ppl_4').DataTable({
-    initComplete: function () {
-        this.api().columns([1, 2]).every(function () {
-            var column = this;
-            var select = $('<select><option value="">Filtar</option></select>')
-                .appendTo($(column.footer()).empty())
-                .on('change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                    column.search(val ? '^' + val + '$' : '', true, false).draw();
+    /**
+     * Metodo que permite filtrar poa del periodo 3
+     */
+    $('#poa_ppl_4').DataTable({
+        initComplete: function () {
+            this.api().columns([1, 2]).every(function () {
+                var column = this;
+                var select = $('<select><option value="">Filtar</option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val ? '^' + val + '$' : '', true, false).draw();
+                    });
+                column.data().unique().sort().each(function (d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
                 });
-            column.data().unique().sort().each(function (d, j) {
-                select.append('<option value="' + d + '">' + d + '</option>')
             });
-        });
-    },
+        },
 
-    drawCallback: function () {
-        var api = this.api();
-        $('#pplnuevos4').html(api.column(3, { "filter": "applied" }).data().sumar());
-        $('#pplrecurrentes4').html(api.column(4, { "filter": "applied" }).data().sumar());
-        $('#ppltotal4').html(api.column(5, { "filter": "applied" }).data().sumar());
-        $('#pplnatural4').html(api.column(6, { "filter": "applied" }).data().sumar());
-        $('#ppllubricantes4').html(api.column(7, { "filter": "applied" }).data().sumar());
-        $('#pplpruebavih4').html(api.column(8, { "filter": "applied" }).data().sumar());
-        $('#pplautoprueba4').html(api.column(9, { "filter": "applied" }).data().sumar());
-        $('#pplreactivos4').html(api.column(10, { "filter": "applied" }).data().sumar());
-        $('#pplsifilis4').html(api.column(11, { "filter": "applied" }).data().sumar());
-    }
-});
+        drawCallback: function () {
+            var api = this.api();
+            $('#pplnuevos4').html(api.column(3, { "filter": "applied" }).data().sumar());
+            $('#pplrecurrentes4').html(api.column(4, { "filter": "applied" }).data().sumar());
+            $('#ppltotal4').html(api.column(5, { "filter": "applied" }).data().sumar());
+            $('#pplnatural4').html(api.column(6, { "filter": "applied" }).data().sumar());
+            $('#ppllubricantes4').html(api.column(7, { "filter": "applied" }).data().sumar());
+            $('#pplpruebavih4').html(api.column(8, { "filter": "applied" }).data().sumar());
+            $('#pplreactivos4').html(api.column(9, { "filter": "applied" }).data().sumar());
+            $('#pplsifilis4').html(api.column(10, { "filter": "applied" }).data().sumar());
+        }
+    });
 
     /**
      * Metodo que permite filtrar pom del periodo 4
@@ -307,13 +301,13 @@ $(document).ready(function () {
         }
     });
 
-/**
- * Metodo que permite filtrar pom del periodo 4
- */
+    /**
+     * Metodo que permite filtrar pom del periodo 4
+     */
     $('#pom_periodo_4').DataTable({
 
         initComplete: function () {
-            this.api().columns([2, 3 ,8]).every(function () {
+            this.api().columns([2, 3, 8]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Filtar</option></select>')
                     .appendTo($(column.footer()).empty())

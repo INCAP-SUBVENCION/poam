@@ -187,14 +187,12 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <select name="promotores" id="promotores" class="form-control form-control-sm" style="font-size: 12px;" required>
                                         <option value="">Seleccionar..</option>
                                         <?php
-                                        $resultado = $enlace->query("SELECT DISTINCT t3.idPromotor, t4.nombre, t4.apellido FROM asignacion t1 
-                                LEFT JOIN cobertura t2 ON t2.idCobertura=t1.cobertura_id 
-                                LEFT JOIN promotor t3 ON t3.idPromotor=t1.promotor_id
-                                LEFT JOIN persona t4 ON t4.idPersona=t3.persona_id 
-                                WHERE t2.subreceptor_id = $SUBRECEPTOR 
-                                GROUP BY t3.idPromotor, t4.nombre, t4.apellido");
+                                        $resultado = $enlace->query("SELECT DISTINCT t2.nombre AS nombres, t2.apellido AS apellidos, t3.idPromotor FROM usuario t1 
+                                        LEFT JOIN persona t2 ON t2.idPersona = t1.persona_id
+                                        LEFT JOIN promotor t3 ON t3.persona_id = t1.persona_id
+                                        WHERE t1.subreceptor_id=$SUBRECEPTOR AND t1.rol='R007'");
                                         while ($prom = $resultado->fetch_assoc()) { ?>
-                                            <option value="<?php echo $prom['idPromotor']; ?>"><?php echo $prom['nombre'] . ' ' . $prom['apellido']; ?></option>
+                                            <option value="<?php echo $prom['idPromotor']; ?>"><?php echo $prom['nombres'] . ' ' . $prom['apellidos']; ?></option>
                                         <?php }
                                         $resultado->close();
                                         ?>

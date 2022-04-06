@@ -252,7 +252,7 @@ $PERSONA = $_SESSION['persona_id'];
                                     <label class="form-label">Prueba sifilis</label>
                                     <input type="text" name="sifilis" id="sifilis" class="form-control form-control-sm" style="color:blue" disabled>
                                 </div>
-                                <div class="form-group input-group-sm col-sm-4">
+                                <div class="form-group input-group-sm col-sm-4" style="display:none;">
                                     <label class="form-label">Observaciones / otros</label>
                                     <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
                                 </div>
