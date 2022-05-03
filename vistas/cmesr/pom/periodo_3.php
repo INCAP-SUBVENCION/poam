@@ -1,4 +1,4 @@
-<table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
+<table class="table" id="pom_periodo_3" aria-describedby="pom del periodo 3">
     <thead style="font-size: 12px;">
         <tr>
             <th scope>#</th>
@@ -16,7 +16,6 @@
             <th class="text-center text-info" scope>Reactivo</th>
             <th scope>Observacion</th>
             <th scope>Supervisado</th>
-            <th scope>Supervisor</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
         </tr>
@@ -58,7 +57,6 @@
                         } else {
                             echo 'No';
                         } ?></td>
-                    <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php
                         switch ($periodo_3['estado']) {
@@ -171,6 +169,10 @@
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalSupervisar(<?php echo $SUBRECEPTOR; ?>, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-binoculars-fill"></em> Supervisar actividad </button>
+                                    </li>
 
                                 <?php }
                                 if ($periodo_3['estado'] == 'ES04') { ?>
@@ -195,6 +197,10 @@
                                     <li>
                                         <button class="dropdown-item" onclick="modalEnviarCambioPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
                                             <em class="bi bi-arrow-right-circle"></em> Enviar cambios solicitados </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
                                 <?php }
                                 if ($periodo_3['estado'] == 'RE02') { ?>
@@ -232,7 +238,6 @@
             <td class="text-center text-info"><strong id="treactivo3">0</strong></td>
             <th>Observacion</th>
             <th>Supervisado</th>
-            <th>Supervisor</th>
             <th>Estado</th>
         </tr>
     </tfoot>

@@ -135,17 +135,7 @@
                                         <label class="form-label">Observaciones / otros</label>
                                         <input type="text" name="eobservacion" id="eobservacion" class="form-control form-control-sm">
                                     </div>
-                                    <div class="form-group input-group-sm col-sm-1 text-center">
-                                        <label class="form-label" style="font-size: 9px;">Supervisado</label>
-                                        <select name="esupervisado" id="esupervisado" class="form-select" style="font-size: 10px;">
-                                            <option value="0">NO</option>
-                                            <option value="1">SI</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group input-group-sm col-sm-3">
-                                        <label class="form-label">Nombre del Supervisor:</label>
-                                        <input type="text" name="esupervisor" id="esupervisor" style="font-size: 10px;" class="form-control form-control-sm">
-                                    </div>
+                                   
                                     <div class="form-group input-group-sm col-sm-1 text-center">
                                         <label class="form-label" style="font-size: 10px;">Unidad</label>
                                         <select name="emovil" id="emovil" class="form-select" style="font-size: 10px;">

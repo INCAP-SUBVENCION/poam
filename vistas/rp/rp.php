@@ -67,6 +67,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <div class="card-body">
                                         <h6 class="text-center"> <?php echo $fila['nombre']; ?> </h6>
                                         <ul class="list-group list-group-flush">
+                                            <a class="list-group-item" href="supervision/supervision.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-binoculars-fill"></i> Superviciones </a>
                                             <a class="list-group-item" href="pom/pom.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range"></i> Plan Operativo Mensual</a>
                                             <a class="list-group-item" href="poa/poa.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-calendar3-range-fill"></i> Plan Operativo Anual</a>
                                             <a class="list-group-item" href="poa/meta.php?id=<?php echo $fila['idSubreceptor'] ?>"><i class="bi bi-bullseye"></i> METAS</a>

@@ -160,7 +160,6 @@ function agregarPOM() {
     var autoPrueba = document.getElementById('autoPrueba').value;
     var observacion = document.getElementById('observacion').value;
     var movil = document.getElementById('movil').value;
-    var supervisado = document.getElementById('supervisado').value;
     var supervisor = document.getElementById('supervisor').value;
     var estado = document.getElementById('creado').value;
 
@@ -180,7 +179,7 @@ function agregarPOM() {
         var sifilis = document.getElementById('sifilis').value;
         }
     
-    var accion = "agregarPOM";
+    var accion = "agregarPOM"; 
 
     $.ajax({
         type: "POST",
@@ -210,7 +209,6 @@ function agregarPOM() {
             observacion: observacion,
             subreceptor: subreceptor,
             movil: movil,
-            supervisado: supervisado,
             supervisor: supervisor,
             estado: estado
         },
@@ -326,10 +324,6 @@ function modalEditarPom(subreceptor, periodo, pom) {
             document.getElementById("efin").value = pom.horaFin;
             document.getElementById("elugar").value = pom.lugar;
             document.getElementById("enuevo").value = pom.pNuevo;
-            document.getElementById("esupervisor").value = pom.supervisor;
-            document.getElementById("eobservacion").value = pom.observacion;
-            document.getElementById("esupervisado").value = pom.supervisado;
-            document.getElementById("esupervisor").value = pom.supervisor;
         }
     });
     $("#modalEditarPom").modal("show");
@@ -408,9 +402,6 @@ function editarPOM() {
     var observacion = document.getElementById('eobservacion').value;
     var subreceptor = document.getElementById('esubreceptor').value;
     var movil = document.getElementById('emovil').value;
-    var supervisado = document.getElementById('esupervisado').value;
-    var supervisor = document.getElementById('esupervisor').value;
-
     var accion = "editarPOM";
 
     $.ajax({
@@ -439,9 +430,7 @@ function editarPOM() {
             sifilis: sifilis,
             observacion: observacion,
             subreceptor: subreceptor,
-            movil: movil,
-            supervisado: supervisado,
-            supervisor: supervisor
+            movil: movil
         },
         success: function (datos) {
             if (datos == 'Exito') {
@@ -560,4 +549,78 @@ function modalHistorialPom(pom) {
         }
     });
     $("#modalHistorialPom").modal("show");
+}
+
+
+function modalSupervisar(subreceptor, id) {
+
+    var accion = "consultarActividad";
+
+    $.ajax({
+        type: "POST",
+        url: "../../php/pom.php",
+        data: {
+            accion : accion,
+            subreceptor: subreceptor,
+            id: id
+        }, 
+    success: function (datos){
+ 
+        var pom = JSON.parse(datos);
+        document.getElementById("pom").value=id;
+        $("#_periodo").html(pom.periodo);
+        $("#_mes").html(pom.mes);
+        $("#_municipio").html(pom.municipio);
+        $("#_lugar").html(pom.lugar);
+        $("#_fecha").html(pom.fecha);
+        $("#_inicia").html(pom.horaInicio);
+        $("#_finaliza").html(pom.horaFin);
+        $("#_nuevo").html(pom.pNuevo);
+        $("#_recurrente").html(pom.pRecurrente);
+        $("#_total").html(pom.total);
+        $("#_promotor").html(pom.promotor);
+    }
+});
+    $("#modalSupervisar").modal("show");
+}
+
+/**
+ * Funcion que perminte guardar una supervision
+ */
+function supervisarActividad() {
+    var tipo    = document.getElementById("tipo").value;
+    var sup     = document.getElementById("sup").value;
+    var pom     = document.getElementById("pom").value;
+    var hora    = document.getElementById("hora").value;
+    var obs     = document.getElementById("obs").value;
+
+    var accion = "supervisarActividad";
+
+    if (confirm('Esta seguro que desea enviar todos a revision')) {
+        $.ajax({
+            type: "POST",
+            url: "../../php/pom.php",
+            data: { 
+                accion: accion,
+                tipo: tipo, 
+                sup: sup,
+                pom: pom,
+                hora: hora,
+                obs: obs
+            },
+            success: function (datos) {
+                if (datos == 'Exito') {
+                    alertify.success('¡Guardado!...');
+                    window.location.reload('poa.php');
+                    ('#agregarSupervision').trigger("reset");
+                    $("#modalSupervisar").modal("hide");
+                } else if (datos == 'Duplicado') {
+                    alertify.warning('¡La supervision ya existe!...');
+                } else {
+                    alertify.error("¡ERROR!... No se pudo guardar");
+                    $('#agregarSupervision').trigger("reset");
+                }
+            }
+        });
+    }
 }

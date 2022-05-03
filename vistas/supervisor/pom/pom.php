@@ -258,17 +258,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <label class="form-label">Observaciones / otros</label>
                                     <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
                                 </div>
-                                <div class="form-group input-group-sm col-sm-1 text-center">
-                                    <label class="form-label" style="font-size: 10px;">Supervisado</label>
-                                    <select name="supervisado" id="supervisado" class="form-select" style="font-size: 12px;">
-                                        <option value="0">NO</option>
-                                        <option value="1">SI</option>
-                                    </select>
-                                </div>
-                                <div class="form-group input-group-sm col-sm-3">
-                                    <label class="form-label">Nombre del Supervisor:</label>
-                                    <input type="text" name="supervisor" id="supervisor" style="font-size: 12px;" class="form-control form-control-sm">
-                                </div>
+                                <input type="hidden" id="supervisor" value="<?php echo $ID; ?>">
                                 <div class="form-group input-group-sm col-sm-1 text-center" id="unidad">
                                     <label class="form-label" style="font-size: 10px;">Unidad Movil</label>
                                     <select name="movil" id="movil" class="form-select" style="font-size: 12px;">
@@ -325,6 +315,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </div>
 
         </section>
+        <?php include '../modal/supervisar.php'; ?>
         <?php include '../modal/estadosPom.php'; ?>
         <?php include '../modal/cambiarEstadoPom.php'; ?>
         <?php include '../modal/cambiarTodoEstadoPom.php'; ?>

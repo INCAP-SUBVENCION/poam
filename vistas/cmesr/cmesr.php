@@ -45,7 +45,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </header>
             <div class="page-heading">
                 <div class="page-title">
-                <div class="row">
+                    <div class="row">
                         <div class="col-12 order-md-1 order-last">
                             <h3>Sistema de Planificación Operativa Anual y Mensual</h3>
                             <p class="text-subtitle text-muted">Pagina principal</p>
@@ -53,15 +53,35 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                     </div>
                 </div>
                 <section class="section">
-
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
+                            <?php
+                            if ($SUBRECEPTOR != 4) {
+                            ?>
                             <div class="col-sm-12">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="../../assets/images/plan.png" width="125" alt="">
+                                    <div class="col-md-3">
+                                        <img src="../../assets/images/agenda.png" width="100" alt="">
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Supervisiones</h6>
+                                            <div class="d-grid gap-2">
+                                                <a href="supervision/supervision.php" class="btn btn-sm btn-success btn-lg"> Ver </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php } else {
+                            } ?>
+                            <br>
+                            <div class="col-sm-12">
+                                <div class="row g-0">
+                                    <div class="col-md-3">
+                                        <img src="../../assets/images/plan.png" width="100" alt="">
+                                    </div>
+                                    <div class="col-md-9">
                                         <div class="card-body">
                                             <h6 class="card-title">Plan Operativo Mensual</h6>
                                             <div class="d-grid gap-2">
@@ -74,10 +94,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <br>
                             <div class="col-sm-12">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="../../assets/images/plann.png" width="125" alt="">
+                                    <div class="col-md-3">
+                                        <img src="../../assets/images/plann.png" width="100" alt="">
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         <div class="card-body">
                                             <h6 class="card-title">Plan Operativo Anual</h6>
                                             <div class="d-grid gap-2">
@@ -90,10 +110,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <br>
                             <div class="col-sm-12">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="../../assets/images/meta.png" width="150" alt="">
+                                    <div class="col-md-3">
+                                        <img src="../../assets/images/meta.png" width="100" alt="">
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         <div class="card-body">
                                             <h6 class="card-title">Metas</h6>
                                             <div class="d-grid gap-2">
@@ -104,7 +124,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="text-center">
                                 <img src="../../assets/images/p.png" width="500" alt="">
                             </div>
@@ -122,6 +142,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
+    <script src="../js/utilidad.js"></script>
     <?php
     include 'menu.php';
     ?>

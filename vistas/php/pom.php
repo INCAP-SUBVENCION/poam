@@ -74,7 +74,7 @@ if ($accion == "consultaPoa") {
             <td><a href='#' class='btn-sm btn-outline-info' onclick='cargarPoa(" . $poa['idPoa'] . ", $promotor, $dias); llenarReactivo();'>
             <i class='bi bi-file-arrow-down-fill'></i> Cargar datos </a></td>
         </tr>
-        ";
+        "; 
         }
     } else {
         echo "Sin datos";
@@ -203,19 +203,19 @@ if ($accion == "agregarPOM") {
     $observacion  = $_POST['observacion'];
     $subreceptor  = $_POST['subreceptor'];
     $movil        = $_POST['movil'];
-    $supervisado  = $_POST['supervisado'];
     $supervisor   = $_POST['supervisor'];
-    $estado       = $_POST['estado'];         
+    $estado       = $_POST['estado'];
 
-    $sql = "CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, $nuevo, $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor, $movil,$supervisado,'$supervisor', '$estado')";
-        $resultado = mysqli_query($enlace, $sql);
-        $pom = mysqli_affected_rows($enlace);
-        if ($pom > 0) {
+    $_duplicado = $enlace->query("SELECT * FROM pom WHERE periodo=$periodo AND municipio=$municipio AND mes='$mes' AND fecha='$fecha' AND horaInicio='$inicio' AND subreceptor_id = $subreceptor AND promotor_id= $promotores");
+    if (mysqli_num_rows($_duplicado)) {
+        echo "Duplicado";
+    } else {
+        if ($enlace->query("CALL agregarPom($poa, $usuario, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, $nuevo, $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $subreceptor, $movil, $supervisor, '$estado')") === TRUE) {
             echo "Exito";
         } else {
             echo "Error";
-        }
-    
+        }    
+    }
 }
 
 /**
@@ -234,15 +234,9 @@ if ($accion == "enviarTodoPom") {
 }
 
 
-
-
-
-
-
-
 /////////////// EDITAR ///////////////////
 if ($accion == "consultaEditar") {
-    
+
     $subreceptor = $_POST['subreceptor'];
     $periodo = $_POST['periodo'];
     $pom = $_POST['pom'];
@@ -293,12 +287,9 @@ if ($accion == "editarPOM") {
     $sifilis      = $_POST['sifilis'];
     $observacion  = $_POST['observacion'];
     $movil        = $_POST['movil'];
-    $supervisado  = $_POST['supervisado'];
-    $supervisor   = $_POST['supervisor'];
 
-    $sql = "CALL editarPom($pom, $subreceptor, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, 
-    $nuevo, $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion',
-    $movil, $supervisado,'$supervisor')";
+    $sql = "CALL editarPom($pom, $subreceptor, $periodo, '$mes', '$municipio', '$fecha', '$inicio', '$fin', '$lugar', $promotores, $nuevo, 
+    $recurrente, $cnatural, $csabor, $cfemenino, $lubricante, $pruebaVIH, $autoPrueba, $reactivoEs, $sifilis, '$observacion', $movil)";
     $resultado = mysqli_query($enlace, $sql);
     $pom = mysqli_affected_rows($enlace);
     if ($pom > 0) {
@@ -321,9 +312,11 @@ if ($accion == "anularPOM") {
         echo "Error";
     }
 }
-
+/**
+ * Metodo que permite mostar el historial
+ */
 if ($accion == "historial") {
-    
+
     $pom = $_POST['pom'];
 
     $sql = "SELECT h.pom_id as actividad, h.lugar as alugar, h.fecha as afecha, h.inicio as ainicia, 
@@ -339,4 +332,47 @@ if ($accion == "historial") {
         $response = $pom;
     }
     echo json_encode($response);
+    $consulta->close();
+}
+/**
+ * Metodo que permite consultar una actividad
+ */
+if ($accion == "consultarActividad") {
+    $subreceptor = $_POST['subreceptor'];
+    $id = $_POST['id'];
+    $sql = "SELECT t1.periodo, t4.nombre as mes, t5.nombre as municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, 
+    t1.pRecurrente, (t1.pNuevo+t1.pRecurrente) as total, concat(t3.nombre, ' ', t3.apellido) as promotor FROM pom t1 
+    LEFT JOIN promotor t2 ON t2.idPromotor=t1.promotor_id
+    LEFT JOIN persona t3 on t3.idPersona = t2.persona_id
+    LEFT JOIN catalogo t4 ON t4.codigo = t1.mes
+    LEFT JOIN catalogo t5 ON t5.codigo = t1.municipio
+    WHERE idpom = $id AND subreceptor_id = $subreceptor";
+    $consulta = $enlace->query($sql);
+    $response = array();
+    while ($poa = $consulta->fetch_assoc()) {
+        $response = $poa;
+    }
+    echo json_encode($response);
+    $consulta->close();
+}
+/**
+ * Metodo que permite guardar una supervision
+ */
+if ($accion == "supervisarActividad") {
+    $tipo    = $_POST['tipo'];
+    $usuario = $_POST['sup'];
+    $pom     = $_POST['pom'];
+    $hora    = $_POST['hora'];
+    $obs     = $_POST['obs'];
+
+    $_duplicado = $enlace->query("SELECT * FROM supervision WHERE pom_id = $pom");
+    if (mysqli_num_rows($_duplicado)) {
+        echo "Duplicado";
+    } else {
+        if ($enlace->query("CALL supervisarActividad($tipo, $usuario, $pom, '$hora', '$obs')") === TRUE) {
+            echo "Exito";
+        } else {
+            echo "Error";
+        }    
+    }
 }

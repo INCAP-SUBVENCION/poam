@@ -363,9 +363,9 @@ function cambiarTodoEstadoPom() {
         }
     });
 }
+ 
 
-
-function cambiarEstadoPomPromotor() { 
+function actividadPromotor() { 
     var subreceptor = document.getElementById('csubreceptor').value;
     var periodo = document.getElementById('_periodo').value;
     var estadoA = document.getElementById('cestadoA').value;
@@ -373,7 +373,8 @@ function cambiarEstadoPomPromotor() {
     var estadoN = document.getElementById('cestadoN').value;
     var descripcion = document.getElementById('cobservacion').value;
     var promotores = document.getElementById('promotores').value;
-    var accion = "cambiarEstadoPomPromotor";
+    var supervisor = document.getElementById('super').value;
+    var accion = "actividadPromotor";
     $.ajax({
         type: "POST",
         url: "../../php/estados.php",
@@ -385,7 +386,8 @@ function cambiarEstadoPomPromotor() {
             usuario: usuario,
             estadoN: estadoN,
             descripcion: descripcion,
-            promotores: promotores
+            promotores: promotores,
+            supervisor: supervisor
         },
         success: function (datos) {
             if (datos == 'Exito') {

@@ -13,7 +13,7 @@
             <th scope>Nuevos</th>
             <th scope>Recurrentes</th>
             <th scope>Total</th>
-            <!---<th scope>Observacion</th>--->
+            <th scope>Observacion</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
         </tr>
@@ -47,7 +47,7 @@
                     <td class="text-center"><?php echo $periodo_3['pNuevo']; ?></td>
                     <td class="text-center"><?php echo $periodo_3['pRecurrente']; ?></td>
                     <th class="text-center"><?php echo round($periodo_3['total'], 2); ?></th>
-                    <!---<td><?php // echo $periodo_3['observacion']; ?></td>--->
+                    <th><?php echo $periodo_3['observacion']; ?></td>
                     <th scope style="font-size: 11px;">
                         <?php switch ($periodo_3['estado']) {
                             // Estados principales
@@ -130,6 +130,10 @@
                                             <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR02')">
                                                 <em class="bi bi-arrow-right-circle"></em> Enviar correcciones</button>
                                         </div>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 3, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-trash2-fill"></em> Anular Actividad </button>
                                     </li>
                                 <?php
                                 }

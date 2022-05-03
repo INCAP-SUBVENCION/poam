@@ -385,3 +385,36 @@ function sumarPomEditar(){
     parseFloat(document.getElementById('etotal').value = suma.toFixed(2));
 
 }
+
+function supervisor(periodo, id) {
+    var accion = "supervisor";
+    $.ajax({
+        type: "POST",
+        url: "../../php/utilidad.php",
+        data: {
+            accion: accion,
+            supervisor: id,
+            periodo: periodo
+        },
+        success: function (datos) {
+            $('#resultadoSupervisor').html(datos);
+        }
+    });
+}
+
+function supervisores(periodo, id, subreceptor) {
+    var accion = "supervisores";
+    $.ajax({
+        type: "POST",
+        url: "../../php/utilidad.php",
+        data: {
+            accion: accion,
+            supervisor: id,
+            periodo: periodo,
+            subreceptor: subreceptor
+        },
+        success: function (datos) {
+            $('#resultadoSupervisor').html(datos);
+        }
+    });
+}

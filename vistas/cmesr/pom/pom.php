@@ -166,7 +166,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <div class="form-group input-group-sm col-sm-3">
                                         <label class="form-label">Fin:</label>
                                         <input type="time" name="fin" id="fin" class="form-control form-control-sm" required>
-                                    </div> 
+                                    </div>
                                     <div class="form-group input-group-sm col-sm-12">
                                         <label class="form-label">Lugar:</label>
                                         <select class="js-lugar form-control" id="lugar">
@@ -184,7 +184,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             </div>
                         </div>
                 </div>
- 
+
                 <div class="col-md-8">
                     <div class="card text-dark">
                         <div class="text-white text-center" style="background-color:dodgerblue; font-weight: bold">PROYECCIÓN DE INSUMOS</div>
@@ -266,17 +266,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <label class="form-label">Observaciones / otros</label>
                                     <input type="text" name="observacion" id="observacion" class="form-control form-control-sm">
                                 </div>
-                                <div class="form-group input-group-sm col-sm-1 text-center">
-                                    <label class="form-label" style="font-size: 10px;">Supervisado</label>
-                                    <select name="supervisado" id="supervisado" class="form-select" style="font-size: 12px;">
-                                        <option value="0">NO</option>
-                                        <option value="1">SI</option>
-                                    </select>
-                                </div>
-                                <div class="form-group input-group-sm col-sm-3">
-                                    <label class="form-label">Nombre del Supervisor:</label>
-                                    <input type="text" name="supervisor" id="supervisor" style="font-size: 12px;" class="form-control form-control-sm">
-                                </div>
+                                <input type="hidden" id="supervisor" value="0">
                                 <div class="form-group input-group-sm col-sm-1 text-center" id="unidad">
                                     <label class="form-label" style="font-size: 10px;">Unidad Movil</label>
                                     <select name="movil" id="movil" class="form-select" style="font-size: 12px;">
@@ -285,15 +275,18 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     </select>
                                 </div>
                                 <input type="hidden" name="creado" id="creado" value="ES01">
+                                
+                                <div class="form-group input-group-sm col-sm-4">
+                                    <br>
+                                    <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
+                                        <em class="bi bi-check-square-fill"></em> Guardar</button>
+                                    <button type="reset" class="btn btn-sm btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-sm btn-outline-success" onclick="return confirm('¿Está seguro que desea guardar?')">
-                        <em class="bi bi-check-square-fill"></em> Guardar</button>
-                    <button type="reset" class="btn btn-sm btn-outline-danger"> <em class="bi bi-x-square-fill"></em> Cancelar</button>
-                </div>
+                >
                 </form>
             </div>
 
@@ -333,6 +326,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             </div>
 
         </section>
+        <?php include '../modal/supervisar.php'; ?>
         <?php include '../modal/cancelarActividad.php'; ?>
         <?php include '../modal/historial.php'; ?>
         <?php include '../modal/recalendarizacionPom.php'; ?>

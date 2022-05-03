@@ -26,7 +26,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
-    <link rel="stylesheet" href="../../assets/css/app.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;

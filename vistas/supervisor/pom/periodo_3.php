@@ -1,44 +1,45 @@
 <table class="table table-sm table-hover" id="pom_periodo_3" aria-describedby="pom del periodo 3">
-  <thead style="font-size: 12px;" class="table-light">
-          <th scope>#</th>
-          <th scope>Periodo</th>
-          <th scope>Mes</th>
-          <th scope>Municipio</th>
-          <th scope>Lugar</th>
-          <th scope>Fecha</th>
-          <th scope>Inicio</th>
-          <th scope>Fin</th>
-          <th scope>Promotor</th> 
-          <th class="text-center text-primary" scope>Nuevos</th>
-          <th class="text-center text-primary" scope>Recurrentes</th>
-          <th class="text-center text-danger" scope>Total</th>
-          <th scope>Observacion</th>
-          <th scope>Supervisado</th>
-          <th scope>Supervisor</th>
-          <th scope>Estado</th>
-          <th scope>Opcion</th>
-  </thead>
+    <thead style="font-size: 12px;" class="table-light">
+        <th scope>#</th>
+        <th scope>Periodo</th>
+        <th scope>Mes</th>
+        <th scope>Municipio</th>
+        <th scope>Lugar</th>
+        <th scope>Fecha</th>
+        <th scope>Inicio</th>
+        <th scope>Fin</th>
+        <th scope>Promotor</th>
+        <th class="text-center text-primary" scope>Nuevos</th>
+        <th class="text-center text-primary" scope>Recurrentes</th>
+        <th class="text-center text-danger" scope>Total</th>
+        <th scope>Observacion</th>
+        <th scope>Supervisado</th>
+        <th scope>Estado</th>
+        <th scope>Opcion</th>
+    </thead>
     <tbody style="font-size: 12px;">
         <?php
         $contap_3 = 1;
         $sqlp_3 = "SELECT DISTINCT t2.subreceptor_id, t2.idPom, t2.periodo, t3.nombre AS mes, t4.nombre AS municipio, 
         t2.lugar, t2.fecha, t2.horaInicio, t2.horaFin, t6.codigo, CONCAT(t6.nombre, ' ', t6.apellido) as nombres, t2.pNuevo, 
         t2.pRecurrente, (t2.pNuevo + t2.pRecurrente) as total, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, t2.pruebaVIH, 
-        t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.supervisado, t2.supervisor, t2.estado FROM pom t2
+        t2.autoprueba, t2.reactivo, t2.sifilis, t2.observacion, t2.supervisado, t2.estado FROM pom t2
         LEFT JOIN catalogo t3 ON t3.codigo = t2.mes
         LEFT JOIN catalogo t4 ON t4.codigo = t2.municipio
         LEFT JOIN promotor t5 ON t5.idPromotor = t2.promotor_id
         LEFT JOIN persona t6 ON t6.idPersona = t5.persona_id
         LEFT JOIN poa t7 ON t7.idPoa = t2.poa_id
-        WHERE t2.periodo=3 AND t2.subreceptor_id = $SUBRECEPTOR
-        AND t2.estado NOT IN(SELECT estado FROM pom WHERE estado = 'PR01') ORDER BY t2.estado";
+        LEFT JOIN usuario t8 ON t2.supervisor = t8.idUsuario
+        LEFT JOIN persona t9 ON t8.persona_id = t9.idPersona
+        WHERE t2.periodo = 3 AND t2.subreceptor_id = $SUBRECEPTOR
+        AND t2.estado NOT IN(SELECT estado FROM pom WHERE estado = 'PR01') AND supervisor = $ID ORDER BY t2.estado";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
-                <td><?php echo $contap_3++; ?></td>
+                    <td><?php echo $contap_3++; ?></td>
                     <td><?php echo $periodo_3['periodo']; ?></td>
                     <td><?php echo $periodo_3['mes']; ?></td>
-                    <td><?php echo $periodo_3['municipio'];?></td>
+                    <td><?php echo $periodo_3['municipio']; ?></td>
                     <td><?php echo $periodo_3['lugar']; ?></td>
                     <td><?php echo $periodo_3['fecha']; ?></td>
                     <td><?php echo $periodo_3['horaInicio']; ?></td>
@@ -53,10 +54,9 @@
                         } else {
                             echo 'No';
                         } ?></td>
-                    <td><?php echo $periodo_3['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php switch ($periodo_3['estado']) {
-                            // Estados principales
+                                // Estados principales
                             case 'ES01':
                                 echo '<p class="text-info"> En Revision por el M&E </p>';
                                 break;
@@ -81,28 +81,28 @@
                             case 'ES08':
                                 echo '<p class = "text-warning"> Actividad Reprogramada </p>';
                                 break;
-                            // Estados de Cancelacion
+                                // Estados de Cancelacion
                             case 'CA01':
                                 echo '<p class="text-info"> Solicitud de Cancelacion </p>';
                                 break;
                             case 'CA02':
                                 echo '<p class = "text-danger"> Cancelacion Rechazada</p>';
                                 break;
-                            // Estados de Recalendarizacion
+                                // Estados de Recalendarizacion
                             case 'RC01':
                                 echo '<p class = "text-info"> Solicitud de Recalendarizacion </p>';
                                 break;
                             case 'RC02':
                                 echo '<p class = "text-danger"> Recalendarizacion Rechazada </p>';
                                 break;
-                            // Estados de Reprogramacion
+                                // Estados de Reprogramacion
                             case 'RP01':
                                 echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
                                 break;
                             case 'RP02':
                                 echo '<p class = "text-danger"> Reprogramacion rechazada </p>';
                                 break;
-                            // Estados del promotor
+                                // Estados del promotor
                             case 'PR02':
                                 echo '<p class="text-primary"> Revisar Actividad </p>';
                                 break;
@@ -159,7 +159,10 @@
                                         </li>
                                     <?php } ?>
                                 </div>
-
+                                <li>
+                                        <button class="dropdown-item" onclick="modalSupervisar(<?php echo $SUBRECEPTOR; ?>, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-binoculars-fill"></em> Supervisar actividad </button>
+                                    </li>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>
@@ -187,7 +190,6 @@
         <td class="text-center text-danger"><strong id="ttotal3">0</strong></td>
         <th>Observacion</th>
         <th>Supervisado</th>
-        <th>Supervisor</th>
         <th>Estado</th>
     </tfoot>
 </table>

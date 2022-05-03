@@ -115,11 +115,30 @@
                                 <em class="bi bi-grid"></em>
                             </button>
                             <ul class="dropdown-menu">
-
                                 <li>
                                     <button class="dropdown-item" onclick="modalEstadoPom(<?php echo $periodo_4['idPom']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estados </button>
                                 </li>
+                                <?php
+                                if ($periodo_4['estado'] == 'PR03') {
+                                ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-pencil-square"></em> Editar </button>
+                                    </li>
+                                    <li>
+                                        <div class="d-grid gap-2">
+                                            <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR02')">
+                                                <em class="bi bi-arrow-right-circle"></em> Enviar correcciones</button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-trash2-fill"></em> Anular Actividad </button>
+                                    </li>
+                                <?php
+                                }
+                                ?>
                                 <?php
                                 if ($periodo_4['estado'] == 'PR01') {
                                 ?>
@@ -135,9 +154,8 @@
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
-                                            <em class="bi bi-trash2-fill"></em> Anular POM </button>
+                                            <em class="bi bi-trash2-fill"></em> Anular Actividad </button>
                                     </li>
-
                                 <?php
                                 }
                                 ?>

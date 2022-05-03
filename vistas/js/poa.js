@@ -228,7 +228,7 @@ function modalEditarPoa(subreceptor, periodo, poa) {
     var accion = "calcularProyeccionPOA";
 
     $.ajax({
-        type: "POST",
+        type: "POST", 
         url: "../../php/poa.php",
         data: {
             accion: accion,
@@ -240,10 +240,11 @@ function modalEditarPoa(subreceptor, periodo, poa) {
             var cnatural    = parseFloat(resultado[0]);
             var csabor      = parseFloat(resultado[1]);
             var cfemenino   = parseFloat(resultado[2]);
-            var lubricante  = parseFloat(resultado[3]);
-            var pruebaVIH   = parseFloat(resultado[4]);
-            var autoPrueba  = parseFloat(resultado[5]);
-            var reactivo = total * procentaje;
+            if(subreceptor == '2'){ lubricante = total;
+            } else { var lubricante  = parseFloat(resultado[3]); }
+            var pruebaVIH = total * 0.95;
+            var autoPrueba = 0;
+            var reactivo = pruebaVIH * procentaje;
             document.getElementById('ecnatural').value   = cnatural;
             document.getElementById('ecsabor').value     = csabor.toFixed(2);
             document.getElementById('ecfemenino').value  = cfemenino.toFixed(2);

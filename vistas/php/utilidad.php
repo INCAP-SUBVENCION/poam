@@ -163,3 +163,78 @@ if ($accion == "obtenerReactivoEditar") {
     }
     $resultador->close();
 }
+
+if ($accion == "supervisor") {
+
+    $id       = $_POST['supervisor'];
+    $periodo  = $_POST['periodo'];
+    $contador = 1;
+
+    $sqlPoa = "SELECT t4.idPom, t4.periodo, t5.nombre AS mess, t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, 
+    t4.pNuevo, t4.pRecurrente, (t4.pNuevo + t4.pRecurrente) AS total, t1.Observaciones FROM supervision t1
+    LEFT JOIN usuario t2 ON t2.idUsuario=t1.usuario_id LEFT JOIN persona t3 ON t3.idPersona=t2.persona_id 
+    LEFT JOIN pom t4 ON t4.idPom=t1.pom_id LEFT JOIN catalogo t5 ON t5.codigo=t4.mes
+    LEFT JOIN catalogo t6 ON t6.codigo=t4.municipio WHERE t2.idUsuario = $id AND t4.periodo = $periodo";
+    $resultadoPoa = $enlace->query($sqlPoa);
+    if (mysqli_num_rows($resultadoPoa) != 0) {
+        while ($poa = $resultadoPoa->fetch_assoc()) {
+            echo "
+        <tr>
+            <td>" . $poa['periodo'] . "</td>
+            <td>" . $poa['mess'] . "</td>
+            <td>" . $poa['municipios'] . "</td>
+            <td>" . $poa['lugar'] . "</td>
+            <td>" . $poa['fecha'] . "</td>
+            <td>" . $poa['hora'] . "</td>
+            <td>" . $poa['pNuevo'] . "</td>
+            <td>" . $poa['pRecurrente'] . "</td>
+            <td>" . $poa['total'] . "</td>
+            <td>" . $poa['Observaciones'] . "</td>
+            <td><a href='detallePomSuper.php?id=".$poa['idPom']."' class='btn-sm btn-outline-info' >
+            <i class='bi bi-file-arrow-down-fill'></i> Detalle </a></td>
+        </tr>
+        "; 
+        }
+    } else {
+        echo "Sin datos";
+    }
+    $resultadoPoa->close();
+}
+
+if ($accion == "supervisores") {
+
+    $id           = $_POST['supervisor'];
+    $periodo      = $_POST['periodo'];
+    $subreceptor  = $_POST['subreceptor'];
+    $contador = 1;
+
+    $sqlPoa = "SELECT t4.idPom, t4.periodo, t5.nombre AS mess, t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, 
+    t4.pNuevo, t4.pRecurrente, (t4.pNuevo + t4.pRecurrente) AS total, t1.Observaciones FROM supervision t1
+    LEFT JOIN usuario t2 ON t2.idUsuario=t1.usuario_id LEFT JOIN persona t3 ON t3.idPersona=t2.persona_id 
+    LEFT JOIN pom t4 ON t4.idPom=t1.pom_id LEFT JOIN catalogo t5 ON t5.codigo=t4.mes
+    LEFT JOIN catalogo t6 ON t6.codigo=t4.municipio WHERE t2.idUsuario = $id AND t4.periodo = $periodo";
+    $resultadoPoa = $enlace->query($sqlPoa);
+    if (mysqli_num_rows($resultadoPoa) != 0) {
+        while ($poa = $resultadoPoa->fetch_assoc()) {
+            echo "
+        <tr>
+            <td>" . $poa['periodo'] . "</td>
+            <td>" . $poa['mess'] . "</td>
+            <td>" . $poa['municipios'] . "</td>
+            <td>" . $poa['lugar'] . "</td>
+            <td>" . $poa['fecha'] . "</td>
+            <td>" . $poa['hora'] . "</td>
+            <td>" . $poa['pNuevo'] . "</td>
+            <td>" . $poa['pRecurrente'] . "</td>
+            <td>" . $poa['total'] . "</td>
+            <td>" . $poa['Observaciones'] . "</td>
+            <td><a href='detallePomSuper.php?sub=$subreceptor&id=".$poa['idPom']."' class='btn-sm btn-outline-info' >
+            <i class='bi bi-file-arrow-down-fill'></i> Detalle </a></td>
+        </tr>
+        "; 
+        }
+    } else {
+        echo "Sin datos";
+    }
+    $resultadoPoa->close();
+}

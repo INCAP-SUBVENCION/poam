@@ -35,6 +35,16 @@
                         <i class="bi bi-calendar4-week"></i><span>Inicio</span>
                     </a>
                 </li>
+                <li class="sidebar-item  ">
+                    <a href="pom/pom.php" class='sidebar-link'>
+                        <i class="bi bi-journal-medical"></i><span>POM</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
+                    <a href="poa/poa.php" class='sidebar-link'>
+                        <i class="bi bi-file-medical"></i><span>POA</span>
+                    </a>
+                </li>
             </ul>
             <footer>
                 <div class="footer clearfix text-muted">
@@ -43,6 +53,8 @@
                     </div>
                 </div>
                 <img src="../../assets/images/logo.png" width="200">
+                <br><br>
+                <img src="../../assets/images/sica.png" width="200">
             </footer>
         </div>
     </div>

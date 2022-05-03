@@ -34,6 +34,16 @@
                         <i class="bi bi-house-door-fill"></i><span>Inicio</span>
                     </a>
                 </li>
+                <li class="sidebar-item  ">
+                    <a  href="pom/pom.php" class='sidebar-link'>
+                        <i class="bi bi-journal-medical"></i><span>POM</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
+                    <a href="poa/poa.php" class='sidebar-link'>
+                        <i class="bi bi-file-medical"></i><span>POA</span>
+                    </a>
+                </li>
             </ul>
             <footer>
                 <div class="footer clearfix text-muted">
