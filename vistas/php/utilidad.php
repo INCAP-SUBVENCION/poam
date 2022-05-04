@@ -171,7 +171,7 @@ if ($accion == "supervisor") {
     $contador = 1;
 
     $sqlPoa = "SELECT t4.idPom, t4.periodo, t5.nombre AS mess, t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, 
-    t4.pNuevo, t4.pRecurrente, (t4.pNuevo + t4.pRecurrente) AS total, t1.Observaciones FROM supervision t1
+    t4.pNuevo, t4.pRecurrente, ROUND((t4.pNuevo + t4.pRecurrente), 2) AS total, t1.observacion FROM supervision t1
     LEFT JOIN usuario t2 ON t2.idUsuario=t1.usuario_id LEFT JOIN persona t3 ON t3.idPersona=t2.persona_id 
     LEFT JOIN pom t4 ON t4.idPom=t1.pom_id LEFT JOIN catalogo t5 ON t5.codigo=t4.mes
     LEFT JOIN catalogo t6 ON t6.codigo=t4.municipio WHERE t2.idUsuario = $id AND t4.periodo = $periodo";
@@ -189,7 +189,7 @@ if ($accion == "supervisor") {
             <td>" . $poa['pNuevo'] . "</td>
             <td>" . $poa['pRecurrente'] . "</td>
             <td>" . $poa['total'] . "</td>
-            <td>" . $poa['Observaciones'] . "</td>
+            <td>" . $poa['observacion'] . "</td>
             <td><a href='detallePomSuper.php?id=".$poa['idPom']."' class='btn-sm btn-outline-info' >
             <i class='bi bi-file-arrow-down-fill'></i> Detalle </a></td>
         </tr>
@@ -209,7 +209,7 @@ if ($accion == "supervisores") {
     $contador = 1;
 
     $sqlPoa = "SELECT t4.idPom, t4.periodo, t5.nombre AS mess, t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, 
-    t4.pNuevo, t4.pRecurrente, (t4.pNuevo + t4.pRecurrente) AS total, t1.Observaciones FROM supervision t1
+    t4.pNuevo, t4.pRecurrente, ROUND((t4.pNuevo + t4.pRecurrente), 2) AS total, t1.observacion FROM supervision t1
     LEFT JOIN usuario t2 ON t2.idUsuario=t1.usuario_id LEFT JOIN persona t3 ON t3.idPersona=t2.persona_id 
     LEFT JOIN pom t4 ON t4.idPom=t1.pom_id LEFT JOIN catalogo t5 ON t5.codigo=t4.mes
     LEFT JOIN catalogo t6 ON t6.codigo=t4.municipio WHERE t2.idUsuario = $id AND t4.periodo = $periodo";
@@ -227,7 +227,7 @@ if ($accion == "supervisores") {
             <td>" . $poa['pNuevo'] . "</td>
             <td>" . $poa['pRecurrente'] . "</td>
             <td>" . $poa['total'] . "</td>
-            <td>" . $poa['Observaciones'] . "</td>
+            <td>" . $poa['observacion'] . "</td>
             <td><a href='detallePomSuper.php?sub=$subreceptor&id=".$poa['idPom']."' class='btn-sm btn-outline-info' >
             <i class='bi bi-file-arrow-down-fill'></i> Detalle </a></td>
         </tr>

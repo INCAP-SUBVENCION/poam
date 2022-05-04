@@ -188,6 +188,10 @@
                                         <button class="dropdown-item" onclick="modalCancelarActividad(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'CA01')">
                                             <em class="bi bi-back"></em> Cancelar actividad </button>
                                     </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalSupervisar(<?php echo $SUBRECEPTOR; ?>, <?php echo $periodo_3['idPom']; ?>)">
+                                            <em class="bi bi-binoculars-fill"></em> Supervisar actividad </button>
+                                    </li>
                                 <?php }
                                 if ($periodo_3['estado'] == 'ES05') { ?>
                                     <li>

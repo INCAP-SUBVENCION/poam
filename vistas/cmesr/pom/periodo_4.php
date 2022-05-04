@@ -1,25 +1,25 @@
 <table class="table table-sm table-hover" id="pom_periodo_4" aria-describedby="pom del periodo 4">
     <thead style="font-size: 12px;">
-    <tr>
-    <th scope>#</th>
-        <th scope>Periodo</th>
-        <th scope>Mes</th>
-        <th scope>Municipio</th>
-        <th scope>Lugar</th>
-        <th scope>Fecha</th>
-        <th scope>Inicio</th>
-        <th scope>Fin</th>
-        <th scope>Promotor</th>
-        <th class="text-center text-primary" scope>Nuevos</th>
-        <th class="text-center text-primary" scope>Recurrentes</th>
-        <th class="text-center text-danger" scope>Total</th>
-        <th class="text-center text-info" scope>Reactivo</th>
-        <th scope>Observacion</th>
-        <th scope>Supervisado</th>
-        <th scope>Supervisor</th>
-        <th scope>Estado</th>
-        <th scope>Opcion</th>
-    </tr>
+        <tr>
+            <th scope>#</th>
+            <th scope>Periodo</th>
+            <th scope>Mes</th>
+            <th scope>Municipio</th>
+            <th scope>Lugar</th>
+            <th scope>Fecha</th>
+            <th scope>Inicio</th>
+            <th scope>Fin</th>
+            <th scope>Promotor</th>
+            <th class="text-center text-primary" scope>Nuevos</th>
+            <th class="text-center text-primary" scope>Recurrentes</th>
+            <th class="text-center text-danger" scope>Total</th>
+            <th class="text-center text-info" scope>Reactivo</th>
+            <th scope>Observacion</th>
+            <th scope>Supervisado</th>
+            <th scope>Supervisor</th>
+            <th scope>Estado</th>
+            <th scope>Opcion</th>
+        </tr>
     </thead>
     <tbody style="font-size: 12px;">
         <?php
@@ -171,8 +171,12 @@
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
-
-                                <?php } if ($periodo_4['estado'] == 'ES04') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalSupervisar(<?php echo $SUBRECEPTOR; ?>, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-binoculars-fill"></em> Supervisar actividad </button>
+                                    </li>
+                                <?php }
+                                if ($periodo_4['estado'] == 'ES04') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalRecalendarizacionPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>,'RC01')">
                                             <em class="bi bi-shuffle"></em> Recalendarización </button>
@@ -185,16 +189,26 @@
                                         <button class="dropdown-item" onclick="modalCancelarActividad(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'CA01')">
                                             <em class="bi bi-back"></em> Cancelar actividad </button>
                                     </li>
-                                <?php } if ($periodo_4['estado'] == 'ES05') { ?>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalSupervisar(<?php echo $SUBRECEPTOR; ?>, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-binoculars-fill"></em> Supervisar actividad </button>
+                                    </li>
+                                <?php }
+                                if ($periodo_4['estado'] == 'ES05') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalEnviarCambioPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
+                                        <button class="dropdown-item" onclick="modalEnviarCambioPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES02')">
                                             <em class="bi bi-arrow-right-circle"></em> Enviar cambios solicitados </button>
                                     </li>
-                                <?php } if ($periodo_4['estado'] == 'RE02') { ?> 
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-trash2-fill"></em> Anular actividad </button>
+                                    </li>
+                                <?php }
+                                if ($periodo_4['estado'] == 'RE02') { ?>
                                     <li>
                                         <button class="dropdown-item" onclick="modalHistorialPom(<?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-clock-history"></em> Historial </button>
@@ -208,27 +222,29 @@
                         </div>
                     </td>
                 </tr>
-        <?php } $resp_4->close(); } ?>
+        <?php }
+            $resp_4->close();
+        } ?>
     </tbody>
     <tfoot>
         <tr>
-        <th>#</th>
-        <th>Periodo</th>
-        <th>Mes</th>
-        <th>Municipio</th>
-        <th>Lugar</th>
-        <th>Fecha</th>
-        <th>Inicio</th>
-        <th>Fin</th>
-        <th>Promotor</th>
-        <td class="text-center text-primary"><strong id="tnuevo4">0</strong></td>
-        <td class="text-center text-primary"><strong id="tnuevo4">0</strong></td>
-        <td class="text-center text-danger"><strong id="ttotal4">0</strong></td>
-        <td class="text-center text-info"><strong id="treactivo4">0</strong></td>
-        <th>Observacion</th>
-        <th>Supervisado</th>
-        <th>Supervisor</th>
-        <th>Estado</th>
+            <th>#</th>
+            <th>Periodo</th>
+            <th>Mes</th>
+            <th>Municipio</th>
+            <th>Lugar</th>
+            <th>Fecha</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Promotor</th>
+            <td class="text-center text-primary"><strong id="tnuevo4">0</strong></td>
+            <td class="text-center text-primary"><strong id="tnuevo4">0</strong></td>
+            <td class="text-center text-danger"><strong id="ttotal4">0</strong></td>
+            <td class="text-center text-info"><strong id="treactivo4">0</strong></td>
+            <th>Observacion</th>
+            <th>Supervisado</th>
+            <th>Supervisor</th>
+            <th>Estado</th>
         </tr>
     </tfoot>
 </table>
@@ -278,25 +294,26 @@ if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBREC
         </div>
     </div>
 
-    <?php } if ($SUBRECEPTOR == '5') { ?>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <div class="col-sm-6">
-                <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
-                    <input type="hidden" name="periodo" id="periodo" value="4">
-                    <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
-                    <select name="meses" id="meses">
-                        <?php
-                        $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
+<?php }
+if ($SUBRECEPTOR == '5') { ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-sm-6">
+            <form action="../../php/excel/generarExcelPomTrans.php" method="POST">
+                <input type="hidden" name="periodo" id="periodo" value="4">
+                <input type="hidden" name="sub" id="sub" value="<?php echo $SUBRECEPTOR; ?>">
+                <select name="meses" id="meses">
+                    <?php
+                    $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
                                WHERE t1.periodo = 4 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
-                        $rd = $enlace->query($cd);
-                        while ($mes = $rd->fetch_assoc()) { ?>
-                            <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
-                        <?php }
-                        $rd->close();
-                        ?>
-                    </select>
-                    <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
-                </form>
-            </div>
+                    $rd = $enlace->query($cd);
+                    while ($mes = $rd->fetch_assoc()) { ?>
+                        <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
+                    <?php }
+                    $rd->close();
+                    ?>
+                </select>
+                <button type="submit" class="btn btn-sm btn-success"><em class="bi bi-file-earmark-spreadsheet-fill"></em> Descargar </button>
+            </form>
         </div>
-    <?php } ?>
+    </div>
+<?php } ?>

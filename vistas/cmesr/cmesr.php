@@ -8,6 +8,23 @@ if (!isset($_SESSION['idUsuario'])) {
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
+
+$cd = "SELECT CONCAT(t3.nombre,' - ',t2.lugar) AS titulo, 
+CONCAT(t2.fecha,' ',t1.hora) AS inicia FROM supervision t1 
+LEFT JOIN pom t2 ON t2.idPom=t1.pom_id 
+LEFT JOIN catalogo t3 ON t3.codigo = t2.municipio
+WHERE usuario_id = $ID";
+$rd = $enlace->query($cd);
+$tt = 1;
+while ($pom = $rd->fetch_assoc()) {
+    if ($tt <= 1) {
+        $calendario = "{title: '" . $pom['titulo'] . "', start: '" . $pom['inicia'] . "'},";
+        $tt = $tt + 1;
+    } else {
+        $calendario = $calendario . "{title: '" . $pom['titulo'] . "', start: '" . $pom['inicia'] . "'},";
+    }
+}
+$rd->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,14 +42,41 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
-    <link rel="stylesheet" href="../../assets/css/app.css">
-
+    <link rel="stylesheet" href="../../assets/css/calendario.css">
+    <script src="../../assets/vendors/jquery/jquery.min.js"></script>
+    <script src="../../assets/js/calendario.js"></script>
+    <script src="../../assets/js/locales-all.js"></script>
     <style>
         body {
             font-family: 'Nunito', sans-serif;
             font-size: smaller;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'listWeek',
+                headerToolbar: {
+                    left: 'prev, next today',
+                    center: 'title',
+                    right: 'listWeek, timeGridDay, dayGridMonth, timeGridWeek, listMonth'
+                },
+                locale: 'es',
+                buttonIcons: false, // show the prev/next text
+                weekNumbers: true,
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                dayMaxEvents: true,
+                events: [<?php echo $calendario; ?>]
+
+            });
+
+            calendar.render();
+            calendar.setOption('locale', 'es');
+
+        });
+    </script>
 </head>
 
 <body>
@@ -54,26 +98,43 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </div>
                 <section class="section">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <?php
                             if ($SUBRECEPTOR != 4) {
                             ?>
-                            <div class="col-sm-12">
-                                <div class="row g-0">
-                                    <div class="col-md-3">
-                                        <img src="../../assets/images/agenda.png" width="100" alt="">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="card-body">
-                                            <h6 class="card-title">Supervisiones</h6>
-                                            <div class="d-grid gap-2">
-                                                <a href="supervision/supervision.php" class="btn btn-sm btn-success btn-lg"> Ver </a>
+                                <div class="col-sm-12">
+                                    <div class="row g-0">
+                                        <div class="col-md-3">
+                                            <img src="../../assets/images/agenda.png" width="100" alt="">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="card-body">
+                                                <h6 class="card-title">Supervisiones</h6>
+                                                <div class="d-grid gap-2">
+                                                    <a href="supervision/supervision.php" class="btn btn-sm btn-success btn-lg"> Ver </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <?php } else {
+                            ?>
+                                <div class="col-sm-12">
+                                    <div class="row g-0">
+                                        <div class="col-md-3">
+                                            <img src="../../assets/images/agenda.png" width="100" alt="">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="card-body">
+                                                <h6 class="card-title">Supervisiones</h6>
+                                                <div class="d-grid gap-2">
+                                                    <a href="supervision/supervisionPll.php" class="btn btn-sm btn-success btn-lg"> Ver </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
                             } ?>
                             <br>
                             <div class="col-sm-12">
@@ -124,12 +185,22 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="text-center">
-                                <img src="../../assets/images/p.png" width="500" alt="">
+                        <?php
+                        if ($SUBRECEPTOR != 4) {
+                        ?>
+                            <div class="col-md-8">
+                                <div class="text-center">
+                                    <img src="../../assets/images/p.png" width="500" alt="">
+                                </div>
                             </div>
-                        </div>
+                        <?php } else {
+                        ?>
+                            <div class="col-md-8">
+                                <div id='calendar'></div>
+                            </div>
 
+                        <?php
+                        } ?>
                     </div>
             </div>
             </section>
@@ -140,7 +211,6 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <!------ JS ------>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
     <script src="../js/utilidad.js"></script>
     <?php
