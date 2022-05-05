@@ -173,7 +173,7 @@ $SUBRECEPTOR = $_GET['id'];
                 </div>
                 <!--- PERIODO IV--->
                 <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
-                <select id="" class="form-select">
+                    <select id="" class="form-select">
                             <option value="">Supervisores ... </option>
                             <?php
                             $sql = "SELECT u.idUsuario, CONCAT(p.nombre,' ',p.apellido) as supervisor FROM usuario u

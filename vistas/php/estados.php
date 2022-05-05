@@ -107,7 +107,7 @@ if ($accion == "estadoPom") {
         );
     }
     echo json_encode($response);
-}
+} 
 /**
  * Metodo que permite cabiar el estado de las actividades del POM
  */
@@ -120,6 +120,21 @@ if ($accion == "cambiarTodoEstadoPom") {
     $descripcion = $_POST['descripcion'];
 
     if ($enlace->query("CALL cambiarTodoPom($subreceptor, $periodo, '$estadoA', $usuario, '$estadoN', '$descripcion')") === TRUE) {
+        echo "Exito";
+    } else {
+        echo "Error";
+    }
+}
+
+if ($accion == "actividadSupervisor") {
+    $subreceptor = $_POST['subreceptor'];
+    $periodo = $_POST['periodo']; 
+    $estadoA = $_POST['estadoA'];
+    $usuario = $_POST['usuario'];
+    $estadoN = $_POST['estadoN'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($enlace->query("CALL actividadSupervisor($subreceptor, $periodo, '$estadoA', $usuario, '$estadoN', '$descripcion')") === TRUE) {
         echo "Exito";
     } else {
         echo "Error";

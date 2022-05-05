@@ -126,6 +126,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <th>NUEVOS</th>
                             <th>RECURRENTES</th>
                             <th>TOTAL</th>
+                            <th>PROMOTOR</th>
                             <th>OBSERVACION</th>
                             <th>OPCION</th>
                         </thead>

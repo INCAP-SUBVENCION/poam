@@ -339,7 +339,40 @@ function cambiarTodoEstadoPom() {
     var estadoN = document.getElementById('cestadoN').value;
     var descripcion = document.getElementById('cobservacion').value;
     var accion = "cambiarTodoEstadoPom";
-    $.ajax({
+    $.ajax({ 
+        type: "POST",
+        url: "../../php/estados.php",
+        data: {
+            accion: accion,
+            subreceptor: subreceptor,
+            periodo: periodo,
+            estadoA: estadoA,
+            usuario: usuario,
+            estadoN: estadoN,
+            descripcion: descripcion
+        },
+        success: function (datos) {
+            if (datos == 'Exito') {
+                alertify.success('¡SE ENVIO TODO!...');
+                $("#modalCambiarTodoEstadoPom").modal("hide");
+                window.location.reload('pom.php');
+            }
+            else {
+                alertify.error("¡ERROR!... No se pudo enviar ");
+            }
+        }
+    });
+}
+  
+function actividadSupervisor() { 
+    var subreceptor = document.getElementById('csubreceptor').value;
+    var periodo = document.getElementById('_periodos').value;
+    var estadoA = document.getElementById('cestadoA').value;
+    var usuario = document.getElementById('cusuario').value;
+    var estadoN = document.getElementById('cestadoN').value;
+    var descripcion = document.getElementById('cobservacion').value;
+    var accion = "actividadSupervisor";
+    $.ajax({ 
         type: "POST",
         url: "../../php/estados.php",
         data: {

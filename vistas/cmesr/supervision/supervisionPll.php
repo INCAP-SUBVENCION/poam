@@ -114,16 +114,22 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             <th>NUEVOS</th>
                             <th>RECURRENTES</th>
                             <th>TOTAL</th>
+                            <th>PROMOTOR</th>
                             <th>OBSERVACION</th>
                             <th>OPCION</th>
                         </thead>
                         <tbody class="text-center" style="font-size: 11px;">
                             <?php
-                            $sqlPoa = "SELECT t4.idPom, t4.periodo, t5.nombre AS mess, t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, 
-                            t4.pNuevo, t4.pRecurrente, ROUND((t4.pNuevo + t4.pRecurrente), 2)AS total, t1.observacion FROM supervision t1
+                            $sqlPoa = "SELECT DISTINCT t4.idPom, CONCAT(t7.nombre,' ',t7.apellido) AS supervisor, t4.periodo, t5.nombre AS mess, 
+                            t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, t4.pNuevo, t4.pRecurrente, ROUND((t4.pNuevo + t4.pRecurrente), 2) AS total, 
+                            t1.observacion, CONCAT(t9.nombre,' ',t9.apellido) AS promotor FROM supervision t1
                             LEFT JOIN usuario t2 ON t2.idUsuario=t1.usuario_id LEFT JOIN persona t3 ON t3.idPersona=t2.persona_id 
                             LEFT JOIN pom t4 ON t4.idPom=t1.pom_id LEFT JOIN catalogo t5 ON t5.codigo=t4.mes
-                            LEFT JOIN catalogo t6 ON t6.codigo=t4.municipio WHERE t2.idUsuario = $ID AND t4.periodo = 3";
+                            LEFT JOIN catalogo t6 ON t6.codigo=t4.municipio 
+                            LEFT JOIN persona t7 ON t7.idPersona=t2.persona_id
+                            LEFT JOIN promotor t8 ON t8.idPromotor=t4.promotor_id
+                            LEFT JOIN persona t9 ON t9.idPersona=t8.persona_id
+                            WHERE t2.idUsuario = $ID AND t4.periodo = 3";
                             $resultado = $enlace->query($sqlPoa);
                             while ($super = $resultado->fetch_assoc()) { ?>
                                 <tr>
@@ -136,6 +142,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                                     <td><?php echo $super['pNuevo'] ?></td>
                                     <td><?php echo $super['pRecurrente'] ?></td>
                                     <td><?php echo $super['total'] ?></td>
+                                    <td><?php echo $super['promotor'] ?></td>
                                     <td><?php echo $super['observacion'] ?></td>
                                     <td><a class="dropdown-item" href="detallePomSuper.php?id=<?php echo $super['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
