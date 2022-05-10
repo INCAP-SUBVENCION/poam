@@ -20,6 +20,7 @@ $SUBRECEPTOR = $_GET['id'];
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -113,7 +114,7 @@ $SUBRECEPTOR = $_GET['id'];
                                 <option value="<?php echo $supervisores['idUsuario']; ?>" onclick="supervisores(3, <?php echo $supervisores['idUsuario']; ?>, <?php echo $SUBRECEPTOR; ?>)"><?php echo $supervisores['supervisor']; ?></option>
                             <?php } ?>
                         </select>
-                        <table class="table table-bordered" aria-describedby="">
+                        <table id="superenlacerp_3" class="cell-border" style="width:100%">
                             <thead class='text-center'>
                                 <th>SUPERVISOR</th>
                                 <th>PERIODO</th>
@@ -169,6 +170,21 @@ $SUBRECEPTOR = $_GET['id'];
                             <?php }
                             } ?>
                             </tbody>
+                            <tfoot class='text-center'>
+                            <th>SUPERVISOR</th>
+                                <th>PERIODO</th>
+                                <th>MES</th>
+                                <th>MUNICIPIO</th>
+                                <th>LUGAR</th>
+                                <th>FECHA</th>
+                                <th>HORA</th>
+                            <th><strong id="nuevo3">0</strong></th>
+                            <th><strong id="recurrente3">0</strong></th>
+                            <th><strong id="total3">0</strong></th>
+                            <th>PROMOTOR</th>
+                            <th>OBSERVACION</th>
+                            <th>OPCION</th>
+                        </tfoot>
                         </table>
                 </div>
                 <!--- PERIODO IV--->
@@ -268,6 +284,8 @@ $SUBRECEPTOR = $_GET['id'];
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/utilidad.js"></script>
+        <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
+        <script src="../../js/otrasTablas.js"></script>
     </body>
 
 </html>

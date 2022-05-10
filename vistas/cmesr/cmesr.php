@@ -43,9 +43,6 @@ $rd->close();
     <link rel="stylesheet" href="../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
     <link rel="stylesheet" href="../../assets/css/calendario.css">
-    <script src="../../assets/vendors/jquery/jquery.min.js"></script>
-    <script src="../../assets/js/calendario.js"></script>
-    <script src="../../assets/js/locales-all.js"></script>
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -212,6 +209,9 @@ $rd->close();
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
+    <script src="../../assets/vendors/jquery/jquery.min.js"></script>
+    <script src="../../assets/js/calendario.js"></script>
+    <script src="../../assets/js/locales-all.js"></script>
     <script src="../js/utilidad.js"></script>
     <?php
     include 'menu.php';

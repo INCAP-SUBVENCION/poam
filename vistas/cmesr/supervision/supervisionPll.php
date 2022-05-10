@@ -20,6 +20,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -103,7 +104,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 <!--- PERIODO III--->
                 <div class="tab-pane fade show active" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
 
-                    <table class="table table-bordered" aria-describedby="">
+                <table id="super_3" class="cell-border" style="width:100%">
                         <thead class='text-center'>
                             <th>PERIODO</th>
                             <th>MES</th>
@@ -152,6 +153,20 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                             $resultado->close();
                             ?>
                         </tbody>
+                        <tfoot class='text-center'>
+                        <th>PERIODO</th>
+                            <th>MES</th>
+                            <th>MUNICIPIO</th>
+                            <th>LUGAR</th>
+                            <th>FECHA</th>
+                            <th>HORA</th>
+                            <th><strong id="nuevo3">0</strong></th>
+                            <th><strong id="recurrente3">0</strong></th>
+                            <th><strong id="total3">0</strong></th>
+                            <th>PROMOTOR</th>
+                            <th>OBSERVACION</th>
+                            <th>OPCION</th>
+                        </tfoot>
                     </table>
                 </div>
                 <!--- PERIODO IV--->
@@ -183,6 +198,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/utilidad.js"></script>
+        <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
+        <script src="../../js/otrasTablas.js"></script>
     </body>
 
 </html>
