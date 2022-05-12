@@ -39,7 +39,25 @@
                 <form name="agregarSupervision" id="agregarSupervision" action="javascript: supervisarActividad();" method="POST">
                     <div class="row">
                         <input type="hidden" id="pom">
-                        <input type="hidden" id="sup" value="<?php echo $ID; ?>">
+                        <?php if ($SUBRECEPTOR == '5') { ?>
+
+                            <div class="form-group input-group-sm col-sm-3">
+                                <label class="form-label" style="font-size: 12px;">Supervisor:</label>
+                                <select id="sup" class="form-select">
+                                    <option value="">Seleccionar ... </option>
+                                    <?php
+                                    $sql = "SELECT u.idUsuario, CONCAT(p.nombre,' ',p.apellido) as supervisor FROM usuario u
+                                            LEFT JOIN persona p ON p.idPersona=u.persona_id WHERE subreceptor_id = $SUBRECEPTOR AND rol = 'R006'";
+                                    $resultado = $enlace->query($sql);
+                                    while ($supervisores = $resultado->fetch_assoc()) {
+                                    ?>
+                                        <option value="<?php echo $supervisores['idUsuario']; ?>"><?php echo $supervisores['supervisor']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        <?php } else { ?>
+                            <input type="hidden" id="sup" value="<?php echo $ID; ?>">
+                        <?php } ?>
                         <div class="form-group input-group-sm col-sm-2">
                             <label class="form-label" style="font-size: 12px;">Tipo de supervision:</label>
                             <select id="tipo" class="form-control form-control-sm">
@@ -52,7 +70,7 @@
                             <label class="form-label" style="font-size: 12px;">Hora:</label>
                             <input type="time" id="hora" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group input-group-sm col-sm-8">
+                        <div class="form-group input-group-sm col-sm-5">
                             <label class="form-label" style="font-size: 12px;">Observacion:</label>
                             <textarea id="obs" cols="3" rows="1" class="form-control form-control-sm"></textarea>
                         </div>

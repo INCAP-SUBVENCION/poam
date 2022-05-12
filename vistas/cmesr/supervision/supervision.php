@@ -20,6 +20,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/alertify.rtl.css">
     <link rel="stylesheet" href="../../../assets/vendors/alertifyjs/css/themes/default.css">
     <link rel="stylesheet" href="../../../assets/css/app.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatable/jquery.dataTables.min.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -164,6 +165,8 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
         <script src="../../js/utilidad.js"></script>
+        <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
+        <script src="../../js/otrasTablas.js"></script>
     </body>
 
 </html>

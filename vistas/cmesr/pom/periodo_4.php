@@ -124,7 +124,7 @@
                                 <!----- HSH ---->
                                 <?php if ($periodo_4['estado'] == 'ES01' && ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '6' || $SUBRECEPTOR == '7')) { ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(4)">
                                             <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
                                     </li>
                                     <li>
@@ -140,8 +140,8 @@
                                 <!---- OMES Y OTRANS  ---->
                                 <?php if ($periodo_4['estado'] == 'ES01' && ($SUBRECEPTOR == '2' || $SUBRECEPTOR == '5')) { ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                            <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(4)">
+                                            <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
@@ -155,13 +155,17 @@
                                         <button class="dropdown-item" onclick="modalAnularPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">
                                             <em class="bi bi-trash2-fill"></em> Anular actividad </button>
                                     </li>
+                                    <li>
+                                        <button class="dropdown-item" onclick="modalSupervisar(<?php echo $SUBRECEPTOR; ?>, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-binoculars-fill"></em> Supervisar actividad </button>
+                                    </li>
                                 <?php } ?>
 
                                 <!---- PPL  ---->
                                 <?php if ($periodo_4['estado'] == 'ES01' && $SUBRECEPTOR == '4') { ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
-                                            <em class="bi bi-arrow-clockwise"></em> Enviar todo al Enlace </button>
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(4)">
+                                            <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
                                     </li>
                                     <li>
                                         <button class="dropdown-item" onclick="modalEditarPom(<?php echo $SUBRECEPTOR; ?>, 4, <?php echo $periodo_4['idPom']; ?>)">

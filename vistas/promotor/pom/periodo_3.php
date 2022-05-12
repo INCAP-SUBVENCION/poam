@@ -143,7 +143,7 @@
                                 ?>
                                     <li>
                                         <div class="d-grid gap-2">
-                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(3)">
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar al supervisor </button>
                                         </div>
                                     </li>

@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <form id="cambiarTodoEstado" action="javascript: actividadPromotor();" method="post">
                     <input type="hidden" id="csubreceptor" value="<?php echo $SUBRECEPTOR; ?>">
-                    <input type="hidden" id="_periodo" value="3">
+                    <input type="hidden" id="_periodo">
                     <input type="hidden" id="cestadoA" value="PR01">
                     <input type="hidden" id="cusuario" value="<?php echo $ID; ?>">
                     <input type="hidden" id="cestadoN" value="PR02">

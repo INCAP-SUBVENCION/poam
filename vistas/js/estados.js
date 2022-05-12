@@ -325,7 +325,8 @@ function modalEstadoPom(id) {
 /**
  * Funcion que permite mostrar un modal para cambiar todos los estados de las actividades del POM
  */
-function modalCambiarTodoEstadoPom() {
+function modalCambiarTodoEstadoPom(periodo) {
+    document.getElementById("_periodo").value = periodo;
     $("#modalCambiarTodoEstadoPom").modal("show");
 }
 /**
@@ -366,7 +367,7 @@ function cambiarTodoEstadoPom() {
   
 function actividadSupervisor() { 
     var subreceptor = document.getElementById('csubreceptor').value;
-    var periodo = document.getElementById('_periodos').value;
+    var periodo = document.getElementById('_periodo').value;
     var estadoA = document.getElementById('cestadoA').value;
     var usuario = document.getElementById('cusuario').value;
     var estadoN = document.getElementById('cestadoN').value;

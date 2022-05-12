@@ -120,7 +120,7 @@
                                 </li>
                                 <?php if ($periodo_4['estado'] == 'ES02') { ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(4)">
                                             <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista </button>
                                     </li>
                                     <li>

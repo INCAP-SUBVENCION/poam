@@ -8,20 +8,22 @@ if (!isset($_SESSION['idUsuario'])) {
 $ID = $_SESSION['idUsuario'];
 $ROL = $_SESSION['rol'];
 $SUBRECEPTOR = $_SESSION['subreceptor_id'];
-
+$tt = 1;
 $cd = "SELECT CONCAT(t3.nombre,' - ',t2.lugar) AS titulo, 
 CONCAT(t2.fecha,' ',t1.hora) AS inicia FROM supervision t1 
 LEFT JOIN pom t2 ON t2.idPom=t1.pom_id 
 LEFT JOIN catalogo t3 ON t3.codigo = t2.municipio
 WHERE usuario_id = $ID";
 $rd = $enlace->query($cd);
-$tt = 1;
-while ($pom = $rd->fetch_assoc()) {
-    if ($tt <= 1) {
-        $calendario = "{title: '" . $pom['titulo'] . "', start: '" . $pom['inicia'] . "'},";
-        $tt = $tt + 1;
-    } else {
-        $calendario = $calendario . "{title: '" . $pom['titulo'] . "', start: '" . $pom['inicia'] . "'},";
+$pom  = mysqli_affected_rows($enlace);
+if ($pom  > 0) {
+    while ($pom = $rd->fetch_assoc()) {
+        if ($tt <= 1) {
+            $calendario = "{title: '" . $pom['titulo'] . "', start: '" . $pom['inicia'] . "'},";
+            $tt = $tt + 1;
+        } else {
+            $calendario = $calendario . "{title: '" . $pom['titulo'] . "', start: '" . $pom['inicia'] . "'},";
+        }
     }
 }
 $rd->close();
@@ -49,31 +51,7 @@ $rd->close();
             font-size: smaller;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'listWeek',
-                headerToolbar: {
-                    left: 'prev, next today',
-                    center: 'title',
-                    right: 'listWeek, timeGridDay, dayGridMonth, timeGridWeek, listMonth'
-                },
-                locale: 'es',
-                buttonIcons: false, // show the prev/next text
-                weekNumbers: true,
-                navLinks: true, // can click day/week names to navigate views
-                editable: true,
-                dayMaxEvents: true,
-                events: [<?php echo $calendario; ?>]
 
-            });
-
-            calendar.render();
-            calendar.setOption('locale', 'es');
-
-        });
-    </script>
 </head>
 
 <body>
@@ -93,7 +71,8 @@ $rd->close();
                         </div>
                     </div>
                 </div>
-                <section class="section">
+            </div>
+            <section class="section">
                     <div class="row">
                         <div class="col-md-4">
                             <?php
@@ -202,21 +181,42 @@ $rd->close();
             </div>
             </section>
         </div>
-    </div>
 
     </div>
     <!------ JS ------>
+    <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
-    <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/js/calendario.js"></script>
     <script src="../../assets/js/locales-all.js"></script>
     <script src="../js/utilidad.js"></script>
     <?php
     include 'menu.php';
     ?>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'listWeek',
+                headerToolbar: {
+                    left: 'prev, next today',
+                    center: 'title',
+                    right: 'listWeek, timeGridDay, dayGridMonth, timeGridWeek, listMonth'
+                },
+                locale: 'es',
+                buttonIcons: false, // show the prev/next text
+                weekNumbers: true,
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                dayMaxEvents: true,
+                events: [<?php echo $calendario; ?>]
 
+            });
+            calendar.render();
+            calendar.setOption('locale', 'es');
+        });
+    </script>
 </body>
 
 </html>

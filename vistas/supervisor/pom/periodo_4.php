@@ -144,7 +144,7 @@
                                                 <em class="bi bi-pencil-square"></em> Editar </button>
                                         </li>
                                         <li>
-                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                            <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(4)">
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar toda actividad a M&E </button>
                                         </li>
                                         <li>
