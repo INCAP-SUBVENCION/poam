@@ -104,7 +104,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
             <div class="tab-content" id="pills-tabContent">
                 <!--- PERIODO III--->
                 <div class="tab-pane fade show active" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
-                    <select id="" class="form-select">
+                    <select id="supers" class="form-select" onchange="supervisores(3,<?php echo $SUBRECEPTOR; ?>);" >
                         <option value="">Seleccionar ... </option>
                         <?php
                         $sql = "SELECT u.idUsuario, CONCAT(p.nombre,' ',p.apellido) as supervisor FROM usuario u
@@ -113,7 +113,7 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                         $resultado = $enlace->query($sql);
                         while ($supervisores = $resultado->fetch_assoc()) {
                         ?>
-                            <option value="<?php echo $supervisores['idUsuario']; ?>" onclick="supervisor(3, <?php echo $supervisores['idUsuario']; ?>)"><?php echo $supervisores['supervisor']; ?></option>
+                            <option value="<?php echo $supervisores['idUsuario']; ?>"> <?php echo $supervisores['supervisor']; ?> </option>
                         <?php } ?>
                     </select>
                     <table class="table table-bordered" aria-describedby="">
@@ -164,9 +164,10 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
-        <script src="../../js/utilidad.js"></script>
         <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
-        <script src="../../js/otrasTablas.js"></script>
+        <script src="../../../assets/js/select2.full.min.js"></script>
+        <script src="../../js/estados.js"></script>  
+        <script src="../../js/utilidad.js"></script>                    
     </body>
 
 </html>

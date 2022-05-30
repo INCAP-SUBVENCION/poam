@@ -106,7 +106,7 @@
                                 if ($periodo_3['estado'] == 'ES03') {
                                 ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(3)">
                                             <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
                                     </li>
                                     <li>

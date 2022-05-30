@@ -59,9 +59,10 @@
                         <input type="text" class="form-control" id="_supervisado" style="font-size: 12px; color:darkblue; font-weight: bolder;" disabled>
                         <input type="hidden" id="asupervisado">
                     </div>
+                    <input type="hidden" id="asupervisor">
                     <div class="col-sm-6">
                         <label for="">Supervisor: </label>
-                        <input type="text" class="form-control" id="asupervisor" style="font-size: 12px; color:darkblue; font-weight: bolder;" disabled>
+                        <input type="text" class="form-control" id="asupervisores" style="font-size: 12px; color:darkblue; font-weight: bolder;" disabled>
                     </div>
                     <h6 class="text-center text-danger">Reprogramar la actividad: </h6>
                     <div class="col-sm-3">
@@ -71,7 +72,7 @@
                     <div class="col-sm-9">
                         <label for="">Lugar: </label>
                         <input type="text" class="form-control form-control-sm" id="nlugar" style="font-size: 12px;">
-                    </div> 
+                    </div>
                     <div class="col-sm-2">
                         <label for="">Inicio: </label>
                         <input type="time" class="form-control form-control-sm" id="ninicio">
@@ -87,10 +88,24 @@
                             <option value="1">SI </option>
                         </select>
                     </div>
-                    <div class="col-sm-6">
-                        <label for="">Supervisor: </label>
-                        <input type="text" class="form-control" id="nsupervisor" style="font-size: 12px; color:darkblue; font-weight: bolder;">
-                    </div>
+                    <?php if ($SUBRECEPTOR == 4) { ?>
+                        <input type="hidden" id="nsupervisor" value="<?php echo $ID; ?>">
+                    <?php } else { ?>
+                        <div class="form-group input-group-sm col-sm-3">
+                            <label class="form-label" style="font-size: 12px;">Supervisor:</label>
+                            <select id="nsupervisor" class="form-select">
+                                <option value="">Seleccionar ... </option>
+                                <?php
+                                $sql = "SELECT u.idUsuario, CONCAT(p.nombre,' ',p.apellido) as supervisor FROM usuario u
+                                        LEFT JOIN persona p ON p.idPersona=u.persona_id WHERE subreceptor_id = $SUBRECEPTOR AND rol = 'R006'";
+                                $resultado = $enlace->query($sql);
+                                while ($supervisores = $resultado->fetch_assoc()) {
+                                ?>
+                                    <option value="<?php echo $supervisores['idUsuario']; ?>"><?php echo $supervisores['supervisor']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    <?php } ?>
                     <div class="form-group">
                         <label>MOTIVO: </label>
                         <textarea id="descripcion" cols="2" rows="2" class="form-control"></textarea>

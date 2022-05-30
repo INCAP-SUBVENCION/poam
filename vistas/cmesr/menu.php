@@ -34,10 +34,36 @@
                         <i class="bi bi-house-door-fill"></i><span>Inicio</span>
                     </a>
                 </li>
-                <div class="dropdown">
-
-
-                </div>
+                <li class="sidebar-item  ">
+                    <a href="dash.php" class='sidebar-link'>
+                        <i class="bi bi-speedometer"></i><span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
+                    
+                    <?php if ($SUBRECEPTOR == 4) { ?>
+                        <a href="supervision/supervisionPll.php" class='sidebar-link'>
+                    <?php } else { ?>
+                        <a href="supervision/supervision.php" class='sidebar-link'>
+                    <?php } ?>
+                        <i class="bi bi-card-heading"></i><span>Supervisiones</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
+                    <a href="pom/pom.php" class='sidebar-link'>
+                        <i class="bi bi-calendar3-range"></i><span>POM</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
+                    <a href="poa/poa.php" class='sidebar-link'>
+                        <i class="bi bi-calendar4"></i><span>POA</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
+                    <a  href="poa/meta.php" class='sidebar-link'>
+                        <i class="bi bi-bullseye"></i><span>Metas</span>
+                    </a>
+                </li>
             </ul>
             <footer>
                 <img src="../../assets/images/logo.png" width="200" alt="">

@@ -53,22 +53,39 @@ $SUBRECEPTOR = $_SESSION['subreceptor_id'];
                 </div>
             <?php } ?>
             <section class="section">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-III-tab" data-bs-toggle="tab" data-bs-target="#nav-III" type="button" role="tab" aria-controls="nav-III" aria-selected="true">III</button>
+                        <button class="nav-link" id="nav-IV-tab" data-bs-toggle="tab" data-bs-target="#nav-IV" type="button" role="tab" aria-controls="nav-IV" aria-selected="false">IV</button>
+                        <button class="nav-link" id="nav-V-tab" data-bs-toggle="tab" data-bs-target="#nav-V" type="button" role="tab" aria-controls="nav-V" aria-selected="false">V</button>
+                        <button class="nav-link" id="nav-VI-tab" data-bs-toggle="tab" data-bs-target="#nav-VI" type="button" role="tab" aria-controls="nav-VI" aria-selected="false">VI</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-III" role="tabpanel" aria-labelledby="nav-III-tab" tabindex="0">
+                        <?php include 'dash/periodo_3.php'; ?>
+                    </div>
+                    <div class="tab-pane fade" id="nav-IV" role="tabpanel" aria-labelledby="nav-IV-tab" tabindex="0">4...</div>
+                    <div class="tab-pane fade" id="nav-V" role="tabpanel" aria-labelledby="nav-V-tab" tabindex="0">5...</div>
+                    <div class="tab-pane fade" id="nav-VI" role="tabpanel" aria-labelledby="nav-VI-tab" tabindex="0">6...</div>
+                </div>
 
-            </section>
 
         </div>
+    </div>
+    </section>
+    </div>
 
     </div>
     <!------ JS ------>
+    <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendors/jquery/jquery.min.js"></script>
     <script src="../../assets/vendors/alertifyjs/alertify.js"></script>
-    <script src="../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
-    <script src="../../assets/js/select2.full.min.js"></script>
-    <script src="../js/pom.js"></script>
+    <script src="../../assets/js/calendario.js"></script>
+    <script src="../../assets/js/locales-all.js"></script>
+    <script src="../../assets/js/plotly-2.12.1.min.js"></script>
     <script src="../js/utilidad.js"></script>
-    <script src="../js/estados.js"></script>
-    <script src="../js/tabla.js"></script>
+
 
     <?php include 'menu.php'; ?>
 

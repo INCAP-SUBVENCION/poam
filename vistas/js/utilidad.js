@@ -144,7 +144,7 @@ function obtenerMeta() {
 /**
  * Funcion para obtener los datos de nuevo segun sea el municipio
  */
-function obtenerResumen(){
+function obtenerResumen() {
 
     var periodo    = document.getElementById('periodo').value;
     var municipio   = document.getElementById('municipio').value;
@@ -344,6 +344,7 @@ function creaUsuario(){
         }
     });
 }
+
 function calculos_editar() {
     obtenerResumen_editar()
     obtenerReactivo_editar();
@@ -402,14 +403,16 @@ function supervisor(periodo, id) {
     });
 }
 
-function supervisores(periodo, id, subreceptor) {
+function supervisores(periodo, subreceptor) {
+    var supervisor = document.getElementById('supers').value;
     var accion = "supervisores";
+
     $.ajax({
         type: "POST",
         url: "../../php/utilidad.php",
         data: {
             accion: accion,
-            supervisor: id,
+            supervisor: supervisor,
             periodo: periodo,
             subreceptor: subreceptor
         },

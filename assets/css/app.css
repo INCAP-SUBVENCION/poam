@@ -908,7 +908,7 @@
 }
 #main {
  margin-left:225px;
- padding:1rem
+ padding: .5rem
 }
 @media screen and (max-width:1199px) {
  #main {

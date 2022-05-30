@@ -48,8 +48,11 @@ if ($accion == "consultaPoM") {
 
     $pom_id = $_POST['id'];
     $sql = "SELECT DISTINCT t1.idPom, t2.nombre AS mes, t3.nombre AS municipio, t1.lugar, t1.fecha, t1.horaInicio, t1.horaFin, t1.pNuevo, t1.pRecurrente, 
-    truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total, t1.supervisado, t1.supervisor
-    FROM pom t1 LEFT JOIN catalogo t2 ON t2.codigo = t1.mes LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio WHERE t1.idPom = $pom_id";
+    truncate(sum(t1.pNuevo + t1.pRecurrente), 2)  as total, t1.supervisado, CONCAT(t5.nombre, ' ', t5.apellido) as supervisores, t1.supervisor FROM pom t1 
+    LEFT JOIN catalogo t2 ON t2.codigo = t1.mes 
+    LEFT JOIN catalogo t3 ON t3.codigo =  t1.municipio 
+    LEFT JOIN usuario t4 ON t4.idUsuario = t1.supervisor
+    LEFT JOIN persona t5 ON t5.idPersona = t4.idUsuario WHERE t1.idPom = $pom_id";
 
     $consulta = $enlace->query($sql);
     $response = array();
@@ -58,6 +61,7 @@ if ($accion == "consultaPoM") {
     }
     echo json_encode($response);
 }
+
 /**
  * Metodo que permite cambiar el estado de POM
  */
@@ -229,8 +233,8 @@ if ($accion == "reprogramacionPom") {
     $nsupervisado = $_POST['nsupervisado'];
     $nsupervisor = $_POST['nsupervisor'];
     $descripcion = $_POST['descripcion'];
-
-    if ($enlace->query("CALL reprogramacion($pom, $usuario, '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, '$asupervisor', '$nfecha', '$ninicio', '$nfin', '$nlugar', $nsupervisado, '$nsupervisor', '$estado', '$descripcion')") === TRUE) {
+ 
+    if ($enlace->query("CALL reprogramacion($pom, $usuario, '$afecha', '$ainicia', '$afinaliza', '$alugar', $asupervisado, $asupervisor, '$nfecha', '$ninicio', '$nfin', '$nlugar', $nsupervisado, $nsupervisor, '$estado', '$descripcion')") === TRUE) {
         echo "Exito";
     } else {
         echo "Error";

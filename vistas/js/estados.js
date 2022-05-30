@@ -560,6 +560,7 @@ function modalReprogramacionPom(id, usuario, estado) {
                 document.getElementById("_supervisado").value = "Si";
             }
             document.getElementById("asupervisor").value = pom.supervisor;
+            document.getElementById("asupervisores").value = pom.supervisores;
         }
     });
     $("#modalReprogramacionPom").modal("show");
@@ -577,13 +578,23 @@ function reprogramacionPom() {
     var ainicia = document.getElementById('ainicia').value;
     var afinaliza = document.getElementById('afinaliza').value;
     var asupervisado = document.getElementById('asupervisado').value;
-    var asupervisor = document.getElementById('asupervisor').value;
+    var _asupervisor = document.getElementById('asupervisor').value;
+    if( _asupervisor == '') { 
+    var    asupervisor = 0;
+    } else {
+        var asupervisor = document.getElementById('asupervisor').value;
+    } 
     var nfecha = document.getElementById('nfecha').value;
     var nlugar = document.getElementById('nlugar').value;
     var ninicio = document.getElementById('ninicio').value;
     var nfin = document.getElementById('nfin').value;
     var nsupervisado = document.getElementById('nsupervisado').value;
-    var nsupervisor = document.getElementById('nsupervisor').value;
+    var _nsupervisor = document.getElementById('nsupervisor').value;
+    if(_nsupervisor == '') {
+    var    nsupervisor = 0;
+    } else {
+        var nsupervisor = document.getElementById('nsupervisor').value;
+    }
     var descripcion = document.getElementById('descripcion').value;
     var accion = "reprogramacionPom";
     $.ajax({
