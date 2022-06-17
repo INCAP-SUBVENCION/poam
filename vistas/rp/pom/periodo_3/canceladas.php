@@ -77,25 +77,16 @@
                                 echo '<p class = "text-warning"> Actividad Reprogramada </p>';
                                 break;
                                 // Estados de Cancelacion
-                            case 'CA01':
+                            case 'CA02':
                                 echo '<p class="text-info"> Solicitud de Cancelacion </p>';
                                 break;
-                            case 'CA02':
-                                echo '<p class="text-info">Cancelacion rechazada</p>';
-                                break;
                                 // Estados de Recalendarizacion
-                            case 'RC01':
+                            case 'RC02':
                                 echo '<p class = "text-info"> Solicitud de Recalendarizacion </p>';
                                 break;
-                            case 'RC02':
-                                echo '<p class = "text-info">Recalendarizacion rechazada </p>';
-                                break;
                                 // Estados de Reprogramacion
-                            case 'RP01':
-                                echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
-                                break;
                             case 'RP02':
-                                echo '<p class = "text-info">Reprogramacion rechazada</p>';
+                                echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
                                 break;
                         } 
                         ?>

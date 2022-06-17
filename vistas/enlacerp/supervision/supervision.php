@@ -101,131 +101,38 @@ $SUBRECEPTOR = $_GET['id'];
             <div class="tab-content" id="pills-tabContent">
                 <!--- PERIODO III--->
                 <div class="tab-pane fade show active" id="pills-semestre_3" role="tabpanel" aria-labelledby="pills-semestre_3-tab">
-                   
-                        <select id="" class="form-select">
-                            <option value="">Supervisores ... </option>
-                            <?php
-                            $sql = "SELECT u.idUsuario, CONCAT(p.nombre,' ',p.apellido) as supervisor FROM usuario u
+                    <select id="supers" class="form-select" onchange="supervisores(3,<?php echo $SUBRECEPTOR; ?>);">
+                        <option value="">Seleccionar ... </option>
+                        <?php
+                        $sql = "SELECT u.idUsuario, CONCAT(p.nombre,' ',p.apellido) as supervisor FROM usuario u
                                 LEFT JOIN persona p ON p.idPersona=u.persona_id
-                                WHERE subreceptor_id=$SUBRECEPTOR AND rol='R006'";
-                            $resultado = $enlace->query($sql);
-                            while ($supervisores = $resultado->fetch_assoc()) {
-                            ?>
-                                <option value="<?php echo $supervisores['idUsuario']; ?>" onclick="supervisores(3, <?php echo $supervisores['idUsuario']; ?>, <?php echo $SUBRECEPTOR; ?>)"><?php echo $supervisores['supervisor']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <table id="superenlacerp_3" class="cell-border" style="width:100%">
-                            <thead class='text-center'>
-                                <th>SUPERVISOR</th>
-                                <th>PERIODO</th>
-                                <th>MES</th>
-                                <th>MUNICIPIO</th>
-                                <th>LUGAR</th>
-                                <th>FECHA</th>
-                                <th>HORA</th>
-                                <th>NUEVOS</th>
-                                <th>RECURRENTES</th>
-                                <th>TOTAL</th>
-                                <th>PROMOTOR</th>
-                                <th>OBSERVACION</th>
-                                <th>OPCION</th>
-                            </thead>
-                            <?php
-                    if ($SUBRECEPTOR != 4) {
-                    ?>
-                            <tbody class="text-center" style="font-size: 12px;" id="resultadoSupervisor">
-
-                            </tbody>
-                            <?php } else {
-                    ?>
-                     <tbody>
-                                <?php
-                                $sqlSuper = "SELECT DISTINCT t4.idPom, CONCAT(t7.nombre,' ',t7.apellido) AS supervisor, t4.periodo, t5.nombre AS mess, t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, 
-                                t4.pNuevo, t4.pRecurrente, ROUND((t4.pNuevo + t4.pRecurrente), 2) AS total, t1.observacion, CONCAT(t9.nombre,' ',t9.apellido) AS promotor FROM supervision t1
-                                LEFT JOIN usuario t2 ON t2.idUsuario=t1.usuario_id LEFT JOIN persona t3 ON t3.idPersona=t2.persona_id 
-                                LEFT JOIN pom t4 ON t4.idPom=t1.pom_id LEFT JOIN catalogo t5 ON t5.codigo=t4.mes
-                                LEFT JOIN catalogo t6 ON t6.codigo=t4.municipio 
-                                LEFT JOIN persona t7 ON t7.idPersona=t2.persona_id
-                                LEFT JOIN promotor t8 ON t8.idPromotor=t4.promotor_id
-                                LEFT JOIN persona t9 ON t9.idPersona=t8.persona_id
-                         WHERE t4.periodo = 3 and t4.subreceptor_id = $SUBRECEPTOR";
-                                $resultadoSuper = $enlace->query($sqlSuper);
-                                while ($super = $resultadoSuper->fetch_assoc()) {
-                                ?>
-                                    <tr>
-                                        <td><?php echo $super['supervisor']; ?></td>
-                                        <td><?php echo $super['periodo']; ?></td>
-                                        <td><?php echo $super['mess']; ?></td>
-                                        <td><?php echo $super['municipios']; ?></td>
-                                        <td><?php echo $super['lugar']; ?></td>
-                                        <td><?php echo $super['fecha']; ?></td>
-                                        <td><?php echo $super['hora']; ?></td>
-                                        <td><?php echo $super['pNuevo']; ?></td>
-                                        <td><?php echo $super['pRecurrente']; ?></td>
-                                        <td><?php echo $super['total']; ?></td>
-                                        <td><?php echo $super['promotor']; ?></td>
-                                        <td><?php echo $super['observacion']; ?></td>
-                                        <td><a href="detallePomSuper.php?sub=<?php echo $SUBRECEPTOR; ?>&id=<?php echo $super['idPom']; ?>"><i class="bi bi-file-arrow-down-fill"></i> Detalle </a></td>
-                                    </tr>
-                            <?php }
-                            } ?>
-                            </tbody>
-                            <tfoot class='text-center'>
+                                WHERE subreceptor_id = $SUBRECEPTOR AND rol='R006'";
+                        $resultado = $enlace->query($sql);
+                        while ($supervisores = $resultado->fetch_assoc()) {
+                        ?>
+                            <option value="<?php echo $supervisores['idUsuario']; ?>"> <?php echo $supervisores['supervisor']; ?> </option>
+                        <?php } ?>
+                    </select>
+                    <table class="table table-bordered" aria-describedby="">
+                        <thead class='text-center'>
                             <th>SUPERVISOR</th>
-                                <th>PERIODO</th>
-                                <th>MES</th>
-                                <th>MUNICIPIO</th>
-                                <th>LUGAR</th>
-                                <th>FECHA</th>
-                                <th>HORA</th>
-                            <th><strong id="nuevo3">0</strong></th>
-                            <th><strong id="recurrente3">0</strong></th>
-                            <th><strong id="total3">0</strong></th>
+                            <th>PERIODO</th>
+                            <th>MES</th>
+                            <th>MUNICIPIO</th>
+                            <th>LUGAR</th>
+                            <th>FECHA</th>
+                            <th>HORA</th>
+                            <th>NUEVOS</th>
+                            <th>RECURRENTES</th>
+                            <th>TOTAL</th>
                             <th>PROMOTOR</th>
                             <th>OBSERVACION</th>
                             <th>OPCION</th>
-                        </tfoot>
-                        </table>
-                </div>
-                <!--- PERIODO IV--->
-                <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
-                    <select id="" class="form-select">
-                            <option value="">Supervisores ... </option>
-                            <?php
-                            $sql = "SELECT u.idUsuario, CONCAT(p.nombre,' ',p.apellido) as supervisor FROM usuario u
-                                LEFT JOIN persona p ON p.idPersona=u.persona_id
-                                WHERE subreceptor_id=$SUBRECEPTOR AND rol='R006'";
-                            $resultado = $enlace->query($sql);
-                            while ($supervisores = $resultado->fetch_assoc()) {
-                            ?>
-                                <option value="<?php echo $supervisores['idUsuario']; ?>" onclick="supervisores(4, <?php echo $supervisores['idUsuario']; ?>, <?php echo $SUBRECEPTOR; ?>)"><?php echo $supervisores['supervisor']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <table class="table table-bordered" aria-describedby="">
-                            <thead class='text-center'>
-                                <th>SUPERVISOR</th>
-                                <th>PERIODO</th>
-                                <th>MES</th>
-                                <th>MUNICIPIO</th>
-                                <th>LUGAR</th>
-                                <th>FECHA</th>
-                                <th>HORA</th>
-                                <th>NUEVOS</th>
-                                <th>RECURRENTES</th>
-                                <th>TOTAL</th>
-                                <th>PROMOTOR</th>
-                                <th>OBSERVACION</th>
-                                <th>OPCION</th>
-                            </thead>
-                            <?php
-                    if ($SUBRECEPTOR != 4) {
-                    ?>
-                            <tbody class="text-center" style="font-size: 12px;" id="resultadoSupervisor">
-
-                            </tbody>
-                            <?php } else {
-                    ?>
-                     <tbody>
+                        </thead>
+                        <?php if ($SUBRECEPTOR != 4) { ?>
+                            <tbody class="text-center" style="font-size: 11px;" id="resultadoSupervisor"></tbody>
+                        <?php } else { ?>
+                            <tbody>
                                 <?php
                                 $sqlSuper = "SELECT DISTINCT t4.idPom, CONCAT(t7.nombre,' ',t7.apellido) AS supervisor, t4.periodo, t5.nombre AS mess, t6.nombre AS municipios, t4.lugar, t4.fecha, t1.hora, 
                                 t4.pNuevo, t4.pRecurrente, ROUND((t4.pNuevo + t4.pRecurrente), 2) AS total, t1.observacion, CONCAT(t9.nombre,' ',t9.apellido) AS promotor FROM supervision t1
@@ -235,7 +142,7 @@ $SUBRECEPTOR = $_GET['id'];
                                 LEFT JOIN persona t7 ON t7.idPersona=t2.persona_id
                                 LEFT JOIN promotor t8 ON t8.idPromotor=t4.promotor_id
                                 LEFT JOIN persona t9 ON t9.idPersona=t8.persona_id
-                         WHERE t4.periodo = 4 and t4.subreceptor_id = $SUBRECEPTOR";
+                                WHERE t4.periodo = 3 and t4.subreceptor_id = $SUBRECEPTOR";
                                 $resultadoSuper = $enlace->query($sqlSuper);
                                 while ($super = $resultadoSuper->fetch_assoc()) {
                                 ?>
@@ -257,7 +164,11 @@ $SUBRECEPTOR = $_GET['id'];
                             <?php }
                             } ?>
                             </tbody>
-                        </table>
+                    </table>
+                </div>
+                <!--- PERIODO IV--->
+                <div class="tab-pane fade" id="pills-semestre_4" role="tabpanel" aria-labelledby="pills-semestre_4-tab">
+
                 </div>
                 <!--- PERIODO V--->
                 <div class="tab-pane fade" id="pills-semestre_5" role="tabpanel" aria-labelledby="pills-semestre_5-tab">
@@ -283,9 +194,10 @@ $SUBRECEPTOR = $_GET['id'];
         <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../../../assets/vendors/jquery/jquery.min.js"></script>
         <script src="../../../assets/vendors/alertifyjs/alertify.js"></script>
-        <script src="../../js/utilidad.js"></script>
         <script src="../../../assets/vendors/datatable/jquery.dataTables.min.js"></script>
-        <script src="../../js/otrasTablas.js"></script>
+        <script src="../../../assets/js/select2.full.min.js"></script>
+        <script src="../../js/estados.js"></script>
+        <script src="../../js/utilidad.js"></script>
     </body>
 
 </html>

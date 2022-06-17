@@ -39,7 +39,7 @@
                 <form name="agregarSupervision" id="agregarSupervision" action="javascript: supervisarActividad();" method="POST">
                     <div class="row">
                         <input type="hidden" id="pom">
-                        <?php if ($SUBRECEPTOR == '5') { ?>
+                        <?php if (($SUBRECEPTOR == '5')||($SUBRECEPTOR == '2')) { ?>
 
                             <div class="form-group input-group-sm col-sm-3">
                                 <label class="form-label" style="font-size: 12px;">Supervisor:</label>

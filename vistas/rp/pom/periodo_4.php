@@ -57,7 +57,7 @@
                     <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php switch ($periodo_4['estado']) {
-                                // Estados principales
+                            // Estados principales
                             case 'ES03':
                                 echo '<p class="text-info"> Revisar Actividad </p>';
                                 break;
@@ -76,17 +76,26 @@
                             case 'ES08':
                                 echo '<p class = "text-warning"> Actividad Reprogramada </p>';
                                 break;
-                                // Estados de Cancelacion
-                            case 'CA02':
+                            // Estados de Cancelacion
+                            case 'CA01':
                                 echo '<p class="text-info"> Solicitud de Cancelacion </p>';
                                 break;
-                                // Estados de Recalendarizacion
-                            case 'RC02':
+                            case 'CA02':
+                                echo '<p class="text-info">Cancelacion rechazada</p>';
+                                break;
+                            // Estados de Recalendarizacion
+                            case 'RC01':
                                 echo '<p class = "text-info"> Solicitud de Recalendarizacion </p>';
                                 break;
-                                // Estados de Reprogramacion
-                            case 'RP02':
+                            case 'RC02':
+                                echo '<p class = "text-info">Recalendarizacion rechazada </p>';
+                                break;
+                            // Estados de Reprogramacion
+                            case 'RP01':
                                 echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
+                                break;
+                            case 'RP02':
+                                echo '<p class = "text-info">Reprogramacion rechazada</p>';
                                 break;
                         } 
                         ?>

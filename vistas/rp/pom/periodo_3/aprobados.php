@@ -35,7 +35,7 @@
         LEFT JOIN usuario u ON u.idUsuario = t2.supervisor
         LEFT JOIN persona p ON p.idPersona = u.persona_id
         WHERE t2.periodo = 3 AND t7.subreceptor_id = $SUBRECEPTOR  
-        AND t2.estado NOT IN (SELECT estado FROM pom HAVING estado IN ('PR01', 'PR02', 'PR03','ES01','ES02')) ORDER BY t2.estado";
+        AND t2.estado = 'ES04' ORDER BY t2.estado";
         if ($resp_3 = $enlace->query($sqlp_3)) {
             while ($periodo_3 = $resp_3->fetch_assoc()) { ?>
                 <tr>
@@ -77,25 +77,16 @@
                                 echo '<p class = "text-warning"> Actividad Reprogramada </p>';
                                 break;
                                 // Estados de Cancelacion
-                            case 'CA01':
+                            case 'CA02':
                                 echo '<p class="text-info"> Solicitud de Cancelacion </p>';
                                 break;
-                            case 'CA02':
-                                echo '<p class="text-info">Cancelacion rechazada</p>';
-                                break;
                                 // Estados de Recalendarizacion
-                            case 'RC01':
+                            case 'RC02':
                                 echo '<p class = "text-info"> Solicitud de Recalendarizacion </p>';
                                 break;
-                            case 'RC02':
-                                echo '<p class = "text-info">Recalendarizacion rechazada </p>';
-                                break;
                                 // Estados de Reprogramacion
-                            case 'RP01':
-                                echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
-                                break;
                             case 'RP02':
-                                echo '<p class = "text-info">Reprogramacion rechazada</p>';
+                                echo '<p class = "text-info"> Solicitud de Reprogramacion </p>';
                                 break;
                         } 
                         ?>
@@ -111,43 +102,6 @@
                                     <button class="dropdown-item" onclick="modalEstadoPom(<?php echo $periodo_3['idPom']; ?>)">
                                         <em class="bi bi-stoplights-fill"></em> Estado </button>
                                 </li>
-                                <?php
-                                if ($periodo_3['estado'] == 'ES03') {
-                                ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(3)">
-                                            <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
-                                            <em class="bi bi-arrow-right-circle"></em> Solicitar correccion </button>
-                                    </li>
-                                <?php } ?>
-
-                                <?php if ($periodo_3['estado'] == 'RE01') { ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'RE02')">
-                                            <em class="bi bi-shuffle"></em> Recalendarización </button>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($periodo_3['estado'] == 'CA01') { ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalAceptarCancelacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES06')">
-                                            <em class="bi bi-back"></em> Solicitud de Cancelacion </button>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($periodo_3['estado'] == 'RC01') { ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalAceptarRecalendarizacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES07')">
-                                            <em class="bi bi-shuffle"></em> Recalendarización </button>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($periodo_3['estado'] == 'RP01') { ?>
-                                    <li>
-                                        <button class="dropdown-item" onclick="modalAceptarReprogramacion(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES08')">
-                                            <em class="bi bi-shuffle"></em> Reprogramacion </button>
-                                    </li>
-                                <?php } ?>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_3['idPom']; ?>&sub=<?php echo $periodo_3['subreceptor_id']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>

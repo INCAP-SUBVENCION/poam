@@ -3,10 +3,10 @@ include_once('../../../bd/conexion.php');
 header("Content-Type: text/html;charset=utf-8");
 date_default_timezone_set("America/Guatemala");
 session_start();
-$PERIODO = $_GET['periodo'];
-$SUBRECEPTOR = $_GET['sub'];
-$MUNICIPIO = $_GET['muni'];
-$MES = $_GET['me'];
+$PERIODO = $_POST['periodo'];
+$SUBRECEPTOR = $_POST['sub'];
+$MUNICIPIO = $_POST['muni'];
+$MES = $_POST['me'];
 $CONTADOR = 1;
 $sql_p1 = "SELECT DISTINCT t1.idPoa, t5.nombre as mes, t4.nombre as municipio, t1.nuevo, t1.recurrente, 
 (t1.nuevo + t1.recurrente) AS total, t1.observacion, t2.cnatural, t2.csabor, t2.cfemenino, t2.lubricante, 
