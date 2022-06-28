@@ -146,7 +146,7 @@
                                         <li>
                                             <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(4)">
                                                 <em class="bi bi-arrow-clockwise"></em> Enviar toda actividad a M&E </button>
-                                        </li>
+                                        </li> 
                                         <li>
                                             <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
                                                 <em class="bi bi-arrow-right-circle"></em> Solicitar correccion</button>
@@ -175,7 +175,10 @@
                                         </li>
                                     <?php } ?>
                                 </div>
-
+                                <li>
+                                        <button class="dropdown-item" onclick="modalSupervisar(<?php echo $SUBRECEPTOR; ?>, <?php echo $periodo_4['idPom']; ?>)">
+                                            <em class="bi bi-binoculars-fill"></em> Supervisar actividad </button>
+                                    </li>
                                 <li><a class="dropdown-item" href="detallePom.php?id=<?php echo $periodo_4['idPom']; ?>">
                                         <em class="bi bi-card-list"></em> Detalles</a>
                                 </li>

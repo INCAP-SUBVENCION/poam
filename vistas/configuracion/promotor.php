@@ -27,12 +27,6 @@ if ($ROL != 'R001') {
     <link rel="stylesheet" href="../../assets/css/multi-select/multi-select.css">
     <link rel="stylesheet" href="../../assets/vendors/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../assets/css/app.css">
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-            font-size: smaller;
-        }
-    </style>
 </head>
 
 <body>
@@ -141,7 +135,7 @@ if ($ROL != 'R001') {
                         </div>
                     </form>
                     <table class="table table-hover" id="listadoPromotor">
-                        <thead style="font-size: 12px;">
+                        <thead class="text-center" style="font-size: 12px;">
                             <th>#</th>
                             <th>Codigo</th>
                             <th>Subreceptor</th>
