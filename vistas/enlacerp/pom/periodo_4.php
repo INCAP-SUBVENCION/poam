@@ -57,7 +57,8 @@
                             echo 'Si';
                         } else {
                             echo 'No';
-                        } ?></td>
+                        } ?>
+                    </td>
                     <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php switch ($periodo_4['estado']) {
@@ -124,7 +125,7 @@
                                             <em class="bi bi-arrow-clockwise"></em> Enviar al Especialista </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
+                                        <button class="dropdown-item" onclick="modalCambiarEstadoPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'ES05')">
                                             <em class="bi bi-arrow-right-circle"></em> Solicitar correccion </button>
                                     </li>
                                 <?php } ?>
@@ -135,7 +136,7 @@
                         </div>
                     </td>
                 </tr>
-        <?php } $resp_4->close(); } ?>
+        <?php } $resp_4->close();} ?>
     </tbody>
     <tfoot>
         <th>#</th>

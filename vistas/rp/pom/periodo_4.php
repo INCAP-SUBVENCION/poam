@@ -115,7 +115,7 @@
                                 if ($periodo_4['estado'] == 'ES03') {
                                 ?>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom()">
+                                        <button class="dropdown-item" onclick="modalCambiarTodoEstadoPom(4)">
                                             <em class="bi bi-arrow-clockwise"></em> Aprobar Actvidad </button>
                                     </li>
                                     <li>
@@ -155,7 +155,7 @@
                         </div>
                     </td>
                 </tr>
-        <?php } $resp_3->close(); } ?>
+        <?php } $resp_4->close(); } ?>
     </tbody>
     <tfoot>
         <th>#</th>

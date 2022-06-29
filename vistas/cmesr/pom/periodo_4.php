@@ -1,4 +1,4 @@
-<table class="table table-sm table-hover" id="pom_periodo_4" aria-describedby="pom del periodo 4">
+<table class="table" id="pom_periodo_4" aria-describedby="pom del periodo 4">
     <thead style="font-size: 12px;">
         <tr>
             <th scope>#</th>
@@ -16,7 +16,6 @@
             <th class="text-center text-info" scope>Reactivo</th>
             <th scope>Observacion</th>
             <th scope>Supervisado</th>
-            <th scope>Supervisor</th>
             <th scope>Estado</th>
             <th scope>Opcion</th>
         </tr>
@@ -58,7 +57,6 @@
                         } else {
                             echo 'No';
                         } ?></td>
-                    <td><?php echo $periodo_4['supervisor']; ?></td>
                     <th scope style="font-size: 11px;" class="text-center">
                         <?php
                         switch ($periodo_4['estado']) {
@@ -128,7 +126,7 @@
                                             <em class="bi bi-arrow-clockwise"></em> Enviar al Enlace </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                        <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
                                             <em class="bi bi-arrow-right-circle"></em> Solicitar correccion</button>
                                     </li>
                                     <li>
@@ -148,7 +146,7 @@
                                             <em class="bi bi-pencil-square"></em> Editar </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_3['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
+                                        <button class="dropdown-item" onclick="modalCorreccionPom(<?php echo $periodo_4['idPom']; ?>, <?php echo $ID; ?>, 'PR03')">
                                             <em class="bi bi-arrow-right-circle"></em> Solicitar correccion</button>
                                     </li>
                                     <li>
@@ -247,7 +245,6 @@
             <td class="text-center text-info"><strong id="treactivo4">0</strong></td>
             <th>Observacion</th>
             <th>Supervisado</th>
-            <th>Supervisor</th>
             <th>Estado</th>
         </tr>
     </tfoot>
@@ -262,7 +259,7 @@
                 <select name="meses" id="meses">
                     <?php
                     $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
-                           WHERE t1.periodo = 4 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                        WHERE t1.periodo= 4 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
@@ -285,7 +282,7 @@ if ($SUBRECEPTOR == '3' || $SUBRECEPTOR == '4' || $SUBRECEPTOR == '6' || $SUBREC
                 <select name="meses" id="meses">
                     <?php
                     $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
-                           WHERE t1.periodo = 4 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                        WHERE t1.periodo= 4 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
@@ -308,7 +305,7 @@ if ($SUBRECEPTOR == '5') { ?>
                 <select name="meses" id="meses">
                     <?php
                     $cd = "SELECT t2.codigo, t2.nombre as mes FROM pom t1 LEFT JOIN  catalogo t2 ON t2.codigo = t1.mes  
-                               WHERE t1.periodo = 4 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
+                        WHERE t1.periodo= 4 AND t1.subreceptor_id = $SUBRECEPTOR group by t2.codigo";
                     $rd = $enlace->query($cd);
                     while ($mes = $rd->fetch_assoc()) { ?>
                         <option value="<?php echo $mes['codigo']; ?>"><?php echo $mes['mes']; ?></option>
